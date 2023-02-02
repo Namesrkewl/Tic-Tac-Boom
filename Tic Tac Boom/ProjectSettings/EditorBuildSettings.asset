@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: f0175f351fb8fcd4ba31706a3bb6e084
+  - enabled: 1
+    path: Assets/Scenes/StoryMode.unity
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer.unity
+    guid: f5e9f1a1e63ffc745ac6f9ce5a5e3ff1
+  - enabled: 1
+    path: Assets/Scenes/CustomAI.unity
+    guid: fe77a22bf4fde344da0ee1640e29f429
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: d29f54bde8bb50f47969bbd4bcc53b29
+  - enabled: 1
+    path: Assets/Scenes/Skins.unity
+    guid: 134527fdfc8b67e4ea06b6bc6163d883
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 763b905f370d3754b8553f34ea9db6c8
+  - enabled: 1
+    path: Assets/Scenes/PlayerVSAI.unity
+    guid: 93e450283ee775f4ca031a91957b7359
+  - enabled: 1
+    path: Assets/Scenes/CustomLocal.unity
+    guid: 1419526947506eb4aa3c6d55516ff2e1
+  - enabled: 1
+    path: Assets/Scenes/LocalPVP.unity
+    guid: 3b7e921c5c94c4847bc86bceb5ff86e6
+  m_configObjects: {}

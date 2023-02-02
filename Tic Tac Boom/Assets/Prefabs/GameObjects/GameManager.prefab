@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3986023289751456307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3986023289751456306}
+  - component: {fileID: 3986023289751456305}
+  - component: {fileID: 3986023289751456459}
+  - component: {fileID: 3986023289751456458}
+  - component: {fileID: 3986023289751456454}
+  - component: {fileID: 3362860019468482389}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3986023289751456306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3986023289751456305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306df25892e0b104c931ae16999081ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerTurn: 0
+  isGameOver: 0
+  turnCounter: 0
+  currentTurn: 0
+  bombInUse: 0
+  gridModification: 
+  turnBombUsed: 0
+  gridSize: 3
+  newGridSize: 0
+  playerBombCount: 0
+  opponentBombCount: 0
+  sprites:
+  - {fileID: 21300000, guid: f29d569d81a864c46afd313ece346c6a, type: 3}
+  - {fileID: 21300000, guid: 70e265e29b183a24fa3f9d20ba38ebbb, type: 3}
+  playerSprite: {fileID: 21300000, guid: 70e265e29b183a24fa3f9d20ba38ebbb, type: 3}
+  opponentSprite: {fileID: 21300000, guid: f29d569d81a864c46afd313ece346c6a, type: 3}
+  talents: {fileID: 3986023289751456454}
+  playerMove: {fileID: 3986023289751456459}
+  replay: {fileID: 3986023289751456458}
+  buildGrid: {fileID: 3362860019468482389}
+  loadScene: {fileID: 5837357608895331418, guid: 591ef60a19610eb4db9890378ac5870d, type: 3}
+  skillMenu: {fileID: 0}
+  useSkillMenu: {fileID: 0}
+  useSkillButton: {fileID: 0}
+  cancelSkillButton: {fileID: 0}
+  replayMenu: {fileID: 0}
+  replayButton: {fileID: 0}
+  playerVictoryMenu: {fileID: 0}
+  opponentVictoryMenu: {fileID: 0}
+  interfaceMenus: {fileID: 0}
+  turnDisplay: {fileID: 0}
+  HUD: {fileID: 0}
+  quitPopUp: {fileID: 0}
+  menuOverlay: {fileID: 0}
+  quitButton: {fileID: 0}
+--- !u!114 &3986023289751456459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bd0f02ac478974ab2b07284eec190f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3986023289751456458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df70531b54b52f444b5ab98bf2a7707e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3986023289751456454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usingSmallBomb: 0
+  usingCrossBomb: 0
+  usingXBomb: 0
+  usingMine: 0
+--- !u!114 &3362860019468482389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62cc2bc7f00c0d4ea4540fbe79f09c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 3238018451282051352, guid: e79d79230170dcf47992aca1a9009cd3, type: 3}
+  - {fileID: 1947786409429827111, guid: 0dc995f0976a19c45bf2e23da9d915bb, type: 3}
+  - {fileID: 4030684237722459877, guid: 85e5b428e83b4a847b9aac014cd3e444, type: 3}
+  - {fileID: 4755542659372305704, guid: f644b899480300042a30459994d38eb7, type: 3}
+  - {fileID: 1880384969801151169, guid: c1a8866c12daceb4db8e734b07149b88, type: 3}
+  - {fileID: 2022622802596403893, guid: ed20a986a9040504caefa05f96dacb76, type: 3}
+  - {fileID: 5270271123680342606, guid: cce618ba48ef3ea46b9cc17820d5b9ae, type: 3}
+  - {fileID: 8507192325667751793, guid: 55322bbf8d25054418abc664003650eb, type: 3}
+  - {fileID: 4256134460573324554, guid: 183b88b4bdadb45419e60468cdbf2b20, type: 3}
+  grid: {fileID: 0}

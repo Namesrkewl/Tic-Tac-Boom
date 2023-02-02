@@ -1,0 +1,25 @@
+Starts 3x3, every 3 levels move up 1x1 up to 7x7
+15 levels total, need at least 15 enemies
+
+
+1. Random enemy on first level
+2. enemy with walls
+3. enemy/enemies with full board conveyer belts
+4. enemy with revolving doors (rotation)
+5. enemy who alternates border and diagonal moves of 3
+6. enemy who plays 1 extra move per bomb you use
+7. enemy/enemies with mines
+  8. circle of mines on 5x5 stage
+9 - ?. Conveyer belt, mine, and wall combos
+
+
+possible final bosses:
+1. Enemy where you fight on 2 separate boards, flips
+every round (might be too ambitious, another possible
+final boss)
+2. Enemy who wipes board every 3 rounds, followed by filling
+a space in 1x1, 3x3, 5x5, 7x7 (possible final boss)
+3. Enemy who must be beaten 3 times, moves twice;
+thrice; and four times each depending on lives left
+
+11 unique ideas, at least 20 enemies here based on combos

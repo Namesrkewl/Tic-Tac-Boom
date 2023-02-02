@@ -1,0 +1,59 @@
+Talents:
+
+DISPLAY CD OF ALL YOUR ABILITIES GLOBALLY, PUT IN A MENU SHOWING OTHER PLAYER'S SKILL CDS AS WELL
+WHEN A MATCH STARTS, CREATE A LOAD SCREEN SHOWING BOTH PLAYER'S LOADOUTS
+	
+Make only 1 bomb usable per turn
+Players start with small bomb, 1 turn default cd
+every bomb used goes on cd for an extra turn after
+usage
+add skip turn button if no move possible
+
+bombs-
+1. X Bomb to destroy things in an X; 3 turn default cd
+2. + Bomb to destroy things in a +; 3 turn default cd
+3. Big Bomb to destroy things in a 3x3 radius, destroys walls in 1 hit; 5 turn default cd
+
+passives- 
+1. 1 Extra Move per 2 turns
+2. Extra Small Bomb Charge
+3. The first time an opponent is about to win,
+destroy the symbol they placed and regain an extra
+small bomb- need last placed variable for last move
+
+skills rated by difficulty to implement - 
+1. Place a mine that blows up spaces when someone goes
+on it- DONE, NEEDS SPRITE (JUST CHANGE BASED ON TAG, MIGHT WANT TO REFACTOR PLAYER THIS WAY AS WELL)
+2. Push a symbol in 1 direction to an open space- select piece then select directional arrow, medium
+3. Shift an entire row, column, or diagonal
+(good idea for a stage, think conveyer belts)- same as push, but for row/column/diag, medium
+4. Teleport a symbol to a place of your choosing- select piece then tile, easy
+5. Erect a wall up to 3 tiles long
+must be destroyed with 2 bombs- select start point, then tap up to 2 more tiles and confirm, medium
+6. Place 3 moves in a sequence- same as wall, medium
+7. Cover an entire border row/column; you can no longer
+win on borders this round- same as conveyer, but check for pieces, medium
+9. Expand the board (up to 7) and get an extra turn- select row then column, redraw grid with same
+piece indices, medium
+10. Shrink the board (down to 1) and skip your turn- same as expand but select exising row & column
+and remove those indices, medium
+11. Rotate a 2x2 space of symbols cw or ccw- store next position to a temp variable, move over the
+current position; do this 4 times based on rotation, easy
+
+passives requiring a locked bomb/skill-
+1. Reduce the max cd of X bombs by 1
+2. Reduce the max cd of + bombs by 1
+3. Reduce Big Bomb cd by 1
+4. X Bombs replace spaces, +2 max cooldown
+5. + Bombs replace spaces, +2 max cooldown
+6. X Bomb reach increased by 1
+7. Y Bomb reach increased by 1
+
+24 talent ideas currently as of 22 December
+
+Board ideas:
+
+-Conveyer Belt
+
+-ICE TILE: GETS DESTROYED WHEN A BOMB IS USED ON IT
+FREEZES BACK AFTER 3 TURNS

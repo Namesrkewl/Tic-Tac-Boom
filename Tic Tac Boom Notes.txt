@@ -1,0 +1,34 @@
+15 level story mode vs ai, ai has set movement patterns
+that are op, player gets talents.
+--3 levels per grid size
+
+board modifiers (mines, portals, walls) 
+
+talents unlocked in story mode can be picked for your
+build in pvp mode
+
+in pvp you can build a set of a few talents to use against your opponents
+
+Menu architecture created
+
+--
+Things left to be built:
+1. The entire story mode, including the the individual level AIs and the acquisition
+2. Online PVP- WEB HOSTING? ALSO MAKE WEBSITE LATER
+3. The talent system in general
+4. Skin Selection system
+5. Shop system
+6. Log In System
+7. Auto-Save System && Resume Story Mode System
+8. Adverts system (This will be last-- MIGHT NOT DO ADS IF PUBLISHING EVERYWHERE)
+
+Things to do after every remaining system is built:
+1. Game Balancing
+2. Add sounds
+3. Update graphics
+4. Add animations
+ADD OPTION TO CHOOSE GAME'S TALENT LOADOUTS TO PVP MODES (Local and PVSAI)
+
+What will be done after everything is finished:
+1. Emulate in Android SDK for functional bug testing
+2. Publish to Android and have people test it on their phone (Skem)
