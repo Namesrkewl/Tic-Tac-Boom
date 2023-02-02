@@ -1,0 +1,40 @@
+1. *-Determine Game's Visual Style-*
+
+-Artwork-
+* Title Screen Background
+* Logo for Game (to be used on title screen)
+* Sprites for Characters
+* Basic Tileset
+-Button visuals
+Sprites for Skills
+talent menu
+Enemy sprite for story mode (possibly)
+PVP menu for matchmaking
+Win and Loss screens
+
+
+
+
+-Animations-
+scene transitions (if we have any)
+when a button is pressed
+Movement animation
+Skill usage animation
+Win/Loss animation
+Level transition in story mode
+talent menu pop-in animation
+Enemy Idle animation for story mode
+Special ability animation for story mode
+Animation for Match acceptance in a game
+Match start animation
+
+-Shop Items-
+Character Skins
+Tilesets
+Backgrounds
+Animation Packs - Some of these will come with tilesets
+Win/Loss Screens/Animations
+Player Sprite for PVP
+Player Sprite Background
+
+^ would also need audio packs to go with some of these

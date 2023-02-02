@@ -65,6 +65,10 @@
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Backgrounds\BackgroundsGoHere.txt" />
+    <None Include="Assets\Tilesets\TilesetsGoHere.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.9f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
