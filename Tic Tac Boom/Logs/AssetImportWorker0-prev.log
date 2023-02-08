@@ -15,7 +15,7 @@ C:/Users/khada/Documents/GitHub/Tic Tac Boom/Tic Tac Boom
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-61630
+53900
 Successfully changed project path to: C:/Users/khada/Documents/GitHub/Tic Tac Boom/Tic Tac Boom
 C:/Users/khada/Documents/GitHub/Tic Tac Boom/Tic Tac Boom
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,7 +47,7 @@ C:/Users/khada/Documents/GitHub/Tic Tac Boom/Tic Tac Boom
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 147.14 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 119.83 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.9f1 (ad3870b89536)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Resources/UnitySubsystems
@@ -63,90 +63,146 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56528
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56960
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.011545 seconds.
+Registered in 0.010053 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 158.20 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 122.56 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.054 seconds
+- Completed reload, in  0.852 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1055ms)
-		BeginReloadAssembly (101ms)
+	ReloadAssembly (853ms)
+		BeginReloadAssembly (94ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (775ms)
-			LoadAssemblies (98ms)
+		EndReloadAssembly (605ms)
+			LoadAssemblies (91ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (177ms)
+			SetupTypeCache (150ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (45ms)
-			SetupLoadedEditorAssemblies (471ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (356ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (13ms)
+				InitializePlatformSupportModulesInManaged (10ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (158ms)
-				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (219ms)
-				ProcessInitializeOnLoadMethodAttributes (79ms)
+				RefreshPlugins (123ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (169ms)
+				ProcessInitializeOnLoadMethodAttributes (53ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.014109 seconds.
+Registered in 0.008841 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Users\khada\Documents\GitHub\Tic Tac Boom\Tic Tac Boom\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Users\khada\Documents\GitHub\Tic Tac Boom\Tic Tac Boom\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 134.23 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 116.90 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
 Package Manager log level set to [2]
-- Completed reload, in  1.682 seconds
+- Completed reload, in  1.348 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1683ms)
+	ReloadAssembly (1349ms)
+		BeginReloadAssembly (115ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (22ms)
+		EndReloadAssembly (1107ms)
+			LoadAssemblies (91ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (268ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (62ms)
+			SetupLoadedEditorAssemblies (618ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (117ms)
+				BeforeProcessingInitializeOnLoad (135ms)
+				ProcessInitializeOnLoadAttributes (294ms)
+				ProcessInitializeOnLoadMethodAttributes (54ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.15 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4318 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 60 unused Assets / (223.3 KB). Loaded Objects now: 4754.
+Memory consumption went from 159.1 MB to 158.9 MB.
+Total: 4.349900 ms (FindLiveObjects: 0.332800 ms CreateObjectMapping: 0.250200 ms MarkObjects: 3.524900 ms  DeleteObjects: 0.241000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008856 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\khada\Documents\GitHub\Tic Tac Boom\Tic Tac Boom\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\khada\Documents\GitHub\Tic Tac Boom\Tic Tac Boom\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.264 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1264ms)
 		BeginReloadAssembly (149ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (8ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (26ms)
-		EndReloadAssembly (1356ms)
-			LoadAssemblies (116ms)
+			CreateAndSetChildDomain (45ms)
+		EndReloadAssembly (1000ms)
+			LoadAssemblies (101ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (364ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (84ms)
-			SetupLoadedEditorAssemblies (713ms)
+			SetupTypeCache (295ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (56ms)
+			SetupLoadedEditorAssemblies (468ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (7ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (134ms)
-				BeforeProcessingInitializeOnLoad (163ms)
-				ProcessInitializeOnLoadAttributes (338ms)
-				ProcessInitializeOnLoadMethodAttributes (58ms)
-				AfterProcessingInitializeOnLoad (12ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (114ms)
+				ProcessInitializeOnLoadAttributes (277ms)
+				ProcessInitializeOnLoadMethodAttributes (49ms)
+				AfterProcessingInitializeOnLoad (10ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (9ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
 Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 1.26 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 5.38 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4318 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 60 unused Assets / (223.3 KB). Loaded Objects now: 4754.
-Memory consumption went from 159.1 MB to 158.9 MB.
-Total: 5.850300 ms (FindLiveObjects: 0.388400 ms CreateObjectMapping: 0.422800 ms MarkObjects: 4.865700 ms  DeleteObjects: 0.172200 ms)
+Unloading 4313 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (190.4 KB). Loaded Objects now: 4757.
+Memory consumption went from 159.0 MB to 158.9 MB.
+Total: 6.417000 ms (FindLiveObjects: 0.352600 ms CreateObjectMapping: 0.313400 ms MarkObjects: 5.524700 ms  DeleteObjects: 0.225200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -160,13 +216,43 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 83972.700352 seconds.
-  path: Assets/Skins
-  artifactKey: Guid(824a4b19fd6adc64b8e3fc33f6fdd142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Skins using Guid(824a4b19fd6adc64b8e3fc33f6fdd142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1de38eee972c4e542cddb09462ec5e8') in 0.012933 seconds 
+  Time since last request: 363481.789573 seconds.
+  path: Assets/Tiles/Alternate/top-left.png
+  artifactKey: Guid(5f1b3fb2ebe079447b2b5256dea17e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/top-left.png using Guid(5f1b3fb2ebe079447b2b5256dea17e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '569a9d1d9e5d25af4401625b16724ac0') in 0.172485 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.181742 seconds.
-  path: Assets/Skins/Basic/TIC TAC BOOM SPIRE O 2xx.png
-  artifactKey: Guid(6c0c072bb2a146d44aaa3be727de5b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Skins/Basic/TIC TAC BOOM SPIRE O 2xx.png using Guid(6c0c072bb2a146d44aaa3be727de5b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8c92299bb50590d82920374227297d2') in 0.188924 seconds 
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tiles/Alternate/top-middle.png
+  artifactKey: Guid(561186a1f4dd5d148b51d119534f1879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/top-middle.png using Guid(561186a1f4dd5d148b51d119534f1879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '771972f29ebb43a2ee77a7902a675c6e') in 0.027692 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 30.022127 seconds.
+  path: Assets/Tiles/Alternate/middle-right.png
+  artifactKey: Guid(873d2f1dea9f3824c9f90f72f8dbf39f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/middle-right.png using Guid(873d2f1dea9f3824c9f90f72f8dbf39f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a07e8c42ef64349b345a2019b09ad3a') in 0.023706 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.030027 seconds.
+  path: Assets/Tiles/Alternate/middle-middle.png
+  artifactKey: Guid(e5569a32c2bd89942bcc062cca0afa55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/middle-middle.png using Guid(e5569a32c2bd89942bcc062cca0afa55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec1d19a2ff92896c642412eb63c6619f') in 0.026190 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.276302 seconds.
+  path: Assets/Tiles/Alternate/bottom-right.png
+  artifactKey: Guid(044ad1eedf3c24e4293917ffa15a6972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/bottom-right.png using Guid(044ad1eedf3c24e4293917ffa15a6972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b83e7648c3cdf313e0e4540ec0476eb') in 0.021157 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.018890 seconds.
+  path: Assets/Tiles/Alternate/bottom-middle.png
+  artifactKey: Guid(d3d276d2b24876543a630bf55aa42c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/bottom-middle.png using Guid(d3d276d2b24876543a630bf55aa42c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8994a58034323c5708af8d6492b37970') in 0.020813 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Tiles/Alternate/bottom-left.png
+  artifactKey: Guid(ced1fd220e4c2ab4393f3004d33e704e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tiles/Alternate/bottom-left.png using Guid(ced1fd220e4c2ab4393f3004d33e704e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07c05ffdfe0375ac40a36a530983e440') in 0.019924 seconds 
