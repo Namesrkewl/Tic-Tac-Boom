@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Backgrounds\BackgroundsGoHere.txt" />
+    <None Include="Assets\Tilesets\Basic\PlayerIndicators\Unlit\unlitIndicatorsGoHere.txt" />
     <None Include="Assets\Tilesets\TilesetsGoHere.txt" />
   </ItemGroup>
   <ItemGroup>
