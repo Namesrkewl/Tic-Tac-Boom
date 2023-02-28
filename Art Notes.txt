@@ -1,40 +1,49 @@
 1. *-Determine Game's Visual Style-*
 
 -Artwork-
-* Title Screen Background
-* Logo for Game (to be used on title screen)
-* Sprites for Characters
-* Basic Tileset
--Button visuals
-Sprites for Skills
-talent menu
-Enemy sprite for story mode (possibly)
-PVP menu for matchmaking
-Win and Loss screens
+* Title Screen Background ✅
+* Logo for Game (to be used on title screen) ✅
+* Sprites for Characters ✅
+* Basic Tileset ✅
+Button visuals X *Priority
+Sprites for Skills WIP *Priority
+talent menu - Wireframe Completed ✅
+Enemy sprite(s) for story mode (possibly) X
+PVP menu for matchmaking X
+Win and Loss screens X *Priority
+Settings Menu X
 
+
+Priority Sprites: 
+-Cogwheel for Settings
+-Shop Icon
+-Skins Icon
+-Build Tiles Sprite
+-Destroy Tiles Sprite
+-General Use Button Sprite
 
 
 
 -Animations-
-scene transitions (if we have any)
-when a button is pressed
-Movement animation
-Skill usage animation
-Win/Loss animation
-Level transition in story mode
-talent menu pop-in animation
-Enemy Idle animation for story mode
-Special ability animation for story mode
-Animation for Match acceptance in a game
-Match start animation
+scene transitions (if we have any) X
+when a button is pressed X
+Movement animation X
+Skill usage animation WIP
+Win/Loss animation X
+Level transition in story mode X
+talent menu pop-in animation X
+Enemy Idle animation for story mode X
+Special ability animation for story mode WIP
+Animation for Match acceptance in a game X
+Match start animation X
 
 -Shop Items-
-Character Skins
-Tilesets
-Backgrounds
-Animation Packs - Some of these will come with tilesets
-Win/Loss Screens/Animations
-Player Sprite for PVP
-Player Sprite Background
+Character Skins WIP
+Tilesets X
+Backgrounds X
+Animation Packs - Some of these will come with tilesets - Pending
+Win/Loss Screens/Animations X
+Player Sprite for PVP X
+Player Sprite Background X
 
 ^ would also need audio packs to go with some of these

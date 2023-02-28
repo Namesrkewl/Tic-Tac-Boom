@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game Logic\PlayMove.cs" />
+    <Compile Include="Assets\Scripts\Audio\Small_Bomb_Sounds.cs" />
     <Compile Include="Assets\Scripts\Game Logic\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Game Logic\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game Logic\SceneHistory.cs" />
@@ -68,6 +69,7 @@
     <None Include="Assets\Backgrounds\BackgroundsGoHere.txt" />
     <None Include="Assets\Tilesets\Basic\PlayerIndicators\Unlit\unlitIndicatorsGoHere.txt" />
     <None Include="Assets\Tilesets\TilesetsGoHere.txt" />
+    <None Include="Assets\Skills\SkillsGoHere.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
