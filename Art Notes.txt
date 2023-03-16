@@ -5,22 +5,22 @@
 * Logo for Game (to be used on title screen) ✅
 * Sprites for Characters ✅
 * Basic Tileset ✅
-Button visuals X *Priority
-Sprites for Skills WIP *Priority
+Button visuals ✅
+Sprites for Skills ✅
 talent menu - Wireframe Completed ✅
 Enemy sprite(s) for story mode (possibly) X
 PVP menu for matchmaking X
-Win and Loss screens X *Priority
-Settings Menu X
+Win and Loss screens ✅
+Settings Menu ✅
 
 
 Priority Sprites: 
--Cogwheel for Settings
--Shop Icon
--Skins Icon
--Build Tiles Sprite
--Destroy Tiles Sprite
--General Use Button Sprite
+-Cogwheel for Settings ✅
+-Shop Icon ✅
+-Skins Icon ✅
+-Build Tiles Sprite ✅
+-Destroy Tiles Sprite ✅
+-General Use Button Sprite X
 
 
 
