@@ -2,7 +2,7 @@ Starts 3x3, every 3 levels move up 1x1 up to 7x7
 15 levels total, need at least 15 enemies
 
 
-1. Random enemy on first level
+1. Random enemy on first level - Goblin
 2. enemy with walls
 3. enemy/enemies with full board conveyer belts
 4. enemy with revolving doors (rotation)
@@ -17,8 +17,19 @@ possible final bosses:
 1. Enemy where you fight on 2 separate boards, flips
 every round (might be too ambitious, another possible
 final boss)
+
 2. Enemy who wipes board every 3 rounds, followed by filling
-a space in 1x1, 3x3, 5x5, 7x7 (possible final boss)
+a space in 1x1, 3x3, 5x5, 7x7 (possible final boss) - Dragon 
+Attacks:
+-column hitting breath attack
+-swipe to hit a row
+-small flame breath attack that hits random tiles
+-Board wiping breath attack (Russia)
+Art for the attacks:
+Dragon opens mouth
+Dragon swipes with hand
+Dragon looks around (idle sequence)
+
 3. Enemy who must be beaten 3 times, moves twice;
 thrice; and four times each depending on lives left
 
