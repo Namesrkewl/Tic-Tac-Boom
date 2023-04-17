@@ -779,20 +779,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Game by Khadar Coleman
-
-    Click2Play Games
+  m_Text: 'Game by Click2Play Studios
 
 
-    Follow Skem on Instagram
+    Art and Design by Skem
 
-    @skr3m_art
-
-
-    He
-    didn''t make this game
-
-    but do it anyway'
+    @skr3m_art'
 --- !u!222 &1375749517
 CanvasRenderer:
   m_ObjectHideFlags: 0
