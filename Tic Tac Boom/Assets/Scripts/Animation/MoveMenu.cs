@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveMenu : MonoBehaviour
 {
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     public void MoveToHome() {
         if (!isMoving) {

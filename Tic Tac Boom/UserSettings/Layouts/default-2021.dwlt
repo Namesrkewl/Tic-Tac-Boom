@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 32755
+  controlID: 16193
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,8 +141,8 @@ MonoBehaviour:
     y: 0
     width: 362
     height: 957
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 32886
+  controlID: 16184
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 32761
+  controlID: 16110
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 280
     height: 507
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -668,9 +668,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -212.11562, y: 475.59708, z: 11.862556}
+    m_Target: {x: 476.89752, y: 302.11365, z: -10.09864}
     speed: 2
-    m_Value: {x: -212.11562, y: 475.59708, z: 11.862556}
+    m_Value: {x: 476.89752, y: 302.11365, z: -10.09864}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -721,9 +721,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 689.93634
+    m_Target: 447.56677
     speed: 2
-    m_Value: 689.93634
+    m_Value: 447.56677
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -834,21 +834,21 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 80d4ffff
-      m_LastClickedID: -11136
-      m_ExpandedIDs: 104cfeff424dfeff5ac1ffffd2cbffff58d1ffff80d4ffff1ed7ffff38d7ffffc4dbffffe4dbffff92dcffffdae5ffff2afbffff7a6200008e62000096620000a8620000
+      scrollPos: {x: 0, y: 63}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: be5dffffa0c7fffffcfaffff706200008a620000ea62000020630000426300004e6300006e63000080630000846300009e630000aa630000d0630000ee630000f4630000a8c70000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Banner
-        m_OriginalName: Banner
+        m_Name: Image
+        m_OriginalName: Image
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -1264
+        m_UserData: 25244
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -902,22 +902,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Animation
+    - Assets/Sounds Effects
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 83
   m_LastFolders:
-  - Assets/Scripts/Animation
+  - Assets/Sounds Effects
   m_LastFoldersGridSize: 83
   m_LastProjectPath: C:\Users\khada\Documents\GitHub\Tic Tac Boom\Tic Tac Boom
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 74650000
-    m_LastClickedID: 25972
-    m_ExpandedIDs: 0000000042650000446500004a6500004c6500004e650000506500005265000056650000586500005a65000000ca9a3b
+    scrollPos: {x: 0, y: 43}
+    m_SelectedIDs: c0ca0000
+    m_LastClickedID: 51904
+    m_ExpandedIDs: 00000000926600009466000096660000986600009a6600009c6600009e660000a0660000a2660000ba66000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -945,7 +945,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000426500004a6500004c6500004e650000506500005265000056650000586500005a65000000ca9a3b
+    m_ExpandedIDs: 00000000926600009466000096660000986600009a6600009c6600009e660000a0660000a266000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -973,7 +973,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000807e0000a6600000a2600000d0630000d26300003c6600008a6200007464000000000000
+    m_ExpandedInstanceIDs: c6230000807e0000a6600000a2600000d0630000d26300003c6600008a62000074640000000000005a640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -997,7 +997,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 39}
+    m_ScrollPosition: {x: 0, y: 960}
     m_GridSize: 83
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 122
@@ -1036,7 +1036,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 486
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
