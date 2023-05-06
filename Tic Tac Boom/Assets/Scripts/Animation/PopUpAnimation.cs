@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PopUpAnimation : MonoBehaviour
 {
+    public GameObject menu;
     // isMoving is used to determine if the button can be pressed or not
     public bool isMoving = false;
 
@@ -24,7 +25,7 @@ public class PopUpAnimation : MonoBehaviour
     {
         if (!isMoving) {
             isMoving = true;
-            LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.5f).setEaseOutExpo().setOnComplete(Deactivate);
+            LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.2f).setEaseOutExpo().setOnComplete(Deactivate);
         }
     }
 
@@ -33,11 +34,13 @@ public class PopUpAnimation : MonoBehaviour
     {
         gameObject.SetActive(false);
         isMoving = false;
+        menu.SetActive(false);
     }
 
     // Activate element
     void Activate()
     {
+        menu.SetActive(true);
         gameObject.SetActive(true);
         isMoving = false;
     }

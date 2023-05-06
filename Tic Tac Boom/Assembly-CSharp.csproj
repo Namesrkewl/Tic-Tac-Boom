@@ -70,7 +70,9 @@
     <Compile Include="Assets\Scripts\Audio\Small_Bomb_Sounds.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
+    <Compile Include="Assets\Scripts\Audio\ButtonAudio.cs" />
     <Compile Include="Assets\Scripts\Game Logic\LoadScene.cs" />
+    <Compile Include="Assets\Scripts\Animation\IdleAnimation.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\Scripts\Game Logic\GameManager.cs" />
@@ -101,8 +103,6 @@
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\Scripts\Animation\IdleAnimation.cs" />
-    <Compile Include="Assets\Scripts\Audio\ButtonAudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeanTween\ReadMe.txt" />
