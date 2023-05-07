@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class PopUpAnimation : MonoBehaviour
+public class PopUpAnimation : TweenAnimation
 {
-    public GameObject menu;
-    // isMoving is used to determine if the button can be pressed or not
-    public bool isMoving = false;
+    [SerializeField] private GameObject menu;
 
     // Animation for opening the menu
     public void Open()
     {
-        if (!isMoving) {
-            isMoving = true;
+        if (!IsMoving) {
+            IsMoving = true;
             // Sets the element to active
             Activate();
             gameObject.transform.localScale = new Vector3(0, 0, 0);
@@ -21,8 +19,8 @@ public class PopUpAnimation : MonoBehaviour
     // Animation for closing the menu
     public void Close()
     {
-        if (!isMoving) {
-            isMoving = true;
+        if (!IsMoving) {
+            IsMoving = true;
             LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.2f).setEaseOutExpo().setOnComplete(Deactivate);
         }
     }
@@ -31,7 +29,7 @@ public class PopUpAnimation : MonoBehaviour
     void Deactivate()
     {
         gameObject.SetActive(false);
-        isMoving = false;
+        IsMoving = false;
         menu.SetActive(false);
     }
 
@@ -40,6 +38,6 @@ public class PopUpAnimation : MonoBehaviour
     {
         menu.SetActive(true);
         gameObject.SetActive(true);
-        isMoving = false;
+        IsMoving = false;
     }
 }

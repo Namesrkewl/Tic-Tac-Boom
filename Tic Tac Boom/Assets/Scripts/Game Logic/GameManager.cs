@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
     public Sprite[] sprites;
     public Sprite playerSprite, opponentSprite;
+    [field: SerializeField] public int Gold { get; private set; }
+    [field: SerializeField]  public int Gems { get; private set; }
 
     // Scripts
     public Talents talents;

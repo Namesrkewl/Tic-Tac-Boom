@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StopAudio : MonoBehaviour
 {
-    public GameObject source;
+    [SerializeField] private GameObject source;
     // Start is called before the first frame update
     void Start()
     {

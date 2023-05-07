@@ -32,3 +32,18 @@ ADD OPTION TO CHOOSE GAME'S TALENT LOADOUTS TO PVP MODES (Local and PVSAI)
 What will be done after everything is finished:
 1. Emulate in Android SDK for functional bug testing
 2. Publish to Android and have people test it on their phone (Skem)
+
+
+----
+
+
+CURRENT WORKLOAD:
+
+SETTINGS MENU
+SET UP NAMEPLATE
+SET UP SECOND MENU + PATHING
+
+LOAD SCREEN BETWEEN STORY MODE
+
+POPULATE THE SHOP/SKINS/TALENT MENUS
+CONNECT VALUES TO PLAYERPREFS

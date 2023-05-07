@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleAnimation : MonoBehaviour
+public class IdleAnimation : TweenAnimation
 {
     void Start()
     {
