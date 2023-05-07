@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Sequences\StartSequence.cs" />
     <Compile Include="Assets\Scripts\Animation\IdleAnimation.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
+    <Compile Include="Assets\Scripts\Game Logic\DisplayGold.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\Scripts\Game Logic\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\Game Logic\BuildGrid.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingPunch.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
+    <Compile Include="Assets\Scripts\Game Logic\DisplayGems.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
@@ -108,8 +110,7 @@
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\Scripts\Game Logic\DisplayGold.cs" />
-    <Compile Include="Assets\Scripts\Game Logic\DisplayGems.cs" />
+    <Compile Include="Assets\Scripts\Sequences\EnterStorySequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeanTween\ReadMe.txt" />
