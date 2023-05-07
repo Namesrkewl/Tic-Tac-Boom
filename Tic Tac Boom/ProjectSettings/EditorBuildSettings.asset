@@ -35,4 +35,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LocalPVP.unity
     guid: 3b7e921c5c94c4847bc86bceb5ff86e6
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a4e03322a26d6764780d531145b042aa, type: 2}
