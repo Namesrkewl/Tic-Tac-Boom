@@ -63,6 +63,7 @@
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\Scripts\Game Logic\PlayMove.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
+    <Compile Include="Assets\Scripts\Audio\StopAudio.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Scripts\Audio\ButtonAudio.cs" />
     <Compile Include="Assets\Scripts\Game Logic\LoadScene.cs" />
+    <Compile Include="Assets\Scripts\Sequences\StartSequence.cs" />
     <Compile Include="Assets\Scripts\Animation\IdleAnimation.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Scripts\Game Logic\SceneHistory.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
+    <Compile Include="Assets\Scripts\Sequences\IntroSequence.cs" />
     <Compile Include="Assets\Scripts\Game Logic\BuildGrid.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingPunch.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
@@ -103,8 +106,7 @@
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\Scripts\Animation\IntroAnimation.cs" />
-    <Compile Include="Assets\Scripts\Audio\StopAudio.cs" />
+    <Compile Include="Assets\Scripts\Game Logic\BackgroundAudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeanTween\ReadMe.txt" />
