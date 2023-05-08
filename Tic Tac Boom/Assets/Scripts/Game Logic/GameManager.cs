@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
     public Sprite[] sprites;
     public Sprite playerSprite, opponentSprite;
+    [SerializeField] private AudioClip windSound;
+    [SerializeField] private AudioClip battleTheme;
+    [SerializeField] private AudioClip loadingTheme;
+    [field: SerializeField] public AudioClip MainTheme { get; private set; }
+    public AudioClip moveSound;
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
 
@@ -56,7 +62,44 @@ public class GameManager : MonoBehaviour
     void OnDisable() {
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
+
+    public IEnumerator StorySequence() {
+        GameObject audio = GameObject.Find("BackgroundAudio");
+        if (audio.GetComponent<AudioSource>().clip != loadingTheme) {
+            audio.GetComponent<AudioSource>().clip = loadingTheme;
+            audio.GetComponent<AudioSource>().Play();
+        }
+        GameObject cover = GameObject.Find("Cover");
+        GameObject board = cover.transform.GetChild(0).gameObject;
+        board.SetActive(true);
+        GameObject fog = cover.transform.GetChild(1).gameObject;
+        fog.SetActive(true);
+        GameObject text = cover.transform.GetChild(2).gameObject;
+        text.SetActive(true);
+        GameObject value = text.transform.GetChild(0).gameObject;
+        SetText(0);
+        yield return new WaitForSeconds(2f);
+        LeanTween.value(value, 0, 100, 3f).setOnUpdate(SetText);
+        yield return new WaitForSeconds(4f);
+        audio.GetComponent<AudioSource>().Stop();
+        yield return new WaitForSeconds(1f);
+        text.SetActive(false);
+        LeanTween.alpha(fog.GetComponent<Image>().rectTransform, 0, 2f);
+        audio.GetComponent<AudioSource>().clip = windSound;
+        audio.GetComponent<AudioSource>().PlayOneShot(windSound);
+        yield return new WaitForSeconds(3f);
+        fog.SetActive(false);
+        board.SetActive(false);
+        audio.GetComponent<AudioSource>().clip = battleTheme;
+        audio.GetComponent<AudioSource>().Play();
+    }
+
+    private void SetText(float value) {
+        GameObject.Find("Value").GetComponent<Text>().text = (value.ToString("F0") + "%");
+    }
+
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+        loadScene = GameObject.Find("SceneManager").GetComponent<LoadScene>();
         if (scene.name == "StoryMode" || scene.name == "PlayerVSAI" || scene.name == "LocalPVP") {
             LoadGame();
             BombCooldowns();

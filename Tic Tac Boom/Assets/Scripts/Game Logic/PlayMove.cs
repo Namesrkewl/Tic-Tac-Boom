@@ -8,10 +8,12 @@ using UnityEngine.UI;
 public class PlayMove : MonoBehaviour {
     GameObject button;
     GameObject playerAtButton;
+    [SerializeField] private AudioSource gameSounds;
 
     public void PlayerMove() {
         button = EventSystem.current.currentSelectedGameObject;
         playerAtButton = button.transform.GetChild(0).gameObject;
+        gameSounds.PlayOneShot(GameManager.instance.moveSound);
 
         if (!playerAtButton.activeSelf && !GameManager.instance.bombInUse && !button.tag.Contains("Wall")) {
             if (GameManager.instance.isPlayerTurn == true) {

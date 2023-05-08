@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class IntroSequence : MonoBehaviour
 {
+    [SerializeField] private GameObject company;
     [SerializeField] private GameObject tic;
     [SerializeField] private GameObject tac;
     [SerializeField] private GameObject logo;
@@ -20,7 +21,10 @@ public class IntroSequence : MonoBehaviour
 
     private IEnumerator Intro() {
         background.GetComponent<Image>().color = new Color(255, 255, 255, 0);
-        LeanTween.alpha(background.GetComponent<Image>().rectTransform, 0.5f, 2f);
+        LeanTween.alpha(background.GetComponent<Image>().rectTransform, 0.5f, 4f);
+        LeanTween.alphaText(company.GetComponent<Text>().rectTransform, 1, 2f);
+        yield return new WaitForSeconds(2f);
+        LeanTween.alphaText(company.GetComponent<Text>().rectTransform, 0, 1f);
         yield return new WaitForSeconds(2f);
         yield return StartCoroutine(Tic());
         logo.SetActive(true);

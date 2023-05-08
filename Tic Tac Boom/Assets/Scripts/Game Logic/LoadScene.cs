@@ -24,6 +24,10 @@ public class LoadScene : MonoBehaviour {
     }
 
     public void LoadMain() {
+        if (BackgroundAudio.instance.GetComponent<AudioSource>().clip != GameManager.instance.MainTheme) {
+            BackgroundAudio.instance.GetComponent<AudioSource>().clip = GameManager.instance.MainTheme;
+            BackgroundAudio.instance.GetComponent<AudioSource>().Play();
+        }
         SceneManager.LoadScene("Main");
     }
     public void LoadSinglePlayer() {

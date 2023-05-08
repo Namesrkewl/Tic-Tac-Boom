@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnterStorySequence : TweenAnimation {
     [SerializeField] private GameObject view;
+    [SerializeField] private GameObject overlay;
     [SerializeField] private GameObject element;
-    [SerializeField] private AudioSource storySounds;
+    [SerializeField] private GameObject backgroundAudio;
     [SerializeField] private AudioClip chainsPulling;
     [SerializeField] private AudioClip loadingSound;
     [SerializeField] private GameObject sceneManager;
@@ -16,12 +17,18 @@ public class EnterStorySequence : TweenAnimation {
 
     private IEnumerator Play() {
         if (!element.GetComponent<TweenAnimation>().IsMoving) {
-            LeanTween.moveLocal(view, new Vector3(0, 1920, 0), 1f);
-            storySounds.PlayOneShot(chainsPulling);
-            yield return new WaitForSeconds(1f);
-            storySounds.clip = loadingSound;
-            storySounds.loop = true;
-            storySounds.Play();
+            backgroundAudio = GameObject.Find("BackgroundAudio");
+            backgroundAudio.GetComponent<AudioSource>().Stop();
+            overlay.SetActive(true);
+            LeanTween.moveLocal(view, new Vector3(0, 1920, 0), 2f);
+            backgroundAudio.GetComponent<AudioSource>().PlayOneShot(chainsPulling);
+            yield return new WaitForSeconds(2f);
+            backgroundAudio.GetComponent<AudioSource>().Stop();
+            backgroundAudio.GetComponent<AudioSource>().clip = loadingSound;
+            backgroundAudio.GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(2f);
+            overlay.SetActive(false);
+            sceneManager.GetComponent<LoadScene>().LoadStoryMode();
         }
     }
 }
