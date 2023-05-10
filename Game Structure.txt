@@ -1,0 +1,19 @@
+Game Structure:
+
+1. Title Screen with opening animation (May be subject to change now that LORE exists)
+
+-Menu transition to next menu
+
+2a. (On first launch): LORE EXPOSITION CUTSCENE -> Tutorial
+
+2. Main Menu
+
+3a. (If clicking story mode) Pop up window that has game mode selection (by default, only the Exiled
+is unlocked), once Forgotten is unlocked, when selecting you can choose which faction to play as
+
+- Menu transition to Story Mode
+
+- Loading Screen
+
+- (LORE EXPOSITION CUTSCENE) - Optional
+4. Introductory screen for enemy

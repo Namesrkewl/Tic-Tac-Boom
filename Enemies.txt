@@ -34,3 +34,51 @@ Dragon looks around (idle sequence)
 thrice; and four times each depending on lives left
 
 11 unique ideas, at least 20 enemies here based on combos
+
+
+
+
+POSSIBLE STORY AND ENEMY THEMES
+---
+*The world of Tic Tac Boom is split into 2 opposing factions: The Exiled (X), and The Pure (O)
+*The plot of Tic Tac Boom is an invasion of the enemy faction by the Exiled
+*The player initially plays from the standpoint of the Exiled's leader
+*The Exiled strike first (they go first), as they go through 15 stages, overtaking the land of The Pure
+(When a player lands Tic Tac Toe in a valid direction, there will be an animation where the board is
+wiped and replaced with all of that type of piece)
+*Upon completing the game as The Exiled, they will have access to The Pure, an alternate story mode
+where the player moves second with different enemy types
+*Upon completing the game as both the Pure and the Exiled, the player will have access to a randomized
+game mode where they face off of against The Forgotten, who have the enemy pool of both the Exiled
+and the Pure
+*Lorewise, the Forgotten are the memory fragments of the enemies you won against in previous runs
+
+Enemy Concepts:
+
+The Pure Enemy Pool:
+The Common (First Enemy, Normal Tic Tac Toe AI [Possibly gains +1 movement after x turns???])
+The Mob (Many Moves per Turn)
+The Wizard (Introduces the Fire and Ice Mechanics)
+The Knight (Introduces the Shield/Wall Mechanic)
+The Nimble (Introduces conveyer belt mechanic)
+
+The Pure's Final Bosses:
+The King
+The Dragon (Uses Fire mechanic, with a scaling board wipe over the course of 12 turns, eventually
+results in automatic victory)
+
+The Exiled Enemy Pool:
+The Common (First Enemy, Normal Tic Tac Toe AI)
+The Thief (Acts Unpredictably [next move can't be read])
+The Vagabond (Random AI with many moves, targets your pieces with small bombs)
+The Wraith (Introduces Incorporeality Mechanic. These pieces can be replaced for one round,
+otherwise they become active again)
+The Fragmented (Introduces portal/teleport mechanic)
+
+
+The Exiled Final Bosses:
+The Rebel (Many moves, with different move combinations)
+The Basilisk (Uses petrification mechanic, petrified pieces do not count for victory and must be
+destroyed with a bomb)
+
+The Forgotten is a combination of all of these
