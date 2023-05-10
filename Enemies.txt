@@ -53,6 +53,8 @@ game mode where they face off of against The Forgotten, who have the enemy pool 
 and the Pure
 *Lorewise, the Forgotten are the memory fragments of the enemies you won against in previous runs
 
+The Mentor
+
 Enemy Concepts:
 
 The Pure Enemy Pool:
