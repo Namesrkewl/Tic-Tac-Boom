@@ -36,16 +36,12 @@ public class GameManager : MonoBehaviour
     public GameObject useSkillMenu;
     public GameObject useSkillButton;
     public GameObject cancelSkillButton;
-    public GameObject replayMenu;
-    public GameObject replayButton;
     public GameObject playerVictoryMenu;
     public GameObject opponentVictoryMenu;
     public GameObject interfaceMenus;
     public GameObject turnDisplay;
-    public GameObject HUD;
-    public GameObject quitPopUp;
-    public GameObject menuOverlay;
-    public GameObject quitButton;
+    public GameObject settings;
+    public GameObject settingsButton;
     
 
     void Awake() {
@@ -129,9 +125,9 @@ public class GameManager : MonoBehaviour
     void SetTurn() {
         if (turnCounter % 2 == 1) {
             isPlayerTurn = true;
-            turnDisplay.transform.GetChild(0).GetComponent<Text>().text = "Player 1's Turn!";
-            turnDisplay.GetComponent<Image>().color = new Color32(240, 170, 0, 255);
-            
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
+
             if (turnCounter != currentTurn) {
                 for (int i = 0; i < playerBombCooldowns.Length; i++) {
                     if (playerBombCooldowns[i][0] > 0) {
@@ -142,8 +138,9 @@ public class GameManager : MonoBehaviour
             }
         } else {
             isPlayerTurn = false;
-            turnDisplay.transform.GetChild(0).GetComponent<Text>().text = "Player 2's Turn!";
-            turnDisplay.GetComponent<Image>().color = new Color32(0, 111, 239, 255);
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
+
             if (turnCounter != currentTurn) {
                 for (int i = 0; i < opponentBombCooldowns.Length; i++) {
                     if (opponentBombCooldowns[i][0] > 0) {
@@ -358,72 +355,37 @@ public class GameManager : MonoBehaviour
         return false;
     }
     void PlayerVictory() {
-        HUD.SetActive(true);
-        turnDisplay.SetActive(false);
-        playerVictoryMenu.SetActive(true);
-        interfaceMenus.SetActive(false);
-        replayMenu.SetActive(true);
+        playerVictoryMenu.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void OpponentVictory() {
-        HUD.SetActive(true);
-        turnDisplay.SetActive(false);
-        opponentVictoryMenu.SetActive(true);
-        interfaceMenus.SetActive(false);
-        replayMenu.SetActive(true);
+        opponentVictoryMenu.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void QuitGame() {
-        menuOverlay.SetActive(true);
-        quitPopUp.SetActive(true);
-        quitButton.SetActive(false);
+        settings.SetActive(true);
+        settingsButton.SetActive(false);
     }
     public void ResumeGame() {
-        quitPopUp.SetActive(false);
-        menuOverlay.SetActive(false);
-        quitButton.SetActive(true);
+        settings.SetActive(false);
+        settingsButton.SetActive(true);
     }
 
     void LoadGame() {
         // Sets Game values
         interfaceMenus = GameObject.Find("InterfaceMenus");
         skillMenu = GameObject.Find("SkillMenu");
-        GameObject.Find("Small Bomb").GetComponent<Button>().onClick.AddListener(talents.SetUsingSmallBomb);
-        GameObject.Find("Cross Bomb").GetComponent<Button>().onClick.AddListener(talents.SetUsingCrossBomb);
-        GameObject.Find("X Bomb").GetComponent<Button>().onClick.AddListener(talents.SetUsingXBomb);
-        GameObject.Find("Mine").GetComponent<Button>().onClick.AddListener(talents.SetUsingMine);
-        GameObject.Find("BuildTiles").GetComponent<Button>().onClick.AddListener(playerMove.BuildTiles);
-        GameObject.Find("DestroyTiles").GetComponent<Button>().onClick.AddListener(playerMove.DestroyTiles);
-        skillMenu.SetActive(false);
-        useSkillMenu = GameObject.Find("UseSkillMenu");
-        useSkillMenu.SetActive(true);
         useSkillButton = GameObject.Find("UseSkillButton");
-        useSkillButton.SetActive(true);
-        useSkillButton.GetComponent<Button>().onClick.AddListener(talents.UseSkill);
-        cancelSkillButton = GameObject.Find("CancelSkillButton");
-        cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelBombUse);
-        cancelSkillButton.SetActive(false);
-        replayMenu = GameObject.Find("ReplayMenu");
-        replayButton = GameObject.Find("ReplayButton");
-        replayButton.GetComponent<Button>().onClick.AddListener(replay.PlayAgain);
-        replayMenu.SetActive(false);
+        //cancelSkillButton = GameObject.Find("CancelSkillButton");
+        //cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelBombUse);
         playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
-        playerVictoryMenu.SetActive(false);
+        playerVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         opponentVictoryMenu = GameObject.Find("OpponentVictoryMenu");
-        opponentVictoryMenu.SetActive(false);
+        opponentVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         turnDisplay = GameObject.Find("TurnDisplay");
-        turnDisplay.SetActive(true);
-        HUD = GameObject.Find("HUD");
-        HUD.SetActive(false);
-        quitPopUp = GameObject.Find("QuitPopUp");
-        GameObject.Find("QuitNo").GetComponent<Button>().onClick.AddListener(ResumeGame);
-        GameObject.Find("QuitYes").GetComponent<Button>().onClick.AddListener(loadScene.LoadMain);
-        quitPopUp.SetActive(false);
-        menuOverlay = GameObject.Find("MenuOverlay");
-        menuOverlay.SetActive(false);
-        quitButton = GameObject.Find("QuitButton");
-        quitButton.GetComponent<Button>().onClick.AddListener(QuitGame);
-        quitButton.SetActive(true);
+        settings = GameObject.Find("Settings");
+        settingsButton = GameObject.Find("SettingsButton");
+        //settingsButton.GetComponent<Button>().onClick.AddListener(QuitGame);
         buildGrid.grid = GameObject.Find("Grid");
         isPlayerTurn = true;
         turnCounter = 1;
@@ -438,8 +400,8 @@ public class GameManager : MonoBehaviour
     }
 
     void BombCooldowns() {
-        playerBombCount = 4;
-        opponentBombCount = 4;
+        playerBombCount = 0;
+        opponentBombCount = 0;
         playerBombCooldowns = new int[playerBombCount][];
         opponentBombCooldowns = new int[opponentBombCount][];
         // Initial Cooldowns

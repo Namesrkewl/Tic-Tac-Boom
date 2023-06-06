@@ -13,6 +13,7 @@ public class PopUpAnimation : TweenAnimation
             Activate();
             gameObject.transform.localScale = new Vector3(0, 0, 0);
             LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
+            IsMoving = false;
         }
     }
 
@@ -38,6 +39,5 @@ public class PopUpAnimation : TweenAnimation
     {
         menu.SetActive(true);
         gameObject.SetActive(true);
-        IsMoving = false;
     }
 }

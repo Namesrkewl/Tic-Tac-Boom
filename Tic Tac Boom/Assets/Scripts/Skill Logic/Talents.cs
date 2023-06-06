@@ -12,12 +12,10 @@ public class Talents : MonoBehaviour
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerBombCooldowns[0][0] == 0) {
                 usingSmallBomb = true;
                 GameManager.instance.bombInUse = true;
-                GameManager.instance.skillMenu.SetActive(false);
                 GameManager.instance.cancelSkillButton.SetActive(true);
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentBombCooldowns[0][0] == 0) {
                 usingSmallBomb = true;
                 GameManager.instance.bombInUse = true;
-                GameManager.instance.skillMenu.SetActive(false);
                 GameManager.instance.cancelSkillButton.SetActive(true);
             }
         }
