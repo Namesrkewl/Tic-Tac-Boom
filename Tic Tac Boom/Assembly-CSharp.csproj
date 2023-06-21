@@ -59,6 +59,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\Scripts\Animation\SkillsAnimation.cs" />
     <Compile Include="Assets\Scripts\Game Logic\BackgroundAudio.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\Scripts\Animation\SkillsAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeanTween\ReadMe.txt" />
