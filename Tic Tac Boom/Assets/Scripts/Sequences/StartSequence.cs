@@ -25,13 +25,12 @@ public class StartSequence : MonoBehaviour
         yield return new WaitForSeconds(1f);
         logo.SetActive(false);
         overlay.SetActive(false);
-        LeanTween.moveLocal(chains, new Vector3(0, -960, 0), 1f).setEaseOutCubic();
+        LeanTween.move(chains, new Vector3(0, 0, 0), 1f).setEaseOutCubic();
         chainsSounds.PlayOneShot(chainsFalling);
         yield return new WaitForSeconds(1f);
         chainsSounds.Stop();
         yield return new WaitForSeconds(0.5f);
-        LeanTween.moveLocal(chains, new Vector3(0, 2880, 0), 1f);
-        LeanTween.moveLocal(menu, new Vector3(0, 0, 0), 1f);
+        LeanTween.move(menu, new Vector3(0, 28.5f, 0), 1f);
         chainsSounds.PlayOneShot(chainsPulling);
         yield return new WaitForSeconds(1f);
         chainsSounds.Stop();

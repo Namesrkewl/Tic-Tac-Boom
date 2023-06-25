@@ -10,6 +10,7 @@ public class EnterStorySequence : TweenAnimation {
     [SerializeField] private AudioClip chainsPulling;
     [SerializeField] private AudioClip loadingSound;
     [SerializeField] private GameObject sceneManager;
+    [SerializeField] private GameObject background;
 
     public void StartStory() {
         StartCoroutine(Play());
@@ -20,7 +21,9 @@ public class EnterStorySequence : TweenAnimation {
             backgroundAudio = GameObject.Find("BackgroundAudio");
             backgroundAudio.GetComponent<AudioSource>().Stop();
             overlay.SetActive(true);
-            LeanTween.moveLocal(view, new Vector3(0, 1920, 0), 2f);
+            LeanTween.alphaCanvas(view.GetComponent<CanvasGroup>(), 0, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            LeanTween.move(background, new Vector3(0, 18f, 0), 2f);
             backgroundAudio.GetComponent<AudioSource>().PlayOneShot(chainsPulling);
             yield return new WaitForSeconds(2f);
             backgroundAudio.GetComponent<AudioSource>().Stop();

@@ -20,15 +20,15 @@ public class IntroSequence : MonoBehaviour
     }
 
     private IEnumerator Intro() {
-        background.GetComponent<Image>().color = new Color(255, 255, 255, 0);
-        LeanTween.alpha(background.GetComponent<Image>().rectTransform, 0.5f, 4f);
+        background.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
+        LeanTween.alpha(background, 0.5f, 4f);
         LeanTween.alphaText(company.GetComponent<Text>().rectTransform, 1, 2f);
         yield return new WaitForSeconds(2f);
         LeanTween.alphaText(company.GetComponent<Text>().rectTransform, 0, 1f);
         yield return new WaitForSeconds(2f);
         yield return StartCoroutine(Tic());
         logo.SetActive(true);
-        background.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+        background.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
         tac.SetActive(false);
         tic.SetActive(false);
         yield return new WaitForSeconds(1f);
