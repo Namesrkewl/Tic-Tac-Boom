@@ -9,19 +9,21 @@ public class PlayMove : MonoBehaviour {
     GameObject playerAtTrigger;
     [SerializeField] private AudioSource gameSounds;
 
+    // Add the PlayerMove event to the EventManager at the on scene load
     private void Start() {
         EventManager.PlayerMoveEvent += PlayerMove;
     }
 
+    // Player Movement logic at the selected tile (go)
     public void PlayerMove(GameObject go) {
         playerAtTrigger = go.transform.GetChild(0).gameObject;
-        gameSounds.PlayOneShot(GameManager.instance.moveSound);
 
         if (!playerAtTrigger.activeSelf && !GameManager.instance.bombInUse && !go.tag.Contains("Wall")) {
             if (GameManager.instance.isPlayerTurn == true) {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
                 } else {
+                    gameSounds.PlayOneShot(GameManager.instance.moveSound);
                     go.tag = "Player";
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
                     playerAtTrigger.SetActive(true);
@@ -31,6 +33,7 @@ public class PlayMove : MonoBehaviour {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
                 } else {
+                    gameSounds.PlayOneShot(GameManager.instance.moveSound);
                     go.tag = "Opponent";
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
                     playerAtTrigger.SetActive(true);

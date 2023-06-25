@@ -5,12 +5,15 @@ using UnityEngine;
 public class SkillsAnimation : TweenAnimation {
     [SerializeField] private GameObject element;
     [SerializeField] private GameObject cancel;
+    [SerializeField] private GameObject veil;
 
     // Animation for opening the menu
     public void Show() {
         if (!IsMoving) {
             IsMoving = true;
-            LeanTween.moveLocal(gameObject, new Vector3(0, 0, 0), 0.2f).setOnComplete(Deactivate);
+            Deactivate();
+            veil.SetActive(true);
+            LeanTween.moveLocal(gameObject, new Vector3(0, -560, 0), 0.2f);
         }
     }
 
@@ -19,7 +22,8 @@ public class SkillsAnimation : TweenAnimation {
     public void Hide() {
         if (!IsMoving) {
             IsMoving = true;
-            LeanTween.moveLocal(gameObject, new Vector3(0, -3840, 0), 0.2f).setOnComplete(Activate);
+            LeanTween.moveLocal(gameObject, new Vector3(0, -1400, 0), 0.2f).setOnComplete(Activate);
+            veil.SetActive(false);
         }
     }
 
