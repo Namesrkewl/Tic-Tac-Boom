@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BuildGrid : MonoBehaviour {
     public GameObject[] tiles;
@@ -77,8 +76,6 @@ public class BuildGrid : MonoBehaviour {
         if (size % 2 == 0) {
             tile.transform.position += new Vector3(1.175f, 1.175f, 0);
         }
-        tile.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
-        tile.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(GameManager.instance.playerMove.PlayerMove);
     }
     public void UpdateTileSprites(GameObject tile, float size, int x, int y) {
         // Bottom Left

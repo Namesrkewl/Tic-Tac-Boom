@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnterStorySequence : TweenAnimation {
-    [SerializeField] private GameObject view;
+    [SerializeField] private GameObject ui;
     [SerializeField] private GameObject overlay;
     [SerializeField] private GameObject element;
     [SerializeField] private GameObject backgroundAudio;
@@ -21,7 +21,7 @@ public class EnterStorySequence : TweenAnimation {
             backgroundAudio = GameObject.Find("BackgroundAudio");
             backgroundAudio.GetComponent<AudioSource>().Stop();
             overlay.SetActive(true);
-            LeanTween.alphaCanvas(view.GetComponent<CanvasGroup>(), 0, 0.5f);
+            LeanTween.alphaCanvas(ui.GetComponent<CanvasGroup>(), 0, 0.5f);
             yield return new WaitForSeconds(0.5f);
             LeanTween.move(background, new Vector3(0, 18f, 0), 2f);
             backgroundAudio.GetComponent<AudioSource>().PlayOneShot(chainsPulling);

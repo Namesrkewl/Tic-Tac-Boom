@@ -5,38 +5,40 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayMove : EventTrigger {
-    GameObject button;
-    GameObject playerAtButton;
+public class PlayMove : MonoBehaviour {
+    GameObject playerAtTrigger;
     [SerializeField] private AudioSource gameSounds;
 
-    public void PlayerMove() {
-        button = EventSystem.current.currentSelectedGameObject;
-        playerAtButton = button.transform.GetChild(0).gameObject;
+    private void Start() {
+        EventManager.PlayerMoveEvent += PlayerMove;
+    }
+
+    public void PlayerMove(GameObject go) {
+        playerAtTrigger = go.transform.GetChild(0).gameObject;
         gameSounds.PlayOneShot(GameManager.instance.moveSound);
 
-        if (!playerAtButton.activeSelf && !GameManager.instance.bombInUse && !button.tag.Contains("Wall")) {
+        if (!playerAtTrigger.activeSelf && !GameManager.instance.bombInUse && !go.tag.Contains("Wall")) {
             if (GameManager.instance.isPlayerTurn == true) {
-                if (button.tag.Contains("Mine")) {
-                    TriggerMine(button);
+                if (go.tag.Contains("Mine")) {
+                    TriggerMine(go);
                 } else {
-                    button.tag = "Player";
-                    playerAtButton.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
-                    playerAtButton.SetActive(true);
+                    go.tag = "Player";
+                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
+                    playerAtTrigger.SetActive(true);
                 }
                 NextTurn();
             } else {
-                if (button.tag.Contains("Mine")) {
-                    TriggerMine(button);
+                if (go.tag.Contains("Mine")) {
+                    TriggerMine(go);
                 } else {
-                    button.tag = "Opponent";
-                    playerAtButton.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
-                    playerAtButton.SetActive(true);
+                    go.tag = "Opponent";
+                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
+                    playerAtTrigger.SetActive(true);
                 }
                 NextTurn();
             }
         } else if (GameManager.instance.talents.usingSmallBomb) {
-            SmallBomb(button);
+            SmallBomb(go);
             if (GameManager.instance.isPlayerTurn) {
                 GameManager.instance.playerBombCooldowns[0][1] += 1;
                 GameManager.instance.playerBombCooldowns[0][0] = GameManager.instance.playerBombCooldowns[0][1];
@@ -47,7 +49,7 @@ public class PlayMove : EventTrigger {
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
             }
         } else if (GameManager.instance.talents.usingCrossBomb) {
-            CrossBomb(button);
+            CrossBomb(go);
             if (GameManager.instance.isPlayerTurn) {
                 GameManager.instance.playerBombCooldowns[1][1] += 2;
                 GameManager.instance.playerBombCooldowns[1][0] = GameManager.instance.playerBombCooldowns[1][1];
@@ -58,7 +60,7 @@ public class PlayMove : EventTrigger {
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
             }
         } else if (GameManager.instance.talents.usingXBomb) {
-            XBomb(button);
+            XBomb(go);
             if (GameManager.instance.isPlayerTurn) {
                 GameManager.instance.playerBombCooldowns[2][1] += 2;
                 GameManager.instance.playerBombCooldowns[2][0] = GameManager.instance.playerBombCooldowns[2][1];
@@ -68,8 +70,8 @@ public class PlayMove : EventTrigger {
                 GameManager.instance.opponentBombCooldowns[2][0] = GameManager.instance.opponentBombCooldowns[2][1];
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
             }
-        } else if (GameManager.instance.talents.usingMine && !button.tag.Contains("Wall") && !playerAtButton.activeSelf) {
-            Mine(button);
+        } else if (GameManager.instance.talents.usingMine && !go.tag.Contains("Wall") && !playerAtTrigger.activeSelf) {
+            Mine(go);
             if (GameManager.instance.isPlayerTurn) {
                 GameManager.instance.playerBombCooldowns[3][1] += 2;
                 GameManager.instance.playerBombCooldowns[3][0] = GameManager.instance.playerBombCooldowns[3][1];
@@ -90,16 +92,16 @@ public class PlayMove : EventTrigger {
 
     // ACTIVES ABILITIES
 
-    void SmallBomb(GameObject button) {
-        playerAtButton.GetComponent<SpriteRenderer>().sprite = null;
-        playerAtButton.SetActive(false);
-        button.tag = "Untagged";
+    void SmallBomb(GameObject go) {
+        playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
+        playerAtTrigger.SetActive(false);
+        go.tag = "Untagged";
         GameManager.instance.talents.CancelBombUse();
     }
 
-    void CrossBomb(GameObject button) {
+    void CrossBomb(GameObject go) {
 
-        string[] coordinates = button.name.Split(",");
+        string[] coordinates = go.name.Split(",");
         int x = Convert.ToInt32(coordinates[0]);
         int y = Convert.ToInt32(coordinates[1]);
 
@@ -135,8 +137,8 @@ public class PlayMove : EventTrigger {
 
     }
 
-    void XBomb(GameObject button) {
-        string[] coordinates = button.name.Split(",");
+    void XBomb(GameObject go) {
+        string[] coordinates = go.name.Split(",");
         int x = Convert.ToInt32(coordinates[0]);
         int y = Convert.ToInt32(coordinates[1]);
 
@@ -171,13 +173,13 @@ public class PlayMove : EventTrigger {
         }
     }
 
-    void Mine(GameObject button) {
-        button.tag = "Mine";
+    void Mine(GameObject go) {
+        go.tag = "Mine";
         GameManager.instance.talents.CancelBombUse();
     }
 
-    void TriggerMine(GameObject button) {
-        string[] coordinates = button.name.Split(",");
+    void TriggerMine(GameObject go) {
+        string[] coordinates = go.name.Split(",");
         int x = Convert.ToInt32(coordinates[0]);
         int y = Convert.ToInt32(coordinates[1]);
 

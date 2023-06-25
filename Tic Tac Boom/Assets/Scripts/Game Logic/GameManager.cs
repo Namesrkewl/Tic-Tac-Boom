@@ -65,8 +65,8 @@ public class GameManager : MonoBehaviour
             audio.GetComponent<AudioSource>().clip = loadingTheme;
             audio.GetComponent<AudioSource>().Play();
         }
-        GameObject view = GameObject.Find("View");
-        view.GetComponent<CanvasGroup>().alpha = 0;
+        GameObject ui = GameObject.Find("UI");
+        ui.GetComponent<CanvasGroup>().alpha = 0;
         GameObject cover = GameObject.Find("Cover");
         GameObject fog = cover.transform.GetChild(0).gameObject;
         fog.SetActive(true);
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         audio.GetComponent<AudioSource>().PlayOneShot(windSound);
         yield return new WaitForSeconds(3f);
         fog.SetActive(false);
-        view.GetComponent<CanvasGroup>().alpha = 1;
+        ui.GetComponent<CanvasGroup>().alpha = 1;
         audio.GetComponent<AudioSource>().clip = battleTheme;
         audio.GetComponent<AudioSource>().Play();
     }
