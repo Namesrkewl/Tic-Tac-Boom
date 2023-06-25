@@ -62,20 +62,20 @@ public class BuildGrid : MonoBehaviour {
                 tile.name = gridReference[x][y];
                 FormatTiles(tile, center, size, x, y);
             }
-            if (size > 1) {
-                grid.transform.localScale = new Vector3(1.2f / Mathf.Log10(size), 1.2f / Mathf.Log10(size), 0);
-            } else if (size == 1) {
-                grid.transform.localScale = new Vector3(6, 6, 0);
-            }
+        }
+        if (size > 1) {
+            grid.transform.localScale = new Vector3(0.4f / Mathf.Log10(size), 0.4f / Mathf.Log10(size), 1);
+        } else if (size == 1) {
+            grid.transform.localScale = new Vector3(1, 1, 0);
         }
     }
     void FormatTiles(GameObject tile, float center, int size, int x, int y) {
         tile.transform.GetChild(0).name = x + "," + y;
-        tile.transform.SetParent(grid.transform);
         tile.transform.localScale = Vector3.one;
-        tile.transform.localPosition = new Vector3((x - center) * 95, (y - center) * 95, 0);
+        tile.transform.SetParent(grid.transform);
+        tile.transform.position = new Vector3((x - center) * 2.35f, (y - center) * 2.35f, 0);
         if (size % 2 == 0) {
-            tile.transform.localPosition += new Vector3(45, 45, 0);
+            tile.transform.position += new Vector3(1.175f, 1.175f, 0);
         }
         tile.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
         tile.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(GameManager.instance.playerMove.PlayerMove);
@@ -83,39 +83,39 @@ public class BuildGrid : MonoBehaviour {
     public void UpdateTileSprites(GameObject tile, float size, int x, int y) {
         // Bottom Left
         if (x == 0 && y == 0 && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[0].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[0].GetComponent<SpriteRenderer>().sprite;
         }
         // Bottom Middle
         else if (x < (size - 1) && y == 0 && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[1].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[1].GetComponent<SpriteRenderer>().sprite;
         }
         // Bottom Right
         else if (x == (size - 1) && y == 0 && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[2].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[2].GetComponent<SpriteRenderer>().sprite;
         }
         // Middle Left
         else if (x == 0 && y < (size - 1) && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[3].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[3].GetComponent<SpriteRenderer>().sprite;
         }
         // Middle Middle
         else if ((x < (size - 1) && y < (size - 1)) || size == 1) {
-            tile.GetComponent<Image>().sprite = tiles[4].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[4].GetComponent<SpriteRenderer>().sprite;
         }
         // Middle Right
         else if (x == (size - 1) && y < (size - 1) && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[5].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[5].GetComponent<SpriteRenderer>().sprite;
         }
         // Top Left
         else if (x == 0 && y == (size - 1) && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[6].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[6].GetComponent<SpriteRenderer>().sprite;
         }
         // Top Middle
         else if (x < (size - 1) && y == (size - 1) && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[7].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[7].GetComponent<SpriteRenderer>().sprite;
         }
         // Top Right
         else if (x == (size - 1) && y == (size - 1) && size > 1) {
-            tile.GetComponent<Image>().sprite = tiles[8].GetComponent<Image>().sprite;
+            tile.GetComponent<SpriteRenderer>().sprite = tiles[8].GetComponent<SpriteRenderer>().sprite;
         }
     }
     void IncreaseGridSize(int gridSize, int newGridSize, bool[] gridModification) {

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayMove : MonoBehaviour {
+public class PlayMove : EventTrigger {
     GameObject button;
     GameObject playerAtButton;
     [SerializeField] private AudioSource gameSounds;
@@ -21,7 +21,7 @@ public class PlayMove : MonoBehaviour {
                     TriggerMine(button);
                 } else {
                     button.tag = "Player";
-                    playerAtButton.GetComponent<Image>().sprite = GameManager.instance.playerSprite;
+                    playerAtButton.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
                     playerAtButton.SetActive(true);
                 }
                 NextTurn();
@@ -30,7 +30,7 @@ public class PlayMove : MonoBehaviour {
                     TriggerMine(button);
                 } else {
                     button.tag = "Opponent";
-                    playerAtButton.GetComponent<Image>().sprite = GameManager.instance.opponentSprite;
+                    playerAtButton.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
                     playerAtButton.SetActive(true);
                 }
                 NextTurn();
@@ -91,7 +91,7 @@ public class PlayMove : MonoBehaviour {
     // ACTIVES ABILITIES
 
     void SmallBomb(GameObject button) {
-        playerAtButton.GetComponent<Image>().sprite = null;
+        playerAtButton.GetComponent<SpriteRenderer>().sprite = null;
         playerAtButton.SetActive(false);
         button.tag = "Untagged";
         GameManager.instance.talents.CancelBombUse();
@@ -105,28 +105,28 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.SetActive(false);
             GameObject.Find(x + "," + y).tag = "Untagged";
 
             // Bombs surrounding tiles in a + shape
             if (GameObject.Find((x + 1) + "," + y) != null) {
-                GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + y) != null) {
-                GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y + 1)) != null) {
-                GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y - 1)) != null) {
-                GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";
             }
@@ -142,28 +142,28 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.SetActive(false);
             GameObject.Find(x + "," + y).tag = "Untagged";
 
             // Bombs surrounding tiles in a x shape
             if (GameObject.Find((x + 1) + "," + (y + 1)) != null) {
-                GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y - 1)) != null) {
-                GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y - 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y + 1)) != null) {
-                GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x + 1) + "," + (y - 1)) != null) {
-                GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y - 1)).tag = "Untagged";
             }
@@ -183,49 +183,49 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+            GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             GameObject.Find(x + "," + y).transform.GetChild(0).gameObject.SetActive(false);
             GameObject.Find(x + "," + y).tag = "Untagged";
 
             // Bombs surrounding tiles in a x shape
             if (GameObject.Find((x + 1) + "," + (y + 1)) != null) {
-                GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y - 1)) != null) {
-                GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y - 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y + 1)) != null) {
-                GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x + 1) + "," + (y - 1)) != null) {
-                GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y - 1)).tag = "Untagged";
             }
             // Bombs surrounding tiles in a + shape
             if (GameObject.Find((x + 1) + "," + y) != null) {
-                GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + y) != null) {
-                GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y + 1)) != null) {
-                GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y - 1)) != null) {
-                GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<Image>().sprite = null;
+                GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";
             }
