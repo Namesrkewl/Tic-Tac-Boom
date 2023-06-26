@@ -5839,7 +5839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b351fc7b99e8d947819a0c8d64831c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 439601870}
+  ui: {fileID: 439601870}
   overlay: {fileID: 1822266481}
   element: {fileID: 1744162453}
   backgroundAudio: {fileID: 560523033}
