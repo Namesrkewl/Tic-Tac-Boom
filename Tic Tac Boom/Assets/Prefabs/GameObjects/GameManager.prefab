@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3986023289751456454}
   - component: {fileID: 3362860019468482389}
   - component: {fileID: 1802522787}
+  - component: {fileID: 3986023290342884177}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,21 +51,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerTurn: 0
-  isGameOver: 0
   turnCounter: 0
   currentTurn: 0
+  playerBombCooldowns: 00000000
+  opponentBombCooldowns: 00000000
   bombInUse: 0
   gridModification: 
   turnBombUsed: 0
-  gridSize: 5
+  gridSize: 7
   newGridSize: 0
-  playerBombCount: 0
+  playerBombCount: 6
   opponentBombCount: 0
   sprites:
-  - {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
   - {fileID: 21300000, guid: 67fcdd3c9f63bec4881af588d84992f4, type: 3}
-  playerSprite: {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
-  opponentSprite: {fileID: 21300000, guid: 67fcdd3c9f63bec4881af588d84992f4, type: 3}
+  - {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
+  playerSprite: {fileID: 21300000, guid: 1c011597f6aa2f74f8899b1133dbac73, type: 3}
+  opponentSprite: {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
   windSound: {fileID: 8300000, guid: d1fcc0f475ef1f14ea966eda7c0f4c4b, type: 3}
   battleTheme: {fileID: 8300000, guid: 04e7a35881a51304b9a255e86f3decf1, type: 3}
   loadingTheme: {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
@@ -77,20 +79,17 @@ MonoBehaviour:
   replay: {fileID: 3986023289751456458}
   buildGrid: {fileID: 3362860019468482389}
   loadScene: {fileID: 0}
+  storyModeAI: {fileID: 3986023290342884177}
   skillMenu: {fileID: 0}
   useSkillMenu: {fileID: 0}
   useSkillButton: {fileID: 0}
   cancelSkillButton: {fileID: 0}
-  replayMenu: {fileID: 0}
-  replayButton: {fileID: 0}
   playerVictoryMenu: {fileID: 0}
   opponentVictoryMenu: {fileID: 0}
   interfaceMenus: {fileID: 0}
   turnDisplay: {fileID: 0}
-  HUD: {fileID: 0}
-  quitPopUp: {fileID: 0}
-  menuOverlay: {fileID: 0}
-  quitButton: {fileID: 0}
+  settings: {fileID: 0}
+  settingsButton: {fileID: 0}
 --- !u!114 &3986023289751456459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSounds: {fileID: 1802522787}
+  explosion: {fileID: 0}
 --- !u!114 &3986023289751456458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   usingCrossBomb: 0
   usingXBomb: 0
   usingMine: 0
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}
 --- !u!114 &3362860019468482389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 3238018451282051352, guid: 2a062f07fede0274e90bf6e212e51760, type: 3}
+  - {fileID: 1947786409429827111, guid: d869adb0648b26a428433d275ed612a5, type: 3}
   - {fileID: 1947786409429827111, guid: e859aa77d898d1d4cb876d274b2ec4bd, type: 3}
   - {fileID: 4030684237722459877, guid: a6258312e75082843ae0f6944deed01c, type: 3}
   - {fileID: 4755542659372305704, guid: fadca5083a2c38243a1370d3994a28aa, type: 3}
@@ -251,3 +253,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3986023290342884177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a301f57094cfc3e4c99a8aa8fb2f197d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponentValue: 20
+  playerValue: -5
+  baseValue: 1
+  blockedValue: -50
+  victoryValue: 9999
+  impendingVictoryValue: 200
+  impendingDoomValue: 1000
