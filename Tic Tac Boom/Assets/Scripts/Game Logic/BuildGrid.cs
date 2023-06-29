@@ -65,7 +65,7 @@ public class BuildGrid : MonoBehaviour {
         if (size > 1) {
             grid.transform.localScale = new Vector3(0.4f / Mathf.Log10(size), 0.4f / Mathf.Log10(size), 1);
         } else if (size == 1) {
-            grid.transform.localScale = new Vector3(1, 1, 0);
+            grid.transform.localScale = Vector3.one;
         }
     }
     void FormatTiles(GameObject tile, float center, int size, int x, int y) {
@@ -287,22 +287,23 @@ public class BuildGrid : MonoBehaviour {
         }
     }
     public void UpdateGrid(int gridSize, int newGridSize, bool[] gridModification) {
+        grid.transform.localScale = Vector3.one;
         float center = newGridSize / 2;
         if (newGridSize > gridSize) {
             IncreaseGridSize(gridSize, newGridSize, gridModification);
         } else {
             DecreaseGridSize(gridSize, newGridSize, gridModification, center);
         }
-        if (newGridSize > 1) {
-            grid.transform.localScale = new Vector3(1.2f / Mathf.Log10(newGridSize), 1.2f / Mathf.Log10(newGridSize), 0);
-        } else if (newGridSize == 1) {
-            grid.transform.localScale = new Vector3(6, 6, 0);
-        }
         for (int x = 0; x < newGridSize; x++) {
             for (int y = 0; y < newGridSize; y++) {
                 FormatTiles(GameObject.Find(gridReference[x][y]), center, newGridSize, x, y);
                 UpdateTileSprites(GameObject.Find(gridReference[x][y]), newGridSize, x, y);
             }
+        }
+        if (newGridSize > 1) {
+            grid.transform.localScale = new Vector3(0.4f / Mathf.Log10(newGridSize), 0.4f / Mathf.Log10(newGridSize), 1);
+        } else if (newGridSize == 1) {
+            grid.transform.localScale = Vector3.one;
         }
     }
 }

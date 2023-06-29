@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
         GameObject ui = GameObject.Find("UI");
         ui.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject cover = GameObject.Find("Cover");
+        GameObject cover = GameObject.Find("Intro");
         GameObject fog = cover.transform.GetChild(0).gameObject;
         fog.SetActive(true);
         GameObject text = cover.transform.GetChild(1).gameObject;
@@ -124,9 +124,12 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-        } /*else if (SceneManager.GetActiveScene().name == "StoryMode" && !GameOver()) {
-            StoryMode();
-        } */
+        } else if (SceneManager.GetActiveScene().name == "StoryMode") {
+            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
+                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
+                gridSize = newGridSize;
+            }
+        }
     }
 
     void SetTurn() {
@@ -384,7 +387,7 @@ public class GameManager : MonoBehaviour
         //skillMenu = GameObject.Find("SkillMenu");
         useSkillButton = GameObject.Find("UseSkillButton");
         //cancelSkillButton = GameObject.Find("CancelSkillButton");
-        //cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelBombUse);
+        //cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelSkill);
         playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
         playerVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         opponentVictoryMenu = GameObject.Find("OpponentVictoryMenu");
@@ -406,8 +409,6 @@ public class GameManager : MonoBehaviour
     }
 
     void BombCooldowns() {
-        playerBombCount = 1;
-        opponentBombCount = 0;
         playerBombCooldowns = new int[playerBombCount];
         opponentBombCooldowns = new int[opponentBombCount];
         // Initial Cooldowns
@@ -434,10 +435,6 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 playerMove.NextTurn();
             }
-            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
-                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
-                gridSize = newGridSize;
-            } 
             yield return null;
         }
         if (GameOver()) {

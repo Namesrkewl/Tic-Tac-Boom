@@ -102,7 +102,7 @@ public class PlayMove : MonoBehaviour {
         playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
         playerAtTrigger.SetActive(false);
         go.tag = "Untagged";
-        GameManager.instance.talents.CancelBombUse();
+        GameManager.instance.talents.CancelSkill();
     }
 
     void CrossBomb(GameObject go) {
@@ -138,7 +138,7 @@ public class PlayMove : MonoBehaviour {
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";
             }
-            GameManager.instance.talents.CancelBombUse();
+            GameManager.instance.talents.CancelSkill();
         }
 
     }
@@ -175,13 +175,13 @@ public class PlayMove : MonoBehaviour {
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y - 1)).tag = "Untagged";
             }
-            GameManager.instance.talents.CancelBombUse();
+            GameManager.instance.talents.CancelSkill();
         }
     }
 
     void Mine(GameObject go) {
         go.tag = "Mine";
-        GameManager.instance.talents.CancelBombUse();
+        GameManager.instance.talents.CancelSkill();
     }
 
     void TriggerMine(GameObject go) {
@@ -236,36 +236,6 @@ public class PlayMove : MonoBehaviour {
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";
-            }
-        }
-    }
-    public void BuildTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
-            } else {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
-            }
-        }
-    }
-    public void DestroyTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
-            } else {
-                GameManager.instance.gridModification[0] = false;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
             }
         }
     }
