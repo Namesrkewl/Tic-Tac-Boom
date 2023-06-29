@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 using System.Linq;
 
 public class LoadScene : MonoBehaviour {
@@ -38,16 +36,16 @@ public class LoadScene : MonoBehaviour {
         SceneManager.LoadScene("StoryMode");
     }
     public void LoadPlayerVSAI() {
-        if (!GameObject.Find("Label").GetComponent<Text>().text.Any(Char.IsLetter)) {
-            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<Text>().text);
+        if (!GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text.Any(Char.IsLetter)) {
+            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
             SceneManager.LoadScene("PlayerVSAI");
         } else {
             Debug.Log("Pick a Grid Size");
         }
     }
     public void LoadLocalPVP() {
-        if (!GameObject.Find("Label").GetComponent<Text>().text.Any(Char.IsLetter)) {
-            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<Text>().text);
+        if (!GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text.Any(Char.IsLetter)) {
+            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
             SceneManager.LoadScene("PlayerVSAI");
         } else {
             Debug.Log("Pick a Grid Size");

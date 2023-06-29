@@ -16,10 +16,13 @@ public class PlayMove : MonoBehaviour {
 
     // Player Movement logic at the selected tile (go)
     public void PlayerMove(GameObject go) {
+        if (go == null) {
+            return;
+        }
         playerAtTrigger = go.transform.GetChild(0).gameObject;
 
         if (!playerAtTrigger.activeSelf && !GameManager.instance.bombInUse && !go.tag.Contains("Wall")) {
-            if (GameManager.instance.isPlayerTurn == true) {
+            if (GameManager.instance.isPlayerTurn) {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
                 } else {
@@ -38,56 +41,56 @@ public class PlayMove : MonoBehaviour {
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
                     playerAtTrigger.SetActive(true);
                 }
-                NextTurn();
+                //NextTurn();
             }
         } else if (GameManager.instance.talents.usingSmallBomb) {
             SmallBomb(go);
             if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.playerBombCooldowns[0][1] += 1;
-                GameManager.instance.playerBombCooldowns[0][0] = GameManager.instance.playerBombCooldowns[0][1];
+                /*GameManager.instance.playerBombCooldowns[0] += 1;
+                GameManager.instance.playerBombCooldowns[0][0] = GameManager.instance.playerBombCooldowns[0][1];*/
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
             } else {
-                GameManager.instance.opponentBombCooldowns[0][1] += 1;
-                GameManager.instance.opponentBombCooldowns[0][0] = GameManager.instance.opponentBombCooldowns[0][1];
+                /*GameManager.instance.opponentBombCooldowns[0][1] += 1;
+                GameManager.instance.opponentBombCooldowns[0][0] = GameManager.instance.opponentBombCooldowns[0][1]; */
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
             }
         } else if (GameManager.instance.talents.usingCrossBomb) {
             CrossBomb(go);
             if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.playerBombCooldowns[1][1] += 2;
+                /*GameManager.instance.playerBombCooldowns[1][1] += 2;
                 GameManager.instance.playerBombCooldowns[1][0] = GameManager.instance.playerBombCooldowns[1][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             } else {
-                GameManager.instance.opponentBombCooldowns[1][1] += 2;
+                /*GameManager.instance.opponentBombCooldowns[1][1] += 2;
                 GameManager.instance.opponentBombCooldowns[1][0] = GameManager.instance.opponentBombCooldowns[1][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             }
         } else if (GameManager.instance.talents.usingXBomb) {
             XBomb(go);
             if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.playerBombCooldowns[2][1] += 2;
+                /*GameManager.instance.playerBombCooldowns[2][1] += 2;
                 GameManager.instance.playerBombCooldowns[2][0] = GameManager.instance.playerBombCooldowns[2][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             } else {
-                GameManager.instance.opponentBombCooldowns[2][1] += 2;
+                /*GameManager.instance.opponentBombCooldowns[2][1] += 2;
                 GameManager.instance.opponentBombCooldowns[2][0] = GameManager.instance.opponentBombCooldowns[2][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             }
         } else if (GameManager.instance.talents.usingMine && !go.tag.Contains("Wall") && !playerAtTrigger.activeSelf) {
             Mine(go);
             if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.playerBombCooldowns[3][1] += 2;
+                /*GameManager.instance.playerBombCooldowns[3][1] += 2;
                 GameManager.instance.playerBombCooldowns[3][0] = GameManager.instance.playerBombCooldowns[3][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             } else {
-                GameManager.instance.opponentBombCooldowns[3][1] += 2;
+                /*GameManager.instance.opponentBombCooldowns[3][1] += 2;
                 GameManager.instance.opponentBombCooldowns[3][0] = GameManager.instance.opponentBombCooldowns[3][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
+                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             }
         } 
     }
 
-    void NextTurn() {
+    public void NextTurn() {
         GameManager.instance.turnCounter += 1;
     }
 

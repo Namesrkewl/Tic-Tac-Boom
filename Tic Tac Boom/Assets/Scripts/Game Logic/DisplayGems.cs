@@ -1,18 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DisplayGems : MonoBehaviour {
-    private int Gems;
+    private int gems;
 
     private void Start() {
-        Gems = GameManager.instance.Gems;
-        gameObject.GetComponent<Text>().text = Gems.ToString();
+        gems = GameManager.instance.Gems;
+        gameObject.GetComponent<TextMeshProUGUI>().text = gems.ToString();
     }
 
     private void Update() {
-        if (Gems != GameManager.instance.Gems) {
-            Gems = GameManager.instance.Gems;
-            gameObject.GetComponent<Text>().text = Gems.ToString();
+        if (gems != GameManager.instance.Gems) {
+            gems = GameManager.instance.Gems;
+            gameObject.GetComponent<TextMeshProUGUI>().text = gems.ToString();
         }
     }
 }

@@ -2,15 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // Variables
     public static GameManager instance;
-    public bool isPlayerTurn, isGameOver;
+    public bool isPlayerTurn;
     public int turnCounter, currentTurn;
     private bool playerVictory, opponentVictory;
-    public int[][] playerBombCooldowns, opponentBombCooldowns;
+    public int[] playerBombCooldowns, opponentBombCooldowns;
     public bool bombInUse;
     public bool[] gridModification;
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Replay replay;
     public BuildGrid buildGrid;
     public LoadScene loadScene;
+    public StoryModeAI storyModeAI;
 
     // Game Objects
     public GameObject skillMenu;
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void SetText(float value) {
-        GameObject.Find("Value").GetComponent<Text>().text = (value.ToString("F0") + "%");
+        GameObject.Find("Value").GetComponent<TextMeshProUGUI>().text = (value.ToString("F0") + "%");
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
@@ -101,10 +103,13 @@ public class GameManager : MonoBehaviour
             BombCooldowns();
             buildGrid.BuildTheGrid();
             SetSprites();
+        } 
+        if (scene.name == "StoryMode") {
+            StartCoroutine(StoryMode());
         }
     }
     private void Update() {
-        if (SceneManager.GetActiveScene().name == "StoryMode" || SceneManager.GetActiveScene().name == "PlayerVSAI" || SceneManager.GetActiveScene().name == "LocalPVP") {
+        if (SceneManager.GetActiveScene().name == "PlayerVSAI" || SceneManager.GetActiveScene().name == "LocalPVP") {
             SetTurn();
             SetCooldownText();
             if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
@@ -119,7 +124,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-        }
+        } /*else if (SceneManager.GetActiveScene().name == "StoryMode" && !GameOver()) {
+            StoryMode();
+        } */
     }
 
     void SetTurn() {
@@ -130,8 +137,8 @@ public class GameManager : MonoBehaviour
 
             if (turnCounter != currentTurn) {
                 for (int i = 0; i < playerBombCooldowns.Length; i++) {
-                    if (playerBombCooldowns[i][0] > 0) {
-                        playerBombCooldowns[i][0]--;
+                    if (playerBombCooldowns[i] > 0) {
+                        playerBombCooldowns[i]--;
                     }
                 }
                 currentTurn = turnCounter;
@@ -143,8 +150,8 @@ public class GameManager : MonoBehaviour
 
             if (turnCounter != currentTurn) {
                 for (int i = 0; i < opponentBombCooldowns.Length; i++) {
-                    if (opponentBombCooldowns[i][0] > 0) {
-                        opponentBombCooldowns[i][0]--;
+                    if (opponentBombCooldowns[i] > 0) {
+                        opponentBombCooldowns[i]--;
                     }
                 }
                 currentTurn = turnCounter;
@@ -158,29 +165,29 @@ public class GameManager : MonoBehaviour
             if (turnBombUsed != turnCounter) {
                 if (isPlayerTurn) {
                     for (int i = 0; i < playerBombCooldowns.Length; i++) {
-                        if (playerBombCooldowns[i][0] > 0) {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = playerBombCooldowns[i][0] + " Turn Cooldown";
+                        if (playerBombCooldowns[i] > 0) {
+                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerBombCooldowns[i] + " Turn Cooldown";
                         } else {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = skillMenu.transform.GetChild(i).name;
+                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = null;
                         }
                     }
                 } else {
                     for (int i = 0; i < opponentBombCooldowns.Length; i++) {
-                        if (opponentBombCooldowns[i][0] > 0) {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = opponentBombCooldowns[i][0] + " Turn Cooldown";
+                        if (opponentBombCooldowns[i] > 0) {
+                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = opponentBombCooldowns[i] + " Turn Cooldown";
                         } else {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = skillMenu.transform.GetChild(i).name;
+                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = skillMenu.transform.GetChild(i).name;
                         }
                     }
                 }
             } else {
                 if (isPlayerTurn) {
                     for (int i = 0; i < playerBombCooldowns.Length; i++) {
-                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "Bomb Used";
+                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
                     }
                 } else {
                     for (int i = 0; i < opponentBombCooldowns.Length; i++) {
-                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "Bomb Used";
+                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
                     }
                 }
             }
@@ -374,7 +381,7 @@ public class GameManager : MonoBehaviour
     void LoadGame() {
         // Sets Game values
         interfaceMenus = GameObject.Find("InterfaceMenus");
-        skillMenu = GameObject.Find("SkillMenu");
+        //skillMenu = GameObject.Find("SkillMenu");
         useSkillButton = GameObject.Find("UseSkillButton");
         //cancelSkillButton = GameObject.Find("CancelSkillButton");
         //cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelBombUse);
@@ -383,7 +390,7 @@ public class GameManager : MonoBehaviour
         opponentVictoryMenu = GameObject.Find("OpponentVictoryMenu");
         opponentVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         turnDisplay = GameObject.Find("TurnDisplay");
-        settings = GameObject.Find("Settings");
+        settings = GameObject.Find("Settingss");
         settingsButton = GameObject.Find("SettingsButton");
         //settingsButton.GetComponent<Button>().onClick.AddListener(QuitGame);
         buildGrid.grid = GameObject.Find("Grid");
@@ -394,38 +401,52 @@ public class GameManager : MonoBehaviour
         opponentVictory = false;
         bombInUse = false;
         turnBombUsed = 0;
-        isGameOver = false;
         newGridSize = gridSize;
         gridModification = new bool[2];
     }
 
     void BombCooldowns() {
-        playerBombCount = 0;
+        playerBombCount = 1;
         opponentBombCount = 0;
-        playerBombCooldowns = new int[playerBombCount][];
-        opponentBombCooldowns = new int[opponentBombCount][];
+        playerBombCooldowns = new int[playerBombCount];
+        opponentBombCooldowns = new int[opponentBombCount];
         // Initial Cooldowns
         for (int i = 0; i < playerBombCooldowns.Length; i++) {
-            playerBombCooldowns[i] = new int[2];
-            playerBombCooldowns[i][0] = 3;
-            if (i == 0) {
-                playerBombCooldowns[i][1] = 1;
-            } else {
-                playerBombCooldowns[i][1] = 2;
-            }
+            playerBombCooldowns[i] = 3;
         }
         for(int i = 0; i < opponentBombCooldowns.Length; i++) {
-            opponentBombCooldowns[i] = new int[2];
-            opponentBombCooldowns[i][0] = 2;
-            if (i == 0) {
-                opponentBombCooldowns[i][1] = 1;
-            } else {
-                opponentBombCooldowns[i][1] = 2;
-            }            
+            opponentBombCooldowns[i] = 2;          
         }        
     }
     void SetSprites() {
         playerSprite = sprites[0];
         opponentSprite = sprites[1];
+    }
+
+    IEnumerator StoryMode() {
+        while (!GameOver()) {
+            SetTurn();
+            SetCooldownText();
+            if (!GameManager.instance.isPlayerTurn) {
+                playerMove.PlayerMove(storyModeAI.AIMove());
+                yield return new WaitForSeconds(0.2f);
+                playerMove.PlayerMove(storyModeAI.AIMove());
+                yield return new WaitForSeconds(0.2f);
+                playerMove.NextTurn();
+            }
+            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
+                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
+                gridSize = newGridSize;
+            } 
+            yield return null;
+        }
+        if (GameOver()) {
+            if (playerVictory == true) {
+                PlayerVictory();
+            } else {
+                OpponentVictory();
+            }
+        }
+        yield return null;
     }
 }
