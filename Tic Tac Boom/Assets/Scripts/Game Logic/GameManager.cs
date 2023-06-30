@@ -9,19 +9,20 @@ public class GameManager : MonoBehaviour
     // Variables
     public static GameManager instance;
     public bool isPlayerTurn;
-    public int turnCounter, currentTurn;
-    private bool playerVictory, opponentVictory;
+    public int turnCounter, currentTurn, playerMoveCount, opponentMoveCount, playerMoveMax, opponentMoveMax;
+    public bool playerVictory, opponentVictory;
     public int[] playerBombCooldowns, opponentBombCooldowns;
     public bool bombInUse;
     public bool[] gridModification;
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
+    public bool usingSmallBomb, usingCrossBomb, usingXBomb, usingMine;
     public Sprite[] sprites;
     public Sprite playerSprite, opponentSprite, mineSprite;
     [SerializeField] private AudioClip windSound;
     [SerializeField] private AudioClip battleTheme;
     [SerializeField] private AudioClip loadingTheme;
     [field: SerializeField] public AudioClip MainTheme { get; private set; }
-    public AudioClip moveSound;
+    public AudioClip moveSound, bombSound;
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
 
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     public StoryModeAI storyModeAI;
 
     // Game Objects
-    public GameObject skillMenu;
+    public GameObject skills;
     public GameObject useSkillMenu;
     public GameObject useSkillButton;
     public GameObject cancelSkillButton;
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     void SetTurn() {
         if (turnCounter % 2 == 1) {
-            isPlayerTurn = true;
+            isPlayerTurn = true;    
             turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
 
@@ -164,40 +165,42 @@ public class GameManager : MonoBehaviour
 
 
     void SetCooldownText() {
-        if (skillMenu.activeSelf) {
+        if (skills.activeSelf) {
             if (turnBombUsed != turnCounter) {
                 if (isPlayerTurn) {
                     for (int i = 0; i < playerBombCooldowns.Length; i++) {
                         if (playerBombCooldowns[i] > 0) {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerBombCooldowns[i] + " Turn Cooldown";
+                            skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerBombCooldowns[i] + " Turn Cooldown";
                         } else {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = null;
+                            skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = null;
                         }
                     }
                 } else {
                     for (int i = 0; i < opponentBombCooldowns.Length; i++) {
                         if (opponentBombCooldowns[i] > 0) {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = opponentBombCooldowns[i] + " Turn Cooldown";
+                            skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = opponentBombCooldowns[i] + " Turn Cooldown";
                         } else {
-                            skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = skillMenu.transform.GetChild(i).name;
+                            skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = skills.transform.GetChild(i).name;
                         }
                     }
                 }
             } else {
                 if (isPlayerTurn) {
                     for (int i = 0; i < playerBombCooldowns.Length; i++) {
-                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
+                        skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
                     }
                 } else {
                     for (int i = 0; i < opponentBombCooldowns.Length; i++) {
-                        skillMenu.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
+                        skills.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bomb Used";
                     }
                 }
             }
         }
     }
     bool GameOver() {
-
+        if (SceneManager.GetActiveScene().name == "Main") {
+            return true;
+        }
         int playerSpacesWon;
         int opponentSpacesWon;
 
@@ -383,23 +386,29 @@ public class GameManager : MonoBehaviour
 
     void LoadGame() {
         // Sets Game values
+        if (gridSize > 7) {
+            gridSize = 7;
+        } else if (gridSize < 1) {
+            gridSize = 1;
+        }
+        gameObject.GetComponent<Talents>().skillMenu = GameObject.Find("SkillMenu");
+        gameObject.GetComponent<Talents>().confirmSkillMenu = GameObject.Find("ConfirmSkillMenu");
         interfaceMenus = GameObject.Find("InterfaceMenus");
-        //skillMenu = GameObject.Find("SkillMenu");
+        skills = GameObject.Find("Skills");
         useSkillButton = GameObject.Find("UseSkillButton");
-        //cancelSkillButton = GameObject.Find("CancelSkillButton");
-        //cancelSkillButton.GetComponent<Button>().onClick.AddListener(talents.CancelSkill);
         playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
         playerVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         opponentVictoryMenu = GameObject.Find("OpponentVictoryMenu");
         opponentVictoryMenu.transform.localPosition = new Vector3(0, -3840, 0);
         turnDisplay = GameObject.Find("TurnDisplay");
-        settings = GameObject.Find("Settingss");
+        settings = GameObject.Find("Settings");
         settingsButton = GameObject.Find("SettingsButton");
-        //settingsButton.GetComponent<Button>().onClick.AddListener(QuitGame);
         buildGrid.grid = GameObject.Find("Grid");
         isPlayerTurn = true;
         turnCounter = 1;
         currentTurn = 0;
+        playerMoveCount = playerMoveMax;
+        opponentMoveCount = opponentMoveMax;
         playerVictory = false;
         opponentVictory = false;
         bombInUse = false;
@@ -428,19 +437,18 @@ public class GameManager : MonoBehaviour
         while (!GameOver()) {
             SetTurn();
             SetCooldownText();
-            if (!GameManager.instance.isPlayerTurn) {
+            if (!GameManager.instance.isPlayerTurn && opponentMoveCount > 0) {
                 playerMove.StartPlayerMove(storyModeAI.AIMove());
-                yield return new WaitForSeconds(0.2f);
-                /*playerMove.StartPlayerMove(storyModeAI.AIMove());
-                yield return new WaitForSeconds(0.2f);*/
-                playerMove.NextTurn();
+                if (GameManager.instance.opponentMoveCount > 0) {
+                    yield return new WaitForSeconds(0.2f);
+                }
             }
             yield return null;
         }
         if (GameOver()) {
-            if (playerVictory == true) {
+            if (playerVictory) {
                 PlayerVictory();
-            } else {
+            } else if (opponentVictory) {
                 OpponentVictory();
             }
         }

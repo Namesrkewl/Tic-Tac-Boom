@@ -11,8 +11,8 @@ public class PopUpAnimation : TweenAnimation
             IsMoving = true;
             // Sets the element to active
             Activate();
-            gameObject.transform.localScale = new Vector3(0, 0, 0);
-            LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
+            gameObject.transform.localScale = Vector3.zero;
+            LeanTween.scale(gameObject, Vector3.one, 0.5f).setEaseOutElastic();
             IsMoving = false;
         }
     }

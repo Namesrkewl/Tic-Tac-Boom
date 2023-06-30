@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3986023289751456305}
   - component: {fileID: 3986023289751456459}
   - component: {fileID: 3986023289751456458}
-  - component: {fileID: 3986023289751456454}
   - component: {fileID: 3362860019468482389}
   - component: {fileID: 1802522787}
   - component: {fileID: 3986023290342884177}
+  - component: {fileID: 702228779}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,15 +58,20 @@ MonoBehaviour:
   bombInUse: 0
   gridModification: 
   turnBombUsed: 0
-  gridSize: 7
+  gridSize: 3
   newGridSize: 0
   playerBombCount: 6
   opponentBombCount: 0
+  usingSmallBomb: 0
+  usingCrossBomb: 0
+  usingXBomb: 0
+  usingMine: 0
   sprites:
   - {fileID: 21300000, guid: 67fcdd3c9f63bec4881af588d84992f4, type: 3}
   - {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
   playerSprite: {fileID: 21300000, guid: 1c011597f6aa2f74f8899b1133dbac73, type: 3}
   opponentSprite: {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
+  mineSprite: {fileID: 21300000, guid: de1d6f43272df9a489afa2e894990bcb, type: 3}
   windSound: {fileID: 8300000, guid: d1fcc0f475ef1f14ea966eda7c0f4c4b, type: 3}
   battleTheme: {fileID: 8300000, guid: 04e7a35881a51304b9a255e86f3decf1, type: 3}
   loadingTheme: {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
@@ -74,13 +79,13 @@ MonoBehaviour:
   moveSound: {fileID: 8300000, guid: 286908c170609b049b68bd8aaa9848d9, type: 3}
   <Gold>k__BackingField: 0
   <Gems>k__BackingField: 0
-  talents: {fileID: 3986023289751456454}
+  talents: {fileID: 702228779}
   playerMove: {fileID: 3986023289751456459}
   replay: {fileID: 3986023289751456458}
   buildGrid: {fileID: 3362860019468482389}
   loadScene: {fileID: 0}
   storyModeAI: {fileID: 3986023290342884177}
-  skillMenu: {fileID: 0}
+  skills: {fileID: 0}
   useSkillMenu: {fileID: 0}
   useSkillButton: {fileID: 0}
   cancelSkillButton: {fileID: 0}
@@ -103,7 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSounds: {fileID: 1802522787}
-  explosion: {fileID: 0}
+  explosion: {fileID: 8040237562254255519, guid: 0a6d9a67c8e683b4fa789502c46cbef6, type: 3}
+  dustCloud: {fileID: 8068831425962975574, guid: 88cf3369adca691458777a4dcfb4a205, type: 3}
 --- !u!114 &3986023289751456458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,24 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df70531b54b52f444b5ab98bf2a7707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3986023289751456454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usingSmallBomb: 0
-  usingCrossBomb: 0
-  usingXBomb: 0
-  usingMine: 0
-  skillMenu: {fileID: 0}
-  confirmSkillMenu: {fileID: 0}
 --- !u!114 &3362860019468482389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,3 +260,17 @@ MonoBehaviour:
   victoryValue: 9999
   impendingVictoryValue: 200
   impendingDoomValue: 1000
+--- !u!114 &702228779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}

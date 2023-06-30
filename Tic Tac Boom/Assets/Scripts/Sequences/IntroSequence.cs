@@ -22,9 +22,9 @@ public class IntroSequence : MonoBehaviour
     private IEnumerator Intro() {
         background.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
         LeanTween.alpha(background, 0.5f, 4f);
-        LeanTween.alphaText(company.GetComponent<TextMeshProUGUI>().rectTransform, 1, 2f);
+        //LeanTween.alphaText(company.GetComponent<TextMeshProUGUI>().rectTransform, 1, 2f);
         yield return new WaitForSeconds(2f);
-        LeanTween.alphaText(company.GetComponent<TextMeshProUGUI>().rectTransform, 0, 1f);
+        //LeanTween.alphaText(company.GetComponent<TextMeshProUGUI>().rectTransform, 0, 1f);
         yield return new WaitForSeconds(2f);
         yield return StartCoroutine(Tic());
         logo.SetActive(true);
@@ -34,7 +34,7 @@ public class IntroSequence : MonoBehaviour
         yield return new WaitForSeconds(1f);
         backgroundAudio.SetActive(true);
         overlay.SetActive(true);
-        LeanTween.alphaText(overlay.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().rectTransform, 1, 0.5f);
+        LeanTween.alphaCanvas(overlay.GetComponent<CanvasGroup>(), 1, 0.5f);
         yield return new WaitForSeconds(0.5f);
         button.SetActive(true);
     }

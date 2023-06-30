@@ -22,7 +22,7 @@ public class StartSequence : MonoBehaviour
     private IEnumerator Play() {
         button.SetActive(false);
         LeanTween.alpha(logo.GetComponent<Image>().rectTransform, 0, 0.5f);
-        LeanTween.alphaText(overlay.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().rectTransform, 0, 0.5f);
+        LeanTween.alphaCanvas(overlay.GetComponent<CanvasGroup>(), 0, 0.5f);
         yield return new WaitForSeconds(1f);
         logo.SetActive(false);
         overlay.SetActive(false);

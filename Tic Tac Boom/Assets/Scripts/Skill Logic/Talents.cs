@@ -5,17 +5,16 @@ using UnityEngine;
 public class Talents : MonoBehaviour
 {
     // Bombs
-    public bool usingSmallBomb, usingCrossBomb, usingXBomb, usingMine;
-    [SerializeField] private GameObject skillMenu, confirmSkillMenu;
+    public GameObject skillMenu, confirmSkillMenu;
 
     public void SetUsingSmallBomb() {
         if (!GameManager.instance.bombInUse && GameManager.instance.turnBombUsed != GameManager.instance.turnCounter) {
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerBombCooldowns[0] == 0) {
-                usingSmallBomb = true;
+                GameManager.instance.usingSmallBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentBombCooldowns[0] == 0) {
-                usingSmallBomb = true;
+                GameManager.instance.usingSmallBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             }
@@ -24,11 +23,11 @@ public class Talents : MonoBehaviour
     public void SetUsingCrossBomb() {
         if (!GameManager.instance.bombInUse && GameManager.instance.turnBombUsed != GameManager.instance.turnCounter) {
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerBombCooldowns[1] == 0) {
-                usingCrossBomb = true;
+                GameManager.instance.usingCrossBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentBombCooldowns[1] == 0) {
-                usingCrossBomb = true;
+                GameManager.instance.usingCrossBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             }
@@ -38,11 +37,11 @@ public class Talents : MonoBehaviour
     public void SetUsingXBomb() {
         if (!GameManager.instance.bombInUse && GameManager.instance.turnBombUsed != GameManager.instance.turnCounter) {
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerBombCooldowns[2] == 0) {
-                usingXBomb = true;
+                GameManager.instance.usingXBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentBombCooldowns[2] == 0) {
-                usingXBomb = true;
+                GameManager.instance.usingXBomb = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             }
@@ -51,11 +50,11 @@ public class Talents : MonoBehaviour
     public void SetUsingMine() {
         if (!GameManager.instance.bombInUse && GameManager.instance.turnBombUsed != GameManager.instance.turnCounter) {
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerBombCooldowns[3] == 0) {
-                usingMine = true;
+                GameManager.instance.usingMine = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentBombCooldowns[3] == 0) {
-                usingMine = true;
+                GameManager.instance.usingMine = true;
                 GameManager.instance.bombInUse = true;
                 UseSkill();
             }
@@ -107,11 +106,11 @@ public class Talents : MonoBehaviour
     }
     public void CancelSkill() {
         confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
-        skillMenu.transform.localPosition = new Vector3(0, 0, 0);
-        GameManager.instance.talents.usingSmallBomb = false;
-        GameManager.instance.talents.usingCrossBomb = false;
-        GameManager.instance.talents.usingXBomb = false;
-        GameManager.instance.talents.usingMine = false;
+        skillMenu.transform.localPosition = Vector3.zero;
+        GameManager.instance.usingSmallBomb = false;
+        GameManager.instance.usingCrossBomb = false;
+        GameManager.instance.usingXBomb = false;
+        GameManager.instance.usingMine = false;
         GameManager.instance.bombInUse = false;
     }
 }
