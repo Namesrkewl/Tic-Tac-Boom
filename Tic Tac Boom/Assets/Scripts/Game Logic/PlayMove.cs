@@ -12,13 +12,17 @@ public class PlayMove : MonoBehaviour {
 
     // Add the PlayerMove event to the EventManager at the on scene load
     private void Start() {
-        EventManager.PlayerMoveEvent += PlayerMove;
+        EventManager.PlayerMoveEvent += StartPlayerMove;
+    }
+
+    public void StartPlayerMove(GameObject go) {
+        StartCoroutine(PlayerMove(go));
     }
 
     // Player Movement logic at the selected tile (go)
-    public void PlayerMove(GameObject go) {
+    IEnumerator PlayerMove(GameObject go) {
         if (go == null) {
-            return;
+            yield return null;
         }
         playerAtTrigger = go.transform.GetChild(0).gameObject;
 
@@ -27,8 +31,9 @@ public class PlayMove : MonoBehaviour {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
                 } else {
-                    explosion.transform.position = go.transform.position;
-                    explosion.Play();
+                    ParticleSystem boom = Instantiate(explosion);
+                    boom.transform.position = go.transform.position;
+                    boom.Play();
                     gameSounds.PlayOneShot(GameManager.instance.moveSound);
                     go.tag = "Player";
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
@@ -90,7 +95,8 @@ public class PlayMove : MonoBehaviour {
                 GameManager.instance.opponentBombCooldowns[3][0] = GameManager.instance.opponentBombCooldowns[3][1];
                 GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
             }
-        } 
+        }
+        yield return null;
     }
 
     public void NextTurn() {
@@ -102,8 +108,9 @@ public class PlayMove : MonoBehaviour {
     // ACTIVES ABILITIES
 
     void SmallBomb(GameObject go) {
-        explosion.transform.position = go.transform.position;
-        explosion.Play();
+        ParticleSystem boom = Instantiate(explosion);
+        boom.transform.position = go.transform.position;
+        boom.Play();
         playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
         playerAtTrigger.SetActive(false);
         go.tag = "Untagged";
@@ -118,37 +125,42 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            explosion.transform.position = go.transform.position;
-            explosion.Play();
+            ParticleSystem boom = Instantiate(explosion);
+            boom.transform.position = go.transform.position;
+            boom.Play();
             go.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             go.transform.GetChild(0).gameObject.SetActive(false);
             go.tag = "Untagged";
 
             // Bombs surrounding tiles in a + shape
             if (GameObject.Find((x + 1) + "," + y) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + y).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + y).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + y) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + y).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + y).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find(x + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find(x + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find(x + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find(x + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";
@@ -165,38 +177,42 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            Instantiate(explosion);
-            explosion.transform.position = go.transform.position;
-            explosion.Play();
+            ParticleSystem boom = Instantiate(explosion);
+            boom.transform.position = go.transform.position;
+            boom.Play();
             go.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             go.transform.GetChild(0).gameObject.SetActive(false);
             go.tag = "Untagged";
 
             // Bombs surrounding tiles in a x shape
             if (GameObject.Find((x + 1) + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y - 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x + 1) + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y - 1)).tag = "Untagged";
@@ -207,6 +223,7 @@ public class PlayMove : MonoBehaviour {
 
     void Mine(GameObject go) {
         go.tag = "Mine";
+        go.GetComponent<SpriteRenderer>().sprite = GameManager.instance.mineSprite;
         GameManager.instance.talents.CancelSkill();
     }
 
@@ -217,66 +234,76 @@ public class PlayMove : MonoBehaviour {
 
         if (GameObject.Find(x + "," + y) != null) {
             // Bombs the selected tile
-            explosion.transform.position = go.transform.position;
-            explosion.Play();
+            ParticleSystem boom = Instantiate(explosion);
+            boom.transform.position = go.transform.position;
+            boom.Play();
             go.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
             go.transform.GetChild(0).gameObject.SetActive(false);
             go.tag = "Untagged";
+            go.GetComponent<SpriteRenderer>().sprite = null;
 
             // Bombs surrounding tiles in a x shape
             if (GameObject.Find((x + 1) + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y - 1)).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find((x + 1) + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + (y - 1)).tag = "Untagged";
             }
             // Bombs surrounding tiles in a + shape
             if (GameObject.Find((x + 1) + "," + y) != null) {
-                explosion.transform.position = GameObject.Find((x + 1) + "," + y).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x + 1) + "," + y).transform.position;
+                boom.Play();
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x + 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x + 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find((x - 1) + "," + y) != null) {
-                explosion.transform.position = GameObject.Find((x - 1) + "," + y).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find((x - 1) + "," + y).transform.position;
+                boom.Play();
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find((x - 1) + "," + y).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find((x - 1) + "," + y).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y + 1)) != null) {
-                explosion.transform.position = GameObject.Find(x + "," + (y + 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find(x + "," + (y + 1)).transform.position;
+                boom.Play();
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y + 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y + 1)).tag = "Untagged";
             }
             if (GameObject.Find(x + "," + (y - 1)) != null) {
-                explosion.transform.position = GameObject.Find(x + "," + (y - 1)).transform.position;
-                explosion.Play();
+                boom = Instantiate(explosion);
+                boom.transform.position = GameObject.Find(x + "," + (y - 1)).transform.position;
+                boom.Play();
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 GameObject.Find(x + "," + (y - 1)).transform.GetChild(0).gameObject.SetActive(false);
                 GameObject.Find(x + "," + (y - 1)).tag = "Untagged";

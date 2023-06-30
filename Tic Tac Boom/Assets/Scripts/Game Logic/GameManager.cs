@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public bool[] gridModification;
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
     public Sprite[] sprites;
-    public Sprite playerSprite, opponentSprite;
+    public Sprite playerSprite, opponentSprite, mineSprite;
     [SerializeField] private AudioClip windSound;
     [SerializeField] private AudioClip battleTheme;
     [SerializeField] private AudioClip loadingTheme;
@@ -429,10 +429,10 @@ public class GameManager : MonoBehaviour
             SetTurn();
             SetCooldownText();
             if (!GameManager.instance.isPlayerTurn) {
-                playerMove.PlayerMove(storyModeAI.AIMove());
+                playerMove.StartPlayerMove(storyModeAI.AIMove());
                 yield return new WaitForSeconds(0.2f);
-                playerMove.PlayerMove(storyModeAI.AIMove());
-                yield return new WaitForSeconds(0.2f);
+                /*playerMove.StartPlayerMove(storyModeAI.AIMove());
+                yield return new WaitForSeconds(0.2f);*/
                 playerMove.NextTurn();
             }
             yield return null;
