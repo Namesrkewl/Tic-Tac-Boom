@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     // Variables
     public static GameManager instance;
     public bool isPlayerTurn;
-    public int turnCounter, currentTurn, playerMoveCount, opponentMoveCount, playerMoveMax, opponentMoveMax;
+    public int turnCounter, currentTurn, round, playerMoveCount, opponentMoveCount, playerMoveMax, opponentMoveMax, stage;
     public bool playerVictory, opponentVictory;
     public int[] playerBombCooldowns, opponentBombCooldowns;
     public bool bombInUse;
@@ -99,13 +99,16 @@ public class GameManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         loadScene = GameObject.Find("SceneManager").GetComponent<LoadScene>();
-        if (scene.name == "StoryMode" || scene.name == "PlayerVSAI" || scene.name == "LocalPVP") {
+        if (scene.name == "PlayerVSAI" || scene.name == "LocalPVP") {
             LoadGame();
             BombCooldowns();
             buildGrid.BuildTheGrid();
             SetSprites();
-        } 
-        if (scene.name == "StoryMode") {
+        } else if (scene.name == "StoryMode") {
+            LoadGame();
+            BombCooldowns();
+            buildGrid.BuildTheGrid();
+            SetSprites();
             StartCoroutine(StoryMode());
         }
     }
@@ -161,6 +164,7 @@ public class GameManager : MonoBehaviour
                 currentTurn = turnCounter;
             }
         }
+        round = (currentTurn / 2) + 1;
     }
 
 
@@ -197,7 +201,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    bool GameOver() {
+    public bool GameOver() {
         if (SceneManager.GetActiveScene().name == "Main") {
             return true;
         }
@@ -405,6 +409,7 @@ public class GameManager : MonoBehaviour
         settingsButton = GameObject.Find("SettingsButton");
         buildGrid.grid = GameObject.Find("Grid");
         isPlayerTurn = true;
+        stage = 1;
         turnCounter = 1;
         currentTurn = 0;
         playerMoveCount = playerMoveMax;

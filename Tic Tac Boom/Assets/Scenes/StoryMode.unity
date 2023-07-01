@@ -2880,6 +2880,7 @@ GameObject:
   - component: {fileID: 1221197136}
   - component: {fileID: 1221197135}
   - component: {fileID: 1221197137}
+  - component: {fileID: 1221197138}
   m_Layer: 5
   m_Name: EnemyIndicator
   m_TagString: Untagged
@@ -2957,6 +2958,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39aad6cc15ed16459006dbc7812ccfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1221197138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221197133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a301f57094cfc3e4c99a8aa8fb2f197d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BlockedValue>k__BackingField: -50
+  <PlayerValue>k__BackingField: 30
+  <BaseValue>k__BackingField: 0
+  <OpponentValue>k__BackingField: 50
+  <ImpendingVictoryValue>k__BackingField: 1000
+  <ImpendingDoomValue>k__BackingField: 250
+  <VictoryValue>k__BackingField: 10000
+  <OpponentMoveMax>k__BackingField: 3
 --- !u!1 &1243619599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2676843073925581951, guid: 42f8919961e801b4a81ca1dc4e9b8de2, type: 3}
@@ -6797,27 +6818,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: gridSize
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
-      propertyPath: bombSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ce901c4f60cb0ef49b3d294d2920f4a0, type: 3}
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: loadScene
       value: 
       objectReference: {fileID: 323700050}
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
-      propertyPath: newGridSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: playerMoveMax
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: opponentMoveMax
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
+      propertyPath: opponentMoveCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3986023289751456306, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: m_RootOrder
@@ -6866,6 +6883,10 @@ PrefabInstance:
     - target: {fileID: 3986023289751456307, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986023290342884177, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
+      propertyPath: <OpponentMoveMax>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -45,8 +46,10 @@ public class PlayMove : MonoBehaviour {
                     LeanTween.scale(playerAtTrigger, new Vector3(0.8f, 0.8f), 0.5f).setEaseOutElastic();
                 }
                 if (GameManager.instance.playerMoveCount <= 0) {
-                    yield return new WaitForSeconds(1);
-                    NextTurn();
+                    if (!GameManager.instance.GameOver()) {
+                        yield return new WaitForSeconds(1);
+                        NextTurn();
+                    }
                 }
             } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentMoveCount > 0) {
                 if (go.tag.Contains("Mine")) {
@@ -64,8 +67,10 @@ public class PlayMove : MonoBehaviour {
                     LeanTween.scale(playerAtTrigger, new Vector3(0.8f, 0.8f), 0.5f).setEaseOutElastic();
                 }
                 if (GameManager.instance.opponentMoveCount <= 0) {
-                    yield return new WaitForSeconds(1);
-                    NextTurn();
+                    if (!GameManager.instance.GameOver()) {
+                        yield return new WaitForSeconds(1);
+                        NextTurn();
+                    }
                 }
             }
         } else if (GameManager.instance.usingSmallBomb) {
@@ -118,11 +123,8 @@ public class PlayMove : MonoBehaviour {
 
     public void NextTurn() {
         GameManager.instance.turnCounter += 1;
-        if (GameManager.instance.isPlayerTurn) {
-            GameManager.instance.playerMoveCount = GameManager.instance.playerMoveMax;
-        } else {
-            GameManager.instance.opponentMoveCount = GameManager.instance.opponentMoveMax;
-        }        
+        GameManager.instance.playerMoveCount = GameManager.instance.playerMoveMax;
+        GameManager.instance.opponentMoveCount = GameManager.instance.opponentMoveMax;
     }
 
     // TALENTS

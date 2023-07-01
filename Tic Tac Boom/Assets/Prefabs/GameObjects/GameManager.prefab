@@ -53,6 +53,14 @@ MonoBehaviour:
   isPlayerTurn: 0
   turnCounter: 0
   currentTurn: 0
+  round: 0
+  playerMoveCount: 0
+  opponentMoveCount: 0
+  playerMoveMax: 1
+  opponentMoveMax: 1
+  stage: 0
+  playerVictory: 0
+  opponentVictory: 0
   playerBombCooldowns: 00000000
   opponentBombCooldowns: 00000000
   bombInUse: 0
@@ -77,6 +85,7 @@ MonoBehaviour:
   loadingTheme: {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
   <MainTheme>k__BackingField: {fileID: 8300000, guid: 0c5172d35c17259419b8d9d6252c64c5, type: 3}
   moveSound: {fileID: 8300000, guid: 286908c170609b049b68bd8aaa9848d9, type: 3}
+  bombSound: {fileID: 8300000, guid: ce901c4f60cb0ef49b3d294d2920f4a0, type: 3}
   <Gold>k__BackingField: 0
   <Gems>k__BackingField: 0
   talents: {fileID: 702228779}
@@ -257,9 +266,9 @@ MonoBehaviour:
   playerValue: -5
   baseValue: 1
   blockedValue: -50
-  victoryValue: 9999
-  impendingVictoryValue: 200
-  impendingDoomValue: 1000
+  victoryValue: 99999
+  impendingVictoryValue: 999
+  impendingDoomValue: 9999
 --- !u!114 &702228779
 MonoBehaviour:
   m_ObjectHideFlags: 0
