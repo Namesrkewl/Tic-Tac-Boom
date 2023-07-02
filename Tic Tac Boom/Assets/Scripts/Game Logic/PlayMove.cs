@@ -41,9 +41,7 @@ public class PlayMove : MonoBehaviour {
                     go.tag = "Player";
                     GameManager.instance.playerMoveCount -= 1;
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
-                    playerAtTrigger.transform.localScale = Vector3.zero;
                     playerAtTrigger.SetActive(true);
-                    LeanTween.scale(playerAtTrigger, new Vector3(0.8f, 0.8f), 0.5f).setEaseOutElastic();
                 }
                 if (GameManager.instance.playerMoveCount <= 0) {
                     if (!GameManager.instance.GameOver()) {
@@ -64,7 +62,6 @@ public class PlayMove : MonoBehaviour {
                     GameManager.instance.opponentMoveCount -= 1;
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
                     playerAtTrigger.SetActive(true);
-                    LeanTween.scale(playerAtTrigger, new Vector3(0.8f, 0.8f), 0.5f).setEaseOutElastic();
                 }
                 if (GameManager.instance.opponentMoveCount <= 0) {
                     if (!GameManager.instance.GameOver()) {

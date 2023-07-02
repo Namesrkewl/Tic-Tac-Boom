@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1802522787}
   - component: {fileID: 3986023290342884177}
   - component: {fileID: 702228779}
+  - component: {fileID: 5767172279292572940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   round: 0
   playerMoveCount: 0
   opponentMoveCount: 0
-  playerMoveMax: 1
+  playerMoveMax: 3
   opponentMoveMax: 1
   stage: 0
   playerVictory: 0
@@ -66,7 +67,7 @@ MonoBehaviour:
   bombInUse: 0
   gridModification: 
   turnBombUsed: 0
-  gridSize: 3
+  gridSize: 7
   newGridSize: 0
   playerBombCount: 6
   opponentBombCount: 0
@@ -74,6 +75,8 @@ MonoBehaviour:
   usingCrossBomb: 0
   usingXBomb: 0
   usingMine: 0
+  player: 
+  opponent: 
   sprites:
   - {fileID: 21300000, guid: 67fcdd3c9f63bec4881af588d84992f4, type: 3}
   - {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
@@ -94,6 +97,7 @@ MonoBehaviour:
   buildGrid: {fileID: 3362860019468482389}
   loadScene: {fileID: 0}
   storyModeAI: {fileID: 3986023290342884177}
+  changePlayers: {fileID: 5767172279292572940}
   skills: {fileID: 0}
   useSkillMenu: {fileID: 0}
   useSkillButton: {fileID: 0}
@@ -262,13 +266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a301f57094cfc3e4c99a8aa8fb2f197d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opponentValue: 20
-  playerValue: -5
-  baseValue: 1
-  blockedValue: -50
-  victoryValue: 99999
-  impendingVictoryValue: 999
-  impendingDoomValue: 9999
+  <BlockedValue>k__BackingField: -50
+  <PlayerValue>k__BackingField: -5
+  <BaseValue>k__BackingField: 1
+  <OpponentValue>k__BackingField: 20
+  <ImpendingVictoryValue>k__BackingField: 999
+  <ImpendingDoomValue>k__BackingField: 9999
+  <VictoryValue>k__BackingField: 99999
+  <OpponentMoveMax>k__BackingField: 1
 --- !u!114 &702228779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +288,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillMenu: {fileID: 0}
   confirmSkillMenu: {fileID: 0}
+--- !u!114 &5767172279292572940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986023289751456307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf09e291da516f54a9a1138ea51faae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

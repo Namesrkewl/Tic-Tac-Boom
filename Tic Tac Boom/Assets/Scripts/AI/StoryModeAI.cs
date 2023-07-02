@@ -5,25 +5,30 @@ using UnityEngine;
 public class StoryModeAI : MonoBehaviour
 {
 
-    private List<GameObject> bestMoves;
-    private int[][] tileValues;
-    [field: SerializeField] public int BlockedValue { get; private set; } = -50;
-    [field: SerializeField] public int PlayerValue { get; private set; } = -5;
-    [field: SerializeField] public int BaseValue { get; private set; } = 1;
-    [field: SerializeField] public int OpponentValue { get; private set; } = 20;
-    [field: SerializeField] public int ImpendingVictoryValue { get; private set; } = 999;
-    [field: SerializeField] public int ImpendingDoomValue { get; private set; } = 9999;
-    [field: SerializeField] public int VictoryValue { get; private set; } = 99999;
-    [field: SerializeField] public int OpponentMoveMax { get; private set; } = 0;
-    private void Start() {
+    protected List<GameObject> bestMoves;
+    protected int[][] tileValues;
+    [field: SerializeField] public int BlockedValue { get; protected set; } = -50;
+    [field: SerializeField] public int PlayerValue { get; protected set; } = -5;
+    [field: SerializeField] public int BaseValue { get; protected set; } = 1;
+    [field: SerializeField] public int OpponentValue { get; protected set; } = 20;
+    [field: SerializeField] public int ImpendingVictoryValue { get; protected set; } = 999;
+    [field: SerializeField] public int ImpendingDoomValue { get; protected set; } = 9999;
+    [field: SerializeField] public int VictoryValue { get; protected set; } = 99999;
+    [field: SerializeField] public int OpponentMoveMax { get; protected set; } = 0;
+    [field: SerializeField] public int StartingGridSize { get; protected set; } = 0;
+    [field: SerializeField] public int MoveCount { get; protected set; } = 0;
+    [field: SerializeField] public bool FirstMove { get; protected set; } = true;
+    protected virtual void Start() {
         if (gameObject != GameManager.instance) {
             SetAI();
         }
     }
 
-    public GameObject AIMove() {
-
+    public virtual GameObject AIMove() {
         // Single Move AI Based on the best move by point value
+        if (GameManager.instance.GetComponent<DragonAI>()) {
+            return GameManager.instance.GetComponent<DragonAI>().AIMove();
+        }
         ParseTileValues(GameManager.instance.opponentMoveCount);
         if (bestMoves.Count != 0) {
             Debug.Log("The best moves are: ");
@@ -45,7 +50,7 @@ public class StoryModeAI : MonoBehaviour
         */
     }
 
-    void ParseTileValues(int moves) {
+    protected virtual void ParseTileValues(int moves) {
         int size = GameManager.instance.gridSize;
         int originalMoves = moves;
         //BlockedValue = OpponentValue * size;
@@ -504,17 +509,38 @@ public class StoryModeAI : MonoBehaviour
         Debug.Log($"The highest value is {highestValue}");
     }
 
-    public void SetAI() {
-        // Sets Logic
-        GameManager.instance.storyModeAI.BlockedValue = gameObject.GetComponent<StoryModeAI>().BlockedValue;
-        GameManager.instance.storyModeAI.PlayerValue = gameObject.GetComponent<StoryModeAI>().PlayerValue;
-        GameManager.instance.storyModeAI.BaseValue = gameObject.GetComponent<StoryModeAI>().BaseValue;
-        GameManager.instance.storyModeAI.OpponentValue = gameObject.GetComponent<StoryModeAI>().OpponentValue;
-        GameManager.instance.storyModeAI.ImpendingVictoryValue = gameObject.GetComponent<StoryModeAI>().ImpendingVictoryValue;
-        GameManager.instance.storyModeAI.ImpendingDoomValue = gameObject.GetComponent<StoryModeAI>().ImpendingDoomValue;
-        GameManager.instance.storyModeAI.VictoryValue = gameObject.GetComponent<StoryModeAI>().VictoryValue;
-        // Sets Move Count
-        GameManager.instance.storyModeAI.OpponentMoveMax = gameObject.GetComponent<StoryModeAI>().OpponentMoveMax;
-        GameManager.instance.opponentMoveMax = gameObject.GetComponent<StoryModeAI>().OpponentMoveMax;
+    public virtual void SetAI() {
+        if (gameObject != GameManager.instance.gameObject) {
+            if (GameManager.instance.gameObject.GetComponent<StoryModeAI>()) {
+                Destroy(GameManager.instance.gameObject.GetComponent<StoryModeAI>());
+                GameManager.instance.gameObject.AddComponent<StoryModeAI>();
+                // Sets Logic
+                GameManager.instance.storyModeAI.BlockedValue = BlockedValue;
+                GameManager.instance.storyModeAI.PlayerValue = PlayerValue;
+                GameManager.instance.storyModeAI.BaseValue = BaseValue;
+                GameManager.instance.storyModeAI.OpponentValue = OpponentValue;
+                GameManager.instance.storyModeAI.ImpendingVictoryValue = ImpendingVictoryValue;
+                GameManager.instance.storyModeAI.ImpendingDoomValue = ImpendingDoomValue;
+                GameManager.instance.storyModeAI.VictoryValue = gameObject.GetComponent<StoryModeAI>().VictoryValue;
+                // Sets Move Count
+                GameManager.instance.opponentMoveMax = OpponentMoveMax;
+                // Sets Starting Grid Size
+                GameManager.instance.newGridSize = StartingGridSize;
+            } else {
+                GameManager.instance.gameObject.AddComponent<StoryModeAI>();
+                // Sets Logic
+                GameManager.instance.storyModeAI.BlockedValue = BlockedValue;
+                GameManager.instance.storyModeAI.PlayerValue = PlayerValue;
+                GameManager.instance.storyModeAI.BaseValue = BaseValue;
+                GameManager.instance.storyModeAI.OpponentValue = OpponentValue;
+                GameManager.instance.storyModeAI.ImpendingVictoryValue = ImpendingVictoryValue;
+                GameManager.instance.storyModeAI.ImpendingDoomValue = ImpendingDoomValue;
+                GameManager.instance.storyModeAI.VictoryValue = gameObject.GetComponent<StoryModeAI>().VictoryValue;
+                // Sets Move Count
+                GameManager.instance.opponentMoveMax = OpponentMoveMax;
+                // Sets Starting Grid Size
+                GameManager.instance.newGridSize = StartingGridSize;
+            }
+        }
     }
 }

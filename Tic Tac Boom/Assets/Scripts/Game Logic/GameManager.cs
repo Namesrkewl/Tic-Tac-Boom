@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isPlayerTurn;
     public int turnCounter, currentTurn, round, playerMoveCount, opponentMoveCount, playerMoveMax, opponentMoveMax, stage;
-    public bool playerVictory, opponentVictory;
+    public bool playerVictory, opponentVictory, storyModeRunning, updatingGrid;
     public int[] playerBombCooldowns, opponentBombCooldowns;
     public bool bombInUse;
     public bool[] gridModification;
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
     public bool usingSmallBomb, usingCrossBomb, usingXBomb, usingMine;
+    public string player, opponent;
     public Sprite[] sprites;
     public Sprite playerSprite, opponentSprite, mineSprite;
     [SerializeField] private AudioClip windSound;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public BuildGrid buildGrid;
     public LoadScene loadScene;
     public StoryModeAI storyModeAI;
+    public ChangePlayers changePlayers;
 
     // Game Objects
     public GameObject skills;
@@ -45,6 +47,9 @@ public class GameManager : MonoBehaviour
     public GameObject turnDisplay;
     public GameObject settings;
     public GameObject settingsButton;
+    public GameObject nextFight;
+    public GameObject HUD;
+    public GameObject UI;
     
 
     void Awake() {
@@ -104,34 +109,23 @@ public class GameManager : MonoBehaviour
             BombCooldowns();
             buildGrid.BuildTheGrid();
             SetSprites();
+            StartCoroutine(Game());
         } else if (scene.name == "StoryMode") {
             LoadGame();
             BombCooldowns();
-            buildGrid.BuildTheGrid();
+            changePlayers.SetStoryModePlayers();
             SetSprites();
+            buildGrid.BuildTheGrid();
             StartCoroutine(StoryMode());
         }
     }
-    private void Update() {
-        if (SceneManager.GetActiveScene().name == "PlayerVSAI" || SceneManager.GetActiveScene().name == "LocalPVP") {
-            SetTurn();
-            SetCooldownText();
-            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
-                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
-                gridSize = newGridSize;
+
+    void UpdateVictory() {
+        if (GameOver()) {
+            if (playerVictory == true) {
+                PlayerVictory();
             } else {
-                if (GameOver()) {
-                    if (playerVictory == true) {
-                        PlayerVictory();
-                    } else {
-                        OpponentVictory();
-                    }
-                }
-            }
-        } else if (SceneManager.GetActiveScene().name == "StoryMode") {
-            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
-                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
-                gridSize = newGridSize;
+                OpponentVictory();
             }
         }
     }
@@ -208,6 +202,9 @@ public class GameManager : MonoBehaviour
         int playerSpacesWon;
         int opponentSpacesWon;
 
+        if (updatingGrid) {
+            return false;
+        }
         // Player Win Conditions
 
         // Vertical Win Condition
@@ -408,6 +405,10 @@ public class GameManager : MonoBehaviour
         settings = GameObject.Find("Settings");
         settingsButton = GameObject.Find("SettingsButton");
         buildGrid.grid = GameObject.Find("Grid");
+        nextFight = GameObject.Find("NextFight");
+        nextFight.SetActive(false);
+        UI = GameObject.Find("UI");
+        HUD = GameObject.Find("HUD");
         isPlayerTurn = true;
         stage = 1;
         turnCounter = 1;
@@ -438,10 +439,26 @@ public class GameManager : MonoBehaviour
         opponentSprite = sprites[1];
     }
 
-    IEnumerator StoryMode() {
+    IEnumerator Game() {
         while (!GameOver()) {
             SetTurn();
             SetCooldownText();
+            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize) {
+                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
+            }
+            yield return null;
+        }
+        UpdateVictory();
+        yield return null;
+    }
+
+    public IEnumerator StoryMode() {
+        while (!GameOver()) {
+            SetTurn();
+            SetCooldownText();
+            if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize && gridSize > 0 && gridSize < 8) {
+                buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
+            }
             if (!GameManager.instance.isPlayerTurn && opponentMoveCount > 0) {
                 playerMove.StartPlayerMove(storyModeAI.AIMove());
                 if (GameManager.instance.opponentMoveCount > 0) {
@@ -450,12 +467,8 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
-        if (GameOver()) {
-            if (playerVictory) {
-                PlayerVictory();
-            } else if (opponentVictory) {
-                OpponentVictory();
-            }
+        if (GameOver() && SceneManager.GetActiveScene().name != "Main") {
+            UpdateVictory();
         }
         yield return null;
     }
