@@ -53,6 +53,9 @@ MonoBehaviour:
   <ImpendingDoomValue>k__BackingField: 9999
   <VictoryValue>k__BackingField: 99999
   <OpponentMoveMax>k__BackingField: 1
+  <StartingGridSize>k__BackingField: 0
+  <MoveCount>k__BackingField: 0
+  <FirstMove>k__BackingField: 1
 --- !u!1 &2951981011931172572
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771183172939049439}
+  - component: {fileID: 1435385795031892507}
   m_Layer: 0
   m_Name: NextOpponent
   m_TagString: Untagged
@@ -335,6 +339,18 @@ Transform:
   m_Father: {fileID: 2951981013638612039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &1435385795031892507
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288272532406420804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6156690208544385770
 GameObject:
   m_ObjectHideFlags: 0

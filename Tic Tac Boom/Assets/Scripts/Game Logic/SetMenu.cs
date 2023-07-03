@@ -6,17 +6,25 @@ using TMPro;
 
 public class SetMenu : MonoBehaviour
 {
-    public GameObject skill, image, description, cooldown, activeImage;
-
-    public void SetSkillMenu() {
-        skill.GetComponent<TextMeshProUGUI>().text = gameObject.name;
-        image.GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
-        description.GetComponent<TextMeshProUGUI>().text = gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text;
+    public void SetConfirmSkillMenu() {
+        GameObject confirmSkillMenu = GameObject.Find("ConfirmSkillMenu");
+        confirmSkillMenu.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
+        confirmSkillMenu.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = gameObject.name;
+        confirmSkillMenu.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text;
         if (gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text != null) {
-            cooldown.GetComponent<TextMeshProUGUI>().text = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
+            confirmSkillMenu.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
         } else {
-            cooldown.GetComponent<TextMeshProUGUI>().text = "USE";
+            confirmSkillMenu.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "USE";
         }
-        activeImage.GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
+        GameObject.Find("ActiveSkill").transform.GetChild(0).GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
+    }
+    public void SetChooseTalentMenu() {
+        GameObject chooseTalentMenu = GameObject.Find("ChooseTalentMenu");
+        chooseTalentMenu.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = gameObject.transform.GetChild(0).GetComponent<Image>().sprite;
+        chooseTalentMenu.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = gameObject.name;
+        chooseTalentMenu.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text;
+        chooseTalentMenu.transform.localPosition = Vector3.zero;
+        chooseTalentMenu.transform.GetChild(1).localScale = Vector3.zero;
+        LeanTween.scale(chooseTalentMenu.transform.GetChild(1).gameObject, Vector3.one, 0.5f).setEaseOutElastic();
     }
 }

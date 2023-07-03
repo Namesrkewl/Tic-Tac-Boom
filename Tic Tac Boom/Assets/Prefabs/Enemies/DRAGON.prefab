@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3529350811411715600}
+  - component: {fileID: 4316790830222233245}
   m_Layer: 0
   m_Name: NextOpponent
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 1350664036249009032}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &4316790830222233245
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128933107830274699}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1350664034747150611
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +349,8 @@ MonoBehaviour:
   <VictoryValue>k__BackingField: 99999
   <OpponentMoveMax>k__BackingField: 6
   <StartingGridSize>k__BackingField: 7
+  <MoveCount>k__BackingField: 0
+  <FirstMove>k__BackingField: 1
 --- !u!1 &8014714087039374629
 GameObject:
   m_ObjectHideFlags: 0

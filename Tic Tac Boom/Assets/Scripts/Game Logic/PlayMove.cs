@@ -119,7 +119,7 @@ public class PlayMove : MonoBehaviour {
     }
 
     public void NextTurn() {
-        GameManager.instance.turnCounter += 1;
+        GameManager.instance.turnCounter++;
         GameManager.instance.playerMoveCount = GameManager.instance.playerMoveMax;
         GameManager.instance.opponentMoveCount = GameManager.instance.opponentMoveMax;
     }

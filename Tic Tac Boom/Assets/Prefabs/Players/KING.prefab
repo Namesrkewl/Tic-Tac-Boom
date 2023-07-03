@@ -258,6 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7123881630443408433}
+  - component: {fileID: 9217510519910626622}
   m_Layer: 5
   m_Name: NextPlayer
   m_TagString: Untagged
@@ -282,6 +283,18 @@ Transform:
   m_Father: {fileID: 623597562588869467}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &9217510519910626622
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863853826807152166}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5924485944445840739
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,4 +429,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9663a763e1435d448172c0151e87074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Faction>k__BackingField: 0
+  <IsExiled>k__BackingField: 0

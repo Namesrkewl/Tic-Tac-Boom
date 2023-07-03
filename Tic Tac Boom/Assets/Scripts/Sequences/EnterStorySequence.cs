@@ -7,10 +7,9 @@ public class EnterStorySequence : TweenAnimation {
     [SerializeField] private GameObject overlay;
     [SerializeField] private GameObject element;
     [SerializeField] private GameObject backgroundAudio;
-    [SerializeField] private AudioClip chainsPulling;
-    [SerializeField] private AudioClip loadingSound;
     [SerializeField] private GameObject sceneManager;
-    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject shadows;
+
 
     public void StartStory() {
         StartCoroutine(Play());
@@ -21,16 +20,10 @@ public class EnterStorySequence : TweenAnimation {
             backgroundAudio = GameObject.Find("BackgroundAudio");
             backgroundAudio.GetComponent<AudioSource>().Stop();
             overlay.SetActive(true);
-            LeanTween.alphaCanvas(ui.GetComponent<CanvasGroup>(), 0, 0.5f);
+            LeanTween.alphaCanvas(ui.GetComponent<CanvasGroup>(), 0, 0.1f);
+            yield return new WaitForSeconds(0.1f);
+            LeanTween.alpha(shadows, 0.8f, 0.5f);
             yield return new WaitForSeconds(0.5f);
-            LeanTween.move(background, new Vector3(0, 18f, 0), 2f);
-            backgroundAudio.GetComponent<AudioSource>().PlayOneShot(chainsPulling);
-            yield return new WaitForSeconds(2f);
-            backgroundAudio.GetComponent<AudioSource>().Stop();
-            backgroundAudio.GetComponent<AudioSource>().clip = loadingSound;
-            backgroundAudio.GetComponent<AudioSource>().Play();
-            yield return new WaitForSeconds(2f);
-            overlay.SetActive(false);
             sceneManager.GetComponent<LoadScene>().LoadStoryMode();
         }
     }

@@ -49,3 +49,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Next Fight
+    uniqueID: 213799061
+    locked: 0

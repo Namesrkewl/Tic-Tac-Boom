@@ -83,4 +83,10 @@ public class MoveMenu : TweenAnimation {
         right.SetActive(false);
         center.SetActive(false);
     }
+    public void QuickShow() {
+        gameObject.transform.localPosition = new Vector3(0, 0, 0);
+    }
+    public void QuickHide() {
+        gameObject.transform.localPosition = new Vector3(0, 3840, 0);
+    }
 }

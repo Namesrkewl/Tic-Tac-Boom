@@ -233,6 +233,7 @@ public class BuildGrid : MonoBehaviour {
             if (!excludedTiles[i] && x < 7 && y < 7) {
                 GameObject tile = Instantiate(currentTiles[i], grid.transform);
                 tile.name = gridReference[x][y];
+                tile.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
                 FormatTiles(tile, newGridSize, x, y);
                 tileCount++;
             }

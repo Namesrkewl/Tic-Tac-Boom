@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1476037372723097147}
   - component: {fileID: 1476037372723097144}
   - component: {fileID: 1476037372723097145}
+  - component: {fileID: 2766192310888034091}
+  - component: {fileID: 397245616}
   m_Layer: 5
   m_Name: DESTROY TILES
   m_TagString: Untagged
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 397245616}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: DestroyTiles
         m_Mode: 1
@@ -138,7 +140,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1476037372723097145}
         m_TargetAssemblyTypeName: SetMenu, Assembly-CSharp
-        m_MethodName: SetSkillMenu
+        m_MethodName: SetConfirmSkillMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -160,11 +162,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa3de95d21e1e04bbe93d996e9d1d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
-  image: {fileID: 0}
-  description: {fileID: 0}
-  cooldown: {fileID: 0}
-  activeImage: {fileID: 0}
+--- !u!114 &2766192310888034091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476037372723097151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fbc406e52bc534d84d65d7df07a838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cooldown>k__BackingField: 5
+  <Scaling>k__BackingField: 3
+--- !u!114 &397245616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476037372723097151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}
 --- !u!1 &1476037372808165884
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2).
+  m_text: DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). ENDS YOUR TURN.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6c62174210dacd46aa7df2188aed12a, type: 2}
   m_sharedMaterial: {fileID: -5566981997578152848, guid: a6c62174210dacd46aa7df2188aed12a, type: 2}

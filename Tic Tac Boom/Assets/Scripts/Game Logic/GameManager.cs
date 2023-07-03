@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int turnBombUsed, gridSize, newGridSize, playerBombCount, opponentBombCount;
     public bool usingSmallBomb, usingCrossBomb, usingXBomb, usingMine;
     public string player, opponent;
+    private bool loading;
     public Sprite[] sprites;
     public Sprite playerSprite, opponentSprite, mineSprite;
     [SerializeField] private AudioClip windSound;
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour
     public LoadScene loadScene;
     public StoryModeAI storyModeAI;
     public ChangePlayers changePlayers;
+
+    // Audio Clips
+    [SerializeField] private AudioClip loadingSound;
 
     // Game Objects
     public GameObject skills;
@@ -68,38 +72,111 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator StorySequence() {
+        GameObject ui = GameObject.Find("UI");
+        ui.GetComponent<CanvasGroup>().alpha = 0;
+        GameObject HUD = GameObject.Find("HUD");
+        GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
+        turnIndicator.SetActive(false);
+        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        playerIndicator.SetActive(false);
+        GameObject opponentIndicator = HUD.transform.GetChild(2).GetChild(0).GetChild(0).gameObject;
+        opponentIndicator.SetActive(false);
+        GameObject nextPlayer = HUD.transform.GetChild(1).GetChild(0).GetChild(1).gameObject;
+        nextPlayer.transform.localPosition = new Vector3(2000, 0);
+        nextPlayer.SetActive(true);
+        GameObject nextOpponent = HUD.transform.GetChild(2).GetChild(0).GetChild(1).gameObject;
+        nextOpponent.transform.localPosition = new Vector3(-2000, 0);
+        nextOpponent.SetActive(true);
+        GameObject nextFight = GameObject.Find("NextFight");
+        GameObject cover = nextFight.transform.GetChild(0).gameObject;
+        cover.SetActive(true);
+        GameObject fog = nextFight.transform.GetChild(1).gameObject;
+        GameObject background = nextFight.transform.GetChild(2).gameObject;
+        background.SetActive(true);
+        GameObject clouds = nextFight.transform.GetChild(4).gameObject;
+        clouds.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
+        rollingFog.SetActive(true);
         GameObject audio = GameObject.Find("BackgroundAudio");
+        audio.GetComponent<AudioSource>().clip = windSound;
+        audio.GetComponent<AudioSource>().PlayOneShot(windSound);
+        yield return new WaitForSeconds(0.5f);
+        LeanTween.alpha(background, 0, 1f);
+        yield return new WaitForSeconds(1f);
+        background.SetActive(false);
+        audio.GetComponent<AudioSource>().Stop();
         if (audio.GetComponent<AudioSource>().clip != loadingTheme) {
             audio.GetComponent<AudioSource>().clip = loadingTheme;
             audio.GetComponent<AudioSource>().Play();
         }
-        GameObject ui = GameObject.Find("UI");
-        ui.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject cover = GameObject.Find("Intro");
-        GameObject fog = cover.transform.GetChild(0).gameObject;
-        fog.SetActive(true);
-        GameObject text = cover.transform.GetChild(1).gameObject;
-        text.SetActive(true);
-        GameObject value = text.transform.GetChild(0).gameObject;
-        SetText(0);
-        yield return new WaitForSeconds(2f);
-        LeanTween.value(value, 0, 100, 3f).setOnUpdate(SetText);
-        yield return new WaitForSeconds(4f);
-        audio.GetComponent<AudioSource>().Stop();
+        LeanTween.alpha(clouds, 0, 0.1f);
         yield return new WaitForSeconds(1f);
-        text.SetActive(false);
-        LeanTween.alpha(fog.GetComponent<Image>().rectTransform, 0, 2f);
+        GameObject darkVeil = rollingFog.transform.GetChild(1).gameObject;
+        LeanTween.alpha(darkVeil, 0, 0.1f);
+        yield return new WaitForSeconds(0.1f);
+        darkVeil.SetActive(true);
+        LeanTween.alpha(darkVeil, 0.8f, 0.5f);
+        yield return new WaitForSeconds(2f);
+        clouds.SetActive(true);
+        LeanTween.alpha(clouds, 1, 0.2f);
+        yield return new WaitForSeconds(0.5f);
+        GameObject vs = clouds.transform.GetChild(0).gameObject;
+        vs.transform.localScale = Vector3.zero;
+        vs.SetActive(true);
+        LeanTween.moveLocal(nextPlayer, Vector3.zero, 0.1f).setEaseOutQuint();
+        LeanTween.moveLocal(nextOpponent, Vector3.zero, 0.1f).setEaseOutQuint();
+        LeanTween.scale(vs, Vector3.one, 0.5f).setEaseOutElastic();
+        yield return new WaitForSeconds(0.1f);
+        LeanTween.moveLocal(nextPlayer, new Vector3(-50, 0, 0), 5f);
+        LeanTween.moveLocal(nextOpponent, new Vector3(50, 0, 0), 5f);
+        yield return new WaitForSeconds(3f);
+        LeanTween.alpha(clouds, 0, 0.5f);
+        LeanTween.alphaCanvas(nextPlayer.GetComponent<CanvasGroup>(), 0, 0.5f);
+        LeanTween.alphaCanvas(nextOpponent.GetComponent<CanvasGroup>(), 0, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        nextPlayer.SetActive(false);
+        nextOpponent.SetActive(false);
+        clouds.SetActive(false);
+        fog.SetActive(false);
+        rollingFog.GetComponent<ParticleSystem>().Stop();
+        audio.GetComponent<AudioSource>().Stop();
         audio.GetComponent<AudioSource>().clip = windSound;
         audio.GetComponent<AudioSource>().PlayOneShot(windSound);
-        yield return new WaitForSeconds(3f);
-        fog.SetActive(false);
-        ui.GetComponent<CanvasGroup>().alpha = 1;
+        LeanTween.alpha(darkVeil, 0, 1f);
+        yield return new WaitForSeconds(2f);
+        darkVeil.SetActive(false);
+        audio.GetComponent<AudioSource>().Stop();
         audio.GetComponent<AudioSource>().clip = battleTheme;
         audio.GetComponent<AudioSource>().Play();
+        cover.SetActive(false);
+        playerIndicator.SetActive(true);
+        opponentIndicator.SetActive(true);
+        turnIndicator.SetActive(true);
+        ui.GetComponent<CanvasGroup>().alpha = 1;
+        yield return new WaitForSeconds(1f);
+        loading = false;
     }
 
-    private void SetText(float value) {
-        GameObject.Find("Value").GetComponent<TextMeshProUGUI>().text = (value.ToString("F0") + "%");
+    public IEnumerator NextFight() {
+        yield return new WaitForSeconds(2f);
+        GameObject ui = GameObject.Find("UI");
+        ui.GetComponent<CanvasGroup>().alpha = 0;
+        GameObject HUD = GameObject.Find("HUD");
+        GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
+        turnIndicator.SetActive(false);
+        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        playerIndicator.SetActive(false);
+        GameObject opponentIndicator = HUD.transform.GetChild(2).GetChild(0).GetChild(0).gameObject;
+        opponentIndicator.SetActive(false);
+        GameObject nextFight = GameObject.Find("NextFight");
+        GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
+        rollingFog.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(1f);
+        GameObject levelClear = GameObject.Find("LevelClearMenu");
+        levelClear.transform.localPosition = Vector3.zero;
+        levelClear.transform.GetChild(0).gameObject.SetActive(true);
+
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
@@ -111,6 +188,7 @@ public class GameManager : MonoBehaviour
             SetSprites();
             StartCoroutine(Game());
         } else if (scene.name == "StoryMode") {
+            loading = true;
             LoadGame();
             BombCooldowns();
             changePlayers.SetStoryModePlayers();
@@ -131,34 +209,44 @@ public class GameManager : MonoBehaviour
     }
 
     void SetTurn() {
+        if (loading) {
+            return;
+        }
         if (turnCounter % 2 == 1) {
-            isPlayerTurn = true;    
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
-
-            if (turnCounter != currentTurn) {
+            if (player == "REBEL") {
+                isPlayerTurn = true;
+            } else if (player == "KING") {
+                isPlayerTurn = false;
+            } 
+        } else {
+            if (player == "REBEL") {
+                isPlayerTurn = false;
+            } else if (player == "KING") {
+                isPlayerTurn = true;
+            }
+        }
+        if (turnCounter != currentTurn) {
+            if (isPlayerTurn) {
+                playerMoveCount = playerMoveMax;
                 for (int i = 0; i < playerBombCooldowns.Length; i++) {
                     if (playerBombCooldowns[i] > 0) {
                         playerBombCooldowns[i]--;
                     }
                 }
-                currentTurn = turnCounter;
-            }
-        } else {
-            isPlayerTurn = false;
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
-
-            if (turnCounter != currentTurn) {
+            } else {
+                opponentMoveCount = opponentMoveMax;
+                playerMoveCount = playerMoveMax;
                 for (int i = 0; i < opponentBombCooldowns.Length; i++) {
                     if (opponentBombCooldowns[i] > 0) {
                         opponentBombCooldowns[i]--;
                     }
                 }
-                currentTurn = turnCounter;
             }
+            currentTurn = turnCounter;
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(isPlayerTurn);
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(!isPlayerTurn);
+            round = (currentTurn / 2) + 1;
         }
-        round = (currentTurn / 2) + 1;
     }
 
 
@@ -369,11 +457,15 @@ public class GameManager : MonoBehaviour
         return false;
     }
     void PlayerVictory() {
-        playerVictoryMenu.transform.localPosition = new Vector3(0, 0, 0);
+        if (SceneManager.GetActiveScene().name == "StoryMode" && stage < 15) {
+            StartCoroutine(NextFight());
+        } else {
+            playerVictoryMenu.transform.localPosition = Vector3.zero;
+        }
     }
 
     void OpponentVictory() {
-        opponentVictoryMenu.transform.localPosition = new Vector3(0, 0, 0);
+        opponentVictoryMenu.transform.localPosition = Vector3.zero;
     }
 
     public void QuitGame() {
@@ -406,15 +498,12 @@ public class GameManager : MonoBehaviour
         settingsButton = GameObject.Find("SettingsButton");
         buildGrid.grid = GameObject.Find("Grid");
         nextFight = GameObject.Find("NextFight");
-        nextFight.SetActive(false);
         UI = GameObject.Find("UI");
         HUD = GameObject.Find("HUD");
         isPlayerTurn = true;
         stage = 1;
         turnCounter = 1;
         currentTurn = 0;
-        playerMoveCount = playerMoveMax;
-        opponentMoveCount = opponentMoveMax;
         playerVictory = false;
         opponentVictory = false;
         bombInUse = false;
@@ -435,8 +524,13 @@ public class GameManager : MonoBehaviour
         }        
     }
     void SetSprites() {
-        playerSprite = sprites[0];
-        opponentSprite = sprites[1];
+        if (player == "REBEL") {
+            playerSprite = sprites[0];
+            opponentSprite = sprites[1];
+        } else if (player == "KING") {
+            playerSprite = sprites[1];
+            opponentSprite = sprites[0];
+        }
     }
 
     IEnumerator Game() {
@@ -459,9 +553,9 @@ public class GameManager : MonoBehaviour
             if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize && gridSize > 0 && gridSize < 8) {
                 buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
             }
-            if (!GameManager.instance.isPlayerTurn && opponentMoveCount > 0) {
+            if (!isPlayerTurn && opponentMoveCount > 0) {
                 playerMove.StartPlayerMove(storyModeAI.AIMove());
-                if (GameManager.instance.opponentMoveCount > 0) {
+                if (opponentMoveCount > 0) {
                     yield return new WaitForSeconds(0.2f);
                 }
             }

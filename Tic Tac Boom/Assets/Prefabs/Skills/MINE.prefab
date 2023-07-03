@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3955031968670299889}
   - component: {fileID: 3955031968670299894}
   - component: {fileID: 3955031968670299895}
+  - component: {fileID: 7428354970922549588}
+  - component: {fileID: 526779254}
   m_Layer: 5
   m_Name: MINE
   m_TagString: Untagged
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 526779254}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: SetUsingMine
         m_Mode: 1
@@ -138,7 +140,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3955031968670299895}
         m_TargetAssemblyTypeName: SetMenu, Assembly-CSharp
-        m_MethodName: SetSkillMenu
+        m_MethodName: SetConfirmSkillMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -160,11 +162,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa3de95d21e1e04bbe93d996e9d1d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
-  image: {fileID: 0}
-  description: {fileID: 0}
-  cooldown: {fileID: 0}
-  activeImage: {fileID: 0}
+--- !u!114 &7428354970922549588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955031968670299893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fbc406e52bc534d84d65d7df07a838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cooldown>k__BackingField: 5
+  <Scaling>k__BackingField: 2
+--- !u!114 &526779254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955031968670299893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}
 --- !u!1 &3955031968844188918
 GameObject:
   m_ObjectHideFlags: 0

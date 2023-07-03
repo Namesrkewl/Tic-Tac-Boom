@@ -283,6 +283,8 @@ GameObject:
   - component: {fileID: 1015867706014066166}
   - component: {fileID: 2835876106769352084}
   - component: {fileID: 7140649999235478990}
+  - component: {fileID: 7622945210874774466}
+  - component: {fileID: 8500579007516763144}
   m_Layer: 5
   m_Name: SMALL BOMB
   m_TagString: Untagged
@@ -394,7 +396,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8500579007516763144}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: SetUsingSmallBomb
         m_Mode: 1
@@ -408,7 +410,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7140649999235478990}
         m_TargetAssemblyTypeName: SetMenu, Assembly-CSharp
-        m_MethodName: SetSkillMenu
+        m_MethodName: SetConfirmSkillMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -430,8 +432,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa3de95d21e1e04bbe93d996e9d1d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
-  image: {fileID: 0}
-  description: {fileID: 0}
-  cooldown: {fileID: 0}
-  activeImage: {fileID: 0}
+--- !u!114 &7622945210874774466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3048272068164488186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fbc406e52bc534d84d65d7df07a838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cooldown>k__BackingField: 3
+  <Scaling>k__BackingField: 2
+--- !u!114 &8500579007516763144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3048272068164488186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}
