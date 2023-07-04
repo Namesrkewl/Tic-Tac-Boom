@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Animation\IdleAnimation.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\Scripts\Game Logic\DisplayGold.cs" />
+    <Compile Include="Assets\Scripts\Game Logic\SetText.cs" />
     <Compile Include="Assets\Scripts\Animation\Scroll.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\Scripts\Sequences\StoryIntroSequence.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Scripts\Game Logic\DisplayGems.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\Scripts\Game Logic\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Skill Logic\TalentInfo.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\Scripts\Game Logic\ChangePlayers.cs" />
@@ -122,8 +124,6 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
     <Compile Include="Assets\Scripts\Skill Logic\Talents.cs" />
-    <Compile Include="Assets\Scripts\Skill Logic\TalentInfo.cs" />
-    <Compile Include="Assets\Scripts\Game Logic\SetText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
