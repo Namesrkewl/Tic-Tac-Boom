@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public LoadScene loadScene;
     public StoryModeAI storyModeAI;
     public ChangePlayers changePlayers;
+    public TalentChoices talentChoices;
 
     // Audio Clips
     [SerializeField] private AudioClip loadingSound;
@@ -174,6 +175,8 @@ public class GameManager : MonoBehaviour
         rollingFog.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSeconds(1f);
         GameObject levelClear = GameObject.Find("LevelClearMenu");
+        talentChoices.ClearTalentChoices();
+        talentChoices.GenerateSkills(3);
         levelClear.transform.localPosition = Vector3.zero;
         levelClear.transform.GetChild(0).gameObject.SetActive(true);
 

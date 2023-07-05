@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16054104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3986023289751456307, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
+  m_PrefabInstance: {fileID: 3986023290342884175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &16054114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16054104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b816d6196bc1e3640958cc22ad5d5179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talentChoices:
+  - {fileID: 2204930424206196995, guid: ce2ccee541695b24396c887e4eb35b2c, type: 3}
+  - {fileID: 7148612246964063997, guid: 73d609efd45ca8f45bea908b6fe898e1, type: 3}
+  - {fileID: 34073206125762934, guid: 510e9e7f787d21747833473ae5bc9b46, type: 3}
+  - {fileID: 225888346438320731, guid: 41243f8cb919a3d44b59172008d93caa, type: 3}
+  - {fileID: 2494474608757008665, guid: 278f2d3910a25f44a9b899c806ffda30, type: 3}
+  - {fileID: 8891792510659297019, guid: 4b2fb50383ffae74481bf9629bf3a9a8, type: 3}
+  talentsTaken: 00000000
+  talentsShowing: 
 --- !u!1 &36663250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,7 +5361,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1886394853}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16054114}
+        m_TargetAssemblyTypeName: TalentChoices, Assembly-CSharp
+        m_MethodName: ClearTalentChoices
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 16054114}
+        m_TargetAssemblyTypeName: TalentChoices, Assembly-CSharp
+        m_MethodName: GenerateSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1886394853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7918,6 +7968,10 @@ PrefabInstance:
       propertyPath: playerMoveMax
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
+      propertyPath: talentChoices
+      value: 
+      objectReference: {fileID: 16054114}
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: backgroundAudio
       value: 
