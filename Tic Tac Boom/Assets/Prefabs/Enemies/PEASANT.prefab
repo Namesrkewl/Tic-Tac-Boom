@@ -142,7 +142,7 @@ MonoBehaviour:
   <ImpendingDoomValue>k__BackingField: 9999
   <VictoryValue>k__BackingField: 99999
   <OpponentMoveMax>k__BackingField: 1
-  <StartingGridSize>k__BackingField: 0
+  <StartingGridSize>k__BackingField: 3
   <MoveCount>k__BackingField: 0
   <FirstMove>k__BackingField: 1
 --- !u!1 &7427398881225289555

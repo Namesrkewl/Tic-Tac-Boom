@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
         loading = false;
     }
 
-    public IEnumerator NextFight() {
+    public IEnumerator StageClear() {
         yield return new WaitForSeconds(2f);
         GameObject ui = GameObject.Find("UI");
         ui.GetComponent<CanvasGroup>().alpha = 0;
@@ -178,6 +178,25 @@ public class GameManager : MonoBehaviour
         talentChoices.ClearTalentChoices();
         talentChoices.GenerateSkills(3);
         levelClear.transform.localPosition = Vector3.zero;
+        levelClear.transform.GetChild(0).gameObject.SetActive(true);
+
+    }
+
+    public IEnumerator NextFight() {
+        yield return new WaitForSeconds(2f);
+        GameObject ui = GameObject.Find("UI");
+        GameObject HUD = GameObject.Find("HUD");
+        //GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
+        //GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        //GameObject opponentIndicator = HUD.transform.GetChild(2).GetChild(0).GetChild(0).gameObject;
+        GameObject nextFight = GameObject.Find("NextFight");
+        GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
+        rollingFog.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(1f);
+        GameObject levelClear = GameObject.Find("LevelClearMenu");
+        talentChoices.ClearTalentChoices();
+
+        levelClear.transform.localPosition = new Vector3(0, -3840);
         levelClear.transform.GetChild(0).gameObject.SetActive(true);
 
     }
@@ -461,7 +480,7 @@ public class GameManager : MonoBehaviour
     }
     void PlayerVictory() {
         if (SceneManager.GetActiveScene().name == "StoryMode" && stage < 15) {
-            StartCoroutine(NextFight());
+            StartCoroutine(StageClear());
         } else {
             playerVictoryMenu.transform.localPosition = Vector3.zero;
         }
