@@ -7,29 +7,29 @@ public class StoryModeAI : MonoBehaviour
 
     protected List<GameObject> bestMoves;
     protected int[][] tileValues;
-    [field: SerializeField] public int BlockedValue { get; protected set; } = -50;
-    [field: SerializeField] public int PlayerValue { get; protected set; } = -5;
-    [field: SerializeField] public int BaseValue { get; protected set; } = 1;
-    [field: SerializeField] public int OpponentValue { get; protected set; } = 20;
-    [field: SerializeField] public int ImpendingVictoryValue { get; protected set; } = 999;
-    [field: SerializeField] public int ImpendingDoomValue { get; protected set; } = 9999;
-    [field: SerializeField] public int VictoryValue { get; protected set; } = 99999;
-    [field: SerializeField] public int OpponentMoveMax { get; protected set; } = 0;
-    [field: SerializeField] public int StartingGridSize { get; protected set; } = 0;
-    [field: SerializeField] public int MoveCount { get; protected set; } = 0;
-    [field: SerializeField] public bool FirstMove { get; protected set; } = true;
+    public int blockedValue = -50;
+    public int enemyValue = -5;
+    public int baseValue = 1;
+    public int playerValue = 20;
+    public int impendingVictoryValue = 999;
+    public int impendingDoomValue = 9999;
+    public int victoryValue = 99999;
+    public int enemyMoveMax = 0;
+    public int startingGridSize = 0;
+    public int moveCount = 0;
+    public bool firstMove = true;
+    public StoryManager storyManager;
+    public PlayerManager playerManager;
+
     protected virtual void Start() {
         if (gameObject != GameManager.instance) {
-            SetAI();
+            //SetAI();
         }
     }
 
     public virtual GameObject AIMove() {
         // Single Move AI Based on the best move by point value
-        if (GameManager.instance.GetComponent<DragonAI>()) {
-            return GameManager.instance.GetComponent<DragonAI>().AIMove();
-        }
-        ParseTileValues(GameManager.instance.opponentMoveCount);
+        ParseTileValues(playerManager.enemy.remainingMoves);
         if (bestMoves.Count != 0) {
             Debug.Log("The best moves are: ");
             for (int i = 0; i < bestMoves.Count; i++) {
@@ -51,9 +51,9 @@ public class StoryModeAI : MonoBehaviour
     }
 
     protected virtual void ParseTileValues(int moves) {
-        int size = GameManager.instance.gridSize;
+        int size = storyManager.gridSize;
         int originalMoves = moves;
-        //BlockedValue = OpponentValue * size;
+        //blockedValue = playerValue * size;
         tileValues = new int[size][];
         for (int i = 0; i < size; i++) {
             tileValues[i] = new int[size];
@@ -64,7 +64,7 @@ public class StoryModeAI : MonoBehaviour
         for (int x = 0; x < size; x++) {    
             for (int y = 0; y < size; y++) {
                 bool isVictory = true, blocking = false, blocked = false;
-                int opponentTiles = 0, playerTiles = 0;
+                int enemyTiles = 0, playerTiles = 0;
                 int value = 0;
                 // Check if tile is occupied
                 GameObject tile = GameObject.Find($"{x},{y}");
@@ -76,35 +76,35 @@ public class StoryModeAI : MonoBehaviour
                     // Value Left To Right Diagonal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++;
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++;
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++;
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0;
+                    enemyTiles = 0;
                     playerTiles = 0;
                     blocking = false;
                     blocked = false;
@@ -112,214 +112,214 @@ public class StoryModeAI : MonoBehaviour
                     for (int i = size - 1; i >= 0; i--) {
                         int n = (size - 1) - i;
                         GameObject connectedTile = GameObject.Find($"{n},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++;
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++;
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++;
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0;
+                    enemyTiles = 0;
                     playerTiles = 0;
                     blocking = false;
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{x},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++;
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++;
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++;
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{y}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }                       
                 } else if (x == y) {
                     // TILE ON LEFT TO RIGHT DIAGONAL
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
                     // Value Left To Right Diagonal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++;
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++;
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++;
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0;
+                    enemyTiles = 0;
                     playerTiles = 0;
                     blocking = false;
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{x},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{y}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                 } else if ((x + y) == size - 1) {
                     // TILE ON RIGHT TO LEFT DIAGONAL
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
@@ -327,173 +327,173 @@ public class StoryModeAI : MonoBehaviour
                     for (int i = size - 1; i >= 0; i--) {
                         int n = (size - 1) - i;
                         GameObject connectedTile = GameObject.Find($"{n},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++;
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++;
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++;
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0;
+                    enemyTiles = 0;
                     playerTiles = 0;
                     blocking = false;
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{x},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0;
                     blocking = false;
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{y}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }                    
                 } else {
                     // TILE OUTSIDE OF DIAGONALS
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{x},{i}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                     moves = originalMoves;
                     isVictory = true;
-                    opponentTiles = 0; 
+                    enemyTiles = 0; 
                     playerTiles = 0; 
                     blocking = false;
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
                         GameObject connectedTile = GameObject.Find($"{i},{y}");
-                        if (connectedTile.CompareTag("Opponent")) {
-                            opponentTiles++; 
+                        if (connectedTile.CompareTag("Enemy")) {
+                            enemyTiles++; 
                             blocking = true;
-                            value += OpponentValue;
+                            value += playerValue;
                         } else if (connectedTile.CompareTag("Player")) {
                             isVictory = false;
                             playerTiles++; 
                             blocked = true;
-                            value += PlayerValue;
+                            value += enemyValue;
                         } else {
                             moves -= 1;
                             if (moves < 0) {
                                 isVictory = false;
                             }
-                            value += BaseValue;
+                            value += baseValue;
                         }
                     }
                     if (isVictory) {
-                        value += VictoryValue;
+                        value += victoryValue;
                     } else if (playerTiles >= (size / 2.0) && !blocking) {
-                        value += ImpendingDoomValue;
-                    } else if (opponentTiles >= (size / 2.0) && !blocked) {
-                        value += ImpendingVictoryValue;
+                        value += impendingDoomValue;
+                    } else if (enemyTiles >= (size / 2.0) && !blocked) {
+                        value += impendingVictoryValue;
                     } else if (blocked) {
-                        value += BlockedValue;
+                        value += blockedValue;
                     }
                 }
                 tileValues[x][y] = value;
@@ -509,38 +509,40 @@ public class StoryModeAI : MonoBehaviour
         Debug.Log($"The highest value is {highestValue}");
     }
 
+    /*
     public virtual void SetAI() {
         if (gameObject != GameManager.instance.gameObject) {
             if (GameManager.instance.gameObject.GetComponent<StoryModeAI>()) {
                 Destroy(GameManager.instance.gameObject.GetComponent<StoryModeAI>());
                 GameManager.instance.gameObject.AddComponent<StoryModeAI>();
                 // Sets Logic
-                GameManager.instance.storyModeAI.BlockedValue = BlockedValue;
-                GameManager.instance.storyModeAI.PlayerValue = PlayerValue;
-                GameManager.instance.storyModeAI.BaseValue = BaseValue;
-                GameManager.instance.storyModeAI.OpponentValue = OpponentValue;
-                GameManager.instance.storyModeAI.ImpendingVictoryValue = ImpendingVictoryValue;
-                GameManager.instance.storyModeAI.ImpendingDoomValue = ImpendingDoomValue;
-                GameManager.instance.storyModeAI.VictoryValue = gameObject.GetComponent<StoryModeAI>().VictoryValue;
+                GameManager.instance.storyModeAI.blockedValue = blockedValue;
+                GameManager.instance.storyModeAI.enemyValue = enemyValue;
+                GameManager.instance.storyModeAI.baseValue = baseValue;
+                GameManager.instance.storyModeAI.playerValue = playerValue;
+                GameManager.instance.storyModeAI.impendingVictoryValue = impendingVictoryValue;
+                GameManager.instance.storyModeAI.impendingDoomValue = impendingDoomValue;
+                GameManager.instance.storyModeAI.victoryValue = gameObject.GetComponent<StoryModeAI>().victoryValue;
                 // Sets Move Count
-                GameManager.instance.opponentMoveMax = OpponentMoveMax;
+                GameManager.instance.enemyMoveMax = enemyMoveMax;
                 // Sets Starting Grid Size
-                GameManager.instance.newGridSize = StartingGridSize;
+                GameManager.instance.newGridSize = startingGridSize;
             } else {
                 GameManager.instance.gameObject.AddComponent<StoryModeAI>();
                 // Sets Logic
-                GameManager.instance.storyModeAI.BlockedValue = BlockedValue;
-                GameManager.instance.storyModeAI.PlayerValue = PlayerValue;
-                GameManager.instance.storyModeAI.BaseValue = BaseValue;
-                GameManager.instance.storyModeAI.OpponentValue = OpponentValue;
-                GameManager.instance.storyModeAI.ImpendingVictoryValue = ImpendingVictoryValue;
-                GameManager.instance.storyModeAI.ImpendingDoomValue = ImpendingDoomValue;
-                GameManager.instance.storyModeAI.VictoryValue = gameObject.GetComponent<StoryModeAI>().VictoryValue;
+                GameManager.instance.storyModeAI.blockedValue = blockedValue;
+                GameManager.instance.storyModeAI.enemyValue = enemyValue;
+                GameManager.instance.storyModeAI.baseValue = baseValue;
+                GameManager.instance.storyModeAI.playerValue = playerValue;
+                GameManager.instance.storyModeAI.impendingVictoryValue = impendingVictoryValue;
+                GameManager.instance.storyModeAI.impendingDoomValue = impendingDoomValue;
+                GameManager.instance.storyModeAI.victoryValue = gameObject.GetComponent<StoryModeAI>().victoryValue;
                 // Sets Move Count
-                GameManager.instance.opponentMoveMax = OpponentMoveMax;
+                GameManager.instance.enemyMoveMax = enemyMoveMax;
                 // Sets Starting Grid Size
-                GameManager.instance.newGridSize = StartingGridSize;
+                GameManager.instance.newGridSize = startingGridSize;
             }
         }
     }
+    */
 }

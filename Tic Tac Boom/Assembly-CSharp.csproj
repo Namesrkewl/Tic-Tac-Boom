@@ -56,10 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Animation\SkillsAnimation.cs" />
     <Compile Include="Assets\Scripts\Game Logic\BackgroundAudio.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\Scripts\Game Logic\PlayMove.cs" />
+    <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\ParticleSystemsManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\Scripts\Game Logic\PlayerMoveTrigger.cs" />
     <Compile Include="Assets\Scripts\Animation\ScaleTween.cs" />
@@ -67,7 +70,7 @@
     <Compile Include="Assets\Scripts\Game Logic\SetMenu.cs" />
     <Compile Include="Assets\Scripts\Sequences\StartSequence.cs" />
     <Compile Include="Assets\Scripts\AI\DragonAI.cs" />
-    <Compile Include="Assets\Scripts\Game Logic\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="Assets\Scripts\Game Logic\Replay.cs" />
     <Compile Include="Assets\Scripts\Animation\NameplateAnimation.cs" />
     <Compile Include="Assets\Scripts\Game Logic\Player.cs" />
+    <Compile Include="Assets\Scripts\Managers\StoryManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
@@ -115,7 +119,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\Scripts\Game Logic\DisplayGems.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
-    <Compile Include="Assets\Scripts\Game Logic\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
     <Compile Include="Assets\Scripts\Skill Logic\TalentInfo.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />

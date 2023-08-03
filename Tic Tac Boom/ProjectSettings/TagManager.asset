@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Opponent
   - Mine
   - Wall
   - Ice
@@ -12,6 +11,7 @@ TagManager:
   - ConveyerRight
   - ConveyerUp
   - ConveyerDown
+  - Enemy
   layers:
   - Default
   - TransparentFX

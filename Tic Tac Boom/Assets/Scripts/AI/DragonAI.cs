@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragonAI : StoryModeAI
 {
+    /*
     public override GameObject AIMove() {
         if (FirstMove) {
             FirstMove = false;
@@ -66,4 +67,5 @@ public class DragonAI : StoryModeAI
             }
         }
     }
+    */
 }

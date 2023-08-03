@@ -5,6 +5,6 @@ using UnityEngine;
 public class StoryIntroSequence : MonoBehaviour
 {
     private void Start() {
-        StartCoroutine(GameManager.instance.StorySequence());
+        //StartCoroutine(GameManager.instance.StorySequence());
     }
 }

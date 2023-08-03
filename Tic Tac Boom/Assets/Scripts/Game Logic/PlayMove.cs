@@ -10,6 +10,7 @@ public class PlayMove : MonoBehaviour {
     GameObject playerAtTrigger;
     [SerializeField] private AudioSource gameSounds;
     [SerializeField] private ParticleSystem explosion, dustCloud;
+    public PlayerManager playerManager;
 
     // Add the PlayerMove event to the EventManager at the on scene load
     private void Start() {
@@ -27,7 +28,7 @@ public class PlayMove : MonoBehaviour {
         }
         playerAtTrigger = go.transform.GetChild(0).gameObject;
 
-        if (!playerAtTrigger.activeSelf && !GameManager.instance.bombInUse && !go.tag.Contains("Wall")) {
+        if (!playerAtTrigger.activeSelf && playerManager.player.state == Player.State.Playing && !go.tag.Contains("Wall")) {
             if (GameManager.instance.isPlayerTurn && GameManager.instance.playerMoveCount > 0) {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
@@ -40,34 +41,22 @@ public class PlayMove : MonoBehaviour {
                     gameSounds.PlayOneShot(GameManager.instance.moveSound);
                     go.tag = "Player";
                     GameManager.instance.playerMoveCount -= 1;
-                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.playerSprite;
+                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = playerManager.player.skin;
                     playerAtTrigger.SetActive(true);
                 }
-                if (GameManager.instance.playerMoveCount <= 0) {
-                    if (!GameManager.instance.GameOver()) {
-                        yield return new WaitForSeconds(1);
-                        NextTurn();
-                    }
-                }
-            } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.opponentMoveCount > 0) {
+            } else if (!GameManager.instance.isPlayerTurn && GameManager.instance.enemyMoveCount > 0) {
                 if (go.tag.Contains("Mine")) {
                     TriggerMine(go);
-                    GameManager.instance.opponentMoveCount -= 1;
+                    GameManager.instance.enemyMoveCount -= 1;
                 } else {
                     ParticleSystem dust = Instantiate(dustCloud);
                     dust.transform.position = go.transform.position;
                     dust.Play();
                     gameSounds.PlayOneShot(GameManager.instance.moveSound);
-                    go.tag = "Opponent";
-                    GameManager.instance.opponentMoveCount -= 1;
-                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = GameManager.instance.opponentSprite;
+                    go.tag = "Enemy";
+                    GameManager.instance.enemyMoveCount -= 1;
+                    playerAtTrigger.GetComponent<SpriteRenderer>().sprite = playerManager.enemy.skin;
                     playerAtTrigger.SetActive(true);
-                }
-                if (GameManager.instance.opponentMoveCount <= 0) {
-                    if (!GameManager.instance.GameOver()) {
-                        yield return new WaitForSeconds(1);
-                        NextTurn();
-                    }
                 }
             }
         } else if (GameManager.instance.usingSmallBomb) {
@@ -108,7 +97,7 @@ public class PlayMove : MonoBehaviour {
             if (GameManager.instance.isPlayerTurn) {
                 /*GameManager.instance.playerBombCooldowns[3][1] += 2;
                 GameManager.instance.playerBombCooldowns[3][0] = GameManager.instance.playerBombCooldowns[3][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
+                GameManager.    instance.turnBombUsed = GameManager.instance.turnCounter;*/
             } else {
                 /*GameManager.instance.opponentBombCooldowns[3][1] += 2;
                 GameManager.instance.opponentBombCooldowns[3][0] = GameManager.instance.opponentBombCooldowns[3][1];
@@ -119,9 +108,10 @@ public class PlayMove : MonoBehaviour {
     }
 
     public void NextTurn() {
+        /*
         GameManager.instance.turnCounter++;
         GameManager.instance.playerMoveCount = GameManager.instance.playerMoveMax;
-        GameManager.instance.opponentMoveCount = GameManager.instance.opponentMoveMax;
+        GameManager.instance.enemyMoveCount = GameManager.instance.opponentMoveMax; */
     }
 
     // TALENTS

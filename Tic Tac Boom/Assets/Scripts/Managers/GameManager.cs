@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     // Variables
     public static GameManager instance;
     public bool isPlayerTurn;
-    public int turnCounter, currentTurn, round, playerMoveCount, opponentMoveCount, playerMoveMax, opponentMoveMax, stage;
+    public int turnCounter, currentTurn, round, playerMoveCount, enemyMoveCount, playerMoveMax, opponentMoveMax, stage;
     public bool playerVictory, opponentVictory, storyModeRunning, updatingGrid;
     public int[] playerBombCooldowns, opponentBombCooldowns;
     public bool bombInUse;
@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
     public BuildGrid buildGrid;
     public LoadScene loadScene;
     public StoryModeAI storyModeAI;
+    public PlayerManager playerManager;
     public ChangePlayers changePlayers;
     public TalentChoices talentChoices;
+    public StoryManager storyManager;
 
     // Audio Clips
     [SerializeField] private AudioClip loadingSound;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
     void OnDisable() {
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
-
+    /*
     public IEnumerator StorySequence() {
         GameObject ui = GameObject.Find("UI");
         ui.GetComponent<CanvasGroup>().alpha = 0;
@@ -158,7 +160,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         loading = false;
     }
-
+    */
     public IEnumerator StageClear() {
         yield return new WaitForSeconds(2f);
         GameObject ui = GameObject.Find("UI");
@@ -204,22 +206,17 @@ public class GameManager : MonoBehaviour
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         loadScene = GameObject.Find("SceneManager").GetComponent<LoadScene>();
         if (scene.name == "PlayerVSAI" || scene.name == "LocalPVP") {
-            LoadGame();
-            BombCooldowns();
-            buildGrid.BuildTheGrid();
-            SetSprites();
-            StartCoroutine(Game());
+            //LoadGame();
+            //BombCooldowns();
+            //StartCoroutine(Game());
         } else if (scene.name == "StoryMode") {
-            loading = true;
-            LoadGame();
-            BombCooldowns();
-            changePlayers.SetStoryModePlayers();
-            SetSprites();
-            buildGrid.BuildTheGrid();
-            StartCoroutine(StoryMode());
+            //LoadGame();
+            //BombCooldowns();
+            storyManager.NewGame();
         }
     }
 
+    /*
     void UpdateVictory() {
         if (GameOver()) {
             if (playerVictory == true) {
@@ -229,7 +226,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    */
+    /*
     void SetTurn() {
         if (loading) {
             return;
@@ -256,7 +254,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             } else {
-                opponentMoveCount = opponentMoveMax;
+                enemyMoveCount = opponentMoveMax;
                 playerMoveCount = playerMoveMax;
                 for (int i = 0; i < opponentBombCooldowns.Length; i++) {
                     if (opponentBombCooldowns[i] > 0) {
@@ -270,8 +268,9 @@ public class GameManager : MonoBehaviour
             round = (currentTurn / 2) + 1;
         }
     }
+    */
 
-
+    /*
     void SetCooldownText() {
         if (skills.activeSelf) {
             if (turnBombUsed != turnCounter) {
@@ -305,6 +304,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    */
+    /*
     public bool GameOver() {
         if (SceneManager.GetActiveScene().name == "Main") {
             return true;
@@ -478,6 +479,8 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
+    */
+    /*
     void PlayerVictory() {
         if (SceneManager.GetActiveScene().name == "StoryMode" && stage < 15) {
             StartCoroutine(StageClear());
@@ -545,16 +548,8 @@ public class GameManager : MonoBehaviour
             opponentBombCooldowns[i] = 2;          
         }        
     }
-    void SetSprites() {
-        if (player == "REBEL") {
-            playerSprite = sprites[0];
-            opponentSprite = sprites[1];
-        } else if (player == "KING") {
-            playerSprite = sprites[1];
-            opponentSprite = sprites[0];
-        }
-    }
-
+    */
+    /*
     IEnumerator Game() {
         while (!GameOver()) {
             SetTurn();
@@ -575,9 +570,9 @@ public class GameManager : MonoBehaviour
             if (newGridSize > 0 && newGridSize < 8 && newGridSize != gridSize && gridSize > 0 && gridSize < 8) {
                 buildGrid.UpdateGrid(gridSize, newGridSize, gridModification);
             }
-            if (!isPlayerTurn && opponentMoveCount > 0) {
+            if (!isPlayerTurn && enemyMoveCount > 0) {
                 playerMove.StartPlayerMove(storyModeAI.AIMove());
-                if (opponentMoveCount > 0) {
+                if (enemyMoveCount > 0) {
                     yield return new WaitForSeconds(0.2f);
                 }
             }
@@ -588,4 +583,5 @@ public class GameManager : MonoBehaviour
         }
         yield return null;
     }
+    */
 }

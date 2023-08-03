@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3946066732638490399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3946066732638490392}
+  - component: {fileID: 3946066732638490393}
+  - component: {fileID: 3946066732638490395}
+  - component: {fileID: 3946066732638490394}
+  m_Layer: 0
+  m_Name: StoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3946066732638490392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946066732638490399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3946066732638490393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946066732638490399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e349a67f55051dc41be1cebca11b7d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  round: 0
+  stage: 0
+  gridSize: 0
+  newGridSize: 0
+  updatingGrid: 0
+  UI: {fileID: 0}
+  HUD: {fileID: 0}
+  nextFight: {fileID: 0}
+  grid: {fileID: 0}
+  playerVictoryMenu: {fileID: 0}
+  enemyVictoryMenu: {fileID: 0}
+  playerManager: {fileID: 0}
+  audioManager: {fileID: 0}
+  playerMove: {fileID: 3946066732638490395}
+  buildGrid: {fileID: 3946066732638490394}
+  gameState: 0
+--- !u!114 &3946066732638490395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946066732638490399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bd0f02ac478974ab2b07284eec190f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSounds: {fileID: 0}
+  explosion: {fileID: 8040237562254255519, guid: 0a6d9a67c8e683b4fa789502c46cbef6, type: 3}
+  dustCloud: {fileID: 8068831425962975574, guid: 88cf3369adca691458777a4dcfb4a205, type: 3}
+  playerManager: {fileID: 0}
+--- !u!114 &3946066732638490394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946066732638490399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62cc2bc7f00c0d4ea4540fbe79f09c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 1947786409429827111, guid: d869adb0648b26a428433d275ed612a5, type: 3}
+  - {fileID: 1947786409429827111, guid: e859aa77d898d1d4cb876d274b2ec4bd, type: 3}
+  - {fileID: 4030684237722459877, guid: a6258312e75082843ae0f6944deed01c, type: 3}
+  - {fileID: 4755542659372305704, guid: fadca5083a2c38243a1370d3994a28aa, type: 3}
+  - {fileID: 1880384969801151169, guid: 04c9d8c98fe1b2f40b10f5c3d36da0fc, type: 3}
+  - {fileID: 2022622802596403893, guid: e76f4556a7635624d966d713089327f9, type: 3}
+  - {fileID: 5270271123680342606, guid: d77f2b0227cd05240993a34833e68301, type: 3}
+  - {fileID: 8507192325667751793, guid: 562fe4379ce5e3a44aaf51997f5f3528, type: 3}
+  - {fileID: 4256134460573324554, guid: 33a0c6a6432d8634dacd8e7b64b64234, type: 3}
+  grid: {fileID: 0}

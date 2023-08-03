@@ -8,8 +8,7 @@ public class BuildGrid : MonoBehaviour {
     public GameObject grid;
     public string[][] gridReference;
 
-    public void BuildTheGrid() {
-        int size = GameManager.instance.gridSize;
+    public void BuildTheGrid(int size) {
         gridReference = new string[7][];
         for (int i = 0; i < 7; i++) {
             gridReference[i] = new string[7];
@@ -240,7 +239,6 @@ public class BuildGrid : MonoBehaviour {
         }
     }
     public void UpdateGrid(int gridSize, int newGridSize, bool[] gridModification) {
-        GameManager.instance.updatingGrid = true;
         grid.transform.localScale = Vector3.one;
         if (newGridSize > gridSize) {
             while (gridSize != newGridSize) {
@@ -262,7 +260,5 @@ public class BuildGrid : MonoBehaviour {
         } else if (newGridSize == 1) {
             grid.transform.localScale = Vector3.one;
         }
-        GameManager.instance.gridSize = GameManager.instance.newGridSize;
-        GameManager.instance.updatingGrid = false;
     }
 }
