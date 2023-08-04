@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public StoryModeAI storyModeAI;
     public AudioManager audioManager;
     public ParticleSystemsManager particleSystemsManager;
+    public GameObject skillMenu, confirmSkillMenu, gridModificationMenu;
     private GameObject playerAtTrigger;
 
     private void Awake() {
@@ -32,6 +33,8 @@ public class PlayerManager : MonoBehaviour
         player = new Player(Player.Type.Player);
         player.faction = Player.Faction.Exiled;
         player.character = Player.Character.Rebel;
+        player.talents = new List<Talent>();
+        player.talents.Add(new Talent(Talent.TalentName.SmallBomb));
         if (vsAI) {
             enemy = new Player(Player.Type.AI);
         } else {
@@ -355,7 +358,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void StartPlayerMove(GameObject go) {
-        StartCoroutine(PlayerMove(go));
+        StartCoroutine(PlayerMove(go));    
     }
 
     // Player Movement logic at the selected tile (go)
@@ -427,7 +430,7 @@ public class PlayerManager : MonoBehaviour
         playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
         playerAtTrigger.SetActive(false);
         go.tag = "Untagged";
-        //GameManager.instance.talents.CancelSkill();
+        CancelSkill();
     }
 
     void CrossBomb(GameObject go) {
@@ -487,7 +490,7 @@ public class PlayerManager : MonoBehaviour
                 tile.transform.GetChild(0).gameObject.SetActive(false);
                 tile.tag = "Untagged";
             }
-            //Talent.CancelSkill();
+            CancelSkill();
         }
 
     }
@@ -548,20 +551,82 @@ public class PlayerManager : MonoBehaviour
                 tile.transform.GetChild(0).gameObject.SetActive(false);
                 tile.tag = "Untagged";
             }
-            //GameManager.instance.talents.CancelSkill();
+            CancelSkill();
         }
     }
 
     void Mine(GameObject go) {
         if (go.tag.Contains("Mine")) {
             TriggerMine(go);
-            //GameManager.instance.talents.CancelSkill();
+            CancelSkill();
         } else {
             go.tag = "Mine";
             go.GetComponent<SpriteRenderer>().sprite = GameManager.instance.mineSprite;
             go.transform.localScale = Vector3.zero;
             LeanTween.scale(go, Vector3.one, 0.5f).setEaseOutElastic();
-            //GameManager.instance.talents.CancelSkill();
+            CancelSkill();
+        }
+    }
+
+    public void BuildTiles() {
+        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[4] == 0) {
+            if (GameManager.instance.isPlayerTurn) {
+                GameManager.instance.gridModification[0] = true;
+                GameManager.instance.gridModification[1] = false;
+                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
+                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
+            } else {
+                GameManager.instance.gridModification[0] = true;
+                GameManager.instance.gridModification[1] = true;
+                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
+                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
+            }
+        }
+    }
+    public void DestroyTiles() {
+        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[5] == 0) {
+            if (GameManager.instance.isPlayerTurn) {
+                GameManager.instance.gridModification[0] = true;
+                GameManager.instance.gridModification[1] = true;
+                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
+                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
+            } else {
+                GameManager.instance.gridModification[0] = false;
+                GameManager.instance.gridModification[1] = false;
+                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
+                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
+            }
+        }
+    }
+
+    // Passives
+
+    // Talent Logic
+    public void SelectSkill() {
+        confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
+        confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);
+        LeanTween.scale(confirmSkillMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
+        if (player.state == Player.State.Playing) {
+            player.state = Player.State.SelectingSkill;
+        } else if (enemy.state == Player.State.Playing) {
+            enemy.state = Player.State.SelectingSkill;
+        }
+    }
+    public void ConfirmSkill() {
+        skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
+        if (player.state == Player.State.SelectingSkill) {
+            player.state = Player.State.UsingSkill;
+        } else if (enemy.state == Player.State.SelectingSkill) {
+            enemy.state = Player.State.UsingSkill;
+        }
+    }
+    public void CancelSkill() {
+        confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
+        skillMenu.transform.localPosition = Vector3.zero;
+        if (player.state == Player.State.UsingSkill) {
+            player.state = Player.State.Playing;
+        } else if (enemy.state == Player.State.UsingSkill) {
+            enemy.state = Player.State.Playing;
         }
     }
 

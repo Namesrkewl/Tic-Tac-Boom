@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Talent : MonoBehaviour
+public class Talent
 {
     public Type type;
     public enum Type {
@@ -20,20 +20,30 @@ public class Talent : MonoBehaviour
         DestroyTiles
     }
 
+    public Direction direction;
+    public enum Direction {
+        None,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    }
+
     public int maxCooldown, scaling, cooldown, duration;
     public Sprite sprite;
     public string description;
     new public string name;
 
-    public Talent(Talent _talent) {
-        InitializeTalent(_talent);
+    public Talent(TalentName _talentName) {
+        InitializeTalent(_talentName);
     }
 
-    public void InitializeTalent(Talent _talent) {
-        switch (_talent.talentName) {
+    public void InitializeTalent(TalentName _talentName) {
+        switch (_talentName) {
             case TalentName.SmallBomb:
                 type = Type.Bomb;
                 talentName = TalentName.SmallBomb;
+                direction = Direction.None;
                 maxCooldown = 3;
                 scaling = 2;
                 duration = 0;
@@ -45,6 +55,7 @@ public class Talent : MonoBehaviour
             case TalentName.CrossBomb:
                 type = Type.Bomb;
                 talentName = TalentName.CrossBomb;
+                direction = Direction.None;
                 maxCooldown = 5;
                 scaling = 2;
                 duration = 0;
@@ -56,6 +67,7 @@ public class Talent : MonoBehaviour
             case TalentName.XBomb:
                 type = Type.Bomb;
                 talentName = TalentName.XBomb;
+                direction = Direction.None;
                 maxCooldown = 5;
                 scaling = 2;
                 duration = 0;
@@ -67,6 +79,7 @@ public class Talent : MonoBehaviour
             case TalentName.Mine:
                 type = Type.Bomb;
                 talentName = TalentName.Mine;
+                direction = Direction.None;
                 maxCooldown = 5;
                 scaling = 2;
                 duration = 0;
@@ -78,6 +91,7 @@ public class Talent : MonoBehaviour
             case TalentName.BuildTiles:
                 type = Type.Skill;
                 talentName = TalentName.BuildTiles;
+                direction = Direction.None;
                 maxCooldown = 5;
                 scaling = 3;
                 duration = 0;
@@ -89,6 +103,7 @@ public class Talent : MonoBehaviour
             case TalentName.DestroyTiles:
                 type = Type.Skill;
                 talentName = TalentName.DestroyTiles;
+                direction = Direction.None;
                 maxCooldown = 5;
                 scaling = 3;
                 duration = 0;
@@ -100,61 +115,5 @@ public class Talent : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    // Bombs
-    public GameObject skillMenu, confirmSkillMenu;
-
-    // Skills
-    public void BuildTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[4] == 0) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
-            } else {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
-            }
-        }
-    }
-    public void DestroyTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[5] == 0) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
-            } else {
-                GameManager.instance.gridModification[0] = false;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
-            }
-        }
-    }
-
-    // Passives
-
-    // Talent Logic
-    public void UseSkill() {
-        confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
-        confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);
-        LeanTween.scale(confirmSkillMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
-    }
-    public void ConfirmSkill() {
-        skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
-    }
-    public void CancelSkill() {
-        confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
-        skillMenu.transform.localPosition = Vector3.zero;
-        GameManager.instance.usingSmallBomb = false;
-        GameManager.instance.usingCrossBomb = false;
-        GameManager.instance.usingXBomb = false;
-        GameManager.instance.usingMine = false;
-        GameManager.instance.bombInUse = false;
-    }
+    }    
 }

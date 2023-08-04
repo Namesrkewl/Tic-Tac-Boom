@@ -22,7 +22,7 @@ AssetImportWorker3
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-49603
+49787
 Successfully changed project path to: /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
 /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -54,7 +54,7 @@ Successfully changed project path to: /Users/namesrkewl/Documents/GitHub/Tic-Tac
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 156.89 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 148.09 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.9f1 (ad3870b89536)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Resources/UnitySubsystems
@@ -69,147 +69,91 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56619
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56232
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.002289 seconds.
+Registered in 0.002244 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 140.93 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 137.82 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.453 seconds
+- Completed reload, in  1.460 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1454ms)
-		BeginReloadAssembly (117ms)
+	ReloadAssembly (1462ms)
+		BeginReloadAssembly (135ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (2ms)
-		EndReloadAssembly (1106ms)
-			LoadAssemblies (115ms)
+			CreateAndSetChildDomain (3ms)
+		EndReloadAssembly (1099ms)
+			LoadAssemblies (135ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (124ms)
+			SetupTypeCache (111ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (800ms)
+			SetupLoadedEditorAssemblies (812ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (141ms)
-				BeforeProcessingInitializeOnLoad (4ms)
-				ProcessInitializeOnLoadAttributes (485ms)
-				ProcessInitializeOnLoadMethodAttributes (150ms)
+				InitializePlatformSupportModulesInManaged (20ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (138ms)
+				BeforeProcessingInitializeOnLoad (3ms)
+				ProcessInitializeOnLoadAttributes (475ms)
+				ProcessInitializeOnLoadMethodAttributes (175ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008233 seconds.
+Registered in 0.008876 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 150.44 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 143.48 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
 Package Manager log level set to [2]
-- Completed reload, in  2.742 seconds
+- Completed reload, in  2.921 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2745ms)
-		BeginReloadAssembly (206ms)
+	ReloadAssembly (2924ms)
+		BeginReloadAssembly (218ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (37ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (25ms)
-		EndReloadAssembly (2263ms)
-			LoadAssemblies (127ms)
+		EndReloadAssembly (2429ms)
+			LoadAssemblies (147ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (325ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (73ms)
-			SetupLoadedEditorAssemblies (1535ms)
+			SetupTypeCache (327ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (1658ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (8ms)
+				InitializePlatformSupportModulesInManaged (11ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (150ms)
-				BeforeProcessingInitializeOnLoad (185ms)
-				ProcessInitializeOnLoadAttributes (893ms)
-				ProcessInitializeOnLoadMethodAttributes (297ms)
+				RefreshPlugins (144ms)
+				BeforeProcessingInitializeOnLoad (182ms)
+				ProcessInitializeOnLoadAttributes (1008ms)
+				ProcessInitializeOnLoadMethodAttributes (311ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (10ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launching external process: /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.08 seconds
-Refreshing native plugins compatible for Editor in 1.13 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler after 0.09 seconds
+Refreshing native plugins compatible for Editor in 1.10 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5994 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 72 unused Assets / (1.9 MB). Loaded Objects now: 6416.
-Memory consumption went from 233.4 MB to 231.5 MB.
-Total: 4.124833 ms (FindLiveObjects: 0.291334 ms CreateObjectMapping: 0.161666 ms MarkObjects: 3.175042 ms  DeleteObjects: 0.495791 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002688 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.34 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.670 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2672ms)
-		BeginReloadAssembly (239ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (46ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (70ms)
-		EndReloadAssembly (2210ms)
-			LoadAssemblies (118ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (335ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (58ms)
-			SetupLoadedEditorAssemblies (1473ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (28ms)
-				SetLoadedEditorAssemblies (3ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (146ms)
-				ProcessInitializeOnLoadAttributes (978ms)
-				ProcessInitializeOnLoadMethodAttributes (316ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (20ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 3.27 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5823 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 59 unused Assets / (1.8 MB). Loaded Objects now: 6419.
-Memory consumption went from 220.8 MB to 218.9 MB.
-Total: 3.693291 ms (FindLiveObjects: 0.304750 ms CreateObjectMapping: 0.153708 ms MarkObjects: 2.804209 ms  DeleteObjects: 0.429875 ms)
+Unloading 5995 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 72 unused Assets / (1.9 MB). Loaded Objects now: 6418.
+Memory consumption went from 230.6 MB to 228.7 MB.
+Total: 4.613250 ms (FindLiveObjects: 0.341375 ms CreateObjectMapping: 0.179666 ms MarkObjects: 3.432833 ms  DeleteObjects: 0.658459 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -223,548 +167,327 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 16777.415143 seconds.
-  path: Assets/Artwork/curtains 6 2.png
-  artifactKey: Guid(2b9284e811889f14c864af7ba3911f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Artwork/curtains 6 2.png using Guid(2b9284e811889f14c864af7ba3911f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a63c28cf14dd40fe715a18e370f9601') in 1.107194 seconds 
+  Time since last request: 25509.179241 seconds.
+  path: Assets/Resources/Artwork/skin_sign.png
+  artifactKey: Guid(0226b757d33b8204eac6444a4dc2c002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/skin_sign.png using Guid(0226b757d33b8204eac6444a4dc2c002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35416c3bd39abce40ea80d71d55e6ed4') in 0.304378 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000239 seconds.
-  path: Assets/Artwork/curtains 7.png
-  artifactKey: Guid(e414e50789dd3fa4382c3f512ee43046) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Artwork/curtains 7.png using Guid(e414e50789dd3fa4382c3f512ee43046) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f6fa3e1c5de0091b0589fd09b6a79af') in 0.271034 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 26.042818 seconds.
-  path: Assets/Backgrounds/fog_full2.png
-  artifactKey: Guid(c331e55e0e93bf740af44665cd7f8b1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Backgrounds/fog_full2.png using Guid(c331e55e0e93bf740af44665cd7f8b1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69f5307ab4ff769d554cc3215e535d2b') in 0.114837 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 35.620016 seconds.
-  path: Assets/UI/Buttons/back_button.png
-  artifactKey: Guid(8ccd8274a7f79b24f9366976821fb116) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Buttons/back_button.png using Guid(8ccd8274a7f79b24f9366976821fb116) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc35ce26d5c7cc2308c55ed0a950a38e') in 0.026869 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000063 seconds.
-  path: Assets/UI/Buttons/BANNER_button.png
-  artifactKey: Guid(0fe9e51c13d37dd4cbff0f2c24661da2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Buttons/BANNER_button.png using Guid(0fe9e51c13d37dd4cbff0f2c24661da2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5c33e2f9d2cc15872f9fe94d57fb1fd') in 0.015724 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000075 seconds.
-  path: Assets/UI/Buttons/battle_button.png
-  artifactKey: Guid(8f37f9f4507be0740bedc2626874958a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Buttons/battle_button.png using Guid(8f37f9f4507be0740bedc2626874958a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f9863027d9658ca4d0bac7d6f93c141') in 0.034572 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.854061 seconds.
-  path: Assets/UI/Text/play_text.png
-  artifactKey: Guid(be496af03312b394bb1ecdeb9a3a179c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Text/play_text.png using Guid(be496af03312b394bb1ecdeb9a3a179c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3031b1c70e56c7990c353ee238daf938') in 0.027805 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000055 seconds.
-  path: Assets/UI/Text/SHOP_TEXT.png
-  artifactKey: Guid(1b6629e8e70c24e41bdecf709440795e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Text/SHOP_TEXT.png using Guid(1b6629e8e70c24e41bdecf709440795e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '108a9634353fc00dcc258c1240989a75') in 0.023876 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 9.816967 seconds.
-  path: Assets/Skills/Basic/X BOMB 9x sq1.png
-  artifactKey: Guid(805a7adbf612c9740879ab1015408d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Skills/Basic/X BOMB 9x sq1.png using Guid(805a7adbf612c9740879ab1015408d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '953a80acc3aa8acff1da9133ab9e1845') in 0.022348 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.642038 seconds.
-  path: Assets/Skills/cross_bomb_active2.png
-  artifactKey: Guid(01d2b531cd2d7e947ba822f840f1f964) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Skills/cross_bomb_active2.png using Guid(01d2b531cd2d7e947ba822f840f1f964) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b39cf5ee6f262f57d74804edeea4e36') in 0.025770 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 61.039434 seconds.
-  path: Assets/Resources/Artwork/chest.png
-  artifactKey: Guid(21d1b736a78cd9247b1a43284a36a013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Artwork/chest.png using Guid(21d1b736a78cd9247b1a43284a36a013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf707f924b1d7751af5adb53807b7ba1') in 0.030247 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000072 seconds.
-  path: Assets/Resources/Artwork/cogwheel.png
-  artifactKey: Guid(5f4afc799d8f83642a7dad5ceae0ce0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Artwork/cogwheel.png using Guid(5f4afc799d8f83642a7dad5ceae0ce0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eda79145a740e0eda2f400b790e1037d') in 0.015567 seconds 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002683 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.53 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.773 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2775ms)
-		BeginReloadAssembly (262ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (46ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (84ms)
-		EndReloadAssembly (2285ms)
-			LoadAssemblies (108ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (351ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (56ms)
-			SetupLoadedEditorAssemblies (1497ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (31ms)
-				SetLoadedEditorAssemblies (2ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (169ms)
-				ProcessInitializeOnLoadAttributes (965ms)
-				ProcessInitializeOnLoadMethodAttributes (327ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (20ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 3.62 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5823 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 59 unused Assets / (1.8 MB). Loaded Objects now: 6458.
-Memory consumption went from 301.8 MB to 300.0 MB.
-Total: 4.139625 ms (FindLiveObjects: 0.326000 ms CreateObjectMapping: 0.157250 ms MarkObjects: 3.173916 ms  DeleteObjects: 0.481250 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002794 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.34 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.863 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2866ms)
-		BeginReloadAssembly (282ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (49ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (87ms)
-		EndReloadAssembly (2346ms)
-			LoadAssemblies (156ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (348ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (57ms)
-			SetupLoadedEditorAssemblies (1559ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (34ms)
-				SetLoadedEditorAssemblies (2ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (153ms)
-				ProcessInitializeOnLoadAttributes (1049ms)
-				ProcessInitializeOnLoadMethodAttributes (318ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (20ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.68 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5823 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 59 unused Assets / (1.8 MB). Loaded Objects now: 6461.
-Memory consumption went from 301.9 MB to 300.0 MB.
-Total: 4.195166 ms (FindLiveObjects: 0.327583 ms CreateObjectMapping: 0.171875 ms MarkObjects: 3.191958 ms  DeleteObjects: 0.502625 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 402.609841 seconds.
-  path: Assets/Prefabs/PlayerSkins/x.prefab
-  artifactKey: Guid(47e30ab9a2abb1d4db3d632dba871820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/PlayerSkins/x.prefab using Guid(47e30ab9a2abb1d4db3d632dba871820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c4169f3bb85e624abda5d4ff5973548') in 0.575451 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.339559 seconds.
-  path: Assets/Prefabs/GameObjects/BackgroundAudio.prefab
-  artifactKey: Guid(6fb41e5daf73d7a4099fc4e1c026d9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/GameObjects/BackgroundAudio.prefab using Guid(6fb41e5daf73d7a4099fc4e1c026d9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efbec8241bac8139e74646a9ecc7f0e7') in 0.009235 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000074 seconds.
-  path: Assets/Prefabs/GameObjects/Directional Light.prefab
-  artifactKey: Guid(ead43066b295bf94580f96273d52dad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/GameObjects/Directional Light.prefab using Guid(ead43066b295bf94580f96273d52dad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6e0fe1d475a20df0add39b6e7b36887') in 0.004948 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000065 seconds.
-  path: Assets/Prefabs/GameObjects/Banner.prefab
-  artifactKey: Guid(fdeb9c9b8fc70d54b9dba82500aab7d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/GameObjects/Banner.prefab using Guid(fdeb9c9b8fc70d54b9dba82500aab7d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b5a19435a9e74e308a202772642a5a7') in 0.074102 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000073 seconds.
-  path: Assets/Prefabs/GameObjects/Fog.prefab
-  artifactKey: Guid(bbee0820a79e9344b90f1fdaaf2f92cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/GameObjects/Fog.prefab using Guid(bbee0820a79e9344b90f1fdaaf2f92cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b41d932b973efc42f2ce905fce36383f') in 0.570108 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.429466 seconds.
-  path: Assets/Prefabs/Players/KING.prefab
-  artifactKey: Guid(24fb266c54de42a44ad14831927a247c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Players/KING.prefab using Guid(24fb266c54de42a44ad14831927a247c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 'Player' is missing the class attribute 'ExtensionOfNativeClass'!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 AssertImplementation(int, char const*, int, int, char const*)
- #3 SerializableManagedRef::AssertKlassMeetsRequirements()
- #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
- #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
- #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
- #7 PersistentManager::ProduceObject(SerializedFile&, SerializedObjectIdentifier, int, ObjectCreationMode, PersistentManager::LockFlags)
- #8 PersistentManager::CreateThreadActivationQueueEntry(SerializedFile&, SerializedObjectIdentifier, int, bool, PersistentManager::LockFlags)
- #9 PersistentManager::PreallocateObjectThreaded(int, PersistentManager::LockFlags)
- #10 void ImmediatePtr<Unity::Component>::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
- #11 void StreamedBinaryRead::TransferSTLStyleArray<dynamic_array<GameObject::ComponentPair, 0ul> >(dynamic_array<GameObject::ComponentPair, 0ul>&, TransferMetaFlags)
- #12 void GameObject::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
- #13 GameObject::VirtualRedirectTransfer(StreamedBinaryRead&)
- #14 SerializedFile::ReadObject(long long, ObjectCreationMode, bool, TypeTree const**, bool*, Object&)
- #15 PersistentManager::ReadAndActivateObjectThreaded(int, SerializedObjectIdentifier const&, SerializedFile*, bool, bool, PersistentManager::LockFlags)
- #16 PersistentManager::ReadObjectThreaded(int, PersistentManager::LockFlags)
- #17 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #18 PPtr<Object>::operator Object*() const
- #19 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #20 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #21 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #22 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #23 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #24 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #25 _dispatch_client_callout
- #26 _dispatch_async_and_wait_invoke
- #27 _dispatch_client_callout
- #28 _dispatch_main_queue_drain
- #29 _dispatch_main_queue_callback_4CF
- #30 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #31 __CFRunLoopRun
- #32 CFRunLoopRunSpecific
- #33 RunCurrentEventLoopInMode
- #34 ReceiveNextEventCommon
- #35 _BlockUntilNextEventMatchingListInModeWithFilter
- #36 _DPSNextEvent
- #37 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #38 -[NSApplication run]
- #39 NSApplicationMain
- #40 EditorMain(int, char const**)
- #41 main
- #42 ???
-
-GameObject (named 'KING') references runtime script in scene file. Fixing!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
- #3 MonoBehaviour::CheckConsistency()
- #4 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
- #5 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
- #6 PersistentManager::IntegrateAllThreadedObjects()
- #7 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
- #8 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #9 PPtr<Object>::operator Object*() const
- #10 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #11 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #12 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #13 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #14 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #15 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #16 _dispatch_client_callout
- #17 _dispatch_async_and_wait_invoke
- #18 _dispatch_client_callout
- #19 _dispatch_main_queue_drain
- #20 _dispatch_main_queue_callback_4CF
- #21 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #22 __CFRunLoopRun
- #23 CFRunLoopRunSpecific
- #24 RunCurrentEventLoopInMode
- #25 ReceiveNextEventCommon
- #26 _BlockUntilNextEventMatchingListInModeWithFilter
- #27 _DPSNextEvent
- #28 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #29 -[NSApplication run]
- #30 NSApplicationMain
- #31 EditorMain(int, char const**)
- #32 main
- #33 ???
-
-'Player' is missing the class attribute 'ExtensionOfNativeClass'!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 AssertImplementation(int, char const*, int, int, char const*)
- #3 SerializableManagedRef::AssertKlassMeetsRequirements()
- #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
- #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
- #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
- #7 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
- #8 MonoBehaviour::CheckConsistency()
- #9 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
- #10 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
- #11 PersistentManager::IntegrateAllThreadedObjects()
- #12 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
- #13 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #14 PPtr<Object>::operator Object*() const
- #15 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #16 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #17 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #18 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #19 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #20 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #21 _dispatch_client_callout
- #22 _dispatch_async_and_wait_invoke
- #23 _dispatch_client_callout
- #24 _dispatch_main_queue_drain
- #25 _dispatch_main_queue_callback_4CF
- #26 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #27 __CFRunLoopRun
- #28 CFRunLoopRunSpecific
- #29 RunCurrentEventLoopInMode
- #30 ReceiveNextEventCommon
- #31 _BlockUntilNextEventMatchingListInModeWithFilter
- #32 _DPSNextEvent
- #33 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #34 -[NSApplication run]
- #35 NSApplicationMain
- #36 EditorMain(int, char const**)
- #37 main
- #38 ???
-
- -> (artifact id: 'ed34a8a1a62badff4e5b4277b263010f') in 0.018952 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000068 seconds.
-  path: Assets/Prefabs/Players/REBEL.prefab
-  artifactKey: Guid(4d3a0517ded900547ad69659d2a03796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Players/REBEL.prefab using Guid(4d3a0517ded900547ad69659d2a03796) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 'Player' is missing the class attribute 'ExtensionOfNativeClass'!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 AssertImplementation(int, char const*, int, int, char const*)
- #3 SerializableManagedRef::AssertKlassMeetsRequirements()
- #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
- #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
- #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
- #7 PersistentManager::ProduceObject(SerializedFile&, SerializedObjectIdentifier, int, ObjectCreationMode, PersistentManager::LockFlags)
- #8 PersistentManager::CreateThreadActivationQueueEntry(SerializedFile&, SerializedObjectIdentifier, int, bool, PersistentManager::LockFlags)
- #9 PersistentManager::PreallocateObjectThreaded(int, PersistentManager::LockFlags)
- #10 void ImmediatePtr<Unity::Component>::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
- #11 void StreamedBinaryRead::TransferSTLStyleArray<dynamic_array<GameObject::ComponentPair, 0ul> >(dynamic_array<GameObject::ComponentPair, 0ul>&, TransferMetaFlags)
- #12 void GameObject::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
- #13 GameObject::VirtualRedirectTransfer(StreamedBinaryRead&)
- #14 SerializedFile::ReadObject(long long, ObjectCreationMode, bool, TypeTree const**, bool*, Object&)
- #15 PersistentManager::ReadAndActivateObjectThreaded(int, SerializedObjectIdentifier const&, SerializedFile*, bool, bool, PersistentManager::LockFlags)
- #16 PersistentManager::ReadObjectThreaded(int, PersistentManager::LockFlags)
- #17 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #18 PPtr<Object>::operator Object*() const
- #19 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #20 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #21 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #22 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #23 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #24 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #25 _dispatch_client_callout
- #26 _dispatch_async_and_wait_invoke
- #27 _dispatch_client_callout
- #28 _dispatch_main_queue_drain
- #29 _dispatch_main_queue_callback_4CF
- #30 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #31 __CFRunLoopRun
- #32 CFRunLoopRunSpecific
- #33 RunCurrentEventLoopInMode
- #34 ReceiveNextEventCommon
- #35 _BlockUntilNextEventMatchingListInModeWithFilter
- #36 _DPSNextEvent
- #37 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #38 -[NSApplication run]
- #39 NSApplicationMain
- #40 EditorMain(int, char const**)
- #41 main
- #42 ???
-
-GameObject (named 'REBEL') references runtime script in scene file. Fixing!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
- #3 MonoBehaviour::CheckConsistency()
- #4 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
- #5 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
- #6 PersistentManager::IntegrateAllThreadedObjects()
- #7 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
- #8 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #9 PPtr<Object>::operator Object*() const
- #10 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #11 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #12 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #13 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #14 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #15 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #16 _dispatch_client_callout
- #17 _dispatch_async_and_wait_invoke
- #18 _dispatch_client_callout
- #19 _dispatch_main_queue_drain
- #20 _dispatch_main_queue_callback_4CF
- #21 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #22 __CFRunLoopRun
- #23 CFRunLoopRunSpecific
- #24 RunCurrentEventLoopInMode
- #25 ReceiveNextEventCommon
- #26 _BlockUntilNextEventMatchingListInModeWithFilter
- #27 _DPSNextEvent
- #28 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #29 -[NSApplication run]
- #30 NSApplicationMain
- #31 EditorMain(int, char const**)
- #32 main
- #33 ???
-
-'Player' is missing the class attribute 'ExtensionOfNativeClass'!
- #0 GetStacktrace(int)
- #1 DebugStringToFile(DebugStringToFileData const&)
- #2 AssertImplementation(int, char const*, int, int, char const*)
- #3 SerializableManagedRef::AssertKlassMeetsRequirements()
- #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
- #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
- #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
- #7 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
- #8 MonoBehaviour::CheckConsistency()
- #9 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
- #10 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
- #11 PersistentManager::IntegrateAllThreadedObjects()
- #12 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
- #13 PersistentManager::ReadObject(int, AwakeFromLoadMode)
- #14 PPtr<Object>::operator Object*() const
- #15 PreviewImporter::GenerateAssetData(AssetImportContext&)
- #16 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #17 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #18 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
- #19 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
- #20 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
- #21 _dispatch_client_callout
- #22 _dispatch_async_and_wait_invoke
- #23 _dispatch_client_callout
- #24 _dispatch_main_queue_drain
- #25 _dispatch_main_queue_callback_4CF
- #26 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
- #27 __CFRunLoopRun
- #28 CFRunLoopRunSpecific
- #29 RunCurrentEventLoopInMode
- #30 ReceiveNextEventCommon
- #31 _BlockUntilNextEventMatchingListInModeWithFilter
- #32 _DPSNextEvent
- #33 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
- #34 -[NSApplication run]
- #35 NSApplicationMain
- #36 EditorMain(int, char const**)
- #37 main
- #38 ???
-
- -> (artifact id: '22ae1d99e0d359d0796d2aee6d839000') in 0.009730 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000085 seconds.
-  path: Assets/Prefabs/Players/Player.prefab
-  artifactKey: Guid(8911ec207dd2f214d96cb04986036844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Players/Player.prefab using Guid(8911ec207dd2f214d96cb04986036844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04519981ca2953a9532a563e3a731ebb') in 0.015085 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.695344 seconds.
-  path: Assets/Prefabs/ParticleSystems/PS_Explosion.prefab
-  artifactKey: Guid(0a6d9a67c8e683b4fa789502c46cbef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/ParticleSystems/PS_Explosion.prefab using Guid(0a6d9a67c8e683b4fa789502c46cbef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bbaf67182182a933f6ca290bee05c3cc') in 0.048853 seconds 
+  Time since last request: 3.348681 seconds.
+  path: Assets/Resources/Backgrounds/skin_menu_bg.png
+  artifactKey: Guid(e5a5326b98d31e443b48cd59d57f6e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Backgrounds/skin_menu_bg.png using Guid(e5a5326b98d31e443b48cd59d57f6e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8a5e457a89bfd831de43ca259fab2c2') in 0.131761 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000081 seconds.
-  path: Assets/Prefabs/ParticleSystems/PS_Fire.prefab
-  artifactKey: Guid(758d61d0836ffb244b006745c921b520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/ParticleSystems/PS_Fire.prefab using Guid(758d61d0836ffb244b006745c921b520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c07321675e637fbdd6c494c649cd6e57') in 0.145055 seconds 
+  path: Assets/Resources/Artwork/skin.png
+  artifactKey: Guid(4dbf681162a828c479fa01ae0f06cfbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/skin.png using Guid(4dbf681162a828c479fa01ae0f06cfbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24acc4aaac4202b9f6515b73c09d6a66') in 0.024308 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002771 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.35 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.907 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2909ms)
-		BeginReloadAssembly (266ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (51ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (83ms)
-		EndReloadAssembly (2413ms)
-			LoadAssemblies (134ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (342ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (57ms)
-			SetupLoadedEditorAssemblies (1576ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (28ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (165ms)
-				ProcessInitializeOnLoadAttributes (1062ms)
-				ProcessInitializeOnLoadMethodAttributes (316ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (34ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 3.56 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5830 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 62 unused Assets / (1.8 MB). Loaded Objects now: 6516.
-Memory consumption went from 385.9 MB to 384.0 MB.
-Total: 4.279958 ms (FindLiveObjects: 0.362291 ms CreateObjectMapping: 0.182709 ms MarkObjects: 3.237125 ms  DeleteObjects: 0.496625 ms)
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Resources/UI/Buttons/skills_menu_cancel_button.png
+  artifactKey: Guid(b909fe46a61f87f468dc826143648a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/skills_menu_cancel_button.png using Guid(b909fe46a61f87f468dc826143648a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '961bfeef860914fd54308945aad94abf') in 0.017483 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Resources/UI/Buttons/skin_bottom_tab.png
+  artifactKey: Guid(30c00e015961c5e4897d7c7324957d79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/skin_bottom_tab.png using Guid(30c00e015961c5e4897d7c7324957d79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '703693c5efa5ad08c150baa3a8db1c14') in 0.019684 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Resources/UI/Windows/skills_menu_tab.png
+  artifactKey: Guid(5bf4b9db8ab36534eac16bb5e68a8711) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/skills_menu_tab.png using Guid(5bf4b9db8ab36534eac16bb5e68a8711) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38e735b65fb23d9c94719f0eeb65e48f') in 0.017707 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Resources/UI/Windows/SHOP_WINDOW_SMALL_BLUE_BANNER.png
+  artifactKey: Guid(c85955a5714c9a5479086c32c210c111) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/SHOP_WINDOW_SMALL_BLUE_BANNER.png using Guid(c85955a5714c9a5479086c32c210c111) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a33c685cae6e858f01002a47f7bbefe3') in 0.025821 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Resources/UI/Buttons/local_button.png
+  artifactKey: Guid(fd2b9cca17455bd45959e03a8f843f2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/local_button.png using Guid(fd2b9cca17455bd45959e03a8f843f2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e89a774be8e4011374f9c0d85de4024') in 0.030364 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000092 seconds.
+  path: Assets/Resources/Artwork/GOLD COIN 3.png
+  artifactKey: Guid(50d3d9b2cfd86c54b9f5b53f6057a60b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/GOLD COIN 3.png using Guid(50d3d9b2cfd86c54b9f5b53f6057a60b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b92071cadd248112419ac32362ceba8') in 0.017294 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/Enemies/knight.png
+  artifactKey: Guid(c469f5c12b46e8c4cb7a3f0ccb137400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Enemies/knight.png using Guid(c469f5c12b46e8c4cb7a3f0ccb137400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '560335a26d04aafa37b879a9098863ce') in 0.034910 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Enemies/king_peasant.png
+  artifactKey: Guid(9dbfd4fa418ece44dbfe28b8bc48e7fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Enemies/king_peasant.png using Guid(9dbfd4fa418ece44dbfe28b8bc48e7fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49e2c603f085aabab0b9fdae3a13194e') in 0.035664 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Resources/UI/Windows/shop_window_small_purple.png
+  artifactKey: Guid(494deae2eba3e2b47ae0038e5ac0841d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/shop_window_small_purple.png using Guid(494deae2eba3e2b47ae0038e5ac0841d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67843cf77886e22615a2d93f733705f9') in 0.025665 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Resources/UI/Windows/info menu tail.png
+  artifactKey: Guid(7e62784171fa52d4ba593909d42bd8bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/info menu tail.png using Guid(7e62784171fa52d4ba593909d42bd8bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f282b2f188d9358cd65ec799589570c') in 0.011481 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Resources/Artwork/shop_gem_icon.png
+  artifactKey: Guid(087addf2164d8e64d814f7e75ddb3a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/shop_gem_icon.png using Guid(087addf2164d8e64d814f7e75ddb3a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3c3b8d70d056688cb6dc18630cb4dd7') in 0.013977 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Resources/Artwork/SHOP_SIGN.png
+  artifactKey: Guid(95d6fa987d2f07a4c8c3472d07980c3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/SHOP_SIGN.png using Guid(95d6fa987d2f07a4c8c3472d07980c3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9810b6cb0392568bf3878fe95451e6ea') in 0.041867 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Resources/Tiles/Alternate/bottom-right.png
+  artifactKey: Guid(ce4137057cefddd41b5a7c50156968da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Tiles/Alternate/bottom-right.png using Guid(ce4137057cefddd41b5a7c50156968da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3384a2f3a4d7323613a380762a2dfa30') in 0.015607 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Resources/Artwork/skin_player_sprite_icon.png
+  artifactKey: Guid(5b0da6eb4e559ce40b627fb9d573c2eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/skin_player_sprite_icon.png using Guid(5b0da6eb4e559ce40b627fb9d573c2eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b8da8e775a88c52d29085e373e69baf') in 0.014271 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Resources/Tiles/Alternate/middle-right.png
+  artifactKey: Guid(b761121eb10409a41827691a78ef9b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Tiles/Alternate/middle-right.png using Guid(b761121eb10409a41827691a78ef9b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7abb17446161cb80f08ce5d5b92bcb98') in 0.015412 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000081 seconds.
+  path: Assets/Resources/UI/Windows/skills_menu_frame3.png
+  artifactKey: Guid(e42b6cd308d39c440b343798e7ad7fb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/skills_menu_frame3.png using Guid(e42b6cd308d39c440b343798e7ad7fb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b36bd66c287ac04ad9c50c7b3b6c815a') in 0.064720 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Resources/UI/Windows/shop_window_small_blue.png
+  artifactKey: Guid(200bccc0f23469e4abb5f6e6ea5559e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/shop_window_small_blue.png using Guid(200bccc0f23469e4abb5f6e6ea5559e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d858de3806e0d13670556c7e06f217') in 0.026982 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/Resources/UI/Windows/shop_window_small_green.png
+  artifactKey: Guid(4a63aed521ef5e743aec84dfb2a28e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/shop_window_small_green.png using Guid(4a63aed521ef5e743aec84dfb2a28e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a61765370e61bfd6759b3bdb16926b1f') in 0.025042 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000083 seconds.
+  path: Assets/Resources/Artwork/shop_profile_icon.png
+  artifactKey: Guid(65393830c958bd1418e4d14ec85b116b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/shop_profile_icon.png using Guid(65393830c958bd1418e4d14ec85b116b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b9db25e6454b567040cead5f3f56663') in 0.022527 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Resources/UI/Buttons/skin_button.png
+  artifactKey: Guid(588a6e6f8330b594e876233a9d9d97ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/skin_button.png using Guid(588a6e6f8330b594e876233a9d9d97ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95f72e98c7855e860945be129925b9cc') in 0.022777 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Resources/Tiles/Basic/bottom-right.png
+  artifactKey: Guid(044ad1eedf3c24e4293917ffa15a6972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Tiles/Basic/bottom-right.png using Guid(044ad1eedf3c24e4293917ffa15a6972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34cdc568cbb1e64016c3700c90d471c5') in 0.014698 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/Resources/UI/Windows/info menu rectangle.png
+  artifactKey: Guid(9cef15a0522f4ce4cac75a39161026c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/info menu rectangle.png using Guid(9cef15a0522f4ce4cac75a39161026c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e54c1bf56dd611fbbccc39ab216005a') in 0.021378 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Enemies/basilisk.png
+  artifactKey: Guid(21a3a237ff5813c4997fcb14afb838db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Enemies/basilisk.png using Guid(21a3a237ff5813c4997fcb14afb838db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bb82c07f4ab5861077b51bb080a8bb4') in 0.035858 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000081 seconds.
+  path: Assets/Resources/Tiles/Alternate/bottom-left.png
+  artifactKey: Guid(281b027d3acb228418db985473fb4380) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Tiles/Alternate/bottom-left.png using Guid(281b027d3acb228418db985473fb4380) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '828248979e9076673e9d9fc5c9cf7f4c') in 0.014818 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Resources/Artwork/shop_featured_icon.png
+  artifactKey: Guid(697aef98353e8094681ec99332d45ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/shop_featured_icon.png using Guid(697aef98353e8094681ec99332d45ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '692d08fe87feb410bd97bfd019d4fa50') in 0.014147 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Resources/UI/Windows/skills_menu_fram.png
+  artifactKey: Guid(0213ca5a407e9e3499c3a8bde60ef084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/skills_menu_fram.png using Guid(0213ca5a407e9e3499c3a8bde60ef084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '956f1f59e89faa4d89e6074ad38d4ace') in 0.117541 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 111.159170 seconds.
+  path: Assets/Prefabs/Enemies/COMMON.prefab
+  artifactKey: Guid(abdedf294c7e59c43b5611bacdb6e423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/COMMON.prefab using Guid(abdedf294c7e59c43b5611bacdb6e423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '285e31dd0080fbcd0da95ef14776076a') in 0.153484 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000081 seconds.
+  path: Assets/Prefabs/Enemies/ENGINEER.prefab
+  artifactKey: Guid(0cdeac92759aa304bbae44779013d420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/ENGINEER.prefab using Guid(0cdeac92759aa304bbae44779013d420) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27dfc9224a2b6c17a96fc2772da60c58') in 0.012420 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Prefabs/Enemies/FRAGMENTED.prefab
+  artifactKey: Guid(5296ac8bfe8e645408d98e039d706442) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/FRAGMENTED.prefab using Guid(5296ac8bfe8e645408d98e039d706442) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6db6fdf2171b380f66c07361149972ca') in 0.008901 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Prefabs/Enemies/DRAGON.prefab
+  artifactKey: Guid(60078840c271d3141bec34d6d6460213) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/DRAGON.prefab using Guid(60078840c271d3141bec34d6d6460213) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8802368a2e29bd1e5be40a4e9fcec74') in 0.009118 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 53.611063 seconds.
+  path: Assets/Prefabs/Managers/GameManager.prefab
+  artifactKey: Guid(7c3e862e16b03664dac756eb97e5a3be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Managers/GameManager.prefab using Guid(7c3e862e16b03664dac756eb97e5a3be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 'Talent' is missing the class attribute 'ExtensionOfNativeClass'!
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 AssertImplementation(int, char const*, int, int, char const*)
+ #3 SerializableManagedRef::AssertKlassMeetsRequirements()
+ #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
+ #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
+ #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
+ #7 PersistentManager::ProduceObject(SerializedFile&, SerializedObjectIdentifier, int, ObjectCreationMode, PersistentManager::LockFlags)
+ #8 PersistentManager::CreateThreadActivationQueueEntry(SerializedFile&, SerializedObjectIdentifier, int, bool, PersistentManager::LockFlags)
+ #9 PersistentManager::PreallocateObjectThreaded(int, PersistentManager::LockFlags)
+ #10 void ImmediatePtr<Unity::Component>::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
+ #11 void StreamedBinaryRead::TransferSTLStyleArray<dynamic_array<GameObject::ComponentPair, 0ul> >(dynamic_array<GameObject::ComponentPair, 0ul>&, TransferMetaFlags)
+ #12 void GameObject::Transfer<StreamedBinaryRead>(StreamedBinaryRead&)
+ #13 GameObject::VirtualRedirectTransfer(StreamedBinaryRead&)
+ #14 SerializedFile::ReadObject(long long, ObjectCreationMode, bool, TypeTree const**, bool*, Object&)
+ #15 PersistentManager::ReadAndActivateObjectThreaded(int, SerializedObjectIdentifier const&, SerializedFile*, bool, bool, PersistentManager::LockFlags)
+ #16 PersistentManager::ReadObjectThreaded(int, PersistentManager::LockFlags)
+ #17 PersistentManager::ReadObject(int, AwakeFromLoadMode)
+ #18 PPtr<Object>::operator Object*() const
+ #19 PreviewImporter::GenerateAssetData(AssetImportContext&)
+ #20 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #21 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #22 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #23 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
+ #24 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
+ #25 _dispatch_client_callout
+ #26 _dispatch_async_and_wait_invoke
+ #27 _dispatch_client_callout
+ #28 _dispatch_main_queue_drain
+ #29 _dispatch_main_queue_callback_4CF
+ #30 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #31 __CFRunLoopRun
+ #32 CFRunLoopRunSpecific
+ #33 RunCurrentEventLoopInMode
+ #34 ReceiveNextEventCommon
+ #35 _BlockUntilNextEventMatchingListInModeWithFilter
+ #36 _DPSNextEvent
+ #37 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #38 -[NSApplication run]
+ #39 NSApplicationMain
+ #40 EditorMain(int, char const**)
+ #41 main
+ #42 ???
 
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
+GameObject (named 'GameManager') references runtime script in scene file. Fixing!
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
+ #3 MonoBehaviour::CheckConsistency()
+ #4 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
+ #5 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
+ #6 PersistentManager::IntegrateAllThreadedObjects()
+ #7 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
+ #8 PersistentManager::ReadObject(int, AwakeFromLoadMode)
+ #9 PPtr<Object>::operator Object*() const
+ #10 PreviewImporter::GenerateAssetData(AssetImportContext&)
+ #11 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #12 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #13 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #14 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
+ #15 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
+ #16 _dispatch_client_callout
+ #17 _dispatch_async_and_wait_invoke
+ #18 _dispatch_client_callout
+ #19 _dispatch_main_queue_drain
+ #20 _dispatch_main_queue_callback_4CF
+ #21 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #22 __CFRunLoopRun
+ #23 CFRunLoopRunSpecific
+ #24 RunCurrentEventLoopInMode
+ #25 ReceiveNextEventCommon
+ #26 _BlockUntilNextEventMatchingListInModeWithFilter
+ #27 _DPSNextEvent
+ #28 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #29 -[NSApplication run]
+ #30 NSApplicationMain
+ #31 EditorMain(int, char const**)
+ #32 main
+ #33 ???
+
+'Talent' is missing the class attribute 'ExtensionOfNativeClass'!
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 AssertImplementation(int, char const*, int, int, char const*)
+ #3 SerializableManagedRef::AssertKlassMeetsRequirements()
+ #4 ManagedMonoBehaviourRef::SetScriptCache(MonoScriptCache const*)
+ #5 SerializableManagedRef::SetupScriptingCache(Object*, ScriptingClassPtr, MonoScript*)
+ #6 SerializableManagedRef::RebuildMonoInstance(Object*, ScriptingClassPtr, ScriptingObjectPtr, MonoScript*)
+ #7 MonoBehaviour::CheckConsistencyRepairInvalidScriptInScene()
+ #8 MonoBehaviour::CheckConsistency()
+ #9 AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
+ #10 AwakeFromLoadQueue::PersistentManagerAwakeFromLoad(int, AwakeFromLoadMode, bool)
+ #11 PersistentManager::IntegrateAllThreadedObjects()
+ #12 PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
+ #13 PersistentManager::ReadObject(int, AwakeFromLoadMode)
+ #14 PPtr<Object>::operator Object*() const
+ #15 PreviewImporter::GenerateAssetData(AssetImportContext&)
+ #16 ImportToObjects(core::basic_string<char, core::StringStorageDefault<char> > const&, core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #17 ImportAsset(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #18 ImportAssetWithAutoReleasePool(core::hash_map<AssetDatabase::ImporterID, ImporterInfo, core::hash<AssetDatabase::ImporterID>, std::__1::equal_to<AssetDatabase::ImporterID> > const&, dynamic_array<PostprocessorInfo, 0ul> const&, AssetResolveTracker const&, ImportAssetInputs const&, ImportAssetOutputs&, IImportProgress*)
+ #19 AssetImportWorker::Import(AssetResolver&, WorkerImportPayload const&, WorkerImportResponse&, IImportProgress*, bool*)
+ #20 invocation function for block in AssetImportWorkerClient::HandleMessage(ImportRequestMessage const&)::$_5::operator()() const
+ #21 _dispatch_client_callout
+ #22 _dispatch_async_and_wait_invoke
+ #23 _dispatch_client_callout
+ #24 _dispatch_main_queue_drain
+ #25 _dispatch_main_queue_callback_4CF
+ #26 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #27 __CFRunLoopRun
+ #28 CFRunLoopRunSpecific
+ #29 RunCurrentEventLoopInMode
+ #30 ReceiveNextEventCommon
+ #31 _BlockUntilNextEventMatchingListInModeWithFilter
+ #32 _DPSNextEvent
+ #33 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #34 -[NSApplication run]
+ #35 NSApplicationMain
+ #36 EditorMain(int, char const**)
+ #37 main
+ #38 ???
+
+ -> (artifact id: '28f1a7f46e0ac19884e0dc7bdc402e7f') in 0.039836 seconds 
