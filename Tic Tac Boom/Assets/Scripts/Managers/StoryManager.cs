@@ -10,7 +10,6 @@ public class StoryManager : MonoBehaviour
     public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu;
     public PlayerManager playerManager;
     public AudioManager audioManager;
-    public PlayMove playerMove;
     public BuildGrid buildGrid;
 
     void Awake() {
@@ -23,9 +22,7 @@ public class StoryManager : MonoBehaviour
     }
 
     private void Update() {
-        Debug.Log(playerManager.player.remainingMoves);
-        Debug.Log(playerManager.player.maxMoves);
-        Debug.Log(gameState);
+        Debug.Log(Player.activeTalent);
     }
 
     public GameState gameState;
@@ -90,7 +87,7 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator Loading() {
         playerManager.SetCharacterSprite(playerManager.player);
-        playerManager.enemy.character = Player.Character.Vagabond;
+        playerManager.enemy.character = Player.Character.Dragon;
         playerManager.SetCharacterSprite(playerManager.enemy);
         playerManager.SetAI(playerManager.enemy);
         newGridSize = playerManager.storyModeAI.startingGridSize;

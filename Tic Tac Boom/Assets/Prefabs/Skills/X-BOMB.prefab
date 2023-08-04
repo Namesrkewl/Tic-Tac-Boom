@@ -446,6 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Cooldown>k__BackingField: 5
   <Scaling>k__BackingField: 2
+  <Index>k__BackingField: 0
 --- !u!114 &1269421528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,5 +459,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  talent: 0
+  maxCooldown: 0
+  scaling: 0
+  cooldown: 0
+  duration: 0
+  sprite: {fileID: 0}
+  description: 
+  name: 
   skillMenu: {fileID: 0}
   confirmSkillMenu: {fileID: 0}

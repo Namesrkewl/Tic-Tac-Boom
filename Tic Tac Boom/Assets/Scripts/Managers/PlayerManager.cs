@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
     public Player player, enemy;
-    public GameObject playerObject, enemyObject;
+    public SetPlayerObject setPlayerObject, setEnemyObject;
+    public PlayerObject playerObject, enemyObject;
     public List<Sprite> exiledSprites, pureSprites, skins;
     public StoryModeAI storyModeAI;
     public AudioManager audioManager;
     public ParticleSystemsManager particleSystemsManager;
     private GameObject playerAtTrigger;
 
-    void Awake() {
+    private void Awake() {
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -40,8 +42,8 @@ public class PlayerManager : MonoBehaviour
         } else {
             enemy.faction = Player.Faction.Exiled;
         }
-        playerObject = GameObject.Find("Player");
-        enemyObject = GameObject.Find("Enemy");
+        setPlayerObject = GameObject.Find("Player").GetComponent<SetPlayerObject>();
+        setEnemyObject = GameObject.Find("Enemy").GetComponent<SetPlayerObject>();
     }
 
     public void SetCharacterSprite(Player _player) {
@@ -165,11 +167,15 @@ public class PlayerManager : MonoBehaviour
             }
         }
         if (_player == player) {
-            playerObject.transform.GetChild(0).GetComponent<Image>().sprite = _player.playerSprite;
-            playerObject.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = _player.characterSprite;
+            player.playerObject = playerObject;
+            player.SetPlayerObject();
+            setPlayerObject.playerObject = player.playerObject;
+            Debug.Log("Player Set");
         } else if (_player == enemy) {
-            enemyObject.transform.GetChild(0).GetComponent<Image>().sprite = _player.playerSprite;
-            enemyObject.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = _player.characterSprite;
+            enemy.playerObject = enemyObject;
+            enemy.SetPlayerObject();
+            setEnemyObject.playerObject = enemy.playerObject;
+            Debug.Log("Enemy Set");
         }
 
     }
@@ -390,59 +396,23 @@ public class PlayerManager : MonoBehaviour
                     playerAtTrigger.SetActive(true);
                 }
             }
-        } else if (GameManager.instance.usingSmallBomb) {
-            SmallBomb(go);
-            if (player.state == Player.State.Playing) {
-                /*GameManager.instance.playerBombCooldowns[0] += 1;
-                GameManager.instance.playerBombCooldowns[0][0] = GameManager.instance.playerBombCooldowns[0][1];*/
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
-            } else if (enemy.state == Player.State.Playing) {
-                /*GameManager.instance.opponentBombCooldowns[0][1] += 1;
-                GameManager.instance.opponentBombCooldowns[0][0] = GameManager.instance.opponentBombCooldowns[0][1]; */
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;
-            }
-        } else if (GameManager.instance.usingCrossBomb) {
-            CrossBomb(go);
-            if (player.state == Player.State.Playing) {
-                /*GameManager.instance.playerBombCooldowns[1][1] += 2;
-                GameManager.instance.playerBombCooldowns[1][0] = GameManager.instance.playerBombCooldowns[1][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
-            } else if (enemy.state == Player.State.Playing) {
-                /*GameManager.instance.opponentBombCooldowns[1][1] += 2;
-                GameManager.instance.opponentBombCooldowns[1][0] = GameManager.instance.opponentBombCooldowns[1][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
-            }
-        } else if (GameManager.instance.usingXBomb) {
-            XBomb(go);
-            if (player.state == Player.State.Playing) {
-                /*GameManager.instance.playerBombCooldowns[2][1] += 2;
-                GameManager.instance.playerBombCooldowns[2][0] = GameManager.instance.playerBombCooldowns[2][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
-            } else if (enemy.state == Player.State.Playing) {
-                /*GameManager.instance.opponentBombCooldowns[2][1] += 2;
-                GameManager.instance.opponentBombCooldowns[2][0] = GameManager.instance.opponentBombCooldowns[2][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
-            }
-        } else if (GameManager.instance.usingMine && !go.tag.Contains("Wall") && !playerAtTrigger.activeSelf) {
-            Mine(go);
-            if (player.state == Player.State.Playing) {
-                /*GameManager.instance.playerBombCooldowns[3][1] += 2;
-                GameManager.instance.playerBombCooldowns[3][0] = GameManager.instance.playerBombCooldowns[3][1];
-                GameManager.    instance.turnBombUsed = GameManager.instance.turnCounter;*/
-            } else if (enemy.state == Player.State.Playing) {
-                /*GameManager.instance.opponentBombCooldowns[3][1] += 2;
-                GameManager.instance.opponentBombCooldowns[3][0] = GameManager.instance.opponentBombCooldowns[3][1];
-                GameManager.instance.turnBombUsed = GameManager.instance.turnCounter;*/
+        } else if (player.state == Player.State.UsingSkill) {
+            switch (Player.activeTalent.talentName) {
+                case Talent.TalentName.SmallBomb:
+                    SmallBomb(go);
+                    break;
+                case Talent.TalentName.CrossBomb:
+                    CrossBomb(go);
+                    break;
+                case Talent.TalentName.XBomb:
+                    XBomb(go);
+                    break;
+                case Talent.TalentName.Mine:
+                    Mine(go);
+                    break;
             }
         }
         yield return null;
-    }
-
-    public void NextTurn() {
-        /*
-        GameManager.instance.turnCounter++;
-        GameManager.instance.playerMoveCount = GameManager.instance.playerMoveMax;
-        GameManager.instance.enemyMoveCount = GameManager.instance.opponentMoveMax; */
     }
 
     // TALENTS
@@ -457,7 +427,7 @@ public class PlayerManager : MonoBehaviour
         playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
         playerAtTrigger.SetActive(false);
         go.tag = "Untagged";
-        GameManager.instance.talents.CancelSkill();
+        //GameManager.instance.talents.CancelSkill();
     }
 
     void CrossBomb(GameObject go) {
@@ -517,7 +487,7 @@ public class PlayerManager : MonoBehaviour
                 tile.transform.GetChild(0).gameObject.SetActive(false);
                 tile.tag = "Untagged";
             }
-            GameManager.instance.talents.CancelSkill();
+            //Talent.CancelSkill();
         }
 
     }
@@ -578,20 +548,20 @@ public class PlayerManager : MonoBehaviour
                 tile.transform.GetChild(0).gameObject.SetActive(false);
                 tile.tag = "Untagged";
             }
-            GameManager.instance.talents.CancelSkill();
+            //GameManager.instance.talents.CancelSkill();
         }
     }
 
     void Mine(GameObject go) {
         if (go.tag.Contains("Mine")) {
             TriggerMine(go);
-            GameManager.instance.talents.CancelSkill();
+            //GameManager.instance.talents.CancelSkill();
         } else {
             go.tag = "Mine";
             go.GetComponent<SpriteRenderer>().sprite = GameManager.instance.mineSprite;
             go.transform.localScale = Vector3.zero;
             LeanTween.scale(go, Vector3.one, 0.5f).setEaseOutElastic();
-            GameManager.instance.talents.CancelSkill();
+            //GameManager.instance.talents.CancelSkill();
         }
     }
 

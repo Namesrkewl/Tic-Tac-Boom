@@ -41,12 +41,20 @@ public class Player
     }
 
     public Sprite characterSprite, playerSprite, skin;
-    public List<Talents> talents;
+    public List<Talent> talents;
     public int maxMoves, remainingMoves;
+    public PlayerObject playerObject;
+    public static Talent activeTalent;
 
     public Player(Type _type) {
         type = _type;
         state = State.Inactive;
+    }
+
+    public void SetPlayerObject() {
+        playerObject.name = "THE " + character.ToString().ToUpper();
+        playerObject.characterSprite = characterSprite;
+        playerObject.playerSprite = playerSprite;
     }
 
 

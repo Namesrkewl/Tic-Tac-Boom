@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
     [field: SerializeField]  public int Gems { get; private set; }
 
     // Scripts
-    public Talents talents;
-    public PlayMove playerMove;
     public Replay replay;
     public BuildGrid buildGrid;
     public LoadScene loadScene;
