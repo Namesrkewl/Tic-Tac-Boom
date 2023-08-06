@@ -22,8 +22,8 @@ public class LoadScene : MonoBehaviour {
     }
 
     public void LoadMain() {
-        if (BackgroundAudio.instance.GetComponent<AudioSource>().clip != GameManager.instance.MainTheme) {
-            BackgroundAudio.instance.GetComponent<AudioSource>().clip = GameManager.instance.MainTheme;
+        if (BackgroundAudio.instance.GetComponent<AudioSource>().clip != AudioManager.instance.musicClips[2]) {
+            BackgroundAudio.instance.GetComponent<AudioSource>().clip = AudioManager.instance.musicClips[2];
             BackgroundAudio.instance.GetComponent<AudioSource>().Play();
         }
         SceneManager.LoadScene("Main");
@@ -32,12 +32,11 @@ public class LoadScene : MonoBehaviour {
         SceneManager.LoadScene("SinglePlayer");
     }
     public void LoadStoryMode() {
-        GameManager.instance.gridSize = 3;
         SceneManager.LoadScene("StoryMode");
     }
     public void LoadPlayerVSAI() {
         if (!GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text.Any(Char.IsLetter)) {
-            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
+            //GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
             SceneManager.LoadScene("PlayerVSAI");
         } else {
             Debug.Log("Pick a Grid Size");
@@ -45,7 +44,7 @@ public class LoadScene : MonoBehaviour {
     }
     public void LoadLocalPVP() {
         if (!GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text.Any(Char.IsLetter)) {
-            GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
+            //GameManager.instance.gridSize = Convert.ToInt32(GameObject.Find("Label").GetComponent<TextMeshProUGUI>().text);
             SceneManager.LoadScene("PlayerVSAI");
         } else {
             Debug.Log("Pick a Grid Size");

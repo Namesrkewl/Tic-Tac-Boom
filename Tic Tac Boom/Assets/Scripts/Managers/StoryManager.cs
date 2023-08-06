@@ -22,7 +22,7 @@ public class StoryManager : MonoBehaviour
     }
 
     private void Update() {
-        Debug.Log(Player.activeTalent);
+        //Debug.Log(Player.activeTalent);
     }
 
     public GameState gameState;
@@ -90,6 +90,7 @@ public class StoryManager : MonoBehaviour
         playerManager.enemy.character = Player.Character.Dragon;
         playerManager.SetCharacterSprite(playerManager.enemy);
         playerManager.SetAI(playerManager.enemy);
+        playerManager.SetSkills();
         newGridSize = playerManager.storyModeAI.startingGridSize;
         gridSize = newGridSize;
         buildGrid.BuildTheGrid(gridSize);

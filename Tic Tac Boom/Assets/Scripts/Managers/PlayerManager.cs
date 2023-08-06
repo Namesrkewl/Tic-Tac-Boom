@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
@@ -17,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     public StoryModeAI storyModeAI;
     public AudioManager audioManager;
     public ParticleSystemsManager particleSystemsManager;
-    public GameObject skillMenu, confirmSkillMenu, gridModificationMenu;
+    public GameObject skillMenu, confirmSkillMenu, gridModificationMenu, skills;
     private GameObject playerAtTrigger;
 
     private void Awake() {
@@ -561,7 +562,11 @@ public class PlayerManager : MonoBehaviour
             CancelSkill();
         } else {
             go.tag = "Mine";
-            go.GetComponent<SpriteRenderer>().sprite = GameManager.instance.mineSprite;
+            if (player.state == Player.State.Playing) {
+                go.GetComponent<SpriteRenderer>().sprite = (from talent in player.talents where talent.talentName == Talent.TalentName.Mine select talent).FirstOrDefault().sprite;
+            } else if (enemy.state == Player.State.Playing) {
+                go.GetComponent<SpriteRenderer>().sprite = (from talent in enemy.talents where talent.talentName == Talent.TalentName.Mine select talent).FirstOrDefault().sprite;
+            }
             go.transform.localScale = Vector3.zero;
             LeanTween.scale(go, Vector3.one, 0.5f).setEaseOutElastic();
             CancelSkill();
@@ -569,32 +574,25 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void BuildTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[4] == 0) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
-            } else {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-                if (GameManager.instance.newGridSize == 8) GameManager.instance.newGridSize = 7;
+        if (StoryManager.instance.newGridSize > 0 && StoryManager.instance.newGridSize < 8) {
+            if (player.state == Player.State.Playing) {
+                (from talent in player.talents where talent.talentName == Talent.TalentName.BuildTiles select talent).FirstOrDefault();
+                StoryManager.instance.newGridSize = StoryManager.instance.gridSize + 1;
+                if (StoryManager.instance.newGridSize == 8) StoryManager.instance.newGridSize = 7;
+            } else if (enemy.state == Player.State.Playing) {
+                StoryManager.instance.newGridSize = StoryManager.instance.gridSize + 1;
+                if (StoryManager.instance.newGridSize == 8) StoryManager.instance.newGridSize = 7;
             }
         }
     }
     public void DestroyTiles() {
-        if (GameManager.instance.newGridSize > 0 && GameManager.instance.newGridSize < 8 && GameManager.instance.playerBombCooldowns[5] == 0) {
-            if (GameManager.instance.isPlayerTurn) {
-                GameManager.instance.gridModification[0] = true;
-                GameManager.instance.gridModification[1] = true;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
-            } else {
-                GameManager.instance.gridModification[0] = false;
-                GameManager.instance.gridModification[1] = false;
-                GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-                if (GameManager.instance.newGridSize == 0) GameManager.instance.newGridSize = 1;
+        if (StoryManager.instance.newGridSize > 0 && StoryManager.instance.newGridSize < 8) {
+            if (player.state == Player.State.Playing) {
+                StoryManager.instance.newGridSize = StoryManager.instance.gridSize - 1;
+                if (StoryManager.instance.newGridSize == 0) StoryManager.instance.newGridSize = 1;
+            } else if (enemy.state == Player.State.Playing) {
+                StoryManager.instance.newGridSize = StoryManager.instance.gridSize - 1;
+                if (StoryManager.instance.newGridSize == 0) StoryManager.instance.newGridSize = 1;
             }
         }
     }
@@ -602,6 +600,13 @@ public class PlayerManager : MonoBehaviour
     // Passives
 
     // Talent Logic
+    public void SetSkills() {
+        for (int i = 0; i < player.talents.Count; i++) {
+            GameObject talent = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Actives/TALENT"), skills.transform);
+            talent.name = player.talents[i].name;
+            talent.GetComponent<Image>().sprite = player.talents[i].sprite;
+        }
+    }
     public void SelectSkill() {
         confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
         confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);

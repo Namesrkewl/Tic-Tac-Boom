@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3946066732638490392}
   - component: {fileID: 3946066732638490393}
-  - component: {fileID: 3946066732638490395}
   - component: {fileID: 3946066732638490394}
   m_Layer: 0
   m_Name: StoryManager
@@ -56,29 +55,13 @@ MonoBehaviour:
   HUD: {fileID: 0}
   nextFight: {fileID: 0}
   grid: {fileID: 0}
+  turnDisplay: {fileID: 0}
   playerVictoryMenu: {fileID: 0}
   enemyVictoryMenu: {fileID: 0}
   playerManager: {fileID: 0}
   audioManager: {fileID: 0}
-  playerMove: {fileID: 3946066732638490395}
   buildGrid: {fileID: 3946066732638490394}
   gameState: 0
---- !u!114 &3946066732638490395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3946066732638490399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bd0f02ac478974ab2b07284eec190f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameSounds: {fileID: 0}
-  explosion: {fileID: 8040237562254255519, guid: 0a6d9a67c8e683b4fa789502c46cbef6, type: 3}
-  dustCloud: {fileID: 8068831425962975574, guid: 88cf3369adca691458777a4dcfb4a205, type: 3}
-  playerManager: {fileID: 0}
 --- !u!114 &3946066732638490394
 MonoBehaviour:
   m_ObjectHideFlags: 0

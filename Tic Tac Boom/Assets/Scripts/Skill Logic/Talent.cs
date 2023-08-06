@@ -32,7 +32,7 @@ public class Talent
     public int maxCooldown, scaling, cooldown, duration;
     public Sprite sprite;
     public string description;
-    new public string name;
+    public string name;
 
     public Talent(TalentName _talentName) {
         InitializeTalent(_talentName);
@@ -48,9 +48,10 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/small_bomb_active.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/small_bomb_active");
                 name = "SMALL BOMB";
                 description = "DEPLOYS A BOMB THAT EXPLODES ON ONE TILE. DAMAGES WALLS.";
+                Debug.Log(sprite);
                 break;
             case TalentName.CrossBomb:
                 type = Type.Bomb;
@@ -60,7 +61,7 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/cross_bomb_active.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/cross_bomb_active");
                 name = "CROSS BOMB";
                 description = "EXPLODES ON THE SELECTED AND ADJACENT TILES. DAMAGES WALLS.";
                 break;
@@ -72,7 +73,7 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/x_bomb_active.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/x_bomb_active");
                 name = "X BOMB";
                 description = "EXPLODES ON THE SELECTED AND DIAGONALLY CONNECTED TILES. DAMAGES WALLS.";
                 break;
@@ -84,7 +85,7 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/mine breathing 3 4.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/mine breathing 3 4");
                 name = "MINE";
                 description = "EXPLODES ON ALL TILES IN A 3X3 RADIUS WHEN TRIGGERED. DESTROYS WALLS.";
                 break;
@@ -96,7 +97,7 @@ public class Talent
                 scaling = 3;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/build_tile.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/build_tile");
                 name = "BUILD TILES";
                 description = "EXPAND THE GRID BY 1 ROW AND COLUMN (3x3 -> 4x4).";
                 break;
@@ -108,7 +109,7 @@ public class Talent
                 scaling = 3;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load("Assets/Resources/Skills/destroy_tile.png") as Sprite;
+                sprite = Resources.Load<Sprite>("Skills/destroy_tile");
                 name = "DESTROY TILES";
                 description = "DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). ENDS YOUR TURN.";
                 break;

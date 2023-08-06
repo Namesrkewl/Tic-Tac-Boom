@@ -1,19 +1,21 @@
 ﻿<Properties StartupConfiguration="{7D63E36F-B4AC-7ED4-A3AC-DE8B8EDF47C7}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game Logic/SetMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="67" Column="28" />
-      <File FileName="Assets/Scripts/Game Logic/Player.cs" Line="25" Column="32" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetPlayerObject.cs" Line="11" Column="38" />
-      <File FileName="Assets/Scripts/Skill Logic/TalentInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Skill Logic/TalentChoices.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="68" Column="22" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="362" Column="6" />
-      <File FileName="Assets/Scripts/Skill Logic/Talent.cs" Line="5" Column="20" />
-      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" Line="18" Column="57" />
-      <File FileName="Assets/Scripts/Managers/EventManager.cs" Line="9" Column="43" />
-      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Object/PlayerObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game Logic/SetMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="9" Column="25" />
+      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetPlayerObject.cs" />
+      <File FileName="Assets/Scripts/Skill Logic/TalentInfo.cs" />
+      <File FileName="Assets/Scripts/Skill Logic/TalentChoices.cs" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="8" Column="2" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="597" Column="10" />
+      <File FileName="Assets/Scripts/Game Logic/Player.cs" Line="42" Column="1" />
+      <File FileName="Assets/Scripts/Skill Logic/Talent.cs" Line="51" Column="74" />
+      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" Line="13" Column="80" />
+      <File FileName="Assets/Scripts/Managers/EventManager.cs" />
+      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" />
+      <File FileName="Assets/Scripts/ScriptableObjects/Object/PlayerObject.cs" />
+      <File FileName="Assets/Scripts/Game Logic/SetMenu.cs" Line="13" Column="1" />
+      <File FileName="Assets/Scripts/Game Logic/SetText.cs" />
+      <File FileName="Assets/Scripts/Game Logic/LoadScene.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

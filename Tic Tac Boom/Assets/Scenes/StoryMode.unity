@@ -983,7 +983,6 @@ GameObject:
   - component: {fileID: 299428507}
   - component: {fileID: 299428506}
   - component: {fileID: 299428505}
-  - component: {fileID: 299428504}
   m_Layer: 5
   m_Name: SelectButton
   m_TagString: Untagged
@@ -1012,28 +1011,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -575}
   m_SizeDelta: {x: 400, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &299428504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299428502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  talentName: 0
-  direction: 0
-  maxCooldown: 0
-  scaling: 0
-  cooldown: 0
-  duration: 0
-  sprite: {fileID: 0}
-  description: 
-  name: 
 --- !u!114 &299428505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,7 +1055,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 299428504}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: ConfirmSkill
         m_Mode: 1
@@ -4605,7 +4582,6 @@ GameObject:
   - component: {fileID: 1557252025}
   - component: {fileID: 1557252024}
   - component: {fileID: 1557252023}
-  - component: {fileID: 1557252022}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -4634,28 +4610,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: -578}
   m_SizeDelta: {x: 400, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1557252022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557252020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  talentName: 0
-  direction: 0
-  maxCooldown: 0
-  scaling: 0
-  cooldown: 0
-  duration: 0
-  sprite: {fileID: 0}
-  description: 
-  name: 
 --- !u!114 &1557252023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4865,7 +4819,6 @@ GameObject:
   - component: {fileID: 1637716303}
   - component: {fileID: 1637716302}
   - component: {fileID: 1637716301}
-  - component: {fileID: 1637716304}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -4937,7 +4890,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1637716304}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: CancelSkill
         m_Mode: 1
@@ -4987,28 +4940,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637716299}
   m_CullTransparentMesh: 1
---- !u!114 &1637716304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637716299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  talentName: 0
-  direction: 0
-  maxCooldown: 0
-  scaling: 0
-  cooldown: 0
-  duration: 0
-  sprite: {fileID: 0}
-  description: 
-  name: 
 --- !u!114 &1653734940 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7611709018496224445, guid: 231d0b8d4f212a7439e0106e4d8da9e6, type: 3}
@@ -5314,7 +5245,6 @@ GameObject:
   - component: {fileID: 1788770239}
   - component: {fileID: 1788770238}
   - component: {fileID: 1788770240}
-  - component: {fileID: 1788770241}
   m_Layer: 5
   m_Name: UseButton
   m_TagString: Untagged
@@ -5425,7 +5355,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1788770241}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: ConfirmSkill
         m_Mode: 1
@@ -5449,28 +5379,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1788770241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788770236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  talentName: 0
-  direction: 0
-  maxCooldown: 0
-  scaling: 0
-  cooldown: 0
-  duration: 0
-  sprite: {fileID: 0}
-  description: 
-  name: 
 --- !u!1 &1845408945
 GameObject:
   m_ObjectHideFlags: 0
@@ -6087,7 +5995,6 @@ GameObject:
   - component: {fileID: 2012343210}
   - component: {fileID: 2012343209}
   - component: {fileID: 2012343211}
-  - component: {fileID: 2012343212}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -6198,7 +6105,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012343212}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Talents, Assembly-CSharp
         m_MethodName: CancelSkill
         m_Mode: 1
@@ -6210,28 +6117,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2012343212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012343207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  talentName: 0
-  direction: 0
-  maxCooldown: 0
-  scaling: 0
-  cooldown: 0
-  duration: 0
-  sprite: {fileID: 0}
-  description: 
-  name: 
 --- !u!1 &2019136294
 GameObject:
   m_ObjectHideFlags: 0
@@ -7120,6 +7005,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3432761469310875369, guid: 68bc240ac72289946a683ad5bf348071, type: 3}
+      propertyPath: skills
+      value: 
+      objectReference: {fileID: 6376977091800052433}
+    - target: {fileID: 3432761469310875369, guid: 68bc240ac72289946a683ad5bf348071, type: 3}
+      propertyPath: skillMenu
+      value: 
+      objectReference: {fileID: 1286792701}
     - target: {fileID: 3432761469310875369, guid: 68bc240ac72289946a683ad5bf348071, type: 3}
       propertyPath: enemyObject
       value: 
@@ -8938,6 +8831,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8455846176652401656, guid: f338b27b05f8ac74696eb4e6c4bb3841, type: 3}
+      propertyPath: musicClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455846176652401656, guid: f338b27b05f8ac74696eb4e6c4bb3841, type: 3}
+      propertyPath: musicClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c5172d35c17259419b8d9d6252c64c5, type: 3}
     - target: {fileID: 8455846176652401660, guid: f338b27b05f8ac74696eb4e6c4bb3841, type: 3}
       propertyPath: m_Name
       value: AudioManager

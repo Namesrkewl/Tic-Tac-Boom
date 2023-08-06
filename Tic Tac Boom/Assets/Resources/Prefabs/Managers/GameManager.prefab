@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3986023289751456306}
   - component: {fileID: 3986023289751456305}
-  - component: {fileID: 3986023289751456459}
   - component: {fileID: 3986023289751456458}
   - component: {fileID: 3362860019468482389}
   - component: {fileID: 1802522787}
   - component: {fileID: 3986023290342884177}
-  - component: {fileID: 702228779}
   - component: {fileID: 5767172279292572940}
   m_Layer: 0
   m_Name: GameManager
@@ -51,85 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306df25892e0b104c931ae16999081ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerTurn: 0
-  turnCounter: 0
-  currentTurn: 0
-  round: 0
-  playerMoveCount: 0
-  opponentMoveCount: 0
-  playerMoveMax: 1
-  opponentMoveMax: 1
-  stage: 0
-  playerVictory: 0
-  opponentVictory: 0
-  storyModeRunning: 0
-  updatingGrid: 0
-  playerBombCooldowns: 00000000
-  opponentBombCooldowns: 00000000
-  bombInUse: 0
-  gridModification: 
-  turnBombUsed: 0
-  gridSize: 3
-  newGridSize: 0
-  playerBombCount: 6
-  opponentBombCount: 0
-  usingSmallBomb: 0
-  usingCrossBomb: 0
-  usingXBomb: 0
-  usingMine: 0
-  player: KING
-  opponent: DRAGON
-  sprites:
-  - {fileID: 21300000, guid: 67fcdd3c9f63bec4881af588d84992f4, type: 3}
-  - {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
-  playerSprite: {fileID: 21300000, guid: 1c011597f6aa2f74f8899b1133dbac73, type: 3}
-  opponentSprite: {fileID: 21300000, guid: 71dbf2fd8b5cfcf4483cc9954b4012b8, type: 3}
-  mineSprite: {fileID: 21300000, guid: de1d6f43272df9a489afa2e894990bcb, type: 3}
-  windSound: {fileID: 8300000, guid: d1fcc0f475ef1f14ea966eda7c0f4c4b, type: 3}
-  battleTheme: {fileID: 8300000, guid: 04e7a35881a51304b9a255e86f3decf1, type: 3}
-  loadingTheme: {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
-  <MainTheme>k__BackingField: {fileID: 8300000, guid: 0c5172d35c17259419b8d9d6252c64c5, type: 3}
-  moveSound: {fileID: 8300000, guid: 286908c170609b049b68bd8aaa9848d9, type: 3}
-  bombSound: {fileID: 8300000, guid: ce901c4f60cb0ef49b3d294d2920f4a0, type: 3}
   <Gold>k__BackingField: 0
   <Gems>k__BackingField: 0
-  talents: {fileID: 702228779}
-  playerMove: {fileID: 3986023289751456459}
   replay: {fileID: 3986023289751456458}
-  buildGrid: {fileID: 3362860019468482389}
   loadScene: {fileID: 0}
-  storyModeAI: {fileID: 3986023290342884177}
-  changePlayers: {fileID: 5767172279292572940}
-  loadingSound: {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
-  backgroundAudio: {fileID: 0}
-  skills: {fileID: 0}
-  useSkillMenu: {fileID: 0}
-  useSkillButton: {fileID: 0}
-  cancelSkillButton: {fileID: 0}
-  playerVictoryMenu: {fileID: 0}
-  opponentVictoryMenu: {fileID: 0}
-  interfaceMenus: {fileID: 0}
-  turnDisplay: {fileID: 0}
-  settings: {fileID: 0}
-  settingsButton: {fileID: 0}
-  nextFight: {fileID: 0}
-  HUD: {fileID: 0}
-  UI: {fileID: 0}
---- !u!114 &3986023289751456459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bd0f02ac478974ab2b07284eec190f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameSounds: {fileID: 1802522787}
-  explosion: {fileID: 8040237562254255519, guid: 0a6d9a67c8e683b4fa789502c46cbef6, type: 3}
-  dustCloud: {fileID: 8068831425962975574, guid: 88cf3369adca691458777a4dcfb4a205, type: 3}
+  storyManager: {fileID: 0}
 --- !u!114 &3986023289751456458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,31 +197,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a301f57094cfc3e4c99a8aa8fb2f197d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BlockedValue>k__BackingField: -50
-  <PlayerValue>k__BackingField: -5
-  <BaseValue>k__BackingField: 1
-  <OpponentValue>k__BackingField: 20
-  <ImpendingVictoryValue>k__BackingField: 999
-  <ImpendingDoomValue>k__BackingField: 9999
-  <VictoryValue>k__BackingField: 99999
-  <OpponentMoveMax>k__BackingField: 1
-  <StartingGridSize>k__BackingField: 0
-  <MoveCount>k__BackingField: 0
-  <FirstMove>k__BackingField: 1
---- !u!114 &702228779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bedcfcd26faa343aaed37bf0fc52dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillMenu: {fileID: 0}
-  confirmSkillMenu: {fileID: 0}
+  blockedValue: -50
+  enemyValue: -5
+  baseValue: 1
+  playerValue: 20
+  impendingVictoryValue: 999
+  impendingDoomValue: 9999
+  victoryValue: 99999
+  enemyMoveMax: 0
+  startingGridSize: 0
+  moveCount: 0
+  firstMove: 1
+  storyManager: {fileID: 0}
+  playerManager: {fileID: 0}
 --- !u!114 &5767172279292572940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,19 +222,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf09e291da516f54a9a1138ea51faae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebel: {fileID: 1997393375087599813, guid: 4d3a0517ded900547ad69659d2a03796, type: 3}
-  king: {fileID: 7604358717453978752, guid: 24fb266c54de42a44ad14831927a247c, type: 3}
-  enemyRebel: {fileID: 5541962832305427983, guid: acfdb9ae91bf4f741965fea8817dbf99, type: 3}
-  enemyKing: {fileID: 5858944295562308702, guid: bcd2bb947b610f24fb138c997372eee1, type: 3}
-  basilisk: {fileID: 5484828651266759146, guid: 65884539bab0d624bbc6602f2023b85b, type: 3}
-  common: {fileID: 5098008927181646854, guid: abdedf294c7e59c43b5611bacdb6e423, type: 3}
-  dragon: {fileID: 2986297153594491715, guid: 60078840c271d3141bec34d6d6460213, type: 3}
-  engineer: {fileID: 5553676301100157996, guid: 0cdeac92759aa304bbae44779013d420, type: 3}
-  fragmented: {fileID: 8574960008834070539, guid: 5296ac8bfe8e645408d98e039d706442, type: 3}
-  knight: {fileID: 5800327410565823109, guid: 7e3d22dc849f8484a9d22b9e0da13836, type: 3}
-  nimble: {fileID: 4783695148803184759, guid: ca2a9a35c2f6e844abfadfa521538f25, type: 3}
-  peasant: {fileID: 5739856846904170139, guid: cfe26f47520619940ba3b3b780c73217, type: 3}
-  thief: {fileID: 1384992881124998284, guid: 0785bf5a7edc63a449806218f3e1fbef, type: 3}
-  vagabond: {fileID: 6589289043363162881, guid: e83e224c3eb058f48ad002828303475c, type: 3}
-  wizard: {fileID: 5321121658098770586, guid: b078939b32bcdab4081674376e6841ac, type: 3}
-  wraith: {fileID: 9041040959862649917, guid: 777107bb4b951dd4e833852c1f407996, type: 3}

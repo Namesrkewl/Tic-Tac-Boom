@@ -17,6 +17,6 @@ public class TalentInfo : MonoBehaviour
     }
     public void SelectSkill () {
         GameObject skills = GameObject.Find("SkillMenu").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
-        Instantiate(GameManager.instance.talentChoices.talents[Index], skills.transform).name = GameManager.instance.talentChoices.talents[Index].name;
+        //Instantiate(GameManager.instance.talentChoices.talents[Index], skills.transform).name = GameManager.instance.talentChoices.talents[Index].name;
     }
 }
