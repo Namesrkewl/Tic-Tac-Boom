@@ -551,7 +551,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &155759842
 GameObject:
@@ -4219,6 +4219,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425331347}
   m_CullTransparentMesh: 1
+--- !u!1 &1460056791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8888708082892133464, guid: 5c7007ff3e008f549a5a22d9df5574a2, type: 3}
+  m_PrefabInstance: {fileID: 354405545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1460056792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460056791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1470388507
 GameObject:
   m_ObjectHideFlags: 0
