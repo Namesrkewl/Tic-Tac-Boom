@@ -76,7 +76,7 @@
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralSequencer.cs" />
     <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetPlayerObject.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/LogoCinematic.cs" />
-    <Compile Include="Assets/Scripts/Game Logic/BuildGrid.cs" />
+    <Compile Include="Assets/Scripts/Grid Logic/BuildGrid.cs" />
     <Compile Include="Assets/LeanTween/Examples/Archived/TestingPunch.cs" />
     <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetTalentObject.cs" />
     <Compile Include="Assets/Scripts/Sequences/EnterStorySequence.cs" />
@@ -86,7 +86,7 @@
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSpline2d.cs" />
     <Compile Include="Assets/Scripts/Game Logic/Replay.cs" />
     <Compile Include="Assets/Scripts/Animation/NameplateAnimation.cs" />
-    <Compile Include="Assets/Scripts/Game Logic/Player.cs" />
+    <Compile Include="Assets/Scripts/Classes/Player.cs" />
     <Compile Include="Assets/Scripts/Managers/StoryManager.cs" />
     <Compile Include="Assets/LeanTween/Examples/Archived/TestingRigidbodyCS.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/Following.cs" />
@@ -118,6 +118,7 @@
     <Compile Include="Assets/Scripts/Game Logic/SceneHistory.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralCameraShake.cs" />
     <Compile Include="Assets/Scripts/Sequences/IntroSequence.cs" />
+    <Compile Include="Assets/Scripts/Grid Logic/Tile.cs" />
     <Compile Include="Assets/LeanTween/Framework/LeanAudio.cs" />
     <Compile Include="Assets/Scripts/Game Logic/DisplayGems.cs" />
     <Compile Include="Assets/Scripts/ScriptableObjects/Object/PlayerObject.cs" />
@@ -131,7 +132,8 @@
     <Compile Include="Assets/Scripts/Animation/MoveMenu.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplinePerformance.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralBasic.cs" />
-    <Compile Include="Assets/Scripts/Skill Logic/Talent.cs" />
+    <Compile Include="Assets/Scripts/Classes/Talent.cs" />
+    <Compile Include="Assets/Scripts/Grid Logic/GridManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

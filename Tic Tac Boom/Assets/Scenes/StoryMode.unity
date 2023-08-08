@@ -1742,9 +1742,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 254755382}
     m_Modifications:
+    - target: {fileID: 560009533093749871, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
+      propertyPath: m_CellSize.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 560009533093749871, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
+      propertyPath: m_CellSize.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7473923668469902791, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8529011434885049027, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
       propertyPath: m_Name
@@ -1843,15 +1851,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 8529011434885049029, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
-    - {fileID: 8529011434885049030, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
-    - {fileID: 3556705540786640755, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
 --- !u!4 &544337052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7473923668469902791, guid: a9f1c7b49b2613c4db2dc7fd91beccbf, type: 3}
   m_PrefabInstance: {fileID: 544337051}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &544337053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345452329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b6729325fdf4ed8a7fc1989ac8087a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  tile: {fileID: 3907577881478102924, guid: 8ee3116f2d8c44cef9d6fa4a36c83be0, type: 3}
+--- !u!156049354 &544337054
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345452329}
+  m_Enabled: 1
+  m_CellSize: {x: 2.5, y: 2.5, z: 1}
+  m_CellGap: {x: -0.15, y: -0.15, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &587506974
 GameObject:
   m_ObjectHideFlags: 0
@@ -7599,6 +7633,10 @@ PrefabInstance:
       propertyPath: loadScene
       value: 
       objectReference: {fileID: 323700050}
+    - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3986023289751456305, guid: 7c3e862e16b03664dac756eb97e5a3be, type: 3}
       propertyPath: storyManager
       value: 

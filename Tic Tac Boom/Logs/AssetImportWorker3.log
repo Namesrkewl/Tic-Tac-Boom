@@ -16,13 +16,13 @@ COMMAND LINE ARGUMENTS:
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker3
 -projectPath
 /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker3.log
 -srvPort
-52553
+52668
 Successfully changed project path to: /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
 /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -54,7 +54,7 @@ Successfully changed project path to: /Users/namesrkewl/Documents/GitHub/Tic-Tac
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 146.93 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 173.25 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.9f1 (ad3870b89536)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Resources/UnitySubsystems
@@ -69,91 +69,91 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56881
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56908
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.002360 seconds.
+Registered in 0.001530 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 150.28 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 160.44 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.544 seconds
+- Completed reload, in  1.665 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1545ms)
-		BeginReloadAssembly (159ms)
+	ReloadAssembly (1667ms)
+		BeginReloadAssembly (152ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (3ms)
-		EndReloadAssembly (1148ms)
-			LoadAssemblies (155ms)
+		EndReloadAssembly (1267ms)
+			LoadAssemblies (150ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (119ms)
+			SetupTypeCache (129ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (849ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (939ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (19ms)
+				InitializePlatformSupportModulesInManaged (23ms)
 				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (150ms)
+				RefreshPlugins (160ms)
 				BeforeProcessingInitializeOnLoad (4ms)
-				ProcessInitializeOnLoadAttributes (492ms)
-				ProcessInitializeOnLoadMethodAttributes (183ms)
+				ProcessInitializeOnLoadAttributes (555ms)
+				ProcessInitializeOnLoadMethodAttributes (195ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004869 seconds.
+Registered in 0.008181 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 152.03 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 161.34 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
 Package Manager log level set to [2]
-- Completed reload, in  3.270 seconds
+- Completed reload, in  3.299 seconds
 Domain Reload Profiling:
-	ReloadAssembly (3272ms)
-		BeginReloadAssembly (236ms)
+	ReloadAssembly (3302ms)
+		BeginReloadAssembly (237ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (38ms)
+			DisableScriptedObjects (43ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (2731ms)
-			LoadAssemblies (154ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (2752ms)
+			LoadAssemblies (148ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (353ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (75ms)
-			SetupLoadedEditorAssemblies (1929ms)
+			SetupTypeCache (370ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (81ms)
+			SetupLoadedEditorAssemblies (1892ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (11ms)
+				InitializePlatformSupportModulesInManaged (13ms)
 				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (152ms)
-				BeforeProcessingInitializeOnLoad (199ms)
-				ProcessInitializeOnLoadAttributes (1249ms)
-				ProcessInitializeOnLoadMethodAttributes (315ms)
+				RefreshPlugins (161ms)
+				BeforeProcessingInitializeOnLoad (204ms)
+				ProcessInitializeOnLoadAttributes (1144ms)
+				ProcessInitializeOnLoadMethodAttributes (368ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (11ms)
+			AwakeInstancesAfterBackupRestoration (13ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launching external process: /Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.10 seconds
-Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler after 0.09 seconds
+Refreshing native plugins compatible for Editor in 1.27 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5995 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 72 unused Assets / (1.9 MB). Loaded Objects now: 6418.
-Memory consumption went from 227.0 MB to 225.2 MB.
-Total: 5.277791 ms (FindLiveObjects: 0.387833 ms CreateObjectMapping: 0.175708 ms MarkObjects: 3.488625 ms  DeleteObjects: 1.224834 ms)
+Unloading 5997 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 72 unused Assets / (1.9 MB). Loaded Objects now: 6420.
+Memory consumption went from 226.9 MB to 225.1 MB.
+Total: 4.745792 ms (FindLiveObjects: 0.421792 ms CreateObjectMapping: 0.178333 ms MarkObjects: 3.534292 ms  DeleteObjects: 0.610250 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -167,40 +167,58 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 47238.589878 seconds.
-  path: Assets/Resources/Tiles/Basic/middle-middle.png
-  artifactKey: Guid(e5569a32c2bd89942bcc062cca0afa55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tiles/Basic/middle-middle.png using Guid(e5569a32c2bd89942bcc062cca0afa55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82cc2ae2a5220542d3de9ab55f355917') in 0.257259 seconds 
+  Time since last request: 53816.995941 seconds.
+  path: Assets/Resources/UI/Buttons/win_menu_home_button.png
+  artifactKey: Guid(fcac9791c0b922c45a6c79dbad9650c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/win_menu_home_button.png using Guid(fcac9791c0b922c45a6c79dbad9650c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37307c36b15fda5cdb928e915f77f238') in 0.328595 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000326 seconds.
-  path: Assets/Resources/Tiles/Basic/middle-left.png
-  artifactKey: Guid(4209648cb4fbe1f43b40ebf53bddb1d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tiles/Basic/middle-left.png using Guid(4209648cb4fbe1f43b40ebf53bddb1d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '824805184de6fc801e3fe51dbabd1804') in 0.020577 seconds 
+  Time since last request: 0.000197 seconds.
+  path: Assets/Resources/Artwork/Wall_gold_damaged.png
+  artifactKey: Guid(1c6862db741ecd04cbf9e7d80347d536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/Wall_gold_damaged.png using Guid(1c6862db741ecd04cbf9e7d80347d536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6af6ff211224401891620e639680f6f') in 0.027801 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 7.883799 seconds.
-  path: Assets/Resources/Prefabs/Tiles/Basic
-  artifactKey: Guid(829bfd76125864d4889b5c4e8e8a0b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Prefabs/Tiles/Basic using Guid(829bfd76125864d4889b5c4e8e8a0b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7089383f876a15119100c1d49a9f661') in 0.001505 seconds 
+  Time since last request: 0.000048 seconds.
+  path: Assets/LeanTween/Examples/Material/Futuro_WindowBack.psd
+  artifactKey: Guid(678c92572cc724845a460c87117f5353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LeanTween/Examples/Material/Futuro_WindowBack.psd using Guid(678c92572cc724845a460c87117f5353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2a2ebf0d4fea3d23a1733877fa6c52e') in 0.570917 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.124956 seconds.
-  path: Assets/Resources/Prefabs/Tiles/Basic/bottom-left.prefab
-  artifactKey: Guid(d869adb0648b26a428433d275ed612a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Prefabs/Tiles/Basic/bottom-left.prefab using Guid(d869adb0648b26a428433d275ed612a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc283695d103dd784de5216dc1573c88') in 0.619919 seconds 
+  Time since last request: 0.000070 seconds.
+  path: Assets/Resources/UI/Windows/completion_menu_sign.png
+  artifactKey: Guid(3bab03deebb6df548ae794fa50a30466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Windows/completion_menu_sign.png using Guid(3bab03deebb6df548ae794fa50a30466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ba47a3c2ae15bc0d7936be05cd93205') in 0.052929 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000068 seconds.
-  path: Assets/Resources/Prefabs/Tiles/Basic/middle-middle.prefab
-  artifactKey: Guid(04c9d8c98fe1b2f40b10f5c3d36da0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Prefabs/Tiles/Basic/middle-middle.prefab using Guid(04c9d8c98fe1b2f40b10f5c3d36da0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ecec6de963fa8d65b9172eda6aa1ee2') in 0.021732 seconds 
+  Time since last request: 0.000083 seconds.
+  path: Assets/Resources/Backgrounds/vs_screen_clouds.png
+  artifactKey: Guid(211a162927aa19b45a9785eff0f2d24f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Backgrounds/vs_screen_clouds.png using Guid(211a162927aa19b45a9785eff0f2d24f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d963a179b568d2b8f97ae603dccdfef') in 0.181798 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 34.226434 seconds.
-  path: Assets/Resources/Tiles/Alternate/middle-left.png
-  artifactKey: Guid(0df67381c07d6e34198c710b554753e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tiles/Alternate/middle-left.png using Guid(0df67381c07d6e34198c710b554753e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ec271dd0fd1778f986193d45eccfe2a') in 0.022374 seconds 
+  Time since last request: 0.000066 seconds.
+  path: Assets/Resources/UI/Buttons/flipped_banner_button.png
+  artifactKey: Guid(896be705aaf37c9459bbb9fea1f9f45c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/flipped_banner_button.png using Guid(896be705aaf37c9459bbb9fea1f9f45c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '516d77d7981681fe7294d3f36ccb6e10') in 0.015983 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Resources/UI/Buttons/credit_button.png
+  artifactKey: Guid(6b178063860cc1a4cbe4a10c0a79114f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Buttons/credit_button.png using Guid(6b178063860cc1a4cbe4a10c0a79114f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '527d6d334f38a2cf0dafdf6ae50a5135') in 0.015939 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000064 seconds.
+  path: Assets/LeanTween/Examples/Material/Futuro_SineWave.psd
+  artifactKey: Guid(d835741a3c4a14a0aa5f7536c46456c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LeanTween/Examples/Material/Futuro_SineWave.psd using Guid(d835741a3c4a14a0aa5f7536c46456c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21b3f0e8321f095c169f94b8f1bb0f38') in 0.011843 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Resources/Artwork/game_view_fog_2.png
+  artifactKey: Guid(3e347f4265d343c448e6bd31a2d9b115) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Artwork/game_view_fog_2.png using Guid(3e347f4265d343c448e6bd31a2d9b115) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '732718909474a256a417ee2e97374c67') in 0.144987 seconds 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
 Process exiting
