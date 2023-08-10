@@ -4,8 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(Grid))]
 public class GridManager : MonoBehaviour {
-    [SerializeField] private Grid grid;
-    [SerializeField] private GameObject content, container;
+    public static GridManager instance;
+    public Grid grid;
+    public GameObject content, container;
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private Camera gridCamera;
     [field: SerializeField] public List<List<GameObject>> Tiles { get; private set; }
@@ -16,17 +17,17 @@ public class GridManager : MonoBehaviour {
         Generating,
         Changing,
         Formatting,
+        Positioning,
         Tracking,
         Destroying
     }
 
-    private void Start() {
-        state = State.Generating;
-        StartCoroutine(GenerateGrid(StoryManager.instance.gridSize));
+    private void Awake() {
+        instance = this;
     }
 
     private void Update() {
-        if (StoryManager.instance.gridSize != StoryManager.instance.newGridSize && StoryManager.instance.newGridSize != 0 && state == State.Idle) {
+        if (StoryManager.instance.gridSize != StoryManager.instance.newGridSize && StoryManager.instance.newGridSize > 0 && state == State.Idle) {
             StartCoroutine(ChangeGridSize(StoryManager.instance.gridSize, StoryManager.instance.newGridSize));
             StoryManager.instance.gridSize = StoryManager.instance.newGridSize;
         }
@@ -97,6 +98,9 @@ public class GridManager : MonoBehaviour {
         }
         state = State.Tracking;
         StartCoroutine(FollowGrid(size));
+        yield return new WaitForSeconds(2f);
+        state = State.Positioning;
+        StartCoroutine(ResetTilePosition(size));
         yield return null;
     }
     public IEnumerator FollowGrid(int size) {
@@ -110,17 +114,22 @@ public class GridManager : MonoBehaviour {
             newCameraPosition = centerTile.transform.position;
         }
         newCameraPosition -= new Vector3(0, 0, 4f + (2.5f * size));
-        LeanTween.move(gridCamera.gameObject, newCameraPosition, 1f).setEaseOutCubic();
-        state = State.Idle;
+        if (state == State.Tracking) {
+            LeanTween.move(gridCamera.gameObject, newCameraPosition, 1f).setEaseOutCubic();
+        } else {
+            gridCamera.transform.position = newCameraPosition;
+            state = State.Idle;
+        }
         yield return null;
     }
-    public IEnumerator ResetTilePosition() {
+    public IEnumerator ResetTilePosition(int size) {
         content.transform.localPosition = Vector3.zero;
         for (int x = 0; x < Tiles.Count; x++) {
             for (int y = 0; y < Tiles[x].Count; y++) {
                 Tiles[x][y].transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y));
             }
         }
+        StartCoroutine(FollowGrid(size));
         yield return null;
     }
     public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.BottomLeft) {
@@ -266,7 +275,6 @@ public class GridManager : MonoBehaviour {
                     break;
             }
         }
-        StartCoroutine(ResetTilePosition());
         state = State.Formatting;
         StartCoroutine(FormatTiles(newSize));
         yield return null;

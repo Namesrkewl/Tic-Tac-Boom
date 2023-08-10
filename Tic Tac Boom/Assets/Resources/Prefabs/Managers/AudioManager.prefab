@@ -53,6 +53,7 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: 9da0e9e7d3f85f3419da9fc4d7cd6125, type: 3}
   - {fileID: 8300000, guid: 04e7a35881a51304b9a255e86f3decf1, type: 3}
+  - {fileID: 8300000, guid: 0c5172d35c17259419b8d9d6252c64c5, type: 3}
   soundEffectClips:
   - {fileID: 8300000, guid: d1fcc0f475ef1f14ea966eda7c0f4c4b, type: 3}
   - {fileID: 8300000, guid: 286908c170609b049b68bd8aaa9848d9, type: 3}

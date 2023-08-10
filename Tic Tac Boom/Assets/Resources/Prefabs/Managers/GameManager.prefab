@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 3986023289751456306}
   - component: {fileID: 3986023289751456305}
   - component: {fileID: 3986023289751456458}
-  - component: {fileID: 3362860019468482389}
-  - component: {fileID: 1802522787}
-  - component: {fileID: 3986023290342884177}
   - component: {fileID: 5767172279292572940}
   m_Layer: 0
   m_Name: GameManager
@@ -51,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Gold>k__BackingField: 0
   <Gems>k__BackingField: 0
+  tileset: 0
   replay: {fileID: 3986023289751456458}
   loadScene: {fileID: 0}
   storyManager: {fileID: 0}
@@ -66,150 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df70531b54b52f444b5ab98bf2a7707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3362860019468482389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b62cc2bc7f00c0d4ea4540fbe79f09c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 1947786409429827111, guid: d869adb0648b26a428433d275ed612a5, type: 3}
-  - {fileID: 1947786409429827111, guid: e859aa77d898d1d4cb876d274b2ec4bd, type: 3}
-  - {fileID: 4030684237722459877, guid: a6258312e75082843ae0f6944deed01c, type: 3}
-  - {fileID: 4755542659372305704, guid: fadca5083a2c38243a1370d3994a28aa, type: 3}
-  - {fileID: 1880384969801151169, guid: 04c9d8c98fe1b2f40b10f5c3d36da0fc, type: 3}
-  - {fileID: 2022622802596403893, guid: e76f4556a7635624d966d713089327f9, type: 3}
-  - {fileID: 5270271123680342606, guid: d77f2b0227cd05240993a34833e68301, type: 3}
-  - {fileID: 8507192325667751793, guid: 562fe4379ce5e3a44aaf51997f5f3528, type: 3}
-  - {fileID: 4256134460573324554, guid: 33a0c6a6432d8634dacd8e7b64b64234, type: 3}
-  grid: {fileID: 0}
---- !u!82 &1802522787
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &3986023290342884177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3986023289751456307}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a301f57094cfc3e4c99a8aa8fb2f197d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockedValue: -50
-  enemyValue: -5
-  baseValue: 1
-  playerValue: 20
-  impendingVictoryValue: 999
-  impendingDoomValue: 9999
-  victoryValue: 99999
-  enemyMoveMax: 0
-  startingGridSize: 0
-  moveCount: 0
-  firstMove: 1
-  storyManager: {fileID: 0}
-  playerManager: {fileID: 0}
 --- !u!114 &5767172279292572940
 MonoBehaviour:
   m_ObjectHideFlags: 0

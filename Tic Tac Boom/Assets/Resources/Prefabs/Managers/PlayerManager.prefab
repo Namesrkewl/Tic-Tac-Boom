@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6a860f4704fc0429b4372d4ffee375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
-  enemyObject: {fileID: 0}
+  setPlayerObject: {fileID: 0}
+  setEnemyObject: {fileID: 0}
+  playerObject: {fileID: 11400000, guid: d038cc5e1ebe4492489230b1a12f58d1, type: 2}
+  enemyObject: {fileID: 11400000, guid: 4542de371a74547599290c23b372fb06, type: 2}
   exiledSprites:
   - {fileID: 21300000, guid: 21a3a237ff5813c4997fcb14afb838db, type: 3}
   - {fileID: 21300000, guid: 5f391c7d90f2de548bc768e3eb560979, type: 3}
@@ -83,6 +85,10 @@ MonoBehaviour:
   storyModeAI: {fileID: 3432761469310875371}
   audioManager: {fileID: 0}
   particleSystemsManager: {fileID: 0}
+  skillMenu: {fileID: 0}
+  confirmSkillMenu: {fileID: 0}
+  gridModificationMenu: {fileID: 0}
+  skills: {fileID: 0}
 --- !u!114 &3432761469310875371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,9 +108,7 @@ MonoBehaviour:
   impendingVictoryValue: 999
   impendingDoomValue: 9999
   victoryValue: 99999
-  enemyMoveMax: 0
   startingGridSize: 0
-  moveCount: 0
   firstMove: 1
   storyManager: {fileID: 0}
   playerManager: {fileID: 3432761469310875369}

@@ -23,6 +23,22 @@ public class Tile : MonoBehaviour
         GenerateOccupant();
     }
 
+    private void OnEnable() {
+        if (gameObject.scene.isLoaded) {
+            ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1], GridManager.instance.container.transform);
+            dust.transform.position = transform.position;
+            dust.Play();
+        }
+    }
+
+    private void OnDestroy() {
+        if (gameObject.scene.isLoaded) {
+            ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1]);
+            dust.transform.position = transform.position;
+            dust.Play();
+        }
+    }
+
     public void SetSprite(string path) {
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(path);
     }
