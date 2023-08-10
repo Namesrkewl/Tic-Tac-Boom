@@ -40,7 +40,7 @@ public class Player
         Wraith
     }
 
-    public Sprite characterSprite, playerSprite, skin;
+    public Sprite playerSprite, characterSprite, skin;
     public List<Talent> talents;
     public int maxMoves, remainingMoves;
     public PlayerObject playerObject;

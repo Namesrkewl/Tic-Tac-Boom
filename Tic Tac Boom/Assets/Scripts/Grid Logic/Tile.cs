@@ -25,17 +25,21 @@ public class Tile : MonoBehaviour
 
     private void OnEnable() {
         if (gameObject.scene.isLoaded) {
+            /*
             ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1], GridManager.instance.container.transform);
             dust.transform.position = transform.position;
             dust.Play();
+            */
         }
     }
 
     private void OnDestroy() {
         if (gameObject.scene.isLoaded) {
+            /*
             ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1]);
             dust.transform.position = transform.position;
             dust.Play();
+            */
         }
     }
 

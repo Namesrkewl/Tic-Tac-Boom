@@ -8,11 +8,9 @@ public class StoryManager : MonoBehaviour
     public static StoryManager instance;
     public int turn, round, stage, gridSize, newGridSize;
     public bool updatingGrid;
-    public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu;
-    public PlayerManager playerManager;
-    public AudioManager audioManager;
+    public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu, levelClearMenu;
 
-    void Awake() {
+    private void Awake() {
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -21,12 +19,33 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (SceneManager.GetActiveScene().name == "StoryMode") {
+            UI = GameObject.Find("UI");
+            HUD = GameObject.Find("HUD");
+            nextFight = GameObject.Find("NextFight");
+            grid = GameObject.Find("Grid");
+            turnDisplay = GameObject.Find("TurnDisplay");
+            playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
+            enemyVictoryMenu = GameObject.Find("EnemyVictoryMenu");
+            levelClearMenu = GameObject.Find("LevelClearMenu");
+        }
+    }
+
+    void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void Update() {
         //Debug.Log(Player.activeTalent);
     }
 
-    public GameState gameState;
-    public enum GameState {
+    public State state;
+    public enum State {
         Loading,
         LevelStart,
         PlayerTurn,
@@ -42,17 +61,17 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator StoryMode() {
         while (!GameOver()) {
-            switch (gameState) {
-                case GameState.EndTurn:
+            switch (state) {
+                case State.EndTurn:
                     yield return StartCoroutine(EndTurn());
                     break;
-                case GameState.EnemyTurn:
+                case State.EnemyTurn:
                     yield return StartCoroutine(EnemyTurn());
                     break;
-                case GameState.GridLocked:
+                case State.GridLocked:
                     yield return StartCoroutine(GridLocked());
                     break;
-                case GameState.PlayerTurn:
+                case State.PlayerTurn:
                     yield return StartCoroutine(PlayerTurn());
                     break;
                 default:
@@ -61,43 +80,51 @@ public class StoryManager : MonoBehaviour
             yield return null;
         }
 
+        StartCoroutine(EndGame());
+
+        yield return null;
+    }
+
+    private IEnumerator EndGame() {
+        switch (state) {
+            case State.Draw:
+                StartCoroutine(Draw());
+                break;
+            case State.PlayerVictory:
+                StartCoroutine(PlayerVictory());
+                break;
+            case State.EnemyVictory:
+                StartCoroutine(EnemyVictory());
+                break;
+        }
+
         yield return null;
     }
 
     public void NewGame() {
-        UI = GameObject.Find("UI");
-        HUD = GameObject.Find("HUD");
-        nextFight = GameObject.Find("NextFight");
-        grid = GameObject.Find("Grid");
-        turnDisplay = GameObject.Find("TurnDisplay");
-        playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
-        enemyVictoryMenu = GameObject.Find("EnemyVictoryMenu");
-        playerManager.skillMenu = GameObject.Find("SkillMenu");
-        playerManager.skills = GameObject.Find("Skills");
-        playerManager.SetPlayers(true);
-        playerManager.SetSkins();
-        playerManager.player.maxMoves = 1;
+        PlayerManager.instance.SetPlayers(true);
+        PlayerManager.instance.SetSkins();
+        PlayerManager.instance.player.maxMoves = 1;
         turn = 1;
         round = 1;
         stage = 1;
         gridSize = 3;
         newGridSize = 3;
-        gameState = GameState.Loading;
+        state = State.Loading;
         StartCoroutine(Loading());
     }
 
     private IEnumerator Loading() {
-        playerManager.SetCharacterSprite(playerManager.player);
-        playerManager.enemy.character = Player.Character.Thief;
-        playerManager.SetCharacterSprite(playerManager.enemy);
-        playerManager.SetAI(playerManager.enemy);
-        playerManager.SetSkills();
-        newGridSize = playerManager.storyModeAI.startingGridSize;
+        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
+        PlayerManager.instance.enemy.character = Player.Character.Thief;
+        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
+        PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
+        PlayerManager.instance.SetSkills();
+        newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
         gridSize = newGridSize;
         GridManager.instance.state = GridManager.State.Generating;
         StartCoroutine(GridManager.instance.GenerateGrid(gridSize));
         UI.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject HUD = GameObject.Find("HUD");
         GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
         turnIndicator.SetActive(false);
         GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).gameObject;
@@ -120,15 +147,15 @@ public class StoryManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
         rollingFog.SetActive(true);
-        audioManager.soundEffects.PlayOneShot(audioManager.soundEffectClips[0]);
+        AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         yield return new WaitForSeconds(0.5f);
         LeanTween.alpha(background, 0, 1f);
         yield return new WaitForSeconds(1f);
         background.SetActive(false);
-        audioManager.soundEffects.Stop();
-        if (audioManager.backgroundMusic.clip != audioManager.musicClips[0]) {
-            audioManager.soundEffects.clip = audioManager.musicClips[0];
-            audioManager.soundEffects.Play();
+        AudioManager.instance.soundEffects.Stop();
+        if (AudioManager.instance.backgroundMusic.clip != Resources.Load<AudioClip>("Sounds/Music/loading_theme")) {
+            AudioManager.instance.backgroundMusic.clip = Resources.Load<AudioClip>("Sounds/Music/loading_theme");
+            AudioManager.instance.backgroundMusic.Play();
         }
         LeanTween.alpha(clouds, 0, 0.1f);
         yield return new WaitForSeconds(1f);
@@ -160,67 +187,67 @@ public class StoryManager : MonoBehaviour
         clouds.SetActive(false);
         fog.SetActive(false);
         rollingFog.GetComponent<ParticleSystem>().Stop();
-        audioManager.soundEffects.Stop();
-        audioManager.soundEffects.PlayOneShot(audioManager.soundEffectClips[0]);
+        AudioManager.instance.backgroundMusic.Stop();
+        AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         LeanTween.alpha(darkVeil, 0, 1f);
         yield return new WaitForSeconds(2f);
         darkVeil.SetActive(false);
-        audioManager.backgroundMusic.Stop();
-        audioManager.backgroundMusic.clip = audioManager.musicClips[1];
-        audioManager.backgroundMusic.Play();
+        AudioManager.instance.backgroundMusic.Stop();
+        AudioManager.instance.backgroundMusic.clip = Resources.Load<AudioClip>("Sounds/Music/battle_theme");
+        AudioManager.instance.backgroundMusic.Play();
         cover.SetActive(false);
         playerIndicator.SetActive(true);
         enemyIndicator.SetActive(true);
         turnIndicator.SetActive(true);
         UI.GetComponent<CanvasGroup>().alpha = 1;
         yield return new WaitForSeconds(1f);
-        gameState = GameState.LevelStart;
+        state = State.LevelStart;
         StartCoroutine(LevelStart());
         yield return null;
     }
 
     private IEnumerator LevelStart() {
-        if (playerManager.player.faction == Player.Faction.Exiled) {
-            gameState = GameState.PlayerTurn;
+        if (PlayerManager.instance.player.faction == Player.Faction.Exiled) {
+            state = State.PlayerTurn;
         } else {
-            gameState = GameState.EnemyTurn;
+            state = State.EnemyTurn;
         }
         StartCoroutine(StoryMode());
         yield return null;
     }
 
     private IEnumerator PlayerTurn() {
-        if (playerManager.player.state == Player.State.Inactive) {
-            playerManager.player.state = Player.State.Playing;
-            playerManager.enemy.state = Player.State.Inactive;
-            playerManager.player.remainingMoves = playerManager.player.maxMoves;
+        if (PlayerManager.instance.player.state == Player.State.Inactive) {
+            PlayerManager.instance.player.state = Player.State.Playing;
+            PlayerManager.instance.enemy.state = Player.State.Inactive;
+            PlayerManager.instance.player.remainingMoves = PlayerManager.instance.player.maxMoves;
             turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
             turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
         }
         
-        if (playerManager.player.remainingMoves <= 0) {
-            playerManager.player.state = Player.State.Idle;
-            gameState = GameState.EndTurn;
+        if (PlayerManager.instance.player.remainingMoves <= 0) {
+            PlayerManager.instance.player.state = Player.State.Idle;
+            state = State.EndTurn;
         }
 
         yield return null;
     }
 
     private IEnumerator EnemyTurn() {
-        if (playerManager.enemy.state == Player.State.Inactive) {
-            playerManager.enemy.state = Player.State.Playing;
-            playerManager.player.state = Player.State.Inactive;
-            playerManager.enemy.remainingMoves = playerManager.enemy.maxMoves;
+        if (PlayerManager.instance.enemy.state == Player.State.Inactive) {
+            PlayerManager.instance.enemy.state = Player.State.Playing;
+            PlayerManager.instance.player.state = Player.State.Inactive;
+            PlayerManager.instance.enemy.remainingMoves = PlayerManager.instance.enemy.maxMoves;
             turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
             turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        if (playerManager.enemy.remainingMoves > 0) {
-            playerManager.StartPlayerMove(playerManager.storyModeAI.AIMove());
+        if (PlayerManager.instance.enemy.remainingMoves > 0) {
+            PlayerManager.instance.StartPlayerMove(PlayerManager.instance.storyModeAI.AIMove());
             yield return new WaitForSeconds(0.2f);
         } else {
-            playerManager.enemy.state = Player.State.Idle;
-            gameState = GameState.EndTurn;
+            PlayerManager.instance.enemy.state = Player.State.Idle;
+            state = State.EndTurn;
         }
 
         yield return null;
@@ -229,35 +256,32 @@ public class StoryManager : MonoBehaviour
     private IEnumerator EndTurn() {
         turn++;
         round = turn / 2;
-        if (playerManager.player.state == Player.State.Idle) {
-            gameState = GameState.EnemyTurn;
-        } else if (playerManager.enemy.state == Player.State.Idle) {
-            gameState = GameState.PlayerTurn;
+        if (PlayerManager.instance.player.state != Player.State.Inactive) {
+            state = State.EnemyTurn;
+        } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
+            state = State.PlayerTurn;
         }
         yield return null;
     }
 
     private IEnumerator StageClear() {
         yield return new WaitForSeconds(2f);
-        GameObject ui = GameObject.Find("UI");
         UI.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject HUD = GameObject.Find("HUD");
         GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
         turnIndicator.SetActive(false);
-        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).gameObject;
         playerIndicator.SetActive(false);
-        GameObject enemyIndicator = HUD.transform.GetChild(2).GetChild(0).GetChild(0).gameObject;
+        GameObject enemyIndicator = HUD.transform.GetChild(2).GetChild(0).gameObject;
         enemyIndicator.SetActive(false);
-        GameObject nextFight = GameObject.Find("NextFight");
         GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
         rollingFog.GetComponent<ParticleSystem>().Play();
+        AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         yield return new WaitForSeconds(1f);
-        GameObject levelClear = GameObject.Find("LevelClearMenu");
         /*
         talentChoices.ClearTalentChoices();
         talentChoices.GenerateSkills(3);*/
-        levelClear.transform.localPosition = Vector3.zero;
-        levelClear.transform.GetChild(0).gameObject.SetActive(true);
+        levelClearMenu.transform.localPosition = Vector3.zero;
+        levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
         yield return null;
     }
 
@@ -271,6 +295,7 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator PlayerVictory() {
+        StopPlayers();
         if (stage < 15) {
             StartCoroutine(StageClear());
         } else {
@@ -280,11 +305,21 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator EnemyVictory() {
+        StopPlayers();
         enemyVictoryMenu.transform.localPosition = Vector3.zero;
         yield return null;
     }
 
     private IEnumerator Draw() {
+        Debug.Log("Draw! Wiping the board, turn is passed to the next player");
+        StartCoroutine(GridManager.instance.ResolveDraw());
+        yield return new WaitForSeconds(2f);
+        if (PlayerManager.instance.player.state != Player.State.Inactive) {
+            state = State.EnemyTurn;
+        } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
+            state = State.PlayerTurn;
+        }
+        StartCoroutine(StoryMode());
         yield return null;
     }
     public bool GameOver() {
@@ -308,8 +343,7 @@ public class StoryManager : MonoBehaviour
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
                     if (playerSpacesWon == gridSize) {
-                        gameState = GameState.PlayerVictory;
-                        StartCoroutine(PlayerVictory());
+                        state = State.PlayerVictory;
                         break;
                     } else {
                         continue;
@@ -327,8 +361,7 @@ public class StoryManager : MonoBehaviour
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
                     if (playerSpacesWon == gridSize) {
-                        gameState = GameState.PlayerVictory;
-                        StartCoroutine(PlayerVictory());
+                        state = State.PlayerVictory;
                         break;
                     } else {
                         continue;
@@ -346,8 +379,7 @@ public class StoryManager : MonoBehaviour
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
                 if (playerSpacesWon == gridSize) {
-                    gameState = GameState.PlayerVictory;
-                    StartCoroutine(PlayerVictory());
+                    state = State.PlayerVictory;
                     break;
                 } else {
                     continue;
@@ -364,8 +396,7 @@ public class StoryManager : MonoBehaviour
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
                 if (playerSpacesWon == gridSize) {
-                    gameState = GameState.PlayerVictory;
-                    StartCoroutine(PlayerVictory());
+                    state = State.PlayerVictory;
                     break;
                 } else {
                     continue;
@@ -385,8 +416,11 @@ public class StoryManager : MonoBehaviour
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
                     if (enemySpacesWon == gridSize) {
-                        gameState = GameState.EnemyVictory;
-                        StartCoroutine(EnemyVictory());
+                        if (state == State.PlayerVictory) {
+                            state = State.Draw;
+                        } else {
+                            state = State.EnemyVictory;
+                        }
                         break;
                     } else {
                         continue;
@@ -404,8 +438,11 @@ public class StoryManager : MonoBehaviour
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
                     if (enemySpacesWon == gridSize) {
-                        gameState = GameState.EnemyVictory;
-                        StartCoroutine(EnemyVictory());
+                        if (state == State.PlayerVictory) {
+                            state = State.Draw;
+                        } else {
+                            state = State.EnemyVictory;
+                        }
                         break;
                     } else {
                         continue;
@@ -423,8 +460,11 @@ public class StoryManager : MonoBehaviour
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
                 if (enemySpacesWon == gridSize) {
-                    gameState = GameState.EnemyVictory;
-                    StartCoroutine(EnemyVictory());
+                    if (state == State.PlayerVictory) {
+                        state = State.Draw;
+                    } else {
+                        state = State.EnemyVictory;
+                    }
                     break;
                 } else {
                     continue;
@@ -441,8 +481,11 @@ public class StoryManager : MonoBehaviour
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
                 if (enemySpacesWon == gridSize) {
-                    gameState = GameState.EnemyVictory;
-                    StartCoroutine(EnemyVictory());
+                    if (state == State.PlayerVictory) {
+                        state = State.Draw;
+                    } else {
+                        state = State.EnemyVictory;
+                    }
                     break;
                 } else {
                     continue;
@@ -452,7 +495,9 @@ public class StoryManager : MonoBehaviour
             }
         }
 
-        if (gameState == GameState.PlayerVictory || gameState == GameState.EnemyVictory) {
+        if (state == State.Draw) {
+            return true;
+        } else if (state == State.PlayerVictory || state == State.EnemyVictory) {
             return true;
         } else {
             gridLocked = true;
@@ -464,10 +509,14 @@ public class StoryManager : MonoBehaviour
                 }
             }
             if (gridLocked) {
-                gameState = GameState.GridLocked;
+                state = State.GridLocked;
             }
         }
 
         return false;
+    }
+    public void StopPlayers() {
+        PlayerManager.instance.player.state = Player.State.Inactive;
+        PlayerManager.instance.enemy.state = Player.State.Inactive;
     }
 }

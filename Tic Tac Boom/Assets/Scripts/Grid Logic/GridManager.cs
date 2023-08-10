@@ -58,6 +58,19 @@ public class GridManager : MonoBehaviour {
         state = State.Idle;
         yield return null;
     }
+
+    public IEnumerator ResolveDraw() {
+        for (int x = 0; x < Tiles.Count; x++) {
+            for (int y = 0; y < Tiles.Count; y++) {
+                Tiles[x][y].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
+                Tiles[x][y].transform.GetChild(0).gameObject.SetActive(false);
+                Tiles[x][y].tag = "Untagged";
+            }
+        }
+        state = State.Idle;
+        yield return null;
+    }
+
     public IEnumerator FormatTiles(int size) {
         string xString, yString;
         for (int x = 0; x < Tiles.Count; x++) {
@@ -97,29 +110,10 @@ public class GridManager : MonoBehaviour {
             }
         }
         state = State.Tracking;
-        StartCoroutine(FollowGrid(size));
+        StartCoroutine(CameraManager.instance.FollowGrid(size));
         yield return new WaitForSeconds(2f);
         state = State.Positioning;
         StartCoroutine(ResetTilePosition(size));
-        yield return null;
-    }
-    public IEnumerator FollowGrid(int size) {
-        Vector3 newCameraPosition;
-        if (size % 2 == 0) {
-            GameObject midBotLeftTile = GameObject.Find($"Tile {(size / 2) - 1},{(size / 2) - 1}");
-            GameObject midTopRightTile = GameObject.Find($"Tile {size / 2},{size / 2}");
-            newCameraPosition = midBotLeftTile.transform.position + ((midTopRightTile.transform.position - midBotLeftTile.transform.position) / 2);
-        } else {
-            GameObject centerTile = GameObject.Find($"Tile {size / 2},{size / 2}");
-            newCameraPosition = centerTile.transform.position;
-        }
-        newCameraPosition -= new Vector3(0, 0, 4f + (2.5f * size));
-        if (state == State.Tracking) {
-            LeanTween.move(gridCamera.gameObject, newCameraPosition, 1f).setEaseOutCubic();
-        } else {
-            gridCamera.transform.position = newCameraPosition;
-            state = State.Idle;
-        }
         yield return null;
     }
     public IEnumerator ResetTilePosition(int size) {
@@ -129,7 +123,7 @@ public class GridManager : MonoBehaviour {
                 Tiles[x][y].transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y));
             }
         }
-        StartCoroutine(FollowGrid(size));
+        StartCoroutine(CameraManager.instance.FollowGrid(size));
         yield return null;
     }
     public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.BottomLeft) {

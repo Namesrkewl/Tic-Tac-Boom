@@ -6,7 +6,7 @@ using TMPro;
 
 public class SetPlayerObject : MonoBehaviour
 {
-    public Image characterSprite, playerSprite;
+    public Image playerSprite, characterSprite;
     new public TextMeshProUGUI name;
     public PlayerObject playerObject;
 

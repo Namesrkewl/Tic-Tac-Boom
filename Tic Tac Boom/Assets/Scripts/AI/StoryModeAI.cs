@@ -16,8 +16,6 @@ public class StoryModeAI : MonoBehaviour
     public int victoryValue = 99999;
     public int startingGridSize = 0;
     public bool firstMove = true;
-    public StoryManager storyManager;
-    public PlayerManager playerManager;
 
     protected virtual void Start() {
         if (gameObject != GameManager.instance) {
@@ -27,7 +25,7 @@ public class StoryModeAI : MonoBehaviour
 
     public virtual GameObject AIMove() {
         // Single Move AI Based on the best move by point value
-        ParseTileValues(playerManager.enemy.remainingMoves);
+        ParseTileValues(PlayerManager.instance.enemy.remainingMoves);
         if (bestMoves.Count != 0) {
             Debug.Log("The best moves are: ");
             for (int i = 0; i < bestMoves.Count; i++) {
@@ -49,7 +47,7 @@ public class StoryModeAI : MonoBehaviour
     }
 
     protected virtual void ParseTileValues(int moves) {
-        int size = storyManager.gridSize;
+        int size = StoryManager.instance.gridSize;
         int originalMoves = moves;
         //blockedValue = playerValue * size;
         tileValues = new int[size][];

@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{7D63E36F-B4AC-7ED4-A3AC-DE8B8EDF47C7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Grid Logic/GridManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/StoryManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="22" Column="20" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="380" Column="21" />
-      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" Line="38" Column="24" />
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="98" Column="69" />
-      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="5" Column="20" />
-      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" Line="118" Column="92" />
-      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" Line="351" Column="42" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="23" Column="6" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="265" Column="1" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="207" Column="6" />
+      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="116" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,30 +19,26 @@
                 <Node name="Animation" expanded="True" />
                 <Node name="Classes" expanded="True" />
                 <Node name="Game Logic" expanded="True" />
-                <Node name="Grid Logic" expanded="True">
-                  <Node name="GridManager.cs" selected="True" />
+                <Node name="Grid Logic" expanded="True" />
+                <Node name="Managers" expanded="True">
+                  <Node name="StoryManager.cs" selected="True" />
                 </Node>
-                <Node name="Managers" expanded="True" />
                 <Node name="ScriptableObjects" expanded="True">
                   <Node name="Accessor" expanded="True" />
                   <Node name="Object" expanded="True" />
                 </Node>
+                <Node name="Sequences" expanded="True" />
                 <Node name="Skill Logic" expanded="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Unity" expanded="True" selected="True" />
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8981551b-172e-4f27-85fd-d6c73366ebef" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="abd2aa9b-301c-423e-ae73-1ad907399e3c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

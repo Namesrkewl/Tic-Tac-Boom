@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460b205b6a6c84eb5ade3fc3a03c6e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 122954847}
   playerSprite: {fileID: 122954846}
+  characterSprite: {fileID: 122954847}
   name: {fileID: 122954845}
   playerObject: {fileID: 0}
 --- !u!1 &127274195
@@ -3332,8 +3332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460b205b6a6c84eb5ade3fc3a03c6e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 1263446733}
-  playerSprite: {fileID: 1263446732}
+  playerSprite: {fileID: 1263446733}
+  characterSprite: {fileID: 1263446732}
   name: {fileID: 1263446731}
   playerObject: {fileID: 0}
 --- !u!1 &1286792701
@@ -6877,6 +6877,63 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &3372151365373667498
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198082805258101997, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256421617598673378, guid: c9494960330fc470abea0d72f03a22db, type: 3}
+      propertyPath: m_Name
+      value: CameraManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9494960330fc470abea0d72f03a22db, type: 3}
 --- !u!222 &3412410298342680149
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7376,7 +7433,7 @@ PrefabInstance:
     - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
       propertyPath: UI
       value: 
-      objectReference: {fileID: 1043822507}
+      objectReference: {fileID: 0}
     - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
       propertyPath: HUD
       value: 
@@ -7386,9 +7443,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 345452329}
     - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
+      propertyPath: gridSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
       propertyPath: nextFight
       value: 
       objectReference: {fileID: 801033691}
+    - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
+      propertyPath: newGridSize
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3946066732638490393, guid: 9b45ac2c4fc6dee489a9ac0d5b091a68, type: 3}
       propertyPath: turnDisplay
       value: 

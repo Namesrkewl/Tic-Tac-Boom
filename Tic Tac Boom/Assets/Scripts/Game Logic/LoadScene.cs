@@ -22,9 +22,9 @@ public class LoadScene : MonoBehaviour {
     }
 
     public void LoadMain() {
-        if (BackgroundAudio.instance.GetComponent<AudioSource>().clip != AudioManager.instance.musicClips[2]) {
-            BackgroundAudio.instance.GetComponent<AudioSource>().clip = AudioManager.instance.musicClips[2];
-            BackgroundAudio.instance.GetComponent<AudioSource>().Play();
+        if (AudioManager.instance.backgroundMusic.clip != Resources.Load<AudioClip>("Sounds/Music/main_theme")) {
+            AudioManager.instance.backgroundMusic.clip = Resources.Load<AudioClip>("Sounds/Music/main_theme");
+            AudioManager.instance.backgroundMusic.Play();
         }
         SceneManager.LoadScene("Main");
     }

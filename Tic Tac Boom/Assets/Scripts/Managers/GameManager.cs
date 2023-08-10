@@ -16,11 +16,14 @@ public class GameManager : MonoBehaviour
         Basic,
         Alternate
     }
+    public State state;
+    public enum State {
+        Idle,
+        StoryMode
+    }
 
     // Scripts
     public Replay replay;
-    public LoadScene loadScene;
-    public StoryManager storyManager;
     
 
     void Awake() {
@@ -32,21 +35,29 @@ public class GameManager : MonoBehaviour
         }
     }
     void OnEnable() {
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    void OnDisable() {
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-    }
-    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
-        loadScene = GameObject.Find("SceneManager").GetComponent<LoadScene>();
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (scene.name == "PlayerVSAI" || scene.name == "LocalPVP") {
-            //LoadGame();
-            //BombCooldowns();
-            //StartCoroutine(Game());
+            // Respective Functions go here
         } else if (scene.name == "StoryMode") {
-            //LoadGame();
-            //BombCooldowns();
-            storyManager.NewGame();
+            state = State.StoryMode;
+        }
+    }
+
+    void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Update() {
+        switch (state) {
+            case State.StoryMode:
+                StoryManager.instance.NewGame();
+                state = State.Idle;
+                break;
+            default:
+                break;
         }
     }
 }

@@ -7,6 +7,7 @@ public class Replay : MonoBehaviour
 {
     public void PlayAgain() {
         Debug.Log("Loaded");
+        AudioManager.instance.backgroundMusic.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

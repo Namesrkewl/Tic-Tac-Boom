@@ -16,8 +16,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerObject playerObject, enemyObject;
     public List<Sprite> exiledSprites, pureSprites, skins;
     public StoryModeAI storyModeAI;
-    public AudioManager audioManager;
-    public ParticleSystemsManager particleSystemsManager;
     public GameObject skillMenu, confirmSkillMenu, gridModificationMenu, skills;
     private GameObject playerAtTrigger;
 
@@ -28,6 +26,21 @@ public class PlayerManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+    }
+
+    void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (SceneManager.GetActiveScene().name == "StoryMode") {
+            skillMenu = GameObject.Find("SkillMenu");
+            skills = GameObject.Find("Skills");
+        }
+    }
+
+    void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void SetPlayers(bool vsAI) {
@@ -51,135 +64,32 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void SetCharacterSprite(Player _player) {
+        string path;
         if (_player.faction == Player.Faction.Exiled) {
-            switch (_player.character) {
-                case Player.Character.Basilisk:
-                    _player.characterSprite = exiledSprites[0];
-                    _player.playerSprite = exiledSprites[0];
-                    break;
-                case Player.Character.Common:
-                    _player.characterSprite = exiledSprites[1];
-                    _player.playerSprite = exiledSprites[1];
-                    break;
-                case Player.Character.Dragon:
-                    _player.characterSprite = exiledSprites[2];
-                    _player.playerSprite = exiledSprites[2];
-                    break;
-                case Player.Character.Engineer:
-                    _player.characterSprite = exiledSprites[3];
-                    _player.playerSprite = exiledSprites[3];
-                    break;
-                case Player.Character.Fragmented:
-                    _player.characterSprite = exiledSprites[4];
-                    _player.playerSprite = exiledSprites[4];
-                    break;
-                case Player.Character.King:
-                    _player.characterSprite = exiledSprites[5];
-                    _player.playerSprite = exiledSprites[5];
-                    break;
-                case Player.Character.Knight:
-                    _player.characterSprite = exiledSprites[6];
-                    _player.playerSprite = exiledSprites[6];
-                    break;
-                case Player.Character.Nimble:
-                    _player.characterSprite = exiledSprites[7];
-                    _player.playerSprite = exiledSprites[7];
-                    break;
-                case Player.Character.Peasant:
-                    _player.characterSprite = exiledSprites[8];
-                    _player.playerSprite = exiledSprites[8];
-                    break;
-                case Player.Character.Rebel:
-                    _player.characterSprite = exiledSprites[9];
-                    _player.playerSprite = exiledSprites[9];
-                    break;
-                case Player.Character.Thief:
-                    _player.characterSprite = exiledSprites[10];
-                    _player.playerSprite = exiledSprites[10];
-                    break;
-                case Player.Character.Vagabond:
-                    _player.characterSprite = exiledSprites[11];
-                    _player.playerSprite = exiledSprites[11];
-                    break;
-                case Player.Character.Wizard:
-                    _player.characterSprite = exiledSprites[12];
-                    _player.playerSprite = exiledSprites[12];
-                    break;
-                case Player.Character.Wraith:
-                    _player.characterSprite = exiledSprites[13];
-                    _player.playerSprite = exiledSprites[13];
-                    break;
+            path = "Characters/Exiled/" + _player.character.ToString();
+            _player.characterSprite = Resources.Load<Sprite>(path);
+            if (_player.character == Player.Character.Rebel && _player == enemy) {
+                _player.playerSprite = Resources.Load<Sprite>(path + "_boss");
+            } else {
+                _player.playerSprite = _player.characterSprite;
             }
         } else {
-            switch (_player.character) {
-                case Player.Character.Basilisk:
-                    _player.characterSprite = pureSprites[0];
-                    _player.playerSprite = pureSprites[0];
-                    break;
-                case Player.Character.Common:
-                    _player.characterSprite = pureSprites[1];
-                    _player.playerSprite = pureSprites[1];
-                    break;
-                case Player.Character.Dragon:
-                    _player.characterSprite = pureSprites[2];
-                    _player.playerSprite = pureSprites[2];
-                    break;
-                case Player.Character.Engineer:
-                    _player.characterSprite = pureSprites[3];
-                    _player.playerSprite = pureSprites[3];
-                    break;
-                case Player.Character.Fragmented:
-                    _player.characterSprite = pureSprites[4];
-                    _player.playerSprite = pureSprites[4];
-                    break;
-                case Player.Character.King:
-                    _player.characterSprite = pureSprites[5];
-                    _player.playerSprite = pureSprites[5];
-                    break;
-                case Player.Character.Knight:
-                    _player.characterSprite = pureSprites[6];
-                    _player.playerSprite = pureSprites[6];
-                    break;
-                case Player.Character.Nimble:
-                    _player.characterSprite = pureSprites[7];
-                    _player.playerSprite = pureSprites[7];
-                    break;
-                case Player.Character.Peasant:
-                    _player.characterSprite = pureSprites[8];
-                    _player.playerSprite = pureSprites[8];
-                    break;
-                case Player.Character.Rebel:
-                    _player.characterSprite = pureSprites[9];
-                    _player.playerSprite = pureSprites[9];
-                    break;
-                case Player.Character.Thief:
-                    _player.characterSprite = pureSprites[10];
-                    _player.playerSprite = pureSprites[10];
-                    break;
-                case Player.Character.Vagabond:
-                    _player.characterSprite = pureSprites[11];
-                    _player.playerSprite = pureSprites[11];
-                    break;
-                case Player.Character.Wizard:
-                    _player.characterSprite = pureSprites[12];
-                    _player.playerSprite = pureSprites[12];
-                    break;
-                case Player.Character.Wraith:
-                    _player.characterSprite = pureSprites[13];
-                    _player.playerSprite = pureSprites[13];
-                    break;
+            path = "Characters/Pure/" + _player.character.ToString();
+            _player.characterSprite = Resources.Load<Sprite>(path);
+            if (_player.character == Player.Character.King && _player == enemy) {
+                _player.playerSprite = Resources.Load<Sprite>(path + "_boss");
+            } else {
+                _player.playerSprite = _player.characterSprite;
             }
         }
         if (_player == player) {
             player.playerObject = playerObject;
             player.SetPlayerObject();
             setPlayerObject.playerObject = player.playerObject;
-            Debug.Log("Player Set");
         } else if (_player == enemy) {
             enemy.playerObject = enemyObject;
             enemy.SetPlayerObject();
             setEnemyObject.playerObject = enemy.playerObject;
-            Debug.Log("Enemy Set");
         }
 
     }
@@ -377,11 +287,11 @@ public class PlayerManager : MonoBehaviour
                     TriggerMine(go);
                     player.remainingMoves -= 1;
                 } else {
-                    ParticleSystem dust = Instantiate(particleSystemsManager.particleSystems[1]);
+                    ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1]);
                     dust.transform.position = go.transform.position;
                     dust.Play();
-                    audioManager.soundEffects.Stop();
-                    audioManager.soundEffects.PlayOneShot(audioManager.moveSounds[0]);
+                    AudioManager.instance.soundEffects.Stop();
+                    AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/move_sfx"));
                     go.tag = "Player";
                     player.remainingMoves -= 1;
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = player.skin;
@@ -392,10 +302,10 @@ public class PlayerManager : MonoBehaviour
                     TriggerMine(go);
                     enemy.remainingMoves -= 1;
                 } else {
-                    ParticleSystem dust = Instantiate(particleSystemsManager.particleSystems[1]);
+                    ParticleSystem dust = Instantiate(ParticleSystemsManager.instance.particleSystems[1]);
                     dust.transform.position = go.transform.position;
                     dust.Play();
-                    audioManager.soundEffects.PlayOneShot(audioManager.moveSounds[0]);
+                    AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/move_sfx"));
                     go.tag = "Enemy";
                     enemy.remainingMoves -= 1;
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = enemy.skin;
@@ -736,10 +646,10 @@ public class PlayerManager : MonoBehaviour
     }
 
     void BombTrigger(GameObject go) {
-        ParticleSystem boom = Instantiate(particleSystemsManager.particleSystems[0]);
+        ParticleSystem boom = Instantiate(ParticleSystemsManager.instance.particleSystems[0]);
         boom.transform.position = go.transform.position;
         boom.Play();
-        audioManager.soundEffects.Stop();
-        audioManager.soundEffects.PlayOneShot(audioManager.bombSounds[0]);
+        AudioManager.instance.soundEffects.Stop();
+        AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/Explosions/bomb_sfx"));
     }
 }
