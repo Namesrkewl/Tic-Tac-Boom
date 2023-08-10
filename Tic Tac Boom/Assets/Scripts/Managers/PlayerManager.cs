@@ -368,6 +368,8 @@ public class PlayerManager : MonoBehaviour
             yield return null;
         }
         playerAtTrigger = go.transform.GetChild(0).gameObject;
+        Debug.Log(player.state);
+        Debug.Log(player.remainingMoves);
 
         if (!playerAtTrigger.activeSelf && !go.tag.Contains("Wall")) {
             if (player.state == Player.State.Playing && player.remainingMoves > 0) {

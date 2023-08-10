@@ -3,25 +3,272 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Grid))]
-public class GridManager : MonoBehaviour
-{
+public class GridManager : MonoBehaviour {
     [SerializeField] private Grid grid;
-    [SerializeField] private GameObject tile;
+    [SerializeField] private GameObject content, container;
+    [SerializeField] private GameObject tilePrefab;
+    [SerializeField] private Camera gridCamera;
+    [field: SerializeField] public List<List<GameObject>> Tiles { get; private set; }
 
-    private void Start() {
-        grid = gameObject.GetComponent<Grid>();
-        GenerateGrid(3);
+    public State state;
+    public enum State {
+        Idle,
+        Generating,
+        Changing,
+        Formatting,
+        Tracking,
+        Destroying
     }
 
-    public void GenerateGrid(int size) {
+    private void Start() {
+        state = State.Generating;
+        StartCoroutine(GenerateGrid(StoryManager.instance.gridSize));
+    }
+
+    private void Update() {
+        if (StoryManager.instance.gridSize != StoryManager.instance.newGridSize && StoryManager.instance.newGridSize != 0 && state == State.Idle) {
+            StartCoroutine(ChangeGridSize(StoryManager.instance.gridSize, StoryManager.instance.newGridSize));
+            StoryManager.instance.gridSize = StoryManager.instance.newGridSize;
+        }
+    }
+
+    public IEnumerator GenerateGrid(int size) {
+        Tiles = new List<List<GameObject>>();
         for (int x = 0; x < size; x++) {
+            Tiles.Add(new List<GameObject>());
             for (int y = 0; y < size; y++) {
                 Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, y));
-                GameObject _tile = Instantiate(tile, position, Quaternion.identity, gameObject.transform);
-                _tile.name = $"Tile {x},{y}";
-                _tile.GetComponent<Tile>().SetSprite("Tiles/Basic/middle-middle");
-                //_tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Skins/Basic/x");
+                GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                Tiles[x].Add(_tile);
             }
         }
+        state = State.Formatting;
+        StartCoroutine(FormatTiles(size));
+        yield return null;
+    }
+
+    public IEnumerator DestroyGrid() {
+        for (int x = Tiles.Count - 1; x >= 0; x--) {
+            for (int y = Tiles[x].Count - 1; y >= 0; y--) {
+                Destroy(Tiles[x][y]);
+            }
+            Tiles.RemoveAt(x);
+        }
+        state = State.Idle;
+        yield return null;
+    }
+    public IEnumerator FormatTiles(int size) {
+        string xString, yString;
+        for (int x = 0; x < Tiles.Count; x++) {
+            if (size == 1) {
+                xString = "middle";
+            } else if (x == 0) {
+                xString = "left";
+            } else if (x == (size - 1)) {
+                xString = "right";
+            } else {
+                xString = "middle";
+            }
+            for (int y = 0; y < Tiles[x].Count; y++) {
+                if (size == 1) {
+                    yString = "middle";
+                } else if (y == 0) {
+                    yString = "bottom";
+                } else if (y == (size - 1)) {
+                    yString = "top";
+                } else {
+                    yString = "middle";
+                }
+                string tileset;
+                switch (GameManager.instance.tileset) {
+                    case GameManager.Tileset.Basic:
+                        tileset = GameManager.Tileset.Basic.ToString();
+                        break;
+                    case GameManager.Tileset.Alternate:
+                        tileset = GameManager.Tileset.Alternate.ToString();
+                        break;
+                    default:
+                        tileset = null;
+                        break;
+                }
+                Tiles[x][y].GetComponent<Tile>().SetSprite($"Tiles/{tileset}/{yString}-{xString}");
+                Tiles[x][y].name = $"Tile {x},{y}";
+            }
+        }
+        state = State.Tracking;
+        StartCoroutine(FollowGrid(size));
+        yield return null;
+    }
+    public IEnumerator FollowGrid(int size) {
+        Vector3 newCameraPosition;
+        if (size % 2 == 0) {
+            GameObject midBotLeftTile = GameObject.Find($"Tile {(size / 2) - 1},{(size / 2) - 1}");
+            GameObject midTopRightTile = GameObject.Find($"Tile {size / 2},{size / 2}");
+            newCameraPosition = midBotLeftTile.transform.position + ((midTopRightTile.transform.position - midBotLeftTile.transform.position) / 2);
+        } else {
+            GameObject centerTile = GameObject.Find($"Tile {size / 2},{size / 2}");
+            newCameraPosition = centerTile.transform.position;
+        }
+        newCameraPosition -= new Vector3(0, 0, 4f + (2.5f * size));
+        LeanTween.move(gridCamera.gameObject, newCameraPosition, 1f).setEaseOutCubic();
+        state = State.Idle;
+        yield return null;
+    }
+    public IEnumerator ResetTilePosition() {
+        content.transform.localPosition = Vector3.zero;
+        for (int x = 0; x < Tiles.Count; x++) {
+            for (int y = 0; y < Tiles[x].Count; y++) {
+                Tiles[x][y].transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y));
+            }
+        }
+        yield return null;
+    }
+    public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.BottomLeft) {
+        Debug.Log(direction);
+        if (size < newSize) {
+            // Increase grid size
+            switch (direction) {
+                case Talent.Direction.TopRight:
+                    for (int x = 0; x < size; x++) {
+                        for (int y = size; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Add(_tile);
+                        }
+                    }
+                    for (int x = size; x < newSize; x++) {
+                        Tiles.Add(new List<GameObject>());
+                        for (int y = 0; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Add(_tile);
+                        }
+                    }
+                    break;
+                case Talent.Direction.TopLeft:
+                    for (int x = size - 1; x >= 0; x--) {
+                        for (int y = size; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Add(_tile);
+                        }
+                    }
+                    for (int x = 0; x < newSize - size; x++) {
+                        Tiles.Insert(0, new List<GameObject>());
+                        for (int y = 0; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(-x - 1, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[0].Add(_tile);
+                        }
+                    }
+                    content.transform.localPosition += new Vector3(grid.cellSize.x * (newSize - size), 0);
+                    break;
+                case Talent.Direction.BottomRight:
+                    for (int x = 0; x < size; x++) {
+                        for (int y = 0; y < newSize - size; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, -y - 1));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Insert(0, _tile);
+                        }
+                    }
+                    content.transform.localPosition += new Vector3(0, grid.cellSize.y * (newSize - size));
+                    for (int x = size; x < newSize; x++) {
+                        Tiles.Add(new List<GameObject>());
+                        for (int y = 0; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Add(_tile);
+                        }
+                    }
+                    break;
+                case Talent.Direction.BottomLeft:
+                    for (int x = 0; x < size; x++) {
+                        for (int y = 0; y < newSize - size; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(x, -y - 1));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[x].Insert(0, _tile);
+                        }
+                    }
+                    content.transform.localPosition += new Vector3(0, grid.cellSize.y * (newSize - size));
+                    for (int x = 0; x < newSize - size; x++) {
+                        Tiles.Insert(0, new List<GameObject>());
+                        for (int y = 0; y < newSize; y++) {
+                            Vector3 position = grid.GetCellCenterWorld(new Vector3Int(-x - 1, y));
+                            GameObject _tile = Instantiate(tilePrefab, position, Quaternion.identity, container.transform);
+                            Tiles[0].Add(_tile);
+                        }
+                    }
+                    content.transform.localPosition += new Vector3(grid.cellSize.x * (newSize - size), 0);
+                    break;
+                default:
+                    break;
+            }
+        } else if (size > newSize) {
+            // Decrease grid size
+            switch (direction) {
+                case Talent.Direction.TopRight:
+                    for (int x = size - 1; x >= newSize; x--) {
+                        for (int y = 0; y < size; y++) {
+                            Destroy(Tiles[x][y]);
+                        }
+                        Tiles.RemoveAt(x);
+                    }
+                    for (int x = 0; x < newSize; x++) {
+                        for (int y = size - 1; y >= newSize; y--) {
+                            Destroy(Tiles[x][y]);
+                            Tiles[x].RemoveAt(y);
+                        }
+                    }
+                    break;
+                case Talent.Direction.TopLeft:
+                    for (int x = 0; x < size - newSize; x++) {
+                        for (int y = 0; y < size; y++) {
+                            Destroy(Tiles[0][y]);
+                        }
+                        Tiles.RemoveAt(0);
+                    }
+                    for (int x = 0; x < newSize; x++) {
+                        for (int y = size - 1; y >= newSize; y--) {
+                            Destroy(Tiles[x][y]);
+                            Tiles[x].RemoveAt(y);
+                        }
+                    }
+                    break;
+                case Talent.Direction.BottomRight:
+                    for (int x = size - 1; x >= newSize; x--) {
+                        for (int y = 0; y < size; y++) {
+                            Destroy(Tiles[x][y]);
+                        }
+                        Tiles.RemoveAt(x);
+                    }
+                    for (int x = 0; x < newSize; x++) {
+                        for (int y = 0; y < size - newSize; y++) {
+                            Destroy(Tiles[x][0]);
+                            Tiles[x].RemoveAt(0);
+                        }
+                    }
+                    break;
+                case Talent.Direction.BottomLeft:
+                    for (int x = 0; x < size - newSize; x++) {
+                        for (int y = 0; y < size; y++) {
+                            Destroy(Tiles[0][y]);
+                        }
+                        Tiles.RemoveAt(0);
+                    }
+                    for (int x = 0; x < newSize; x++) {
+                        for (int y = 0; y < size - newSize; y++) {
+                            Destroy(Tiles[x][0]);
+                            Tiles[x].RemoveAt(0);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        StartCoroutine(ResetTilePosition());
+        state = State.Formatting;
+        StartCoroutine(FormatTiles(newSize));
+        yield return null;
     }
 }

@@ -14,9 +14,7 @@ public class StoryModeAI : MonoBehaviour
     public int impendingVictoryValue = 999;
     public int impendingDoomValue = 9999;
     public int victoryValue = 99999;
-    public int enemyMoveMax = 0;
     public int startingGridSize = 0;
-    public int moveCount = 0;
     public bool firstMove = true;
     public StoryManager storyManager;
     public PlayerManager playerManager;
@@ -67,7 +65,7 @@ public class StoryModeAI : MonoBehaviour
                 int enemyTiles = 0, playerTiles = 0;
                 int value = 0;
                 // Check if tile is occupied
-                GameObject tile = GameObject.Find($"{x},{y}");
+                GameObject tile = storyManager.gridManager.Tiles[x][y];
                 if (tile.transform.GetChild(0).gameObject.activeSelf || tile.CompareTag("Wall")) {
                     continue;
                 }
@@ -75,7 +73,7 @@ public class StoryModeAI : MonoBehaviour
                     // MIDDLE TILE OF AN ODD SIZED GRID
                     // Value Left To Right Diagonal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++;
                             blocking = true;
@@ -111,7 +109,7 @@ public class StoryModeAI : MonoBehaviour
                     // Value Right to Left Diagonal
                     for (int i = size - 1; i >= 0; i--) {
                         int n = (size - 1) - i;
-                        GameObject connectedTile = GameObject.Find($"{n},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[n][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++;
                             blocking = true;
@@ -146,7 +144,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{x},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[x][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++;
                             blocking = true;
@@ -181,7 +179,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{y}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][y];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -218,7 +216,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Left To Right Diagonal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++;
                             blocking = true;
@@ -253,7 +251,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{x},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[x][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -288,7 +286,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{y}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][y];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -326,7 +324,7 @@ public class StoryModeAI : MonoBehaviour
                     // Value Right to Left Diagonal
                     for (int i = size - 1; i >= 0; i--) {
                         int n = (size - 1) - i;
-                        GameObject connectedTile = GameObject.Find($"{n},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[n][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++;
                             blocking = true;
@@ -361,7 +359,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{x},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[x][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -396,7 +394,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{y}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][y];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -433,7 +431,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Vertical
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{x},{i}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[x][i];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;
@@ -468,7 +466,7 @@ public class StoryModeAI : MonoBehaviour
                     blocked = false;
                     // Value Horizontal
                     for (int i = 0; i < size; i++) {
-                        GameObject connectedTile = GameObject.Find($"{i},{y}");
+                        GameObject connectedTile = storyManager.gridManager.Tiles[i][y];
                         if (connectedTile.CompareTag("Enemy")) {
                             enemyTiles++; 
                             blocking = true;

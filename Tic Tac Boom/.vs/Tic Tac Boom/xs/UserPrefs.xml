@@ -1,28 +1,34 @@
 ﻿<Properties StartupConfiguration="{7D63E36F-B4AC-7ED4-A3AC-DE8B8EDF47C7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Grid Logic/GridManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/StoryManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="8" Column="58" />
-      <File FileName="Assets/Scripts/Skill Logic/Talent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game Logic/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" Line="34" Column="47" />
-      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" Line="28" Column="1" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="7" Column="32" />
-      <File FileName="Assets/Scripts/Grid Logic/BuildGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="4" Column="1" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="607" Column="1" />
+      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" Line="33" Column="1" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="292" Column="24" />
+      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" Line="112" Column="57" />
+      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" Line="15" Column="11" />
+      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" Line="54" Column="45" />
+      <File FileName="Assets/Scripts/Animation/PopUpAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Animation/Resize.cs" Line="21" Column="62" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Tic Tac Boom" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="LeanTween" expanded="True">
+                <Node name="Framework" expanded="True" />
+              </Node>
               <Node name="Scripts" expanded="True">
                 <Node name="AI" expanded="True" />
+                <Node name="Animation" expanded="True" />
                 <Node name="Classes" expanded="True" />
                 <Node name="Game Logic" expanded="True" />
-                <Node name="Grid Logic" expanded="True">
-                  <Node name="GridManager.cs" selected="True" />
+                <Node name="Grid Logic" expanded="True" />
+                <Node name="Managers" expanded="True">
+                  <Node name="StoryManager.cs" selected="True" />
                 </Node>
-                <Node name="Managers" expanded="True" />
                 <Node name="ScriptableObjects" expanded="True">
                   <Node name="Accessor" expanded="True" />
                   <Node name="Object" expanded="True" />
@@ -33,11 +39,16 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" expanded="True" selected="True" />
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9d100ae0-52a6-4f3d-9c50-2f376efb2c63" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8981551b-172e-4f27-85fd-d6c73366ebef" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

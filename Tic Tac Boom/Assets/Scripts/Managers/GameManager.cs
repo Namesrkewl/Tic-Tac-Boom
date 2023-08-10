@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
 
+    public Tileset tileset;
+    public enum Tileset {
+        Basic,
+        Alternate
+    }
+
     // Scripts
     public Replay replay;
     public LoadScene loadScene;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(PlayerMoveTrigger))]
 public class Tile : MonoBehaviour
 {
     public GameObject occupant;
@@ -32,8 +33,11 @@ public class Tile : MonoBehaviour
 
     private void GenerateOccupant() {
         occupant = new GameObject("Occupant");
+        occupant.SetActive(false);
         occupant.transform.SetParent(gameObject.transform);
+        occupant.transform.localPosition = Vector3.zero;
         occupant.transform.localScale = new Vector3(0.8f, 0.8f);
         occupant.AddComponent<SpriteRenderer>();
+        occupant.AddComponent<Resize>();
     }
 }

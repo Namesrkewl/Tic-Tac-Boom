@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoryManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class StoryManager : MonoBehaviour
     public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu;
     public PlayerManager playerManager;
     public AudioManager audioManager;
-    public BuildGrid buildGrid;
+    public GridManager gridManager;
 
     void Awake() {
         if (instance == null) {
@@ -69,13 +70,15 @@ public class StoryManager : MonoBehaviour
         HUD = GameObject.Find("HUD");
         nextFight = GameObject.Find("NextFight");
         grid = GameObject.Find("Grid");
+        gridManager = grid.GetComponent<GridManager>();
         turnDisplay = GameObject.Find("TurnDisplay");
         playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
         enemyVictoryMenu = GameObject.Find("EnemyVictoryMenu");
+        playerManager.skillMenu = GameObject.Find("SkillMenu");
+        playerManager.skills = GameObject.Find("Skills");
         playerManager.SetPlayers(true);
         playerManager.SetSkins();
         playerManager.player.maxMoves = 1;
-        buildGrid.grid = grid;
         turn = 1;
         round = 1;
         stage = 1;
@@ -93,7 +96,7 @@ public class StoryManager : MonoBehaviour
         playerManager.SetSkills();
         newGridSize = playerManager.storyModeAI.startingGridSize;
         gridSize = newGridSize;
-        buildGrid.BuildTheGrid(gridSize);
+        gridManager.GenerateGrid(gridSize);
         UI.GetComponent<CanvasGroup>().alpha = 0;
         GameObject HUD = GameObject.Find("HUD");
         GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
@@ -285,6 +288,10 @@ public class StoryManager : MonoBehaviour
         yield return null;
     }
     public bool GameOver() {
+        if (SceneManager.GetActiveScene().name != "StoryMode") {
+            return true;
+        }
+
         int playerSpacesWon;
         int enemySpacesWon;
 
@@ -297,8 +304,7 @@ public class StoryManager : MonoBehaviour
         for (int x = 0; x < gridSize; x++) {
             playerSpacesWon = 0;
             for (int y = 0; y < gridSize; y++) {
-                string tile = x + "," + y;
-                if (GameObject.Find(tile).CompareTag("Player")) {
+                if (gridManager.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
                     if (playerSpacesWon == gridSize) {
                         gameState = GameState.PlayerVictory;
@@ -317,8 +323,7 @@ public class StoryManager : MonoBehaviour
         for (int y = 0; y < gridSize; y++) {
             playerSpacesWon = 0;
             for (int x = 0; x < gridSize; x++) {
-                string tile = x + "," + y;
-                if (GameObject.Find(tile).CompareTag("Player")) {
+                if (gridManager.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
                     if (playerSpacesWon == gridSize) {
                         gameState = GameState.PlayerVictory;
@@ -337,9 +342,7 @@ public class StoryManager : MonoBehaviour
         playerSpacesWon = 0;
         for (int x = 0; x < gridSize; x++) {
             int y = x;
-
-            string tile = x + "," + y;
-            if (GameObject.Find(tile).CompareTag("Player")) {
+            if (gridManager.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
                 if (playerSpacesWon == gridSize) {
                     gameState = GameState.PlayerVictory;
@@ -357,9 +360,7 @@ public class StoryManager : MonoBehaviour
         playerSpacesWon = 0;
         for (int x = gridSize - 1; x >= 0; x--) {
             int y = (gridSize - 1) - x;
-
-            string tile = x + "," + y;
-            if (GameObject.Find(tile).CompareTag("Player")) {
+            if (gridManager.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
                 if (playerSpacesWon == gridSize) {
                     gameState = GameState.PlayerVictory;
@@ -380,8 +381,7 @@ public class StoryManager : MonoBehaviour
         for (int x = 0; x < gridSize; x++) {
             enemySpacesWon = 0;
             for (int y = 0; y < gridSize; y++) {
-                string tile = x + "," + y;
-                if (GameObject.Find(tile).CompareTag("Enemy")) {
+                if (gridManager.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
                     if (enemySpacesWon == gridSize) {
                         gameState = GameState.EnemyVictory;
@@ -400,8 +400,7 @@ public class StoryManager : MonoBehaviour
         for (int y = 0; y < gridSize; y++) {
             enemySpacesWon = 0;
             for (int x = 0; x < gridSize; x++) {
-                string tile = x + "," + y;
-                if (GameObject.Find(tile).CompareTag("Enemy")) {
+                if (gridManager.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
                     if (enemySpacesWon == gridSize) {
                         gameState = GameState.EnemyVictory;
@@ -420,9 +419,7 @@ public class StoryManager : MonoBehaviour
         enemySpacesWon = 0;
         for (int x = 0; x < gridSize; x++) {
             int y = x;
-
-            string tile = x + "," + y;
-            if (GameObject.Find(tile).CompareTag("Enemy")) {
+            if (gridManager.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
                 if (enemySpacesWon == gridSize) {
                     gameState = GameState.EnemyVictory;
@@ -440,9 +437,7 @@ public class StoryManager : MonoBehaviour
         enemySpacesWon = 0;
         for (int x = gridSize - 1; x >= 0; x--) {
             int y = (gridSize - 1) - x;
-
-            string tile = x + "," + y;
-            if (GameObject.Find(tile).CompareTag("Enemy")) {
+            if (gridManager.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
                 if (enemySpacesWon == gridSize) {
                     gameState = GameState.EnemyVictory;

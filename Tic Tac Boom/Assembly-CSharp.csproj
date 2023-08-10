@@ -87,6 +87,7 @@
     <Compile Include="Assets/Scripts/Game Logic/Replay.cs" />
     <Compile Include="Assets/Scripts/Animation/NameplateAnimation.cs" />
     <Compile Include="Assets/Scripts/Classes/Player.cs" />
+    <Compile Include="Assets/Scripts/Grid Logic/GridManager.cs" />
     <Compile Include="Assets/Scripts/Managers/StoryManager.cs" />
     <Compile Include="Assets/LeanTween/Examples/Archived/TestingRigidbodyCS.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/Following.cs" />
@@ -133,7 +134,6 @@
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplinePerformance.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralBasic.cs" />
     <Compile Include="Assets/Scripts/Classes/Talent.cs" />
-    <Compile Include="Assets/Scripts/Grid Logic/GridManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
