@@ -3,14 +3,14 @@
     <Files>
       <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="4" Column="1" />
       <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="607" Column="1" />
-      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" Line="33" Column="1" />
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="292" Column="24" />
-      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" Line="112" Column="57" />
-      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" Line="15" Column="11" />
-      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" Line="54" Column="45" />
-      <File FileName="Assets/Scripts/Animation/PopUpAnimation.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Animation/Resize.cs" Line="21" Column="62" />
+      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="298" Column="24" />
+      <File FileName="Assets/Scripts/Classes/Talent.cs" />
+      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" />
+      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" />
+      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" />
+      <File FileName="Assets/Scripts/Animation/PopUpAnimation.cs" />
+      <File FileName="Assets/Scripts/Animation/Resize.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

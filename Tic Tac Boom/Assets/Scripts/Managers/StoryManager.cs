@@ -90,7 +90,7 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator Loading() {
         playerManager.SetCharacterSprite(playerManager.player);
-        playerManager.enemy.character = Player.Character.Dragon;
+        playerManager.enemy.character = Player.Character.Thief;
         playerManager.SetCharacterSprite(playerManager.enemy);
         playerManager.SetAI(playerManager.enemy);
         playerManager.SetSkills();
@@ -267,6 +267,7 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator GridLocked() {
+        Debug.Log("GridLocked! The game is over for now, until logic is inserted for how this will be handled.");
         yield return null;
     }
 
@@ -294,6 +295,7 @@ public class StoryManager : MonoBehaviour
 
         int playerSpacesWon;
         int enemySpacesWon;
+        bool gridLocked;
 
         if (updatingGrid) {
             return false;
@@ -453,6 +455,18 @@ public class StoryManager : MonoBehaviour
 
         if (gameState == GameState.PlayerVictory || gameState == GameState.EnemyVictory) {
             return true;
+        } else {
+            gridLocked = true;
+            for (int x = 0; x < gridSize; x++) {
+                for (int y = 0; y < gridSize; y++) {
+                    if (gridManager.Tiles[x][y].transform.CompareTag("Untagged")) {
+                        gridLocked = false;
+                    }
+                }
+            }
+            if (gridLocked) {
+                gameState = GameState.GridLocked;
+            }
         }
 
         return false;
