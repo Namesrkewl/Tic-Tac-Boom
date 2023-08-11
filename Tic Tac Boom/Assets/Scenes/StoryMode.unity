@@ -2740,6 +2740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923480026}
   - component: {fileID: 923480027}
+  - component: {fileID: 923480028}
   m_Layer: 5
   m_Name: ConfirmSkillMenu
   m_TagString: Untagged
@@ -2777,6 +2778,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923480025}
   m_CullTransparentMesh: 1
+--- !u!114 &923480028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923480025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec4ae4874a884637bcdd429eda3d8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSprite: {fileID: 127274197}
+  name: {fileID: 1936137268}
+  description: {fileID: 444375765}
+  cooldown: {fileID: 1741705320}
+  talentObject: {fileID: 0}
 --- !u!1 &928870983
 GameObject:
   m_ObjectHideFlags: 0
@@ -6965,6 +6983,10 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 331404926}
+    - target: {fileID: 3432761469310875369, guid: 68bc240ac72289946a683ad5bf348071, type: 3}
+      propertyPath: talentObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 3baf2ac1087f748f281bdfb5fca3edf2, type: 2}
     - target: {fileID: 3432761469310875369, guid: 68bc240ac72289946a683ad5bf348071, type: 3}
       propertyPath: particleSystemsManager
       value: 

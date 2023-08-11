@@ -77,7 +77,6 @@
     <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetPlayerObject.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/LogoCinematic.cs" />
     <Compile Include="Assets/LeanTween/Examples/Archived/TestingPunch.cs" />
-    <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetTalentObject.cs" />
     <Compile Include="Assets/Scripts/Sequences/EnterStorySequence.cs" />
     <Compile Include="Assets/Scripts/Managers/CameraManager.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralAdvancedTechniques.cs" />
@@ -134,6 +133,7 @@
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplinePerformance.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralBasic.cs" />
     <Compile Include="Assets/Scripts/Classes/Talent.cs" />
+    <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

@@ -57,6 +57,15 @@ public class Player
         playerObject.playerSprite = playerSprite;
     }
 
+    public void Cooldown() {
+        for(int i = 0; i < talents.Count; i++) {
+            if (talents[i].cooldown > 0) {
+                talents[i].cooldown--;
+            }
+            talents[i].SetTalentObject();
+        }
+    }
+
 
     //[field: SerializeField] public bool IsExiled { get; private set; }
 }

@@ -31,8 +31,9 @@ public class Talent
 
     public int maxCooldown, scaling, cooldown, duration;
     public Sprite sprite;
-    public string description;
-    public string name;
+    public ParticleSystem particleSystem;
+    public string name, description;
+    public TalentObject talentObject;
 
     public Talent(TalentName _talentName) {
         InitializeTalent(_talentName);
@@ -48,10 +49,10 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load<Sprite>("Skills/small_bomb_active");
+                sprite = Resources.Load<Sprite>("Skills/small_bomb");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_Explosion");
                 name = "SMALL BOMB";
-                description = "DEPLOYS A BOMB THAT EXPLODES ON ONE TILE. DAMAGES WALLS.";
-                Debug.Log(sprite);
+                description = $"DEPLOYS A BOMB THAT EXPLODES ON ONE TILE. DAMAGES WALLS.\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.CrossBomb:
                 type = Type.Bomb;
@@ -61,9 +62,10 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load<Sprite>("Skills/cross_bomb_active");
+                sprite = Resources.Load<Sprite>("Skills/cross_bomb");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_Explosion");
                 name = "CROSS BOMB";
-                description = "EXPLODES ON THE SELECTED AND ADJACENT TILES. DAMAGES WALLS.";
+                description = $"EXPLODES ON THE SELECTED AND ADJACENT TILES. DAMAGES WALLS.\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.XBomb:
                 type = Type.Bomb;
@@ -73,9 +75,10 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load<Sprite>("Skills/x_bomb_active");
+                sprite = Resources.Load<Sprite>("Skills/x_bomb");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_Explosion");
                 name = "X BOMB";
-                description = "EXPLODES ON THE SELECTED AND DIAGONALLY CONNECTED TILES. DAMAGES WALLS.";
+                description = $"EXPLODES ON THE SELECTED AND DIAGONALLY CONNECTED TILES. DAMAGES WALLS.\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.Mine:
                 type = Type.Bomb;
@@ -85,9 +88,10 @@ public class Talent
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
-                sprite = Resources.Load<Sprite>("Skills/mine breathing 3 4");
+                sprite = Resources.Load<Sprite>("Skills/mine");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_Explosion");
                 name = "MINE";
-                description = "EXPLODES ON ALL TILES IN A 3X3 RADIUS WHEN TRIGGERED. DESTROYS WALLS.";
+                description = $"EXPLODES ON ALL TILES IN A 3X3 RADIUS WHEN TRIGGERED. DESTROYS WALLS.\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.BuildTiles:
                 type = Type.Skill;
@@ -98,8 +102,9 @@ public class Talent
                 duration = 0;
                 cooldown = maxCooldown;
                 sprite = Resources.Load<Sprite>("Skills/build_tile");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_DustCloud");
                 name = "BUILD TILES";
-                description = "EXPAND THE GRID BY 1 ROW AND COLUMN (3x3 -> 4x4).";
+                description = $"EXPAND THE GRID BY 1 ROW AND COLUMN (3x3 -> 4x4).\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.DestroyTiles:
                 type = Type.Skill;
@@ -110,11 +115,19 @@ public class Talent
                 duration = 0;
                 cooldown = maxCooldown;
                 sprite = Resources.Load<Sprite>("Skills/destroy_tile");
+                particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_DustCloud");
                 name = "DESTROY TILES";
-                description = "DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). ENDS YOUR TURN.";
+                description = $"DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). ENDS YOUR TURN.\n{maxCooldown}|{scaling}";
                 break;
             default:
                 break;
         }
-    }    
+    }
+
+    public void SetTalentObject() {
+        talentObject.sprite = sprite;
+        talentObject.name = name;
+        talentObject.description = description;
+        talentObject.cooldown = cooldown;
+    }
 }

@@ -220,6 +220,7 @@ public class StoryManager : MonoBehaviour
         if (PlayerManager.instance.player.state == Player.State.Inactive) {
             PlayerManager.instance.player.state = Player.State.Playing;
             PlayerManager.instance.enemy.state = Player.State.Inactive;
+            PlayerManager.instance.player.Cooldown();
             PlayerManager.instance.player.remainingMoves = PlayerManager.instance.player.maxMoves;
             turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
             turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
@@ -237,6 +238,7 @@ public class StoryManager : MonoBehaviour
         if (PlayerManager.instance.enemy.state == Player.State.Inactive) {
             PlayerManager.instance.enemy.state = Player.State.Playing;
             PlayerManager.instance.player.state = Player.State.Inactive;
+            PlayerManager.instance.enemy.Cooldown();
             PlayerManager.instance.enemy.remainingMoves = PlayerManager.instance.enemy.maxMoves;
             turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
             turnDisplay.transform.GetChild(0).gameObject.SetActive(false);

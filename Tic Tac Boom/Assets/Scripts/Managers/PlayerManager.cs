@@ -13,10 +13,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public Player player, enemy;
     public SetPlayerObject setPlayerObject, setEnemyObject;
-    public PlayerObject playerObject, enemyObject;
     public List<Sprite> exiledSprites, pureSprites, skins;
     public StoryModeAI storyModeAI;
-    public GameObject skillMenu, confirmSkillMenu, gridModificationMenu, skills;
+    public GameObject skillMenu, confirmSkillMenu, skills;
     private GameObject playerAtTrigger;
 
     private void Awake() {
@@ -35,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (SceneManager.GetActiveScene().name == "StoryMode") {
             skillMenu = GameObject.Find("SkillMenu");
+            confirmSkillMenu = GameObject.Find("ConfirmSkillMenu");
             skills = GameObject.Find("Skills");
         }
     }
@@ -48,7 +48,7 @@ public class PlayerManager : MonoBehaviour
         player.faction = Player.Faction.Exiled;
         player.character = Player.Character.Rebel;
         player.talents = new List<Talent>();
-        player.talents.Add(new Talent(Talent.TalentName.SmallBomb));
+        AddTalent(player, Talent.TalentName.SmallBomb);
         if (vsAI) {
             enemy = new Player(Player.Type.AI);
         } else {
@@ -59,6 +59,7 @@ public class PlayerManager : MonoBehaviour
         } else {
             enemy.faction = Player.Faction.Exiled;
         }
+        enemy.talents = new List<Talent>();
         setPlayerObject = GameObject.Find("Player").GetComponent<SetPlayerObject>();
         setEnemyObject = GameObject.Find("Enemy").GetComponent<SetPlayerObject>();
     }
@@ -83,11 +84,11 @@ public class PlayerManager : MonoBehaviour
             }
         }
         if (_player == player) {
-            player.playerObject = playerObject;
+            player.playerObject = Resources.Load<PlayerObject>("Prefabs/ScriptableObjects/Players/PlayerObject");
             player.SetPlayerObject();
             setPlayerObject.playerObject = player.playerObject;
         } else if (_player == enemy) {
-            enemy.playerObject = enemyObject;
+            enemy.playerObject = Resources.Load<PlayerObject>("Prefabs/ScriptableObjects/Players/EnemyObject");
             enemy.SetPlayerObject();
             setEnemyObject.playerObject = enemy.playerObject;
         }
@@ -512,20 +513,44 @@ public class PlayerManager : MonoBehaviour
     // Passives
 
     // Talent Logic
+    public void AddTalent(Player _player, Talent.TalentName talentName) {
+        _player.talents.Add(new Talent(talentName));
+        if (_player == player) {
+            _player.talents.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/" + talentName.ToString());
+            _player.talents.Last().SetTalentObject();
+        } else {
+            _player.talents.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/" + talentName.ToString());
+            _player.talents.Last().SetTalentObject();
+        }
+        Debug.Log(_player.talents.Last().talentObject);
+    }
     public void SetSkills() {
         for (int i = 0; i < player.talents.Count; i++) {
-            GameObject talent = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Actives/TALENT"), skills.transform);
-            talent.name = player.talents[i].name;
-            talent.GetComponent<Image>().sprite = player.talents[i].sprite;
+            if (player.talents[i].type != Talent.Type.Passive) {
+                GameObject talent = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Actives/TALENT"), skills.transform);
+                talent.name = player.talents[i].talentName.ToString();
+                talent.GetComponent<Image>().sprite = player.talents[i].sprite;
+                talent.GetComponent<Button>().onClick.AddListener(delegate{SelectSkill(talent);});
+            }
         }
     }
-    public void SelectSkill() {
+    public void SelectSkill(GameObject skill) {
         confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
         confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);
         LeanTween.scale(confirmSkillMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
         if (player.state == Player.State.Playing) {
+            for (int i = 0; i < player.talents.Count; i++) {
+                if (skill.name == player.talents[i].talentName.ToString()) {
+                    confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = player.talents[i].talentObject;
+                }
+            }
             player.state = Player.State.SelectingSkill;
-        } else if (enemy.state == Player.State.Playing) {
+        } else if (enemy.state != Player.State.Playing) {
+            for (int i = 0; i < enemy.talents.Count; i++) {
+                if (skill.name == enemy.talents[i].talentName.ToString()) {
+                    confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = enemy.talents[i].talentObject;
+                }
+            }
             enemy.state = Player.State.SelectingSkill;
         }
     }
