@@ -91,7 +91,7 @@ public class Talent
                 sprite = Resources.Load<Sprite>("Skills/mine");
                 particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_Explosion");
                 name = "MINE";
-                description = $"EXPLODES ON ALL TILES IN A 3X3 RADIUS WHEN TRIGGERED. DESTROYS WALLS.\n{maxCooldown}|{scaling}";
+                description = $"PLACE A MINE AT AN EMPTY TILE THAT EXPLODES IN A 3X3 RADIUS WHEN TRIGGERED. DESTROYS WALLS.\n{maxCooldown}|{scaling}";
                 break;
             case TalentName.BuildTiles:
                 type = Type.Skill;

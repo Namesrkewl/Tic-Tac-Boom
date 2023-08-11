@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public SetPlayerObject setPlayerObject, setEnemyObject;
     public List<Sprite> exiledSprites, pureSprites, skins;
     public StoryModeAI storyModeAI;
-    public GameObject skillMenu, confirmSkillMenu, skills;
+    public GameObject skillMenu, confirmSkillMenu, selectSkillMenu, skills;
     private GameObject playerAtTrigger;
 
     private void Awake() {
@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+        player = new Player();
+        enemy = new Player();
     }
 
     // Add the PlayerMove event to the EventManager at the on scene load
@@ -44,7 +46,10 @@ public class PlayerManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "StoryMode") {
             skillMenu = GameObject.Find("SkillMenu");
             confirmSkillMenu = GameObject.Find("ConfirmSkillMenu");
+            selectSkillMenu = GameObject.Find("SelectSkillMenu");
             skills = GameObject.Find("Skills");
+            setPlayerObject = GameObject.Find("Player").GetComponent<SetPlayerObject>();
+            setEnemyObject = GameObject.Find("Enemy").GetComponent<SetPlayerObject>();
         }
     }
 
@@ -52,25 +57,23 @@ public class PlayerManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void SetPlayers(bool vsAI) {
-        player = new Player(Player.Type.Player);
-        player.faction = Player.Faction.Exiled;
-        player.character = Player.Character.Rebel;
+    public void SetPlayers(Player.Faction faction, Player.Character character, Player.Type type) {
+        player.type = Player.Type.Player;
+        player.faction = faction;
+        player.character = character;
         player.initialCooldown = 3;
-        if (vsAI) {
-            enemy = new Player(Player.Type.AI);
+        if (type == Player.Type.AI) {
+            enemy.type = Player.Type.AI;
         } else {
-            enemy = new Player(Player.Type.Player);
+            enemy.type = Player.Type.Player;
         }
-        if (player.faction == Player.Faction.Exiled) {
+        if (faction == Player.Faction.Exiled) {
             enemy.faction = Player.Faction.Pure;
             enemy.initialCooldown = 2;
         } else {
             enemy.faction = Player.Faction.Exiled;
             enemy.initialCooldown = 3;
         }
-        setPlayerObject = GameObject.Find("Player").GetComponent<SetPlayerObject>();
-        setEnemyObject = GameObject.Find("Enemy").GetComponent<SetPlayerObject>();
     }
 
     public void SetCharacterSprite(Player _player) {
@@ -349,7 +352,6 @@ public class PlayerManager : MonoBehaviour
                     XBomb(go);
                     break;
             }
-            player.UsedSkill();
         } else if (enemy.state == Player.State.UsingSkill) {
             switch (enemy.activeSkill.talentName) {
                 case Talent.TalentName.BuildTiles:
@@ -372,7 +374,6 @@ public class PlayerManager : MonoBehaviour
                     XBomb(go);
                     break;
             }
-            enemy.UsedSkill();
         }
     }
 
@@ -384,7 +385,7 @@ public class PlayerManager : MonoBehaviour
         playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
         playerAtTrigger.SetActive(false);
         go.tag = "Untagged";
-        CancelSkill();
+        UsedSkill();
     }
 
     void CrossBomb(GameObject go) {
@@ -424,7 +425,7 @@ public class PlayerManager : MonoBehaviour
                 tile.tag = "Untagged";
             }
         }
-        CancelSkill();
+        UsedSkill();
     }
 
     void XBomb(GameObject go) {
@@ -469,30 +470,32 @@ public class PlayerManager : MonoBehaviour
                 }
             }
         }
-        CancelSkill();
+        UsedSkill();
     }
 
     void Mine(GameObject go) {
         if (go.tag.Contains("Mine")) {
             TriggerMine(go);
-            CancelSkill();
+            UsedSkill();
         } else {
-            go.tag = "Mine";
-            if (player.state == Player.State.UsingSkill) {
-                for (int i = 0; i < player.skills.Count; i++) {
-                    if (player.skills[i].talentName == Talent.TalentName.Mine) {
-                        playerAtTrigger.GetComponent<SpriteRenderer>().sprite = player.skills[i].sprite;
+            if (!playerAtTrigger.activeSelf) {
+                go.tag = "Mine";
+                if (player.state == Player.State.UsingSkill) {
+                    for (int i = 0; i < player.skills.Count; i++) {
+                        if (player.skills[i].talentName == Talent.TalentName.Mine) {
+                            playerAtTrigger.GetComponent<SpriteRenderer>().sprite = player.skills[i].sprite;
+                        }
+                    }
+                } else if (enemy.state == Player.State.UsingSkill) {
+                    for (int i = 0; i < enemy.skills.Count; i++) {
+                        if (enemy.skills[i].talentName == Talent.TalentName.Mine) {
+                            playerAtTrigger.GetComponent<SpriteRenderer>().sprite = enemy.skills[i].sprite;
+                        }
                     }
                 }
-            } else if (enemy.state == Player.State.UsingSkill) {
-                for (int i = 0; i < enemy.skills.Count; i++) {
-                    if (enemy.skills[i].talentName == Talent.TalentName.Mine) {
-                        playerAtTrigger.GetComponent<SpriteRenderer>().sprite = enemy.skills[i].sprite;
-                    }
-                }
+                playerAtTrigger.SetActive(true);
+                UsedSkill();
             }
-            playerAtTrigger.SetActive(true);
-            CancelSkill();
         }
     }
 
@@ -504,12 +507,14 @@ public class PlayerManager : MonoBehaviour
                     GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, player.skills[i].direction);
                 }
             }
+            UsedSkill();
         } else if (enemy.state == Player.State.Playing) {
             for (int i = 0; i < enemy.skills.Count; i++) {
                 if (enemy.skills[i].talentName == Talent.TalentName.BuildTiles) {
                     GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, enemy.skills[i].direction);
                 }
             }
+            UsedSkill();
         }
     }
     void DestroyTiles(GameObject go) {
@@ -520,12 +525,14 @@ public class PlayerManager : MonoBehaviour
                     GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, player.skills[i].direction);
                 }
             }
+            UsedSkill();
         } else if (enemy.state == Player.State.Playing) {
             for (int i = 0; i < enemy.skills.Count; i++) {
                 if (enemy.skills[i].talentName == Talent.TalentName.BuildTiles) {
                     GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, enemy.skills[i].direction);
                 }
             }
+            UsedSkill();
         }
     }
 
@@ -571,10 +578,14 @@ public class PlayerManager : MonoBehaviour
                 player.activeSkill = skill;
                 player.state = Player.State.UsingSkill;
                 skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
+                selectSkillMenu.SetActive(false);
+                selectSkillMenu.SetActive(true);
             } else if (enemy.state == Player.State.SelectingSkill && !enemy.skillUsed) {
                 enemy.activeSkill = skill;
                 enemy.state = Player.State.UsingSkill;
                 skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
+                selectSkillMenu.SetActive(false);
+                selectSkillMenu.SetActive(true);
             }
         }
     }
@@ -585,6 +596,17 @@ public class PlayerManager : MonoBehaviour
             player.state = Player.State.Playing;
         } else if (enemy.state != Player.State.Inactive) {
             enemy.state = Player.State.Playing;
+        }
+    }
+    public void UsedSkill() {
+        confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
+        skillMenu.transform.localPosition = Vector3.zero;
+        if (player.state != Player.State.Inactive) {
+            player.state = Player.State.Playing;
+            player.UsedSkill();
+        } else if (enemy.state != Player.State.Inactive) {
+            enemy.state = Player.State.Playing;
+            enemy.UsedSkill();
         }
     }
 

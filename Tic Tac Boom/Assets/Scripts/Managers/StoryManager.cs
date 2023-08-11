@@ -16,6 +16,7 @@ public class StoryManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+        state = State.Loading;
     }
 
     void OnEnable() {
@@ -101,7 +102,7 @@ public class StoryManager : MonoBehaviour
     }
 
     public void NewGame() {
-        PlayerManager.instance.SetPlayers(true);
+        PlayerManager.instance.SetPlayers(Player.Faction.Exiled, Player.Character.Rebel, Player.Type.AI);
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.player.maxMoves = 1;
         GameManager.instance.turn = 1;
@@ -115,7 +116,7 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator Loading() {
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
-        PlayerManager.instance.enemy.character = Player.Character.Thief;
+        PlayerManager.instance.enemy.character = Player.Character.Peasant;
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
         PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
         PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
@@ -510,7 +511,7 @@ public class StoryManager : MonoBehaviour
             gridLocked = true;
             for (int x = 0; x < GameManager.instance.gridSize; x++) {
                 for (int y = 0; y < GameManager.instance.gridSize; y++) {
-                    if (GridManager.instance.Tiles[x][y].transform.CompareTag("Untagged")) {
+                    if (GridManager.instance.Tiles[x][y].transform.CompareTag("Untagged") || GridManager.instance.Tiles[x][y].transform.CompareTag("Mine")) {
                         gridLocked = false;
                     }
                 }

@@ -48,11 +48,20 @@ public class Player
     public Talent activeSkill;
     public int initialCooldown;
 
+    public Player() {
+        state = State.Inactive;
+        skills = new List<Talent>();
+        passives = new List<Talent>();
+        activeSkill = null;
+        skillUsed = false;
+    }
+
     public Player(Type _type) {
         type = _type;
         state = State.Inactive;
         skills = new List<Talent>();
         passives = new List<Talent>();
+        activeSkill = null;
         skillUsed = false;
     }
 
