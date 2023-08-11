@@ -47,7 +47,7 @@ public class StoryModeAI : MonoBehaviour
     }
 
     protected virtual void ParseTileValues(int moves) {
-        int size = StoryManager.instance.gridSize;
+        int size = GameManager.instance.gridSize;
         int originalMoves = moves;
         //blockedValue = playerValue * size;
         tileValues = new int[size][];
@@ -64,7 +64,7 @@ public class StoryModeAI : MonoBehaviour
                 int value = 0;
                 // Check if tile is occupied
                 GameObject tile = GridManager.instance.Tiles[x][y];
-                if (tile.transform.GetChild(0).gameObject.activeSelf || tile.CompareTag("Wall")) {
+                if ((tile.transform.GetChild(0).gameObject.activeSelf && !tile.tag.Contains("Mine"))|| tile.CompareTag("Wall")) {
                     continue;
                 }
                 if (x == y && (x + y) == (size - 1)) {

@@ -56,7 +56,6 @@ public class Tile : MonoBehaviour
         occupant.SetActive(false);
         occupant.transform.SetParent(gameObject.transform);
         occupant.transform.localPosition = Vector3.zero;
-        occupant.transform.localScale = new Vector3(0.8f, 0.8f);
         occupant.AddComponent<SpriteRenderer>();
         occupant.AddComponent<Resize>();
     }

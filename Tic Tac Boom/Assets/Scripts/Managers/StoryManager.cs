@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class StoryManager : MonoBehaviour
 {
     public static StoryManager instance;
-    public int turn, round, stage, gridSize, newGridSize;
-    public bool updatingGrid;
+    
     public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu, levelClearMenu;
 
     private void Awake() {
@@ -105,11 +104,11 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.SetPlayers(true);
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.player.maxMoves = 1;
-        turn = 1;
-        round = 1;
-        stage = 1;
-        gridSize = 3;
-        newGridSize = 3;
+        GameManager.instance.turn = 1;
+        GameManager.instance.round = 1;
+        GameManager.instance.stage = 1;
+        GameManager.instance.gridSize = 7;
+        GameManager.instance.newGridSize = 7;
         state = State.Loading;
         StartCoroutine(Loading());
     }
@@ -119,11 +118,17 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.enemy.character = Player.Character.Thief;
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
         PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.BuildTiles);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.CrossBomb);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.DestroyTiles);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.Mine);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.XBomb);
         PlayerManager.instance.SetSkills();
-        newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
-        gridSize = newGridSize;
+        GameManager.instance.newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
+        GameManager.instance.gridSize = GameManager.instance.newGridSize;
         GridManager.instance.state = GridManager.State.Generating;
-        StartCoroutine(GridManager.instance.GenerateGrid(gridSize));
+        StartCoroutine(GridManager.instance.GenerateGrid(GameManager.instance.gridSize));
         UI.GetComponent<CanvasGroup>().alpha = 0;
         GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
         turnIndicator.SetActive(false);
@@ -256,8 +261,8 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator EndTurn() {
-        turn++;
-        round = turn / 2;
+        GameManager.instance.turn++;
+        GameManager.instance.round = GameManager.instance.turn / 2;
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
             state = State.EnemyTurn;
         } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
@@ -298,7 +303,7 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator PlayerVictory() {
         StopPlayers();
-        if (stage < 15) {
+        if (GameManager.instance.stage < 15) {
             StartCoroutine(StageClear());
         } else {
             playerVictoryMenu.transform.localPosition = Vector3.zero;
@@ -333,18 +338,18 @@ public class StoryManager : MonoBehaviour
         int enemySpacesWon;
         bool gridLocked;
 
-        if (updatingGrid) {
+        if (GameManager.instance.updatingGrid) {
             return false;
         }
         // Player Win Conditions
 
         // Vertical Win Condition
-        for (int x = 0; x < gridSize; x++) {
+        for (int x = 0; x < GameManager.instance.gridSize; x++) {
             playerSpacesWon = 0;
-            for (int y = 0; y < gridSize; y++) {
+            for (int y = 0; y < GameManager.instance.gridSize; y++) {
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
-                    if (playerSpacesWon == gridSize) {
+                    if (playerSpacesWon == GameManager.instance.gridSize) {
                         state = State.PlayerVictory;
                         break;
                     } else {
@@ -357,12 +362,12 @@ public class StoryManager : MonoBehaviour
         }
 
         // Horizontal win Condition
-        for (int y = 0; y < gridSize; y++) {
+        for (int y = 0; y < GameManager.instance.gridSize; y++) {
             playerSpacesWon = 0;
-            for (int x = 0; x < gridSize; x++) {
+            for (int x = 0; x < GameManager.instance.gridSize; x++) {
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                     playerSpacesWon += 1;
-                    if (playerSpacesWon == gridSize) {
+                    if (playerSpacesWon == GameManager.instance.gridSize) {
                         state = State.PlayerVictory;
                         break;
                     } else {
@@ -376,11 +381,11 @@ public class StoryManager : MonoBehaviour
 
         // Left-Right Diagonal Win Condition
         playerSpacesWon = 0;
-        for (int x = 0; x < gridSize; x++) {
+        for (int x = 0; x < GameManager.instance.gridSize; x++) {
             int y = x;
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
-                if (playerSpacesWon == gridSize) {
+                if (playerSpacesWon == GameManager.instance.gridSize) {
                     state = State.PlayerVictory;
                     break;
                 } else {
@@ -393,11 +398,11 @@ public class StoryManager : MonoBehaviour
 
         // Right-Left Diagonal Win Condition
         playerSpacesWon = 0;
-        for (int x = gridSize - 1; x >= 0; x--) {
-            int y = (gridSize - 1) - x;
+        for (int x = GameManager.instance.gridSize - 1; x >= 0; x--) {
+            int y = (GameManager.instance.gridSize - 1) - x;
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Player")) {
                 playerSpacesWon += 1;
-                if (playerSpacesWon == gridSize) {
+                if (playerSpacesWon == GameManager.instance.gridSize) {
                     state = State.PlayerVictory;
                     break;
                 } else {
@@ -412,12 +417,12 @@ public class StoryManager : MonoBehaviour
         // Enemy Win Conditions
 
         // Vertical Win Condition
-        for (int x = 0; x < gridSize; x++) {
+        for (int x = 0; x < GameManager.instance.gridSize; x++) {
             enemySpacesWon = 0;
-            for (int y = 0; y < gridSize; y++) {
+            for (int y = 0; y < GameManager.instance.gridSize; y++) {
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
-                    if (enemySpacesWon == gridSize) {
+                    if (enemySpacesWon == GameManager.instance.gridSize) {
                         if (state == State.PlayerVictory) {
                             state = State.Draw;
                         } else {
@@ -434,12 +439,12 @@ public class StoryManager : MonoBehaviour
         }
 
         // Horizontal win Condition
-        for (int y = 0; y < gridSize; y++) {
+        for (int y = 0; y < GameManager.instance.gridSize; y++) {
             enemySpacesWon = 0;
-            for (int x = 0; x < gridSize; x++) {
+            for (int x = 0; x < GameManager.instance.gridSize; x++) {
                 if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                     enemySpacesWon += 1;
-                    if (enemySpacesWon == gridSize) {
+                    if (enemySpacesWon == GameManager.instance.gridSize) {
                         if (state == State.PlayerVictory) {
                             state = State.Draw;
                         } else {
@@ -457,11 +462,11 @@ public class StoryManager : MonoBehaviour
 
         // Left-Right Diagonal Win Condition
         enemySpacesWon = 0;
-        for (int x = 0; x < gridSize; x++) {
+        for (int x = 0; x < GameManager.instance.gridSize; x++) {
             int y = x;
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
-                if (enemySpacesWon == gridSize) {
+                if (enemySpacesWon == GameManager.instance.gridSize) {
                     if (state == State.PlayerVictory) {
                         state = State.Draw;
                     } else {
@@ -478,11 +483,11 @@ public class StoryManager : MonoBehaviour
 
         // Right-Left Diagonal Win Condition
         enemySpacesWon = 0;
-        for (int x = gridSize - 1; x >= 0; x--) {
-            int y = (gridSize - 1) - x;
+        for (int x = GameManager.instance.gridSize - 1; x >= 0; x--) {
+            int y = (GameManager.instance.gridSize - 1) - x;
             if (GridManager.instance.Tiles[x][y].transform.CompareTag("Enemy")) {
                 enemySpacesWon += 1;
-                if (enemySpacesWon == gridSize) {
+                if (enemySpacesWon == GameManager.instance.gridSize) {
                     if (state == State.PlayerVictory) {
                         state = State.Draw;
                     } else {
@@ -503,8 +508,8 @@ public class StoryManager : MonoBehaviour
             return true;
         } else {
             gridLocked = true;
-            for (int x = 0; x < gridSize; x++) {
-                for (int y = 0; y < gridSize; y++) {
+            for (int x = 0; x < GameManager.instance.gridSize; x++) {
+                for (int y = 0; y < GameManager.instance.gridSize; y++) {
                     if (GridManager.instance.Tiles[x][y].transform.CompareTag("Untagged")) {
                         gridLocked = false;
                     }

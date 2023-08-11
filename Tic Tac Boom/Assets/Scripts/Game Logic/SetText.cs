@@ -9,6 +9,6 @@ public class SetText : MonoBehaviour
         SetStageText();
     }
     void SetStageText() {
-        gameObject.GetComponent<TextMeshProUGUI>().text = $"LEVEL {StoryManager.instance.stage}";
+        gameObject.GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
     }
 }

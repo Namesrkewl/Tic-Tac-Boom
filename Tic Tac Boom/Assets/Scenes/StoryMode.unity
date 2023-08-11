@@ -2794,6 +2794,8 @@ MonoBehaviour:
   name: {fileID: 1936137268}
   description: {fileID: 444375765}
   cooldown: {fileID: 1741705320}
+  cancel: {fileID: 2012343211}
+  use: {fileID: 1788770240}
   talentObject: {fileID: 0}
 --- !u!1 &928870983
 GameObject:
@@ -5263,31 +5265,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1788770238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Talents, Assembly-CSharp
-        m_MethodName: ConfirmSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 229613018337410050}
-        m_TargetAssemblyTypeName: SkillsAnimation, Assembly-CSharp
-        m_MethodName: Hide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1845408945
 GameObject:
   m_ObjectHideFlags: 0
@@ -6013,19 +5991,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2012343209}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Talents, Assembly-CSharp
-        m_MethodName: CancelSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2019136294
 GameObject:
   m_ObjectHideFlags: 0

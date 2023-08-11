@@ -26,13 +26,6 @@ public class GridManager : MonoBehaviour {
         instance = this;
     }
 
-    private void Update() {
-        if (StoryManager.instance.gridSize != StoryManager.instance.newGridSize && StoryManager.instance.newGridSize > 0 && state == State.Idle) {
-            StartCoroutine(ChangeGridSize(StoryManager.instance.gridSize, StoryManager.instance.newGridSize));
-            StoryManager.instance.gridSize = StoryManager.instance.newGridSize;
-        }
-    }
-
     public IEnumerator GenerateGrid(int size) {
         Tiles = new List<List<GameObject>>();
         for (int x = 0; x < size; x++) {
@@ -106,7 +99,7 @@ public class GridManager : MonoBehaviour {
                         break;
                 }
                 Tiles[x][y].GetComponent<Tile>().SetSprite($"Tiles/{tileset}/{yString}-{xString}");
-                Tiles[x][y].name = $"Tile {x},{y}";
+                Tiles[x][y].name = $"{x},{y}";
             }
         }
         state = State.Tracking;

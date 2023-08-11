@@ -41,14 +41,19 @@ public class Player
     }
 
     public Sprite playerSprite, characterSprite, skin;
-    public List<Talent> talents;
+    public List<Talent> skills, passives;
     public int maxMoves, remainingMoves;
+    public bool skillUsed;
     public PlayerObject playerObject;
-    public static Talent activeTalent;
+    public Talent activeSkill;
+    public int initialCooldown;
 
     public Player(Type _type) {
         type = _type;
         state = State.Inactive;
+        skills = new List<Talent>();
+        passives = new List<Talent>();
+        skillUsed = false;
     }
 
     public void SetPlayerObject() {
@@ -58,12 +63,25 @@ public class Player
     }
 
     public void Cooldown() {
-        for(int i = 0; i < talents.Count; i++) {
-            if (talents[i].cooldown > 0) {
-                talents[i].cooldown--;
+        for (int i = 0; i < skills.Count; i++) {
+            if (skills[i].cooldown > 0) {
+                skills[i].cooldown--;
             }
-            talents[i].SetTalentObject();
+            skills[i].SetTalentObject();
         }
+        for (int i = 0; i < passives.Count; i++) {
+            if (passives[i].cooldown > 0) {
+                passives[i].cooldown--;
+            }
+        }
+        skillUsed = false;
+    }
+
+    public void UsedSkill() {
+        activeSkill.maxCooldown += activeSkill.scaling;
+        activeSkill.cooldown = activeSkill.maxCooldown;
+        activeSkill = null;
+        skillUsed = true;
     }
 
 

@@ -4,8 +4,5 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerObject")]
 public class TalentObject : ScriptableObject {
-    public Sprite sprite;
-    public new string name;
-    public string description;
-    public int cooldown;
+    public Talent talent;
 }

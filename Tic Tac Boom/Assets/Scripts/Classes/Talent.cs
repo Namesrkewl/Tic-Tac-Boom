@@ -29,7 +29,7 @@ public class Talent
         BottomRight
     }
 
-    public int maxCooldown, scaling, cooldown, duration;
+    public int maxCooldown, scaling, cooldown, duration, initialCooldown;
     public Sprite sprite;
     public ParticleSystem particleSystem;
     public string name, description;
@@ -117,7 +117,7 @@ public class Talent
                 sprite = Resources.Load<Sprite>("Skills/destroy_tile");
                 particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_DustCloud");
                 name = "DESTROY TILES";
-                description = $"DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). ENDS YOUR TURN.\n{maxCooldown}|{scaling}";
+                description = $"DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). TAKES 1 MOVE COUNT TO USE.\n{maxCooldown}|{scaling}";
                 break;
             default:
                 break;
@@ -125,9 +125,6 @@ public class Talent
     }
 
     public void SetTalentObject() {
-        talentObject.sprite = sprite;
-        talentObject.name = name;
-        talentObject.description = description;
-        talentObject.cooldown = cooldown;
+        talentObject.talent = this;
     }
 }
