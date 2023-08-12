@@ -12,6 +12,7 @@ TagManager:
   - ConveyerUp
   - ConveyerDown
   - Enemy
+  - Skill
   layers:
   - Default
   - TransparentFX

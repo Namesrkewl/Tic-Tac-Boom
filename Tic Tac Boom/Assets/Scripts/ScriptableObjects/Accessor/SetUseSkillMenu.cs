@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetSelectSkillMenu : MonoBehaviour
+public class SetUseSkillMenu : MonoBehaviour
 {
     public Image skillSprite;
     public Button cancel;

@@ -115,6 +115,7 @@
     <Compile Include="Assets/LeanTween/Examples/Archived/OldGUIExamplesCS.cs" />
     <Compile Include="Assets/Scripts/Skill Logic/TalentChoices.cs" />
     <Compile Include="Assets/Scripts/Game Logic/SceneHistory.cs" />
+    <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetUseSkillMenu.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralCameraShake.cs" />
     <Compile Include="Assets/Scripts/Sequences/IntroSequence.cs" />
     <Compile Include="Assets/Scripts/Grid Logic/Tile.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplinePerformance.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralBasic.cs" />
     <Compile Include="Assets/Scripts/Classes/Talent.cs" />
-    <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetSelectSkillMenu.cs" />
+    <Compile Include="Assets/Scripts/Skill Logic/Direction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

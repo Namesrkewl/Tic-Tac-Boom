@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour {
             }
         }
         state = State.Formatting;
-        StartCoroutine(FormatTiles(size));
+        yield return StartCoroutine(FormatTiles(size));
         yield return null;
     }
 
@@ -103,23 +103,24 @@ public class GridManager : MonoBehaviour {
             }
         }
         state = State.Tracking;
-        StartCoroutine(CameraManager.instance.FollowGrid(size));
+        yield return StartCoroutine(CameraManager.instance.FollowGrid(size));
         yield return new WaitForSeconds(2f);
         state = State.Positioning;
-        StartCoroutine(ResetTilePosition(size));
+        yield return StartCoroutine(ResetTilePosition(size));
         yield return null;
     }
     public IEnumerator ResetTilePosition(int size) {
+        Debug.Log("ResetPositions");
         content.transform.localPosition = Vector3.zero;
         for (int x = 0; x < Tiles.Count; x++) {
             for (int y = 0; y < Tiles[x].Count; y++) {
                 Tiles[x][y].transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y));
             }
         }
-        StartCoroutine(CameraManager.instance.FollowGrid(size));
+        yield return StartCoroutine(CameraManager.instance.FollowGrid(size));
         yield return null;
     }
-    public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.BottomLeft) {
+    public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.TopRight) {
         Debug.Log(direction);
         if (size < newSize) {
             // Increase grid size
@@ -262,8 +263,9 @@ public class GridManager : MonoBehaviour {
                     break;
             }
         }
+        GameManager.instance.gridSize = GameManager.instance.newGridSize;
         state = State.Formatting;
-        StartCoroutine(FormatTiles(newSize));
+        yield return StartCoroutine(FormatTiles(newSize));
         yield return null;
     }
 }

@@ -339,7 +339,7 @@ public class StoryManager : MonoBehaviour
         int enemySpacesWon;
         bool gridLocked;
 
-        if (GameManager.instance.updatingGrid) {
+        if (GridManager.instance.state != GridManager.State.Idle) {
             return false;
         }
         // Player Win Conditions

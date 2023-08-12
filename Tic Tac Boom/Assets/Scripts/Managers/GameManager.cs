@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     // Variables
     public static GameManager instance;
     public int turn, round, stage, gridSize, newGridSize;
-    public bool updatingGrid;
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
 
