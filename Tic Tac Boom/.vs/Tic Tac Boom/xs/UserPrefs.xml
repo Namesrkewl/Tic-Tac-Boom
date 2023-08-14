@@ -1,20 +1,13 @@
 ﻿<Properties StartupConfiguration="{7D63E36F-B4AC-7ED4-A3AC-DE8B8EDF47C7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/StoryManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skill Logic/TalentChoices.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="110" Column="40" />
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="11" Column="71" />
-      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="100" Column="32" />
-      <File FileName="Assets/Scripts/Classes/Player.cs" Line="13" Column="24" />
+      <File FileName="Assets/Scripts/Classes/Talent.cs" Line="15" Column="19" />
+      <File FileName="Assets/Scripts/Classes/Player.cs" Line="83" Column="58" />
       <File FileName="Assets/Scripts/ScriptableObjects/Object/TalentObject.cs" />
-      <File FileName="Assets/Scripts/Game Logic/PlayerMoveTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Grid Logic/GridManager.cs" Line="102" Column="47" />
-      <File FileName="Assets/Scripts/AI/StoryModeAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Grid Logic/Tile.cs" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="566" Column="6" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetUseSkillMenu.cs" Line="23" Column="49" />
-      <File FileName="Assets/Scripts/Animation/SkillsAnimation.cs" Line="8" Column="27" />
-      <File FileName="Assets/Scripts/Managers/CameraManager.cs" Line="27" Column="75" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" Line="13" Column="30" />
+      <File FileName="Assets/Scripts/Skill Logic/TalentChoices.cs" Line="17" Column="17" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="129" Column="45" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="60" Column="1" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="546" Column="74" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,15 +23,15 @@
                 <Node name="Classes" expanded="True" />
                 <Node name="Game Logic" expanded="True" />
                 <Node name="Grid Logic" expanded="True" />
-                <Node name="Managers" expanded="True">
-                  <Node name="StoryManager.cs" selected="True" />
-                </Node>
+                <Node name="Managers" expanded="True" />
                 <Node name="ScriptableObjects" expanded="True">
                   <Node name="Accessor" expanded="True" />
                   <Node name="Object" expanded="True" />
                 </Node>
                 <Node name="Sequences" expanded="True" />
-                <Node name="Skill Logic" expanded="True" />
+                <Node name="Skill Logic" expanded="True">
+                  <Node name="TalentChoices.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -48,7 +41,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="252c5f17-a040-4cc0-a39f-c9eef068c243" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9087ea62-0c50-43b5-86c7-966aeff9a3cc" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -106,6 +106,8 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.SetPlayers(Player.Faction.Exiled, Player.Character.Rebel, Player.Type.AI);
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.player.maxMoves = 1;
+        GameManager.instance.ResetTalents();
+        PlayerManager.instance.player.SetTalentPools();
         GameManager.instance.turn = 1;
         GameManager.instance.round = 1;
         GameManager.instance.stage = 1;
@@ -124,12 +126,7 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
         PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
         PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.BuildTiles);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.CrossBomb);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.DestroyTiles);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.Mine);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.XBomb);
-        PlayerManager.instance.SetSkills();
+        PlayerManager.instance.SetTalents();
         GameManager.instance.newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
         GameManager.instance.gridSize = GameManager.instance.newGridSize;
         GridManager.instance.state = GridManager.State.Generating;

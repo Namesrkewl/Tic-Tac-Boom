@@ -542,23 +542,60 @@ public class PlayerManager : MonoBehaviour
     // Passives
 
     // Talent Logic
+
     public void AddTalent(Player _player, Talent.TalentName talentName) {
-        _player.skills.Add(new Talent(talentName));
-        if (_player == player) {
-            _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/" + talentName.ToString());
+        Talent talent = new Talent(talentName);
+        if (talent.type != Talent.Type.Passive) {
+            AddSkill(_player, talentName);
         } else {
-            _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/" + talentName.ToString());
+            AddPassive(_player, talentName);
         }
-        _player.skills.Last().SetTalentObject();
-        _player.skills.Last().cooldown = _player.initialCooldown;
     }
-    public void SetSkills() {
-        for (int i = 0; i < player.skills.Count; i++) {
-            GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Actives/TALENT"), skills.transform);
-            skill.name = player.skills[i].talentName.ToString();
-            skill.GetComponent<Image>().sprite = player.skills[i].sprite;
-            Talent talent = player.skills[i];
-            skill.GetComponent<Button>().onClick.AddListener(delegate{SelectSkill(talent);});
+    public void AddSkill(Player _player, Talent.TalentName talentName) {
+        if (_player.skillsPool != null) {
+            for (int i = 0; i < _player.skillsPool.Count; i++) {
+                if (talentName == _player.skillsPool[i].talentName) {
+                    _player.skills.Add(new Talent(talentName));
+                    _player.skillsPool.RemoveAt(i);
+                    if (_player == player) {
+                        _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Skills/" + talentName.ToString());
+                    } else {
+                        _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + talentName.ToString());
+                    }
+                    _player.skills.Last().SetTalentObject();
+                    _player.skills.Last().cooldown = _player.initialCooldown;
+                    break;
+                }
+            }
+        }
+    }
+    public void AddPassive(Player _player, Talent.TalentName talentName) {
+        if (_player.passivesPool != null) {
+            for (int i = 0; i < _player.passivesPool.Count; i++) {
+                if (talentName == _player.passivesPool[i].talentName) {
+                    _player.passives.Add(new Talent(talentName));
+                    _player.passivesPool.RemoveAt(i);
+                    if (_player == player) {
+                        _player.passives.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Passives/" + talentName.ToString());
+                    } else {
+                        _player.passives.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Passives/" + talentName.ToString());
+                    }
+                    _player.passives.Last().SetTalentObject();
+                    _player.passives.Last().cooldown = _player.initialCooldown;
+                    break;
+                }
+            }
+        }
+    }
+    public void SetTalents() {
+        if (player.skills != null) {
+            for (int i = 0; i < player.skills.Count; i++) {
+                GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skills/Talent"), skills.transform);
+                skill.name = player.skills[i].talentName.ToString();
+                skill.GetComponent<Image>().sprite = player.skills[i].sprite;
+                Talent talent = player.skills[i];
+                skill.GetComponent<Button>().onClick.AddListener(delegate { SelectSkill(talent); });
+            }
         }
     }
     public void ViewSkills() {

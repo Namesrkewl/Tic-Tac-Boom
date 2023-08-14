@@ -42,7 +42,7 @@ public class Player
     }
 
     public Sprite playerSprite, characterSprite, skin;
-    public List<Talent> skills, passives;
+    public List<Talent> skills, passives, skillsPool, passivesPool;
     public int maxMoves, remainingMoves;
     public bool skillUsed;
     public PlayerObject playerObject;
@@ -51,10 +51,8 @@ public class Player
 
     public Player() {
         state = State.Inactive;
-        skills = new List<Talent>();
-        passives = new List<Talent>();
-        activeSkill = null;
-        skillUsed = false;
+        InitializeTalents();
+        
     }
 
     public Player(Type _type) {
@@ -72,16 +70,34 @@ public class Player
         playerObject.playerSprite = playerSprite;
     }
 
+    public void InitializeTalents() {
+        skills = new List<Talent>();
+        passives = new List<Talent>();
+        skillsPool = new List<Talent>();
+        passivesPool = new List<Talent>();
+        activeSkill = null;
+        skillUsed = false;
+    }
+
+    public void SetTalentPools() {
+        skillsPool = GameManager.instance.unlockedSkills;
+        passivesPool = GameManager.instance.unlockedPassives;
+    }
+
     public void Cooldown() {
-        for (int i = 0; i < skills.Count; i++) {
-            if (skills[i].cooldown > 0) {
-                skills[i].cooldown--;
+        if (skills != null) {
+            for (int i = 0; i < skills.Count; i++) {
+                if (skills[i].cooldown > 0) {
+                    skills[i].cooldown--;
+                }
+                skills[i].SetTalentObject();
             }
-            skills[i].SetTalentObject();
-        }
-        for (int i = 0; i < passives.Count; i++) {
-            if (passives[i].cooldown > 0) {
-                passives[i].cooldown--;
+        }        
+        if (passives != null) {
+            for (int i = 0; i < passives.Count; i++) {
+                if (passives[i].cooldown > 0) {
+                    passives[i].cooldown--;
+                }
             }
         }
         skillUsed = false;
