@@ -1198,7 +1198,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 229613018337410050}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillsAnimation, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -3125,7 +3125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 229613018337410050}
+      - m_Target: {fileID: 1286792705}
         m_TargetAssemblyTypeName: SkillsAnimation, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 1
@@ -3849,6 +3849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286792702}
   - component: {fileID: 1286792704}
+  - component: {fileID: 1286792705}
   m_Layer: 5
   m_Name: SkillMenu
   m_TagString: Untagged
@@ -3887,6 +3888,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286792701}
   m_CullTransparentMesh: 1
+--- !u!114 &1286792705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286792701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbae2ef907ecec42a932a79f6f7cfa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 342479388395968734}
+  element: {fileID: 1031930585}
+  veil: {fileID: 1687279458}
 --- !u!1 &1304326326
 GameObject:
   m_ObjectHideFlags: 0
@@ -7752,20 +7768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &229613018337410050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342479388395968734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbae2ef907ecec42a932a79f6f7cfa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  element: {fileID: 1031930585}
-  veil: {fileID: 1687279458}
 --- !u!1 &342479388395968734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7777,7 +7779,6 @@ GameObject:
   - component: {fileID: 1039742615123678270}
   - component: {fileID: 2550989964748452350}
   - component: {fileID: 6995104979045241645}
-  - component: {fileID: 229613018337410050}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -9791,7 +9792,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 229613018337410050}
+      - m_Target: {fileID: 1286792705}
         m_TargetAssemblyTypeName: SkillsAnimation, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1

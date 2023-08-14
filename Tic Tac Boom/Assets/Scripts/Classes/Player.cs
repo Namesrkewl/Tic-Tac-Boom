@@ -14,6 +14,7 @@ public class Player
         Inactive,
         Idle,
         Playing,
+        ViewingSkills,
         SelectingSkill,
         UsingSkill
     }

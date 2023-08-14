@@ -46,6 +46,7 @@ public class StoryManager : MonoBehaviour
 
     public State state;
     public enum State {
+        Idle,
         Loading,
         LevelStart,
         PlayerTurn,
@@ -80,7 +81,7 @@ public class StoryManager : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(EndGame());
+        yield return StartCoroutine(EndGame());
 
         yield return null;
     }
@@ -88,20 +89,20 @@ public class StoryManager : MonoBehaviour
     private IEnumerator EndGame() {
         switch (state) {
             case State.Draw:
-                StartCoroutine(Draw());
+                yield return StartCoroutine(Draw());
                 break;
             case State.PlayerVictory:
-                StartCoroutine(PlayerVictory());
+                yield return StartCoroutine(PlayerVictory());
                 break;
             case State.EnemyVictory:
-                StartCoroutine(EnemyVictory());
+                yield return StartCoroutine(EnemyVictory());
                 break;
         }
 
         yield return null;
     }
 
-    public void NewGame() {
+    public IEnumerator NewGame() {
         PlayerManager.instance.SetPlayers(Player.Faction.Exiled, Player.Character.Rebel, Player.Type.AI);
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.player.maxMoves = 1;
@@ -110,8 +111,11 @@ public class StoryManager : MonoBehaviour
         GameManager.instance.stage = 1;
         GameManager.instance.gridSize = 7;
         GameManager.instance.newGridSize = 7;
+        GameManager.instance.minGridSize = 1;
+        GameManager.instance.maxGridSize = 7;
         state = State.Loading;
-        StartCoroutine(Loading());
+        yield return StartCoroutine(Loading());
+        yield return null;
     }
 
     private IEnumerator Loading() {
@@ -208,7 +212,7 @@ public class StoryManager : MonoBehaviour
         UI.GetComponent<CanvasGroup>().alpha = 1;
         yield return new WaitForSeconds(1f);
         state = State.LevelStart;
-        StartCoroutine(LevelStart());
+        yield return StartCoroutine(LevelStart());
         yield return null;
     }
 
@@ -218,18 +222,16 @@ public class StoryManager : MonoBehaviour
         } else {
             state = State.EnemyTurn;
         }
-        StartCoroutine(StoryMode());
+        yield return StartCoroutine(StoryMode());
         yield return null;
     }
 
     private IEnumerator PlayerTurn() {
         if (PlayerManager.instance.player.state == Player.State.Inactive) {
             PlayerManager.instance.player.state = Player.State.Playing;
-            PlayerManager.instance.enemy.state = Player.State.Inactive;
             PlayerManager.instance.player.Cooldown();
             PlayerManager.instance.player.remainingMoves = PlayerManager.instance.player.maxMoves;
             turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
         }
         
         if (PlayerManager.instance.player.remainingMoves <= 0) {
@@ -243,11 +245,9 @@ public class StoryManager : MonoBehaviour
     private IEnumerator EnemyTurn() {
         if (PlayerManager.instance.enemy.state == Player.State.Inactive) {
             PlayerManager.instance.enemy.state = Player.State.Playing;
-            PlayerManager.instance.player.state = Player.State.Inactive;
             PlayerManager.instance.enemy.Cooldown();
             PlayerManager.instance.enemy.remainingMoves = PlayerManager.instance.enemy.maxMoves;
             turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         if (PlayerManager.instance.enemy.remainingMoves > 0) {
@@ -265,8 +265,16 @@ public class StoryManager : MonoBehaviour
         GameManager.instance.turn++;
         GameManager.instance.round = GameManager.instance.turn / 2;
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
+            PlayerManager.instance.player.state = Player.State.Inactive;
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            state = State.Idle;
+            yield return new WaitForSeconds(1f);
             state = State.EnemyTurn;
         } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
+            PlayerManager.instance.enemy.state = Player.State.Inactive;
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
+            state = State.Idle;
+            yield return new WaitForSeconds(1f);
             state = State.PlayerTurn;
         }
         yield return null;
@@ -305,7 +313,7 @@ public class StoryManager : MonoBehaviour
     private IEnumerator PlayerVictory() {
         StopPlayers();
         if (GameManager.instance.stage < 15) {
-            StartCoroutine(StageClear());
+            yield return StartCoroutine(StageClear());
         } else {
             playerVictoryMenu.transform.localPosition = Vector3.zero;
         }
@@ -320,14 +328,14 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator Draw() {
         Debug.Log("Draw! Wiping the board, turn is passed to the next player");
-        StartCoroutine(GridManager.instance.ResolveDraw());
+        yield return StartCoroutine(GridManager.instance.ResolveDraw());
         yield return new WaitForSeconds(2f);
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
             state = State.EnemyTurn;
         } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
             state = State.PlayerTurn;
         }
-        StartCoroutine(StoryMode());
+        yield return StartCoroutine(StoryMode());
         yield return null;
     }
     public bool GameOver() {
@@ -504,8 +512,12 @@ public class StoryManager : MonoBehaviour
         }
 
         if (state == State.Draw) {
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             return true;
         } else if (state == State.PlayerVictory || state == State.EnemyVictory) {
+            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             return true;
         } else {
             gridLocked = true;

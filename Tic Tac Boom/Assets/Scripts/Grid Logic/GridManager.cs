@@ -104,7 +104,7 @@ public class GridManager : MonoBehaviour {
         }
         state = State.Tracking;
         yield return StartCoroutine(CameraManager.instance.FollowGrid(size));
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         state = State.Positioning;
         yield return StartCoroutine(ResetTilePosition(size));
         yield return null;

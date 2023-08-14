@@ -3,15 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillsAnimation : TweenAnimation {
-    [SerializeField] private GameObject element, veil;
+    [SerializeField] private GameObject menu, element, veil;
+
+    public void Update() {
+        if (PlayerManager.instance.player.state == Player.State.Playing || PlayerManager.instance.player.state == Player.State.ViewingSkills) {
+            if (!menu.activeSelf) {
+                menu.SetActive(true);
+            }
+        } else {
+            if (menu.activeSelf) {
+                menu.SetActive(false);
+            }
+        }
+    }
 
     // Animation for opening the menu
     public void Show() {
         if (!IsMoving) {
+            PlayerManager.instance.player.state = Player.State.ViewingSkills;
             IsMoving = true;
             Deactivate();
             veil.SetActive(true);
-            LeanTween.moveLocal(gameObject, new Vector3(0, -560, 0), 0.2f);
+            LeanTween.moveLocal(menu, new Vector3(0, -560, 0), 0.2f);
         }
     }
 
@@ -20,10 +33,11 @@ public class SkillsAnimation : TweenAnimation {
     public void Hide() {
         if (!IsMoving) {
             IsMoving = true;
-            LeanTween.moveLocal(gameObject, new Vector3(0, -1400, 0), 0.2f).setOnComplete(Activate);
+            LeanTween.moveLocal(menu, new Vector3(0, -1400, 0), 0.2f).setOnComplete(Activate);
             veil.SetActive(false);
         }
     }
+
 
     // Deactivate element
     void Deactivate() {
@@ -35,5 +49,6 @@ public class SkillsAnimation : TweenAnimation {
     void Activate() {
         element.SetActive(true);
         IsMoving = false;
+        PlayerManager.instance.player.state = Player.State.Playing;
     }
 }

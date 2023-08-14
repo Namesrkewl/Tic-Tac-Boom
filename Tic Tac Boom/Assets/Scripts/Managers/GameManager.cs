@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     // Variables
     public static GameManager instance;
-    public int turn, round, stage, gridSize, newGridSize;
+    public int turn, round, stage, gridSize, newGridSize, minGridSize, maxGridSize;
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
 
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     private void Update() {
         switch (state) {
             case State.StoryMode:
-                StoryManager.instance.NewGame();
+                StartCoroutine(StoryManager.instance.NewGame());
                 state = State.Idle;
                 break;
             default:
