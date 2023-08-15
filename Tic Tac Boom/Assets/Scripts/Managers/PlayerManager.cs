@@ -598,7 +598,10 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    public void ViewSkills() {
+    public void GenerateSkills() {
+
+    }
+    public void GeneratePassives() {
 
     }
     public void SelectSkill(Talent skill) {

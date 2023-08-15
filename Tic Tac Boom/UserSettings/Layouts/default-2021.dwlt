@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 149
+  controlID: 150
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 16
+  controlID: 151
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 64
+  controlID: 48
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -668,9 +668,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -310.79492, y: -165.64702, z: 14.117402}
+    m_Target: {x: 58.371433, y: -762.8724, z: -0.39200267}
     speed: 2
-    m_Value: {x: -310.79492, y: -165.64702, z: 14.117402}
+    m_Value: {x: 58.371433, y: -762.8724, z: -0.39200267}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -721,9 +721,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 721.52563
+    m_Target: 215.91534
     speed: 2
-    m_Value: 721.52563
+    m_Value: 215.91534
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -837,21 +837,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fefafffff4ffffff
+      m_ExpandedIDs: 88e0ffffe0e0ffffb8eeffffbceefffffefaffff2e700000347000006a700000a8700000b6710000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Text
+        m_OriginalName: Text
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -19810
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
@@ -902,38 +902,38 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/Talents/Skills
+    - Assets/Resources/Prefabs/TalentChoices/Passives
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Prefabs/Talents/Skills
+  - Assets/Resources/Prefabs/TalentChoices/Passives
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 134}
-    m_SelectedIDs: 3c9a0000
-    m_LastClickedID: 39484
-    m_ExpandedIDs: 00000000667a00006a7a00006c7a0000707a0000ac7a0000aa7b0000ae7b0000b67b000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 206.98737}
+    m_SelectedIDs: 2a7b0000
+    m_LastClickedID: 31530
+    m_ExpandedIDs: 00000000667a0000687a00006a7a00006c7a00006e7a0000b47a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Passives
+      m_OriginalName: Passives
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 31530
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 12}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -945,7 +945,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000667a0000687a00006a7a00006c7a00006e7a0000707a0000
+    m_ExpandedIDs: 00000000667a0000687a00006a7a00006c7a00006e7a0000707a0000727a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1036,7 +1036,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 211
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

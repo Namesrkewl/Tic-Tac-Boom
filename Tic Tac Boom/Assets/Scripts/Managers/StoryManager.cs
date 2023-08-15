@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -295,10 +296,12 @@ public class StoryManager : MonoBehaviour
         talentChoices.GenerateSkills(3);*/
         levelClearMenu.transform.localPosition = Vector3.zero;
         levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
+        levelClearMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
         yield return null;
     }
 
     private IEnumerator NextFight() {
+        GameManager.instance.stage += 1;
         yield return null;
     }
 
