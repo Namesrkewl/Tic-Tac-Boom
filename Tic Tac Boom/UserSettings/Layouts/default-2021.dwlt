@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1512
     height: 840
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 81
+  controlID: 15
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 170
+  controlID: 162
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 139
+  controlID: 94
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -668,9 +668,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 58.371433, y: -762.8724, z: -0.39200267}
+    m_Target: {x: 142, y: -1767.0555, z: 0}
     speed: 2
-    m_Value: {x: 58.371433, y: -762.8724, z: -0.39200267}
+    m_Value: {x: 142, y: -1767.0555, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -721,9 +721,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 215.91534
+    m_Target: 289.6415
     speed: 2
-    m_Value: 215.91534
+    m_Value: 289.6415
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -835,25 +835,25 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 52720000
-      m_LastClickedID: 29266
-      m_ExpandedIDs: fefaffff387000006e700000dc710000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fefaffff387000006e70000088700000f87000003c710000dc7100004872000060720000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: ChooseTalentMenu
+        m_OriginalName: ChooseTalentMenu
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 28808
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 11}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -902,22 +902,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/Managers
+    - Assets/Resources/Prefabs/TalentChoices
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Prefabs/Managers
+  - Assets/Resources/Prefabs/TalentChoices
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 102}
-    m_SelectedIDs: e87a0000
-    m_LastClickedID: 31464
-    m_ExpandedIDs: 00000000c67a0000c87a0000ca7a0000cc7a0000ce7a0000d07a0000d27a000000ca9a3b
+    scrollPos: {x: 0, y: 150.0055}
+    m_SelectedIDs: d07a0000
+    m_LastClickedID: 31440
+    m_ExpandedIDs: 00000000c67a0000c87a0000ca7a0000cc7a0000ce7a0000d27a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000807e0000a6600000a2600000d0630000d26300003c6600008a620000746400005a640000286e0000e86200007c6500007a650000446300004663000088660000706500006e65000022820000d66400009e640000507f0000de650000c0790000c279000082680000507300005e670000b8680000a66800005067000032750000da72000072730000e0770000ec8f000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

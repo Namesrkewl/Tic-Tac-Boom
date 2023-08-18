@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 3094834323393010466}
   - component: {fileID: 4838289761555391617}
   m_Layer: 5
-  m_Name: Talent
+  m_Name: Passive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

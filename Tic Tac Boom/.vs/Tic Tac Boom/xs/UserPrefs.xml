@@ -1,16 +1,16 @@
 ﻿<Properties StartupConfiguration="{7D63E36F-B4AC-7ED4-A3AC-DE8B8EDF47C7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/PlayerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/MenuManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Classes/Talent.cs" Line="234" Column="1" />
       <File FileName="Assets/Scripts/Classes/Player.cs" Line="17" Column="23" />
       <File FileName="Assets/Scripts/ScriptableObjects/Object/TalentObject.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="49" Column="37" />
-      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="96" Column="46" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="401" Column="1" />
-      <File FileName="Assets/Scripts/Skill Logic/TalentChoices.cs" Line="18" Column="38" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetUseSkillMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/MenuManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/StoryManager.cs" Line="257" Column="27" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="387" Column="14" />
+      <File FileName="Assets/Scripts/Skill Logic/TalentChoices.cs" />
+      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetUseSkillMenu.cs" />
+      <File FileName="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" />
+      <File FileName="Assets/Scripts/Managers/MenuManager.cs" Line="8" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +23,7 @@
                 <Node name="Game Logic" expanded="True" />
                 <Node name="Grid Logic" expanded="True" />
                 <Node name="Managers" expanded="True">
-                  <Node name="PlayerManager.cs" selected="True" />
+                  <Node name="MenuManager.cs" selected="True" />
                 </Node>
                 <Node name="ScriptableObjects" expanded="True">
                   <Node name="Accessor" expanded="True" />
@@ -33,6 +33,14 @@
               </Node>
             </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>

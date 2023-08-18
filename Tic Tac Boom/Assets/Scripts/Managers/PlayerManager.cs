@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -350,71 +350,83 @@ public class PlayerManager : MonoBehaviour
 
     // Talent Logic
 
-    public void GenerateTalents(int amount) {
-        if (player.state == Player.State.AddingSkill || enemy.state == Player.State.AddingSkill) {
-            GenerateSkills(amount);
-        } else if (player.state == Player.State.AddingPassive || enemy.state == Player.State.AddingPassive) {
-            GeneratePassives(amount);
+    public void GenerateTalents(Player _player, int amount) {
+        if (_player.state == Player.State.AddingSkill) {
+            GenerateSkills(_player, amount);
+        } else if (_player.state == Player.State.AddingPassive) {
+            GeneratePassives(_player, amount);
         }
     }
-    private void GenerateSkills(int amount) {
+    private void GenerateSkills(Player _player, int amount) {
         GameObject choices = MenuManager.instance.skillChoices.transform.GetChild(1).GetChild(0).gameObject;
-        if (player.state == Player.State.AddingSkill) {
-            player.showingSkills.Clear();
-            while (amount > 0 && player.skillsPool.Count > 0) {
-                int index = UnityEngine.Random.Range(0, player.skillsPool.Count);
-                player.showingSkills.Add(player.skillsPool[index]);
-                player.skillsPool.RemoveAt(index);
+        for (int i = choices.transform.childCount - 1; i >= 0; i--) {
+            Destroy(choices.transform.GetChild(i).gameObject);
+        }
+        if (_player.state == Player.State.AddingSkill) {
+            _player.showingSkills.Clear();
+            while (amount > 0 && _player.skillsPool.Count > 0) {
+                int index = UnityEngine.Random.Range(0, _player.skillsPool.Count);
+                _player.showingSkills.Add(_player.skillsPool[index]);
+                _player.skillsPool.RemoveAt(index);
                 amount--;
             }
-        } else if (enemy.state == Player.State.AddingSkill) {
-            enemy.showingSkills.Clear();
-            while (amount > 0 && enemy.skillsPool.Count > 0) {
-                int index = UnityEngine.Random.Range(0, enemy.skillsPool.Count);
-                enemy.showingSkills.Add(enemy.skillsPool[index]);
-                enemy.skillsPool.RemoveAt(index);
-                amount--;
+            for (int i = _player.showingSkills.Count - 1; i >= 0; i--) {
+                Talent skill = _player.showingSkills[i];
+                if (_player == player) {
+                    skill.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Skills/" + skill.talentName.ToString());
+                } else {
+                    skill.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + skill.talentName.ToString());
+                }
+                skill.SetTalentObject();
+                
+                GameObject choice = Instantiate(Resources.Load<GameObject>("Prefabs/TalentChoices/Skill"), choices.transform);
+                choice.name = skill.talentName.ToString();
+                choice.transform.GetChild(0).GetComponent<Image>().sprite = skill.sprite;
+                //choice.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { SelectSkill(skill); });
+                _player.skillsPool.Add(skill);
             }
+            _player.showingSkills.Clear();
         }
     }
-    private void GeneratePassives(int amount) {
+    private void GeneratePassives(Player _player, int amount) {
         GameObject choices = MenuManager.instance.passiveChoices.transform.GetChild(1).GetChild(0).gameObject;
-        if (player.state == Player.State.AddingPassive) {
-            player.showingPassives.Clear();
-            while (amount > 0 && player.passivesPool.Count > 0) {
-                int index = UnityEngine.Random.Range(0, player.passivesPool.Count);
-                player.showingPassives.Add(player.passivesPool[index]);
-                player.passivesPool.RemoveAt(index);
+        for (int i = choices.transform.childCount - 1; i >= 0; i--) {
+            Destroy(choices.transform.GetChild(i).gameObject);
+        }
+        if (_player.state == Player.State.AddingPassive) {
+            _player.showingPassives.Clear();
+            while (amount > 0 && _player.passivesPool.Count > 0) {
+                int index = UnityEngine.Random.Range(0, _player.passivesPool.Count);
+                _player.showingPassives.Add(player.passivesPool[index]);
+                _player.passivesPool.RemoveAt(index);
                 amount--;
             }
-        } else if (enemy.state == Player.State.AddingPassive) {
-            enemy.showingPassives.Clear();
-            while (amount > 0 && enemy.passivesPool.Count > 0) {
-                int index = UnityEngine.Random.Range(0, enemy.passivesPool.Count);
-                enemy.showingPassives.Add(enemy.passivesPool[index]);
-                enemy.passivesPool.RemoveAt(index);
-                amount--;
+            for (int i = _player.showingPassives.Count - 1; i >= 0; i--) {
+                Talent passive = _player.showingPassives[i];
+                if (_player == player) {
+                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Skills/" + passive.talentName.ToString());
+                } else {
+                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + passive.talentName.ToString());
+                }
+                passive.SetTalentObject();
+                GameObject choice = Instantiate(Resources.Load<GameObject>("Prefabs/TalentChoices/Passive"), choices.transform);
+                choice.name = passive.talentName.ToString();
+                //choice.GetComponent<Button>().onClick.AddListener(delegate { SelectSkill(passive); });
+                choice.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = passive.description;
+                _player.passivesPool.Add(passive);
             }
+            _player.showingPassives.Clear();
         }
     }
-    public void AddTalent() {
-
-    }
-    private void AddSkill() {
-
-    }
-    private void AddPassive() {
-
-    }
-    public void GiftTalent(Player _player, Talent.TalentName talentName) {
+    public void AddTalent(Player _player, Talent.TalentName talentName) {
         Talent talent = new Talent(talentName);
         if (talent.type != Talent.Type.Passive) {
-            GiftSkill(_player, talentName);
+            AddSkill(_player, talentName);
         } else {
-            GiftPassive(_player, talentName);
+            AddPassive(_player, talentName);
         }
     }
-    private void GiftSkill(Player _player, Talent.TalentName talentName) {
+    private void AddSkill(Player _player, Talent.TalentName talentName) {
         if (_player.skillsPool != null) {
             for (int i = 0; i < _player.skillsPool.Count; i++) {
                 if (talentName == _player.skillsPool[i].talentName) {
@@ -425,15 +437,15 @@ public class PlayerManager : MonoBehaviour
                     } else {
                         _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + talentName.ToString());
                     }
-                    _player.skills.Last().OnAddTalent(_player);
                     _player.skills.Last().SetTalentObject();
+                    _player.skills.Last().OnAddTalent(_player);
                     _player.skills.Last().cooldown = _player.initialCooldown;
                     break;
                 }
             }
         }
     }
-    private void GiftPassive(Player _player, Talent.TalentName talentName) {
+    private void AddPassive(Player _player, Talent.TalentName talentName) {
         if (_player.passivesPool != null) {
             for (int i = 0; i < _player.passivesPool.Count; i++) {
                 if (talentName == _player.passivesPool[i].talentName) {
@@ -455,7 +467,7 @@ public class PlayerManager : MonoBehaviour
     public void SetTalents() {
         if (player.skills != null) {
             for (int i = 0; i < player.skills.Count; i++) {
-                GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skills/Talent"), MenuManager.instance.skills.transform);
+                GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skill"), MenuManager.instance.skills.transform);
                 skill.name = player.skills[i].talentName.ToString();
                 skill.GetComponent<Image>().sprite = player.skills[i].sprite;
                 Talent talent = player.skills[i];

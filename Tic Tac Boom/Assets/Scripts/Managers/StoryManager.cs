@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
@@ -104,7 +105,7 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.enemy.character = Player.Character.Peasant;
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
         PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
-        PlayerManager.instance.GiftTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
+        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
         PlayerManager.instance.SetTalents();
         GameManager.instance.newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
         GameManager.instance.gridSize = GameManager.instance.newGridSize;
@@ -275,6 +276,9 @@ public class StoryManager : MonoBehaviour
         MenuManager.instance.levelClearMenu.transform.localPosition = Vector3.zero;
         MenuManager.instance.levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
         MenuManager.instance.levelClearMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
+        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
+        PlayerManager.instance.player.state = Player.State.AddingSkill;
+        PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3);
         yield return null;
     }
 

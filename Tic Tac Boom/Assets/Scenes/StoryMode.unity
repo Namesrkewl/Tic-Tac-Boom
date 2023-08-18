@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SKIP
+  m_text: Reroll
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6c62174210dacd46aa7df2188aed12a, type: 2}
   m_sharedMaterial: {fileID: -5566981997578152848, guid: a6c62174210dacd46aa7df2188aed12a, type: 2}
@@ -7537,7 +7537,7 @@ GameObject:
   - component: {fileID: 1886394853}
   - component: {fileID: 1886394852}
   m_Layer: 5
-  m_Name: Skip
+  m_Name: Reroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
