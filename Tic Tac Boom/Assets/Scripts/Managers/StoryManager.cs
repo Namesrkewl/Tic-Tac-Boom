@@ -104,7 +104,7 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.enemy.character = Player.Character.Peasant;
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
         PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
+        PlayerManager.instance.GiftTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
         PlayerManager.instance.SetTalents();
         GameManager.instance.newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
         GameManager.instance.gridSize = GameManager.instance.newGridSize;

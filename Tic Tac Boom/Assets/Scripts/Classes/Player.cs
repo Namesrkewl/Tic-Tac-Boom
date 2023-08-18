@@ -16,7 +16,9 @@ public class Player
         Playing,
         ViewingSkills,
         SelectingSkill,
-        UsingSkill
+        UsingSkill,
+        AddingSkill,
+        AddingPassive
     }
     public Faction faction;
     public enum Faction {
@@ -42,7 +44,7 @@ public class Player
     }
 
     public Sprite playerSprite, characterSprite, skin;
-    public List<Talent> skills, passives, unlockedSkills, unlockedPassives, skillsPool, passivesPool;
+    public List<Talent> skills, passives, unlockedSkills, unlockedPassives, skillsPool, passivesPool, showingSkills, showingPassives;
     public int maxMoves, remainingMoves;
     public bool skillUsed;
     public PlayerObject playerObject;
@@ -58,10 +60,7 @@ public class Player
     public Player(Type _type) {
         type = _type;
         state = State.Inactive;
-        skills = new List<Talent>();
-        passives = new List<Talent>();
-        activeSkill = null;
-        skillUsed = false;
+        InitializeTalents();
     }
 
     public void SetPlayerObject() {
@@ -77,6 +76,8 @@ public class Player
         unlockedPassives = new List<Talent>();
         skillsPool = new List<Talent>();
         passivesPool = new List<Talent>();
+        showingSkills = new List<Talent>();
+        showingPassives = new List<Talent>();
         activeSkill = null;
         skillUsed = false;
     }
@@ -87,8 +88,6 @@ public class Player
     }
 
     public void SetTalentPools() {
-        skillsPool.Clear();
-        passivesPool.Clear();
         for (int i = unlockedSkills.Count - 1; i >= 0; i--) {
             if (unlockedSkills[i].canAddTalent) {
                 skillsPool.Add(unlockedSkills[i]);
@@ -135,7 +134,4 @@ public class Player
         activeSkill = null;
         skillUsed = true;
     }
-
-
-    //[field: SerializeField] public bool IsExiled { get; private set; }
 }
