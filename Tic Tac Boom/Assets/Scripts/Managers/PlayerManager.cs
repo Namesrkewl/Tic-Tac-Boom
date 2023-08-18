@@ -15,7 +15,6 @@ public class PlayerManager : MonoBehaviour
     public SetPlayerObject setPlayerObject, setEnemyObject;
     public List<Sprite> exiledSprites, pureSprites, skins;
     public StoryModeAI storyModeAI;
-    public GameObject skillMenu, confirmSkillMenu, useSkillMenu, skills;
     private GameObject playerAtTrigger;
 
     private void Awake() {
@@ -44,10 +43,6 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (SceneManager.GetActiveScene().name == "StoryMode") {
-            skillMenu = GameObject.Find("SkillMenu");
-            confirmSkillMenu = GameObject.Find("ConfirmSkillMenu");
-            useSkillMenu = GameObject.Find("UseSkillMenu");
-            skills = GameObject.Find("Skills");
             setPlayerObject = GameObject.Find("Player").GetComponent<SetPlayerObject>();
             setEnemyObject = GameObject.Find("Enemy").GetComponent<SetPlayerObject>();
         }
@@ -590,7 +585,7 @@ public class PlayerManager : MonoBehaviour
     public void SetTalents() {
         if (player.skills != null) {
             for (int i = 0; i < player.skills.Count; i++) {
-                GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skills/Talent"), skills.transform);
+                GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skills/Talent"), MenuManager.instance.skills.transform);
                 skill.name = player.skills[i].talentName.ToString();
                 skill.GetComponent<Image>().sprite = player.skills[i].sprite;
                 Talent talent = player.skills[i];
@@ -605,18 +600,18 @@ public class PlayerManager : MonoBehaviour
 
     }
     public void SelectSkill(Talent skill) {
-        confirmSkillMenu.SetActive(false);
+        MenuManager.instance.confirmSkillMenu.SetActive(false);
         if (player.state != Player.State.Inactive) {
-            confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = skill.talentObject;
+            MenuManager.instance.confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = skill.talentObject;
             player.state = Player.State.SelectingSkill;
         } else if (enemy.state != Player.State.Inactive) {
-            confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = skill.talentObject;
+            MenuManager.instance.confirmSkillMenu.GetComponent<SetConfirmSkillMenu>().talentObject = skill.talentObject;
             enemy.state = Player.State.SelectingSkill;
         }
-        confirmSkillMenu.SetActive(true);
-        confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
-        confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);
-        LeanTween.scale(confirmSkillMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
+        MenuManager.instance.confirmSkillMenu.SetActive(true);
+        MenuManager.instance.confirmSkillMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
+        MenuManager.instance.confirmSkillMenu.transform.localPosition = new Vector3(0, 0, 0);
+        LeanTween.scale(MenuManager.instance.confirmSkillMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
     }
     public void ConfirmSkill(Talent skill) {
         if (skill.talentName == Talent.TalentName.DestroyTiles && GameManager.instance.gridSize == GameManager.instance.minGridSize) {
@@ -628,30 +623,30 @@ public class PlayerManager : MonoBehaviour
             if (player.state == Player.State.SelectingSkill && !player.skillUsed) {
                 player.activeSkill = skill;
                 player.state = Player.State.UsingSkill;
-                skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
-                useSkillMenu.SetActive(false);
-                useSkillMenu.SetActive(true);
+                MenuManager.instance.skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
+                MenuManager.instance.useSkillMenu.SetActive(false);
+                MenuManager.instance.useSkillMenu.SetActive(true);
                 if (player.activeSkill.talentName == Talent.TalentName.BuildTiles || player.activeSkill.talentName == Talent.TalentName.DestroyTiles) {
-                    useSkillMenu.transform.GetChild(1).gameObject.SetActive(true);
+                    MenuManager.instance.useSkillMenu.transform.GetChild(1).gameObject.SetActive(true);
                 } 
             } else if (enemy.state == Player.State.SelectingSkill && !enemy.skillUsed) {
                 enemy.activeSkill = skill;
                 enemy.state = Player.State.UsingSkill;
-                skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
-                useSkillMenu.SetActive(false);
-                useSkillMenu.SetActive(true);
+                MenuManager.instance.skillMenu.transform.localPosition = new Vector3(0, 3840, 0);
+                MenuManager.instance.useSkillMenu.SetActive(false);
+                MenuManager.instance.useSkillMenu.SetActive(true);
                 if (enemy.activeSkill.talentName == Talent.TalentName.BuildTiles || enemy.activeSkill.talentName == Talent.TalentName.DestroyTiles) {
-                    useSkillMenu.transform.GetChild(1).gameObject.SetActive(true);
+                    MenuManager.instance.useSkillMenu.transform.GetChild(1).gameObject.SetActive(true);
                 }
             }
         }
     }
     public void CancelSkill() {
-        confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
-        skillMenu.transform.localPosition = Vector3.zero;
-        skillMenu.transform.GetChild(1).localPosition = new Vector3(0, -1400, 0);
-        skillMenu.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
-        useSkillMenu.transform.GetChild(1).gameObject.SetActive(false);
+        MenuManager.instance.confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
+        MenuManager.instance.skillMenu.transform.localPosition = Vector3.zero;
+        MenuManager.instance.skillMenu.transform.GetChild(1).localPosition = new Vector3(0, -1400, 0);
+        MenuManager.instance.skillMenu.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+        MenuManager.instance.useSkillMenu.transform.GetChild(1).gameObject.SetActive(false);
         if (player.state != Player.State.Inactive) {
             player.state = Player.State.Playing;
         } else if (enemy.state != Player.State.Inactive) {
@@ -659,11 +654,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
     public void ResolveSkill() {
-        confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
-        skillMenu.transform.localPosition = Vector3.zero;
-        skillMenu.transform.GetChild(1).localPosition = new Vector3(0, -1400, 0);
-        skillMenu.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
-        useSkillMenu.transform.GetChild(1).gameObject.SetActive(false);
+        MenuManager.instance.confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
+        MenuManager.instance.skillMenu.transform.localPosition = Vector3.zero;
+        MenuManager.instance.skillMenu.transform.GetChild(1).localPosition = new Vector3(0, -1400, 0);
+        MenuManager.instance.skillMenu.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+        MenuManager.instance.useSkillMenu.transform.GetChild(1).gameObject.SetActive(false);
         if (player.state != Player.State.Inactive) {
             player.state = Player.State.Idle;
         } else if (enemy.state != Player.State.Inactive) {

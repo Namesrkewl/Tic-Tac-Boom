@@ -110,6 +110,7 @@
     <Compile Include="Assets/Scripts/Game Logic/SetText.cs" />
     <Compile Include="Assets/Scripts/Animation/Scroll.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/TestingZLegacyExt.cs" />
+    <Compile Include="Assets/Scripts/Managers/MenuManager.cs" />
     <Compile Include="Assets/Scripts/Sequences/StoryIntroSequence.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralEasingTypes.cs" />
     <Compile Include="Assets/Scripts/Animation/PopUpAnimation.cs" />

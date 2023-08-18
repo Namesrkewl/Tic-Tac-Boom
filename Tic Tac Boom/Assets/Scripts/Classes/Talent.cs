@@ -30,6 +30,7 @@ public class Talent
     }
 
     public int maxCooldown, scaling, cooldown, duration, initialCooldown;
+    public bool canAddPassive;
     public Sprite sprite;
     public ParticleSystem particleSystem;
     public string name, description;
@@ -126,5 +127,13 @@ public class Talent
 
     public void SetTalentObject() {
         talentObject.talent = this;
+    }
+
+    public bool AddPassive() {
+        switch(talentName) {
+
+            default:
+                return true;
+        }
     }
 }

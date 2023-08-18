@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class StoryManager : MonoBehaviour
 {
     public static StoryManager instance;
-    
-    public GameObject UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu, levelClearMenu;
 
     private void Awake() {
         if (instance == null) {
@@ -18,27 +16,6 @@ public class StoryManager : MonoBehaviour
             Destroy(gameObject);
         }
         state = State.Loading;
-    }
-
-    void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        if (SceneManager.GetActiveScene().name == "StoryMode") {
-            UI = GameObject.Find("UI");
-            HUD = GameObject.Find("HUD");
-            nextFight = GameObject.Find("NextFight");
-            grid = GameObject.Find("Grid");
-            turnDisplay = GameObject.Find("TurnDisplay");
-            playerVictoryMenu = GameObject.Find("PlayerVictoryMenu");
-            enemyVictoryMenu = GameObject.Find("EnemyVictoryMenu");
-            levelClearMenu = GameObject.Find("LevelClearMenu");
-        }
-    }
-
-    void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update() {
@@ -132,28 +109,28 @@ public class StoryManager : MonoBehaviour
         GameManager.instance.gridSize = GameManager.instance.newGridSize;
         GridManager.instance.state = GridManager.State.Generating;
         StartCoroutine(GridManager.instance.GenerateGrid(GameManager.instance.gridSize));
-        UI.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
+        MenuManager.instance.UI.GetComponent<CanvasGroup>().alpha = 0;
+        GameObject turnIndicator = MenuManager.instance.HUD.transform.GetChild(0).gameObject;
         turnIndicator.SetActive(false);
-        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).gameObject;
+        GameObject playerIndicator = MenuManager.instance.HUD.transform.GetChild(1).GetChild(0).gameObject;
         playerIndicator.SetActive(false);
-        GameObject enemyIndicator = HUD.transform.GetChild(2).GetChild(0).gameObject;
+        GameObject enemyIndicator = MenuManager.instance.HUD.transform.GetChild(2).GetChild(0).gameObject;
         enemyIndicator.SetActive(false);
-        GameObject nextPlayer = HUD.transform.GetChild(1).GetChild(1).gameObject;
+        GameObject nextPlayer = MenuManager.instance.HUD.transform.GetChild(1).GetChild(1).gameObject;
         nextPlayer.transform.localPosition = new Vector3(2000, 0);
         nextPlayer.SetActive(true);
-        GameObject nextEnemy = HUD.transform.GetChild(2).GetChild(1).gameObject;
+        GameObject nextEnemy = MenuManager.instance.HUD.transform.GetChild(2).GetChild(1).gameObject;
         nextEnemy.transform.localPosition = new Vector3(-2000, 0);
         nextEnemy.SetActive(true);
-        GameObject cover = nextFight.transform.GetChild(0).gameObject;
+        GameObject cover = MenuManager.instance.nextFight.transform.GetChild(0).gameObject;
         cover.SetActive(true);
-        GameObject fog = nextFight.transform.GetChild(1).gameObject;
-        GameObject background = nextFight.transform.GetChild(2).gameObject;
+        GameObject fog = MenuManager.instance.nextFight.transform.GetChild(1).gameObject;
+        GameObject background = MenuManager.instance.nextFight.transform.GetChild(2).gameObject;
         background.SetActive(true);
-        GameObject clouds = nextFight.transform.GetChild(4).gameObject;
+        GameObject clouds = MenuManager.instance.nextFight.transform.GetChild(4).gameObject;
         clouds.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
+        GameObject rollingFog = MenuManager.instance.nextFight.transform.GetChild(3).gameObject;
         rollingFog.SetActive(true);
         AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         yield return new WaitForSeconds(0.5f);
@@ -207,7 +184,7 @@ public class StoryManager : MonoBehaviour
         playerIndicator.SetActive(true);
         enemyIndicator.SetActive(true);
         turnIndicator.SetActive(true);
-        UI.GetComponent<CanvasGroup>().alpha = 1;
+        MenuManager.instance.UI.GetComponent<CanvasGroup>().alpha = 1;
         yield return new WaitForSeconds(1f);
         state = State.LevelStart;
         yield return StartCoroutine(LevelStart());
@@ -229,7 +206,7 @@ public class StoryManager : MonoBehaviour
             PlayerManager.instance.player.state = Player.State.Playing;
             PlayerManager.instance.player.Cooldown();
             PlayerManager.instance.player.remainingMoves = PlayerManager.instance.player.maxMoves;
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
+            MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
         }
         
         if (PlayerManager.instance.player.remainingMoves <= 0) {
@@ -245,7 +222,7 @@ public class StoryManager : MonoBehaviour
             PlayerManager.instance.enemy.state = Player.State.Playing;
             PlayerManager.instance.enemy.Cooldown();
             PlayerManager.instance.enemy.remainingMoves = PlayerManager.instance.enemy.maxMoves;
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
+            MenuManager.instance.turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         if (PlayerManager.instance.enemy.remainingMoves > 0) {
@@ -264,13 +241,13 @@ public class StoryManager : MonoBehaviour
         GameManager.instance.round = GameManager.instance.turn / 2;
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
             PlayerManager.instance.player.state = Player.State.Inactive;
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
             state = State.Idle;
             yield return new WaitForSeconds(1f);
             state = State.EnemyTurn;
         } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
             PlayerManager.instance.enemy.state = Player.State.Inactive;
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             state = State.Idle;
             yield return new WaitForSeconds(1f);
             state = State.PlayerTurn;
@@ -280,23 +257,23 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator StageClear() {
         yield return new WaitForSeconds(2f);
-        UI.GetComponent<CanvasGroup>().alpha = 0;
-        GameObject turnIndicator = HUD.transform.GetChild(0).gameObject;
+        MenuManager.instance.UI.GetComponent<CanvasGroup>().alpha = 0;
+        GameObject turnIndicator = MenuManager.instance.HUD.transform.GetChild(0).gameObject;
         turnIndicator.SetActive(false);
-        GameObject playerIndicator = HUD.transform.GetChild(1).GetChild(0).gameObject;
+        GameObject playerIndicator = MenuManager.instance.HUD.transform.GetChild(1).GetChild(0).gameObject;
         playerIndicator.SetActive(false);
-        GameObject enemyIndicator = HUD.transform.GetChild(2).GetChild(0).gameObject;
+        GameObject enemyIndicator = MenuManager.instance.HUD.transform.GetChild(2).GetChild(0).gameObject;
         enemyIndicator.SetActive(false);
-        GameObject rollingFog = nextFight.transform.GetChild(3).gameObject;
+        GameObject rollingFog = MenuManager.instance.nextFight.transform.GetChild(3).gameObject;
         rollingFog.GetComponent<ParticleSystem>().Play();
         AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         yield return new WaitForSeconds(1f);
         /*
         talentChoices.ClearTalentChoices();
         talentChoices.GenerateSkills(3);*/
-        levelClearMenu.transform.localPosition = Vector3.zero;
-        levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
-        levelClearMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
+        MenuManager.instance.levelClearMenu.transform.localPosition = Vector3.zero;
+        MenuManager.instance.levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
+        MenuManager.instance.levelClearMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
         yield return null;
     }
 
@@ -315,14 +292,14 @@ public class StoryManager : MonoBehaviour
         if (GameManager.instance.stage < 15) {
             yield return StartCoroutine(StageClear());
         } else {
-            playerVictoryMenu.transform.localPosition = Vector3.zero;
+            MenuManager.instance.playerVictoryMenu.transform.localPosition = Vector3.zero;
         }
         yield return null;
     }
 
     private IEnumerator EnemyVictory() {
         StopPlayers();
-        enemyVictoryMenu.transform.localPosition = Vector3.zero;
+        MenuManager.instance.enemyVictoryMenu.transform.localPosition = Vector3.zero;
         yield return null;
     }
 
@@ -512,12 +489,12 @@ public class StoryManager : MonoBehaviour
         }
 
         if (state == State.Draw) {
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             return true;
         } else if (state == State.PlayerVictory || state == State.EnemyVictory) {
-            turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
-            turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
+            MenuManager.instance.turnDisplay.transform.GetChild(1).gameObject.SetActive(false);
             return true;
         } else {
             gridLocked = true;
