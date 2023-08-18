@@ -67,6 +67,7 @@
     <Compile Include="Assets/Scripts/Animation/ScaleTween.cs" />
     <Compile Include="Assets/Scripts/Audio/Small_Bomb_Sounds.cs" />
     <Compile Include="Assets/Scripts/Game Logic/SetMenu.cs" />
+    <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetChooseTalentMenu.cs" />
     <Compile Include="Assets/Scripts/Sequences/StartSequence.cs" />
     <Compile Include="Assets/Scripts/Managers/GameManager.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathBezier2d.cs" />

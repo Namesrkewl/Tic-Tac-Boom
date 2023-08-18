@@ -128,7 +128,7 @@ public class Player
             if (activeSkill.talentName == skills[i].talentName) {
                 skills[i].cooldown = skills[i].maxCooldown;
                 skills[i].maxCooldown += skills[i].scaling;
-                
+                skills[i].SetTalentObject();
             }
         }
         activeSkill = null;

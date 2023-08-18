@@ -270,15 +270,63 @@ public class StoryManager : MonoBehaviour
         rollingFog.GetComponent<ParticleSystem>().Play();
         AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
         yield return new WaitForSeconds(1f);
-        /*
-        talentChoices.ClearTalentChoices();
-        talentChoices.GenerateSkills(3);*/
         MenuManager.instance.levelClearMenu.transform.localPosition = Vector3.zero;
         MenuManager.instance.levelClearMenu.transform.GetChild(0).gameObject.SetActive(true);
         MenuManager.instance.levelClearMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LEVEL {GameManager.instance.stage}";
-        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
+        yield return ChooseTalent();
+        yield return null;
+    }
+
+    private IEnumerator ChooseTalent() {
+        PlayerManager.instance.player.state = Player.State.Idle;
+        if (GameManager.instance.stage % 3 == 0) {
+            yield return ChooseSkillAndPassive();
+        } else if (GameManager.instance.stage % 3 != 0) {
+            yield return ChooseSkill();
+        }
+        yield return AwaitTalentChoice();
+        yield return null;
+    }
+
+    private IEnumerator ChooseSkillAndPassive() {
+        if (PlayerManager.instance.player.state == Player.State.Idle) {
+            yield return ChooseSkill();
+        }
+        while (PlayerManager.instance.player.state == Player.State.AddingSkill) {
+            yield return null;
+        }
+        MenuManager.instance.skillChoices.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        PlayerManager.instance.player.state = Player.State.AddingPassive;
+        yield return ChoosePassive();
+        yield return null;
+    }
+
+    private IEnumerator ChooseSkill() {
+        MenuManager.instance.skillChoices.SetActive(true);
+        MenuManager.instance.passiveChoices.SetActive(false);
         PlayerManager.instance.player.state = Player.State.AddingSkill;
         PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3);
+        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
+        yield return null;
+    }
+
+    private IEnumerator ChoosePassive() {
+        MenuManager.instance.passiveChoices.SetActive(true);
+        MenuManager.instance.skillChoices.SetActive(false);
+        PlayerManager.instance.player.state = Player.State.AddingPassive;
+        PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3);
+        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
+        yield return null;
+    }
+
+    private IEnumerator AwaitTalentChoice() {
+        while (PlayerManager.instance.player.state != Player.State.Inactive) {
+            yield return null;
+        }
+        yield return NextFight();
         yield return null;
     }
 

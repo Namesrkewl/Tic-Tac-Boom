@@ -8,8 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerManager : MonoBehaviour
-{
+public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
     public Player player, enemy;
     public SetPlayerObject setPlayerObject, setEnemyObject;
@@ -325,7 +324,7 @@ public class PlayerManager : MonoBehaviour
                     playerAtTrigger.GetComponent<SpriteRenderer>().sprite = enemy.skin;
                     playerAtTrigger.SetActive(true);
                     enemy.remainingMoves -= 1;
-                } 
+                }
             } else if (player.state == Player.State.UsingSkill || enemy.state == Player.State.UsingSkill) {
                 yield return Skill(go);
             }
@@ -378,11 +377,11 @@ public class PlayerManager : MonoBehaviour
                     skill.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + skill.talentName.ToString());
                 }
                 skill.SetTalentObject();
-                
+
                 GameObject choice = Instantiate(Resources.Load<GameObject>("Prefabs/TalentChoices/Skill"), choices.transform);
                 choice.name = skill.talentName.ToString();
                 choice.transform.GetChild(0).GetComponent<Image>().sprite = skill.sprite;
-                //choice.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { SelectSkill(skill); });
+                choice.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ChooseTalent(skill); });
                 _player.skillsPool.Add(skill);
             }
             _player.showingSkills.Clear();
@@ -411,12 +410,30 @@ public class PlayerManager : MonoBehaviour
                 passive.SetTalentObject();
                 GameObject choice = Instantiate(Resources.Load<GameObject>("Prefabs/TalentChoices/Passive"), choices.transform);
                 choice.name = passive.talentName.ToString();
-                //choice.GetComponent<Button>().onClick.AddListener(delegate { SelectSkill(passive); });
+                choice.GetComponent<Button>().onClick.AddListener(delegate { ChooseTalent(passive); });
                 choice.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = passive.description;
                 _player.passivesPool.Add(passive);
             }
             _player.showingPassives.Clear();
         }
+    }
+    public void ChooseTalent(Talent talent) {
+        MenuManager.instance.chooseTalentMenu.SetActive(false);
+        MenuManager.instance.chooseTalentMenu.GetComponent<SetChooseTalentMenu>().talentObject = talent.talentObject;
+        MenuManager.instance.chooseTalentMenu.SetActive(true);
+        MenuManager.instance.chooseTalentMenu.transform.GetChild(1).transform.localScale = new Vector3(0, 0, 0);
+        MenuManager.instance.chooseTalentMenu.transform.localPosition = new Vector3(0, 0, 0);
+        LeanTween.scale(MenuManager.instance.chooseTalentMenu.transform.GetChild(1).gameObject, new Vector3(1, 1, 1), 0.5f).setEaseOutElastic();
+    }
+    public void ConfirmTalentChoice(Talent talent) {
+        if (player.state == Player.State.AddingSkill || player.state == Player.State.AddingPassive) {
+            AddTalent(player, talent.talentName);
+            player.state = Player.State.Inactive;
+        } else if (enemy.state == Player.State.AddingSkill || enemy.state == Player.State.AddingPassive) {
+            AddTalent(enemy, talent.talentName);
+            enemy.state = Player.State.Inactive;
+        }
+        MenuManager.instance.chooseTalentMenu.transform.localPosition = new Vector3(0, -3840, 0);
     }
     public void AddTalent(Player _player, Talent.TalentName talentName) {
         Talent talent = new Talent(talentName);
@@ -529,7 +546,6 @@ public class PlayerManager : MonoBehaviour
             enemy.state = Player.State.Playing;
         }
     }
-
     public void TriggerMine(GameObject go) {
         string[] coordinates = go.name.Split(",");
         int x = Convert.ToInt32(coordinates[0]);
@@ -551,7 +567,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-
     public void BombTrigger(GameObject go) {
         ParticleSystem boom = Instantiate(ParticleSystemsManager.instance.particleSystems[0]);
         boom.transform.position = go.transform.position;

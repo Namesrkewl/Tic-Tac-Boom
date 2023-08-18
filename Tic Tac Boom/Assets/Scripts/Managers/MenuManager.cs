@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
-    public GameObject skillMenu, confirmSkillMenu, useSkillMenu, skills, UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu, levelClearMenu, skillChoices, passiveChoices;
+    public GameObject skillMenu, confirmSkillMenu, useSkillMenu, skills, UI, HUD, nextFight, grid, turnDisplay, playerVictoryMenu, enemyVictoryMenu, levelClearMenu, skillChoices, passiveChoices, chooseTalentMenu;
 
     private void Awake() {
         if (instance == null) {
@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
             levelClearMenu = GameObject.Find("LevelClearMenu");
             skillChoices = GameObject.Find("SkillChoices");
             passiveChoices = GameObject.Find("PassiveChoices");
+            chooseTalentMenu = GameObject.Find("ChooseTalentMenu");
         }
     }
 
