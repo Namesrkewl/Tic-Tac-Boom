@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour {
             }
         }
         state = State.Formatting;
-        yield return StartCoroutine(FormatTiles(size));
+        yield return FormatTiles(size);
         yield return null;
     }
 
@@ -103,10 +103,10 @@ public class GridManager : MonoBehaviour {
             }
         }
         state = State.Tracking;
-        yield return StartCoroutine(CameraManager.instance.FollowGrid(size));
+        yield return CameraManager.instance.FollowGrid(size);
         yield return new WaitForSeconds(1f);
         state = State.Positioning;
-        yield return StartCoroutine(ResetTilePosition(size));
+        yield return ResetTilePosition(size);
         yield return null;
     }
     public IEnumerator ResetTilePosition(int size) {
@@ -117,7 +117,7 @@ public class GridManager : MonoBehaviour {
                 Tiles[x][y].transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y));
             }
         }
-        yield return StartCoroutine(CameraManager.instance.FollowGrid(size));
+        yield return CameraManager.instance.FollowGrid(size);
         yield return null;
     }
     public IEnumerator ChangeGridSize(int size, int newSize, Talent.Direction direction = Talent.Direction.TopRight) {
@@ -265,7 +265,7 @@ public class GridManager : MonoBehaviour {
         }
         GameManager.instance.gridSize = GameManager.instance.newGridSize;
         state = State.Formatting;
-        yield return StartCoroutine(FormatTiles(newSize));
+        yield return FormatTiles(newSize);
         yield return null;
     }
 }

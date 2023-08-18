@@ -105,7 +105,6 @@
     <Compile Include="Assets/Scripts/Game Logic/LoadScene.cs" />
     <Compile Include="Assets/Scripts/Animation/IdleAnimation.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/TestingZLegacy.cs" />
-    <Compile Include="Assets/Scripts/Skill Logic/Direction.cs" />
     <Compile Include="Assets/Scripts/Game Logic/DisplayGold.cs" />
     <Compile Include="Assets/Scripts/Game Logic/SetText.cs" />
     <Compile Include="Assets/Scripts/Animation/Scroll.cs" />
@@ -132,6 +131,7 @@
     <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" />
     <Compile Include="Assets/Scripts/Game Logic/ChangePlayers.cs" />
     <Compile Include="Assets/LeanTween/Framework/LeanTest.cs" />
+    <Compile Include="Assets/Scripts/Skill Logic/DirectionInfo.cs" />
     <Compile Include="Assets/Scripts/Animation/MoveMenu.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplinePerformance.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralBasic.cs" />

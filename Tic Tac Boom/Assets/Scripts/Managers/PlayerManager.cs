@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public Player player, enemy;
     public SetPlayerObject setPlayerObject, setEnemyObject;
-    public List<Sprite> exiledSprites, pureSprites, skins;
+    public List<Sprite> skins;
     public StoryModeAI storyModeAI;
     private GameObject playerAtTrigger;
 
@@ -56,7 +56,11 @@ public class PlayerManager : MonoBehaviour
         player.type = Player.Type.Player;
         player.faction = faction;
         player.character = character;
-        player.initialCooldown = 0;
+        if (player.faction == Player.Faction.Exiled) {
+            player.initialCooldown = 3;
+        } else {
+            player.initialCooldown = 2;
+        }
         if (type == Player.Type.AI) {
             enemy.type = Player.Type.AI;
         } else {
@@ -274,7 +278,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Player Movement logic at the selected tile (go)
-    IEnumerator PlayerMove(GameObject go) {
+    private IEnumerator PlayerMove(GameObject go) {
         if (go == null) {
             yield return null;
         }
@@ -298,7 +302,7 @@ public class PlayerManager : MonoBehaviour
                     enemy.remainingMoves -= 1;
                 }
             } else if (player.state == Player.State.UsingSkill || enemy.state == Player.State.UsingSkill) {
-                yield return StartCoroutine(Skill(go));
+                yield return Skill(go);
             }
         } else if (playerAtTrigger != null) {
             if (!playerAtTrigger.activeSelf && !go.tag.Contains("Wall") && (player.state == Player.State.Playing || enemy.state == Player.State.Playing)) {
@@ -323,10 +327,10 @@ public class PlayerManager : MonoBehaviour
                     enemy.remainingMoves -= 1;
                 } 
             } else if (player.state == Player.State.UsingSkill || enemy.state == Player.State.UsingSkill) {
-                yield return StartCoroutine(Skill(go));
+                yield return Skill(go);
             }
         } else if (player.state == Player.State.UsingSkill || enemy.state == Player.State.UsingSkill) {
-            yield return StartCoroutine(Skill(go));
+            yield return Skill(go);
         }
 
         yield return null;
@@ -334,202 +338,11 @@ public class PlayerManager : MonoBehaviour
 
     // TALENTS
 
-    // ACTIVES ABILITIES
-
     private IEnumerator Skill(GameObject go) {
         if (player.state == Player.State.UsingSkill) {
-            switch (player.activeSkill.talentName) {
-                case Talent.TalentName.BuildTiles:
-                    yield return StartCoroutine(BuildTiles(go));
-                    break;
-                case Talent.TalentName.CrossBomb:
-                    yield return StartCoroutine(CrossBomb(go));
-                    break;
-                case Talent.TalentName.DestroyTiles:
-                    yield return StartCoroutine(DestroyTiles(go));
-                    break;
-                case Talent.TalentName.Mine:
-                    yield return StartCoroutine(Mine(go));
-                    break;
-                case Talent.TalentName.SmallBomb:
-                    yield return StartCoroutine(SmallBomb(go));
-                    break;
-                case Talent.TalentName.XBomb:
-                    yield return StartCoroutine(XBomb(go));
-                    break;
-            }
+            yield return player.activeSkill.Skill(go);
         } else if (enemy.state == Player.State.UsingSkill) {
-            switch (enemy.activeSkill.talentName) {
-                case Talent.TalentName.BuildTiles:
-                    yield return StartCoroutine(BuildTiles(go));
-                    break;
-                case Talent.TalentName.CrossBomb:
-                    yield return StartCoroutine(CrossBomb(go));
-                    break;
-                case Talent.TalentName.DestroyTiles:
-                    yield return StartCoroutine(DestroyTiles(go));
-                    break;
-                case Talent.TalentName.Mine:
-                    yield return StartCoroutine(Mine(go));
-                    break;
-                case Talent.TalentName.SmallBomb:
-                    yield return StartCoroutine(SmallBomb(go));
-                    break;
-                case Talent.TalentName.XBomb:
-                    yield return StartCoroutine(XBomb(go));
-                    break;
-            }
-        }
-        yield return null;
-    }
-
-    private IEnumerator SmallBomb(GameObject go) {
-        ResolveSkill();
-        if (go.tag.Contains("Mine")) {
-            TriggerMine(go);
-        }
-        BombTrigger(go);
-        playerAtTrigger.GetComponent<SpriteRenderer>().sprite = null;
-        playerAtTrigger.SetActive(false);
-        go.tag = "Untagged";
-        UsedSkill();
-        yield return null;
-    }
-
-    private IEnumerator CrossBomb(GameObject go) {
-        ResolveSkill();
-        string[] coordinates = go.name.Split(",");
-        int x = Convert.ToInt32(coordinates[0]);
-        int y = Convert.ToInt32(coordinates[1]);
-        GameObject tile = GridManager.instance.Tiles[x][y];
-        if (tile.tag.Contains("Mine")) {
-            TriggerMine(go);
-        }
-        BombTrigger(tile);
-        tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-        tile.transform.GetChild(0).gameObject.SetActive(false);
-        tile.tag = "Untagged";
-
-        for (int i = (x - 1); i < (x + 2); i++) {
-            if (i != x && i >= 0 && i < GameManager.instance.gridSize) {
-                tile = GridManager.instance.Tiles[i][y];
-                if (tile.tag.Contains("Mine")) {
-                    TriggerMine(go);
-                }
-                BombTrigger(tile);
-                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-                tile.transform.GetChild(0).gameObject.SetActive(false);
-                tile.tag = "Untagged";
-            }
-        }
-        for (int n = (y - 1); n < (y + 2); n++) {
-            if (n != y && n >= 0 && n < GameManager.instance.gridSize) {
-                tile = GridManager.instance.Tiles[x][n];
-                if (tile.tag.Contains("Mine")) {
-                    TriggerMine(go);
-                }
-                BombTrigger(tile);
-                tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-                tile.transform.GetChild(0).gameObject.SetActive(false);
-                tile.tag = "Untagged";
-            }
-        }
-        UsedSkill();
-        yield return null;
-    }
-
-    private IEnumerator XBomb(GameObject go) {
-        ResolveSkill();
-        string[] coordinates = go.name.Split(",");
-        int x = Convert.ToInt32(coordinates[0]);
-        int y = Convert.ToInt32(coordinates[1]);
-        GameObject tile = GridManager.instance.Tiles[x][y];
-        if (tile.tag.Contains("Mine")) {
-            TriggerMine(go);
-        }
-        BombTrigger(tile);
-        tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-        tile.transform.GetChild(0).gameObject.SetActive(false);
-        tile.tag = "Untagged";
-
-        for (int i = (x - 1); i < (x + 2); i++) {
-            for (int n = (y - 1); n < (y + 2); n++) {
-                if (i != x && n != y && (i >= 0 && n >= 0) && (i < GameManager.instance.gridSize && n < GameManager.instance.gridSize)) {
-                    tile = GridManager.instance.Tiles[i][n];
-                    if (tile.tag.Contains("Mine")) {
-                        TriggerMine(go);
-                    }
-                    BombTrigger(GridManager.instance.Tiles[i][n]);
-                    tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-                    tile.transform.GetChild(0).gameObject.SetActive(false);
-                    tile.tag = "Untagged";
-                }
-            }
-        }
-
-        for (int i = (x - 1); i < (x + 2); i++) {
-            for (int n = (y + 1); n > (y - 2); n--) {
-                if (i != x && n != y && (i >= 0 && n >= 0) && (i < GameManager.instance.gridSize && n < GameManager.instance.gridSize)) {
-                    tile = GridManager.instance.Tiles[i][n];
-                    if (tile.tag.Contains("Mine")) {
-                        TriggerMine(go);
-                    }
-                    BombTrigger(GridManager.instance.Tiles[i][n]);
-                    tile.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-                    tile.transform.GetChild(0).gameObject.SetActive(false);
-                    tile.tag = "Untagged";
-                }
-            }
-        }
-        UsedSkill();
-        yield return null;
-    }
-
-    private IEnumerator Mine(GameObject go) {
-        if (go.tag.Contains("Mine")) {
-            ResolveSkill();
-            TriggerMine(go);
-            UsedSkill();
-        } else {
-            if (!playerAtTrigger.activeSelf) {
-                go.tag = "Mine";
-                if (player.state == Player.State.UsingSkill) {
-                    ResolveSkill();
-                    for (int i = 0; i < player.skills.Count; i++) {
-                        if (player.skills[i].talentName == Talent.TalentName.Mine) {
-                            playerAtTrigger.GetComponent<SpriteRenderer>().sprite = player.skills[i].sprite;
-                        }
-                    }
-                } else if (enemy.state == Player.State.UsingSkill) {
-                    ResolveSkill();
-                    for (int i = 0; i < enemy.skills.Count; i++) {
-                        if (enemy.skills[i].talentName == Talent.TalentName.Mine) {
-                            playerAtTrigger.GetComponent<SpriteRenderer>().sprite = enemy.skills[i].sprite;
-                        }
-                    }
-                }
-                playerAtTrigger.SetActive(true);
-                UsedSkill();
-            }
-        }
-        yield return null;
-    }
-
-    private IEnumerator BuildTiles(GameObject go) {
-        if (go.tag.Contains("Skill")) {
-            ResolveSkill();
-            GameManager.instance.newGridSize = GameManager.instance.gridSize + 1;
-            yield return StartCoroutine(GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, go.GetComponent<Direction>().direction));
-            UsedSkill();
-        }
-        yield return null;
-    }
-    private IEnumerator DestroyTiles(GameObject go) {
-        if (go.tag.Contains("Skill")) {
-            ResolveSkill();
-            GameManager.instance.newGridSize = GameManager.instance.gridSize - 1;
-            yield return StartCoroutine(GridManager.instance.ChangeGridSize(GameManager.instance.gridSize, GameManager.instance.newGridSize, go.GetComponent<Direction>().direction));
-            UsedSkill();
+            yield return enemy.activeSkill.Skill(go);
         }
         yield return null;
     }
@@ -557,6 +370,7 @@ public class PlayerManager : MonoBehaviour
                     } else {
                         _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + talentName.ToString());
                     }
+                    _player.skills.Last().OnAddTalent(_player);
                     _player.skills.Last().SetTalentObject();
                     _player.skills.Last().cooldown = _player.initialCooldown;
                     break;
@@ -576,6 +390,7 @@ public class PlayerManager : MonoBehaviour
                         _player.passives.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Passives/" + talentName.ToString());
                     }
                     _player.passives.Last().SetTalentObject();
+                    _player.passives.Last().OnAddTalent(_player);
                     _player.passives.Last().cooldown = _player.initialCooldown;
                     break;
                 }
@@ -653,29 +468,8 @@ public class PlayerManager : MonoBehaviour
             enemy.state = Player.State.Playing;
         }
     }
-    public void ResolveSkill() {
-        MenuManager.instance.confirmSkillMenu.transform.localPosition = new Vector3(0, -3840, 0);
-        MenuManager.instance.skillMenu.transform.localPosition = Vector3.zero;
-        MenuManager.instance.skillMenu.transform.GetChild(1).localPosition = new Vector3(0, -1400, 0);
-        MenuManager.instance.skillMenu.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
-        MenuManager.instance.useSkillMenu.transform.GetChild(1).gameObject.SetActive(false);
-        if (player.state != Player.State.Inactive) {
-            player.state = Player.State.Idle;
-        } else if (enemy.state != Player.State.Inactive) {
-            enemy.state = Player.State.Idle;
-        }
-    }
-    public void UsedSkill() {
-        if (player.state == Player.State.Idle) {
-            player.state = Player.State.Playing;
-            //player.UsedSkill();
-        } else if (enemy.state == Player.State.Idle) {
-            enemy.state = Player.State.Playing;
-            enemy.UsedSkill();
-        }
-    }
 
-    private void TriggerMine(GameObject go) {
+    public void TriggerMine(GameObject go) {
         string[] coordinates = go.name.Split(",");
         int x = Convert.ToInt32(coordinates[0]);
         int y = Convert.ToInt32(coordinates[1]);
@@ -697,7 +491,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void BombTrigger(GameObject go) {
+    public void BombTrigger(GameObject go) {
         ParticleSystem boom = Instantiate(ParticleSystemsManager.instance.particleSystems[0]);
         boom.transform.position = go.transform.position;
         boom.Play();

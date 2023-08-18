@@ -42,7 +42,7 @@ public class Player
     }
 
     public Sprite playerSprite, characterSprite, skin;
-    public List<Talent> skills, passives, skillsPool, passivesPool;
+    public List<Talent> skills, passives, unlockedSkills, unlockedPassives, skillsPool, passivesPool;
     public int maxMoves, remainingMoves;
     public bool skillUsed;
     public PlayerObject playerObject;
@@ -73,15 +73,36 @@ public class Player
     public void InitializeTalents() {
         skills = new List<Talent>();
         passives = new List<Talent>();
+        unlockedSkills = new List<Talent>();
+        unlockedPassives = new List<Talent>();
         skillsPool = new List<Talent>();
         passivesPool = new List<Talent>();
         activeSkill = null;
         skillUsed = false;
     }
 
+    public void SetUnlockedTalents() {
+        unlockedSkills = GameManager.instance.unlockedSkills;
+        unlockedPassives = GameManager.instance.unlockedPassives;
+    }
+
     public void SetTalentPools() {
-        skillsPool = GameManager.instance.unlockedSkills;
-        passivesPool = GameManager.instance.unlockedPassives;
+        skillsPool.Clear();
+        passivesPool.Clear();
+        for (int i = unlockedSkills.Count - 1; i >= 0; i--) {
+            if (unlockedSkills[i].canAddTalent) {
+                skillsPool.Add(unlockedSkills[i]);
+                Debug.Log($"{unlockedSkills[i].talentName} added to skillsPool");
+                unlockedSkills.RemoveAt(i);
+            }
+        }
+        for (int i = unlockedPassives.Count - 1; i >= 0; i--) {
+            if (unlockedPassives[i].canAddTalent) {
+                passivesPool.Add(unlockedPassives[i]);
+                Debug.Log($"{unlockedPassives[i].talentName} added to passivesPool");
+                unlockedPassives.RemoveAt(i);
+            }
+        }
     }
 
     public void Cooldown() {
@@ -104,8 +125,13 @@ public class Player
     }
 
     public void UsedSkill() {
-        activeSkill.maxCooldown += activeSkill.scaling;
-        activeSkill.cooldown = activeSkill.maxCooldown;
+        for (int i = 0; i < skills.Count; i++) {
+            if (activeSkill.talentName == skills[i].talentName) {
+                skills[i].cooldown = skills[i].maxCooldown;
+                skills[i].maxCooldown += skills[i].scaling;
+                
+            }
+        }
         activeSkill = null;
         skillUsed = true;
     }

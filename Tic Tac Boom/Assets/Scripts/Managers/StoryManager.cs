@@ -42,16 +42,16 @@ public class StoryManager : MonoBehaviour
         while (!GameOver()) {
             switch (state) {
                 case State.EndTurn:
-                    yield return StartCoroutine(EndTurn());
+                    yield return EndTurn();
                     break;
                 case State.EnemyTurn:
-                    yield return StartCoroutine(EnemyTurn());
+                    yield return EnemyTurn();
                     break;
                 case State.GridLocked:
-                    yield return StartCoroutine(GridLocked());
+                    yield return GridLocked();
                     break;
                 case State.PlayerTurn:
-                    yield return StartCoroutine(PlayerTurn());
+                    yield return PlayerTurn();
                     break;
                 default:
                     break;
@@ -59,7 +59,7 @@ public class StoryManager : MonoBehaviour
             yield return null;
         }
 
-        yield return StartCoroutine(EndGame());
+        yield return EndGame();
 
         yield return null;
     }
@@ -67,13 +67,13 @@ public class StoryManager : MonoBehaviour
     private IEnumerator EndGame() {
         switch (state) {
             case State.Draw:
-                yield return StartCoroutine(Draw());
+                yield return Draw();
                 break;
             case State.PlayerVictory:
-                yield return StartCoroutine(PlayerVictory());
+                yield return PlayerVictory();
                 break;
             case State.EnemyVictory:
-                yield return StartCoroutine(EnemyVictory());
+                yield return EnemyVictory();
                 break;
         }
 
@@ -85,6 +85,7 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.player.maxMoves = 1;
         GameManager.instance.ResetTalents();
+        PlayerManager.instance.player.SetUnlockedTalents();
         PlayerManager.instance.player.SetTalentPools();
         GameManager.instance.turn = 1;
         GameManager.instance.round = 1;
@@ -94,7 +95,7 @@ public class StoryManager : MonoBehaviour
         GameManager.instance.minGridSize = 1;
         GameManager.instance.maxGridSize = 7;
         state = State.Loading;
-        yield return StartCoroutine(Loading());
+        yield return Loading();
         yield return null;
     }
 
@@ -187,7 +188,7 @@ public class StoryManager : MonoBehaviour
         MenuManager.instance.UI.GetComponent<CanvasGroup>().alpha = 1;
         yield return new WaitForSeconds(1f);
         state = State.LevelStart;
-        yield return StartCoroutine(LevelStart());
+        yield return LevelStart();
         yield return null;
     }
 
@@ -197,7 +198,7 @@ public class StoryManager : MonoBehaviour
         } else {
             state = State.EnemyTurn;
         }
-        yield return StartCoroutine(StoryMode());
+        yield return StoryMode();
         yield return null;
     }
 
@@ -290,7 +291,7 @@ public class StoryManager : MonoBehaviour
     private IEnumerator PlayerVictory() {
         StopPlayers();
         if (GameManager.instance.stage < 15) {
-            yield return StartCoroutine(StageClear());
+            yield return StageClear();
         } else {
             MenuManager.instance.playerVictoryMenu.transform.localPosition = Vector3.zero;
         }
@@ -305,14 +306,14 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator Draw() {
         Debug.Log("Draw! Wiping the board, turn is passed to the next player");
-        yield return StartCoroutine(GridManager.instance.ResolveDraw());
+        yield return GridManager.instance.ResolveDraw();
         yield return new WaitForSeconds(2f);
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
             state = State.EnemyTurn;
         } else if (PlayerManager.instance.enemy.state != Player.State.Inactive) {
             state = State.PlayerTurn;
         }
-        yield return StartCoroutine(StoryMode());
+        yield return StoryMode();
         yield return null;
     }
     public bool GameOver() {
