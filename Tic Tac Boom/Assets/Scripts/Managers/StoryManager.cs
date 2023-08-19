@@ -84,10 +84,12 @@ public class StoryManager : MonoBehaviour
     public IEnumerator NewGame() {
         PlayerManager.instance.SetPlayers(Player.Faction.Exiled, Player.Character.Rebel, Player.Type.AI);
         PlayerManager.instance.SetSkins();
+        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
         PlayerManager.instance.player.maxMoves = 1;
         GameManager.instance.ResetTalents();
         PlayerManager.instance.player.SetUnlockedTalents();
         PlayerManager.instance.player.SetTalentPools();
+        yield return StartingLoadout();
         GameManager.instance.turn = 1;
         GameManager.instance.round = 1;
         GameManager.instance.stage = 1;
@@ -101,12 +103,7 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator Loading() {
-        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
-        PlayerManager.instance.enemy.character = Player.Character.Peasant;
-        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
-        PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
-        PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
-        PlayerManager.instance.SetTalents();
+        yield return EnemySelection();
         GameManager.instance.newGridSize = PlayerManager.instance.storyModeAI.startingGridSize;
         GameManager.instance.gridSize = GameManager.instance.newGridSize;
         GridManager.instance.state = GridManager.State.Generating;
@@ -131,7 +128,6 @@ public class StoryManager : MonoBehaviour
         background.SetActive(true);
         GameObject clouds = MenuManager.instance.nextFight.transform.GetChild(4).gameObject;
         clouds.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
         GameObject rollingFog = MenuManager.instance.nextFight.transform.GetChild(3).gameObject;
         rollingFog.SetActive(true);
         AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/wind_sfx"));
@@ -144,6 +140,8 @@ public class StoryManager : MonoBehaviour
             AudioManager.instance.backgroundMusic.clip = Resources.Load<AudioClip>("Sounds/Music/loading_theme");
             AudioManager.instance.backgroundMusic.Play();
         }
+        LeanTween.alphaCanvas(nextPlayer.GetComponent<CanvasGroup>(), 1, 0.1f);
+        LeanTween.alphaCanvas(nextEnemy.GetComponent<CanvasGroup>(), 1, 0.1f);
         LeanTween.alpha(clouds, 0, 0.1f);
         yield return new WaitForSeconds(1f);
         GameObject darkVeil = rollingFog.transform.GetChild(1).gameObject;
@@ -280,7 +278,7 @@ public class StoryManager : MonoBehaviour
     private IEnumerator ChooseTalent() {
         PlayerManager.instance.player.state = Player.State.Idle;
         if (GameManager.instance.stage % 3 == 0) {
-            yield return ChooseSkillAndPassive();
+            yield return ChooseSkill();
         } else if (GameManager.instance.stage % 3 != 0) {
             yield return ChooseSkill();
         }
@@ -326,12 +324,69 @@ public class StoryManager : MonoBehaviour
         while (PlayerManager.instance.player.state != Player.State.Inactive) {
             yield return null;
         }
+        PlayerManager.instance.SetTalents();
+        Debug.Log(PlayerManager.instance.player.state);
         yield return NextFight();
         yield return null;
     }
 
     private IEnumerator NextFight() {
+        yield return GridManager.instance.DestroyGrid();
         GameManager.instance.stage += 1;
+        MenuManager.instance.levelClearMenu.transform.localPosition = new Vector3(0, -3840, 0);
+        MenuManager.instance.levelClearMenu.transform.GetChild(0).gameObject.SetActive(false);
+        yield return Loading();
+        yield return null;
+    }
+
+    private IEnumerator StartingLoadout() {
+        PlayerManager.instance.player.skills.Clear();
+        PlayerManager.instance.player.passives.Clear();
+        switch (PlayerManager.instance.player.character) {
+            case (Player.Character.Rebel):
+                PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
+                break;
+            case (Player.Character.King):
+                PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
+                break;
+            default:
+                break;
+        }
+        PlayerManager.instance.SetTalents();
+        yield return null;
+    }
+
+    private IEnumerator EnemySelection() {
+        int enemyIndex = 0;
+        switch (GameManager.instance.stage) {
+            case 1:
+                enemyIndex = Random.Range(0, 2);
+                break;
+            case <= 3:
+                enemyIndex = Random.Range(2, 4);
+                break;
+            case <= 6:
+                enemyIndex = Random.Range(4, 7);
+                break;
+            case <= 9:
+                enemyIndex = Random.Range(7, 9);
+                break;
+            case <= 12:
+                enemyIndex = Random.Range(9, 11);
+                break;
+            case <= 14:
+                enemyIndex = Random.Range(11, 13);
+                break;
+            case 15:
+                enemyIndex = 13;
+                break;
+            default:
+                enemyIndex = 0;
+                break;
+        }
+        PlayerManager.instance.enemy.character = (Player.Character)enemyIndex;
+        PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.enemy);
+        PlayerManager.instance.SetAI(PlayerManager.instance.enemy);
         yield return null;
     }
 

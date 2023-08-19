@@ -435,6 +435,9 @@ public class PlayerManager : MonoBehaviour {
         }
         MenuManager.instance.chooseTalentMenu.transform.localPosition = new Vector3(0, -3840, 0);
     }
+    public void CloseTalentChoice() {
+        MenuManager.instance.chooseTalentMenu.transform.localPosition = new Vector3(0, -3840, 0);
+    }
     public void AddTalent(Player _player, Talent.TalentName talentName) {
         Talent talent = new Talent(talentName);
         if (talent.type != Talent.Type.Passive) {
@@ -482,6 +485,9 @@ public class PlayerManager : MonoBehaviour {
         }
     }
     public void SetTalents() {
+        for (int i = MenuManager.instance.skills.transform.childCount - 1; i >= 0; i--) {
+            Destroy(MenuManager.instance.skills.transform.GetChild(i).gameObject);
+        }
         if (player.skills != null) {
             for (int i = 0; i < player.skills.Count; i++) {
                 GameObject skill = Instantiate(Resources.Load<GameObject>("Prefabs/Talents/Skill"), MenuManager.instance.skills.transform);

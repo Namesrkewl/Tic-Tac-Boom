@@ -16,7 +16,7 @@ public class SetChooseTalentMenu : MonoBehaviour
             name.text = talentObject.talent.name;
             description.text = talentObject.talent.description;
             cancel.onClick.RemoveAllListeners();
-            cancel.onClick.AddListener(PlayerManager.instance.CancelSkill);
+            cancel.onClick.AddListener(PlayerManager.instance.CloseTalentChoice);
             select.onClick.RemoveAllListeners();
             select.onClick.AddListener(delegate { PlayerManager.instance.ConfirmTalentChoice(talentObject.talent); });
         }

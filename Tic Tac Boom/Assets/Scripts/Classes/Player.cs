@@ -27,20 +27,20 @@ public class Player
     }
     public Character character;
     public enum Character {
-        Basilisk,
-        Common,
-        Dragon,
-        Engineer,
-        Fragmented,
-        King,
-        Knight,
-        Nimble,
         Peasant,
-        Rebel,
-        Thief,
-        Vagabond,
+        Common,
         Wizard,
-        Wraith
+        Basilisk,
+        Thief,
+        Engineer,
+        Knight,
+        Fragmented,
+        Wraith,
+        Nimble,
+        Vagabond,
+        Dragon,
+        Rebel,
+        King
     }
 
     public Sprite playerSprite, characterSprite, skin;
