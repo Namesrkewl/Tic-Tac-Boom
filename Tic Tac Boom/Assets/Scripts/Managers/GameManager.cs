@@ -73,12 +73,18 @@ public class GameManager : MonoBehaviour
     public void ResetTalents() {
         unlockedSkills = new List<Talent>();
         unlockedPassives = new List<Talent>();
+
+        // Initial Skills
         unlockedSkills.Add(new Talent(Talent.TalentName.SmallBomb));
         unlockedSkills.Add(new Talent(Talent.TalentName.CrossBomb));
         unlockedSkills.Add(new Talent(Talent.TalentName.XBomb));
         unlockedSkills.Add(new Talent(Talent.TalentName.Mine));
         unlockedSkills.Add(new Talent(Talent.TalentName.BuildTiles));
         unlockedSkills.Add(new Talent(Talent.TalentName.DestroyTiles));
+
+        //Initial Passives
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
     }
     
 }

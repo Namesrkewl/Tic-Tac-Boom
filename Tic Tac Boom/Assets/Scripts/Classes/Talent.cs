@@ -18,8 +18,12 @@ public class Talent
         XBomb,
         Mine,
         BuildTiles,
-        DestroyTiles
-    }
+        DestroyTiles,
+        FastStart,
+        AdrenalineRush,
+        QuickDraw,
+        FastReload,
+    }   
 
     public Direction direction;
     public enum Direction {
@@ -30,8 +34,8 @@ public class Talent
         BottomRight
     }
 
-    public int maxCooldown, scaling, cooldown, duration, initialCooldown;
-    public bool canAddTalent;
+    public int maxCooldown, scaling, cooldown, duration, baseMaxCooldown;
+    public bool canAddTalent, canTriggerPassive;
     public Sprite sprite;
     public ParticleSystem particleSystem;
     public string name, description;
@@ -46,8 +50,8 @@ public class Talent
             case TalentName.SmallBomb:
                 type = Type.Bomb;
                 talentName = TalentName.SmallBomb;
-                direction = Direction.None;
                 maxCooldown = 3;
+                baseMaxCooldown = maxCooldown;
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -60,8 +64,8 @@ public class Talent
             case TalentName.CrossBomb:
                 type = Type.Bomb;
                 talentName = TalentName.CrossBomb;
-                direction = Direction.None;
                 maxCooldown = 5;
+                baseMaxCooldown = maxCooldown;
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -74,8 +78,8 @@ public class Talent
             case TalentName.XBomb:
                 type = Type.Bomb;
                 talentName = TalentName.XBomb;
-                direction = Direction.None;
                 maxCooldown = 5;
+                baseMaxCooldown = maxCooldown;
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -88,8 +92,8 @@ public class Talent
             case TalentName.Mine:
                 type = Type.Bomb;
                 talentName = TalentName.Mine;
-                direction = Direction.None;
                 maxCooldown = 5;
+                baseMaxCooldown = maxCooldown;
                 scaling = 2;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -104,6 +108,7 @@ public class Talent
                 talentName = TalentName.BuildTiles;
                 direction = Direction.None;
                 maxCooldown = 5;
+                baseMaxCooldown = maxCooldown;
                 scaling = 3;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -118,6 +123,7 @@ public class Talent
                 talentName = TalentName.DestroyTiles;
                 direction = Direction.None;
                 maxCooldown = 5;
+                baseMaxCooldown = maxCooldown;
                 scaling = 3;
                 duration = 0;
                 cooldown = maxCooldown;
@@ -126,6 +132,24 @@ public class Talent
                 particleSystem = Resources.Load<ParticleSystem>("Prefabs/ParticleSystems/PS_DustCloud");
                 name = "DESTROY TILES";
                 description = $"DESTROYS 1 COLUMN AND 1 ROW OF THE GRID (3x3 -> 2x2). TAKES 1 MOVE COUNT TO USE.\n{maxCooldown}|{scaling}";
+                break;
+            case TalentName.FastStart:
+                type = Type.Passive;
+                talentName = TalentName.FastStart;
+                canTriggerPassive = false;
+                canAddTalent = true;
+                sprite = null;
+                name = "FAST START";
+                description = $"Gain an extra move on your first turn.";
+                break;
+            case TalentName.AdrenalineRush:
+                type = Type.Passive;
+                talentName = TalentName.AdrenalineRush;
+                canTriggerPassive = false;
+                canAddTalent = true;
+                sprite = null;
+                name = "ADRENALINE RUSH";
+                description = $"Every 3 turns, gain an extra move for that turn.";
                 break;
             default:
                 break;
@@ -136,7 +160,7 @@ public class Talent
         talentObject.talent = this;
     }
 
-    public void OnAddTalent(Player _player) {
+    public void OnAddTalent() {
         switch(talentName) {
             case TalentName.SmallBomb:
                 //maxCooldown = 10;
@@ -146,8 +170,28 @@ public class Talent
         }
     }
 
-    public void Passive() {
+    public void Passive(Player _player) {
         switch(talentName) {
+            case TalentName.FastStart:
+                if (GameManager.instance.turn == 1 || GameManager.instance.turn == 2) {
+                    canTriggerPassive = true;
+                } else {
+                    canTriggerPassive = false;
+                }
+                if (canTriggerPassive) {
+                    _player.extraMoves += 1;
+                }
+                break;
+            case TalentName.AdrenalineRush:
+                if (GameManager.instance.round % 3 == 0) {
+                    canTriggerPassive = true;
+                } else {
+                    canTriggerPassive = false;
+                }
+                if (canTriggerPassive) {
+                    _player.extraMoves += 1;
+                }
+                break;
             default:
                 break;
         }

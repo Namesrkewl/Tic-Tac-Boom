@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1512
     height: 840
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 6143
+  controlID: 15
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6135
+  controlID: 167
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6144
+  controlID: 107
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -668,9 +668,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -52.765636, y: 119.37391, z: -3.1543617}
+    m_Target: {x: -62.9989, y: -900.0186, z: -2.247295}
     speed: 2
-    m_Value: {x: -52.765636, y: 119.37391, z: -3.1543617}
+    m_Value: {x: -62.9989, y: -900.0186, z: -2.247295}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -721,9 +721,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 325.4363
+    m_Target: 266.30737
     speed: 2
-    m_Value: 325.4363
+    m_Value: 266.30737
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -834,24 +834,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2cfaffff
-      m_LastClickedID: -1492
-      m_ExpandedIDs: 8efafffffefafffff4ffffff00700000127000003c7000004070000072700000c070000028710000e2710000
+      scrollPos: {x: 0, y: 151}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 363cfefff6fafffff4ffffff4c7000005070000082700000b67000000071000020710000447100007e710000d67100004872000074720000565b0100ae5b0100505d01001c5e0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Content
+        m_OriginalName: Content
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 28854
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
@@ -902,22 +902,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/TalentChoices
+    - Assets/Resources/Prefabs/ScriptableObjects/Talents/Player/Passives
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Prefabs/TalentChoices
+  - Assets/Resources/Prefabs/ScriptableObjects/Talents/Player/Passives
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/namesrkewl/Documents/GitHub/Tic-Tac-Boom/Tic Tac Boom
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 150.0055}
-    m_SelectedIDs: 227b0000
-    m_LastClickedID: 31522
-    m_ExpandedIDs: 00000000cc7a0000ce7a0000d07a0000d27a0000d47a0000d67a000000ca9a3b
+    scrollPos: {x: 0, y: 246.01288}
+    m_SelectedIDs: 46830000
+    m_LastClickedID: 33606
+    m_ExpandedIDs: 00000000b27a0000b47a0000b67a0000b87a0000ba7a0000bc7a0000be7a0000007b0000187e0000129a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -945,7 +945,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc7a0000ce7a0000d07a0000d27a0000d47a0000d67a000000ca9a3b
+    m_ExpandedIDs: 00000000b27a0000b47a0000b67a0000b87a0000ba7a0000bc7a0000be7a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000807e0000a6600000a2600000d0630000d26300003c6600008a620000746400005a640000286e0000e86200007c6500007a650000446300004663000088660000706500006e65000022820000d66400009e640000507f0000de650000c0790000c279000082680000507300005e670000b8680000a66800005067000032750000da72000072730000e0770000ec8f000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

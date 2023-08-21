@@ -45,11 +45,10 @@ public class Player
 
     public Sprite playerSprite, characterSprite, skin;
     public List<Talent> skills, passives, unlockedSkills, unlockedPassives, skillsPool, passivesPool, showingSkills, showingPassives;
-    public int maxMoves, remainingMoves;
+    public int maxMoves, remainingMoves, extraMoves, initialCooldown;
     public bool skillUsed;
     public PlayerObject playerObject;
     public Talent activeSkill;
-    public int initialCooldown;
 
     public Player() {
         state = State.Inactive;
@@ -133,5 +132,36 @@ public class Player
         }
         activeSkill = null;
         skillUsed = true;
+    }
+
+    public void TriggerPassives() {
+        for (int i = 0; i < passives.Count; i++) {
+            passives[i].Passive(this);
+        }
+    }
+
+    public void StartTurn() {
+        state = State.Playing;
+        Cooldown();
+        remainingMoves = maxMoves;
+        TriggerPassives();
+        remainingMoves += extraMoves;
+        extraMoves = 0;
+    }
+
+    public void StartStage() {
+        for (int i = 0; i < skills.Count; i++) {
+            skills[i].cooldown = initialCooldown;
+            skills[i].maxCooldown = skills[i].baseMaxCooldown;
+        }
+    }
+
+    public void ResetTalents() {
+        skills.Clear();
+        passives.Clear();
+        skillsPool.Clear();
+        passivesPool.Clear();
+        showingSkills.Clear();
+        showingPassives.Clear();
     }
 }

@@ -357,10 +357,10 @@ public class PlayerManager : MonoBehaviour {
         }
     }
     private void GenerateSkills(Player _player, int amount) {
+        MenuManager.instance.skillChoices.SetActive(true);
+        MenuManager.instance.passiveChoices.SetActive(false);
         GameObject choices = MenuManager.instance.skillChoices.transform.GetChild(1).GetChild(0).gameObject;
-        for (int i = choices.transform.childCount - 1; i >= 0; i--) {
-            Destroy(choices.transform.GetChild(i).gameObject);
-        }
+        ClearTalentChoices(choices);
         if (_player.state == Player.State.AddingSkill) {
             _player.showingSkills.Clear();
             while (amount > 0 && _player.skillsPool.Count > 0) {
@@ -386,12 +386,14 @@ public class PlayerManager : MonoBehaviour {
             }
             _player.showingSkills.Clear();
         }
+        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
     }
     private void GeneratePassives(Player _player, int amount) {
+        MenuManager.instance.passiveChoices.SetActive(true);
+        MenuManager.instance.skillChoices.SetActive(false);
         GameObject choices = MenuManager.instance.passiveChoices.transform.GetChild(1).GetChild(0).gameObject;
-        for (int i = choices.transform.childCount - 1; i >= 0; i--) {
-            Destroy(choices.transform.GetChild(i).gameObject);
-        }
+        ClearTalentChoices(choices);
         if (_player.state == Player.State.AddingPassive) {
             _player.showingPassives.Clear();
             while (amount > 0 && _player.passivesPool.Count > 0) {
@@ -403,9 +405,9 @@ public class PlayerManager : MonoBehaviour {
             for (int i = _player.showingPassives.Count - 1; i >= 0; i--) {
                 Talent passive = _player.showingPassives[i];
                 if (_player == player) {
-                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Skills/" + passive.talentName.ToString());
+                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Player/Passives/" + passive.talentName.ToString());
                 } else {
-                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + passive.talentName.ToString());
+                    passive.talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Passives/" + passive.talentName.ToString());
                 }
                 passive.SetTalentObject();
                 GameObject choice = Instantiate(Resources.Load<GameObject>("Prefabs/TalentChoices/Passive"), choices.transform);
@@ -416,6 +418,8 @@ public class PlayerManager : MonoBehaviour {
             }
             _player.showingPassives.Clear();
         }
+        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
     }
     public void ChooseTalent(Talent talent) {
         MenuManager.instance.chooseTalentMenu.SetActive(false);
@@ -438,6 +442,11 @@ public class PlayerManager : MonoBehaviour {
     public void CloseTalentChoice() {
         MenuManager.instance.chooseTalentMenu.transform.localPosition = new Vector3(0, -3840, 0);
     }
+    public void ClearTalentChoices(GameObject choices) {
+        for (int i = choices.transform.childCount - 1; i >= 0; i--) {
+            Destroy(choices.transform.GetChild(i).gameObject);
+        }
+    }
     public void AddTalent(Player _player, Talent.TalentName talentName) {
         Talent talent = new Talent(talentName);
         if (talent.type != Talent.Type.Passive) {
@@ -458,12 +467,14 @@ public class PlayerManager : MonoBehaviour {
                         _player.skills.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Skills/" + talentName.ToString());
                     }
                     _player.skills.Last().SetTalentObject();
-                    _player.skills.Last().OnAddTalent(_player);
+                    _player.skills.Last().OnAddTalent();
                     _player.skills.Last().cooldown = _player.initialCooldown;
                     break;
                 }
             }
         }
+        GameObject choices = MenuManager.instance.skillChoices.transform.GetChild(1).GetChild(0).gameObject;
+        ClearTalentChoices(choices);
     }
     private void AddPassive(Player _player, Talent.TalentName talentName) {
         if (_player.passivesPool != null) {
@@ -477,12 +488,13 @@ public class PlayerManager : MonoBehaviour {
                         _player.passives.Last().talentObject = Resources.Load<TalentObject>("Prefabs/ScriptableObjects/Talents/Enemy/Passives/" + talentName.ToString());
                     }
                     _player.passives.Last().SetTalentObject();
-                    _player.passives.Last().OnAddTalent(_player);
-                    _player.passives.Last().cooldown = _player.initialCooldown;
+                    _player.passives.Last().OnAddTalent();
                     break;
                 }
             }
         }
+        GameObject choices = MenuManager.instance.passiveChoices.transform.GetChild(1).GetChild(0).gameObject;
+        ClearTalentChoices(choices);
     }
     public void SetTalents() {
         for (int i = MenuManager.instance.skills.transform.childCount - 1; i >= 0; i--) {
@@ -579,5 +591,10 @@ public class PlayerManager : MonoBehaviour {
         boom.Play();
         AudioManager.instance.soundEffects.Stop();
         AudioManager.instance.soundEffects.PlayOneShot(Resources.Load<AudioClip>("Sounds/SFX/Explosions/bomb_sfx"));
+    }
+
+    public void ResetAllTalents() {
+        player.ResetTalents();
+        enemy.ResetTalents();
     }
 }

@@ -87,11 +87,10 @@ public class StoryManager : MonoBehaviour
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
         PlayerManager.instance.player.maxMoves = 1;
         GameManager.instance.ResetTalents();
+        PlayerManager.instance.player.ResetTalents();
         PlayerManager.instance.player.SetUnlockedTalents();
         PlayerManager.instance.player.SetTalentPools();
         yield return StartingLoadout();
-        GameManager.instance.turn = 1;
-        GameManager.instance.round = 1;
         GameManager.instance.stage = 1;
         GameManager.instance.gridSize = 7;
         GameManager.instance.newGridSize = 7;
@@ -197,15 +196,16 @@ public class StoryManager : MonoBehaviour
         } else {
             state = State.EnemyTurn;
         }
+        PlayerManager.instance.player.StartStage();
+        GameManager.instance.turn = 1;
+        GameManager.instance.round = 1;
         yield return StoryMode();
         yield return null;
     }
 
     private IEnumerator PlayerTurn() {
         if (PlayerManager.instance.player.state == Player.State.Inactive) {
-            PlayerManager.instance.player.state = Player.State.Playing;
-            PlayerManager.instance.player.Cooldown();
-            PlayerManager.instance.player.remainingMoves = PlayerManager.instance.player.maxMoves;
+            PlayerManager.instance.player.StartTurn();
             MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(true);
         }
         
@@ -219,9 +219,7 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator EnemyTurn() {
         if (PlayerManager.instance.enemy.state == Player.State.Inactive) {
-            PlayerManager.instance.enemy.state = Player.State.Playing;
-            PlayerManager.instance.enemy.Cooldown();
-            PlayerManager.instance.enemy.remainingMoves = PlayerManager.instance.enemy.maxMoves;
+            PlayerManager.instance.enemy.StartTurn();
             MenuManager.instance.turnDisplay.transform.GetChild(1).gameObject.SetActive(true);
         }
 
@@ -238,7 +236,11 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator EndTurn() {
         GameManager.instance.turn++;
-        GameManager.instance.round = GameManager.instance.turn / 2;
+        if (GameManager.instance.turn % 2 == 0) {
+            GameManager.instance.round = GameManager.instance.turn / 2;
+        } else {
+            GameManager.instance.round = (GameManager.instance.turn / 2) + 1;
+        }
         if (PlayerManager.instance.player.state != Player.State.Inactive) {
             PlayerManager.instance.player.state = Player.State.Inactive;
             MenuManager.instance.turnDisplay.transform.GetChild(0).gameObject.SetActive(false);
@@ -278,45 +280,31 @@ public class StoryManager : MonoBehaviour
     private IEnumerator ChooseTalent() {
         PlayerManager.instance.player.state = Player.State.Idle;
         if (GameManager.instance.stage % 3 == 0) {
-            yield return ChooseSkill();
+            yield return ChooseSkillAndPassive();
         } else if (GameManager.instance.stage % 3 != 0) {
-            yield return ChooseSkill();
+            yield return ChooseSkillAndPassive();
         }
         yield return AwaitTalentChoice();
         yield return null;
     }
 
     private IEnumerator ChooseSkillAndPassive() {
-        if (PlayerManager.instance.player.state == Player.State.Idle) {
-            yield return ChooseSkill();
-        }
+        yield return ChooseSkill();
         while (PlayerManager.instance.player.state == Player.State.AddingSkill) {
             yield return null;
         }
-        MenuManager.instance.skillChoices.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        PlayerManager.instance.player.state = Player.State.AddingPassive;
         yield return ChoosePassive();
-        yield return null;
     }
 
     private IEnumerator ChooseSkill() {
-        MenuManager.instance.skillChoices.SetActive(true);
-        MenuManager.instance.passiveChoices.SetActive(false);
         PlayerManager.instance.player.state = Player.State.AddingSkill;
         PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3);
-        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
-        MenuManager.instance.skillChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
         yield return null;
     }
 
     private IEnumerator ChoosePassive() {
-        MenuManager.instance.passiveChoices.SetActive(true);
-        MenuManager.instance.skillChoices.SetActive(false);
         PlayerManager.instance.player.state = Player.State.AddingPassive;
         PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3);
-        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
-        MenuManager.instance.passiveChoices.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PlayerManager.instance.GenerateTalents(PlayerManager.instance.player, 3); });
         yield return null;
     }
 
@@ -325,7 +313,6 @@ public class StoryManager : MonoBehaviour
             yield return null;
         }
         PlayerManager.instance.SetTalents();
-        Debug.Log(PlayerManager.instance.player.state);
         yield return NextFight();
         yield return null;
     }
@@ -340,8 +327,6 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator StartingLoadout() {
-        PlayerManager.instance.player.skills.Clear();
-        PlayerManager.instance.player.passives.Clear();
         switch (PlayerManager.instance.player.character) {
             case (Player.Character.Rebel):
                 PlayerManager.instance.AddTalent(PlayerManager.instance.player, Talent.TalentName.SmallBomb);
@@ -360,7 +345,7 @@ public class StoryManager : MonoBehaviour
         int enemyIndex = 0;
         switch (GameManager.instance.stage) {
             case 1:
-                enemyIndex = Random.Range(0, 2);
+                enemyIndex = Random.Range(0, 1);
                 break;
             case <= 3:
                 enemyIndex = Random.Range(2, 4);
