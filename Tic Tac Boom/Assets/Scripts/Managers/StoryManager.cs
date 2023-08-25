@@ -278,11 +278,15 @@ public class StoryManager : MonoBehaviour
     }
 
     private IEnumerator ChooseTalent() {
-        PlayerManager.instance.player.state = Player.State.Idle;
-        if (GameManager.instance.stage % 3 == 0) {
+        PlayerManager.instance.player.state = Player.State.Inactive;
+        if (GameManager.instance.stage % 3 == 0 && GameManager.instance.stage % 2 == 1) {
             yield return ChooseSkillAndPassive();
-        } else if (GameManager.instance.stage % 3 != 0) {
-            yield return ChooseSkillAndPassive();
+        } else if (GameManager.instance.stage % 2 == 1) {
+            yield return ChoosePassive();
+        } else if (GameManager.instance.stage % 3 == 0) {
+            yield return ChooseSkill();
+        } else {
+            yield return NextFight();
         }
         yield return AwaitTalentChoice();
         yield return null;

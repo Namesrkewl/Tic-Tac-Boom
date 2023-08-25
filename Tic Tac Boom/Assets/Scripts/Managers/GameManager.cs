@@ -85,6 +85,28 @@ public class GameManager : MonoBehaviour
         //Initial Passives
         unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
         unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
+        unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
+        unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
     }
     
 }
