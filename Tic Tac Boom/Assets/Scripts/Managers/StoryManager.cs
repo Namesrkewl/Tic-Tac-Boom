@@ -83,6 +83,7 @@ public class StoryManager : MonoBehaviour
 
     public IEnumerator NewGame() {
         PlayerManager.instance.SetPlayers(Player.Faction.Exiled, Player.Character.Rebel, Player.Type.AI);
+        GameManager.instance.SetSkins();
         PlayerManager.instance.SetSkins();
         PlayerManager.instance.SetCharacterSprite(PlayerManager.instance.player);
         PlayerManager.instance.player.maxMoves = 1;

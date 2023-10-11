@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     // Variables
     public static GameManager instance;
     public int turn, round, stage, gridSize, newGridSize, minGridSize, maxGridSize;
+    public Sprite pureSkin, exiledSkin;
     public List<Talent> unlockedSkills, unlockedPassives;
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField]  public int Gems { get; private set; }
@@ -108,5 +109,9 @@ public class GameManager : MonoBehaviour
         unlockedPassives.Add(new Talent(Talent.TalentName.FastStart));
         unlockedPassives.Add(new Talent(Talent.TalentName.AdrenalineRush));
     }
-    
+
+    public void SetSkins() {
+        pureSkin = Resources.Load<Sprite>("Characters/Pure/O");
+        exiledSkin = Resources.Load<Sprite>("Characters/Exiled/X");
+    }
 }

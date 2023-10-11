@@ -268,11 +268,11 @@ public class PlayerManager : MonoBehaviour {
 
     public void SetSkins() {
         if (player.faction == Player.Faction.Exiled) {
-            player.skin = skins[0];
-            enemy.skin = skins[1];
+            player.skin = GameManager.instance.exiledSkin;
+            enemy.skin = GameManager.instance.pureSkin;
         } else {
-            player.skin = skins[1];
-            enemy.skin = skins[0];
+            player.skin = GameManager.instance.pureSkin;
+            enemy.skin = GameManager.instance.exiledSkin;
         }
     }
 

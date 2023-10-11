@@ -96,7 +96,6 @@
     <Compile Include="Assets/LeanTween/Framework/LTSeq.cs" />
     <Compile Include="Assets/Scripts/Animation/Resize.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralUISpace.cs" />
-    <Compile Include="Assets/Scripts/Audio/StopAudio.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/GeneralSimpleUI.cs" />
     <Compile Include="Assets/Scripts/Animation/TweenAnimation.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathBezier.cs" />
@@ -130,7 +129,6 @@
     <Compile Include="Assets/LeanTween/Framework/LeanSmooth.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/PathSplineTrack.cs" />
     <Compile Include="Assets/Scripts/ScriptableObjects/Accessor/SetConfirmSkillMenu.cs" />
-    <Compile Include="Assets/Scripts/Game Logic/ChangePlayers.cs" />
     <Compile Include="Assets/LeanTween/Framework/LeanTest.cs" />
     <Compile Include="Assets/Scripts/Skill Logic/DirectionInfo.cs" />
     <Compile Include="Assets/Scripts/Animation/MoveMenu.cs" />
